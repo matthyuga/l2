@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "phase": "5A.2",
+  "capturedAt": "2026-10-07T18:11:27-03:00",
+  "engineMode": "CORE_ACCELERATED",
+  "subject": {
+    "anchor": "Myrentha",
+    "race": "Elfo Oscuro",
+    "mainClassId": 110,
+    "mainClass": "Storm Screamer",
+    "activeClassAtEveryStage": "Storm Screamer"
+  },
+  "protocol": {
+    "level": 80,
+    "durationSeconds": 60,
+    "repetitionsPerStage": 3,
+    "opponentId": 900202,
+    "opponent": "Atlas",
+    "weaponId": 6579,
+    "weapon": "Arcana Mace +0",
+    "equipment": "Set robe S y joyería S común",
+    "shots": "Blessed Spiritshots S",
+    "externalBuffs": false,
+    "subclassOrder": ["Mystic Muse", "Archmage", "Soultaker"]
+  },
+  "audit": {
+    "runs": 12,
+    "expectedRuns": 12,
+    "runsPerStage": 3,
+    "badMetricRows": 0,
+    "phase4dRunsPreserved": 285,
+    "nyxCalibrationRunsPreserved": 360,
+    "anchorOnlineAfterRun": false,
+    "anchorLevelAfterRun": 1,
+    "anchorClassAfterRun": "Dark Mystic",
+    "anchorSubclassesAfterRun": 0,
+    "anchorItemsAfterRun": 0,
+    "nyxNpcXmlChanged": false
+  },
+  "stages": [
+    {
+      "index": 0,
+      "label": "Storm Screamer",
+      "classes": ["Storm Screamer"],
+      "skills": 74,
+      "passiveSkills": 24,
+      "activeSkills": 50,
+      "magicAttack": 1308.6806,
+      "castSpeed": 366,
+      "averageDps": 44.0720,
+      "averageCasts": 15,
+      "averageMpUsed": 1035,
+      "rotation": "Hurricane + Blessed Spiritshot S"
+    },
+    {
+      "index": 1,
+      "label": "+ Mystic Muse",
+      "classes": ["Storm Screamer", "Mystic Muse"],
+      "skills": 103,
+      "passiveSkills": 24,
+      "activeSkills": 79,
+      "magicAttack": 1308.6806,
+      "castSpeed": 366,
+      "averageDps": 87.3785,
+      "averageCasts": 37,
+      "averageMpUsed": 2553,
+      "rotation": "Aura Flare + Blessed Spiritshot S"
+    },
+    {
+      "index": 2,
+      "label": "+ Archmage",
+      "classes": ["Storm Screamer", "Mystic Muse", "Archmage"],
+      "skills": 118,
+      "passiveSkills": 24,
+      "activeSkills": 94,
+      "magicAttack": 1308.6806,
+      "castSpeed": 366,
+      "averageDps": 85.1900,
+      "averageCasts": 37,
+      "averageMpUsed": 2553,
+      "rotation": "Aura Flare + Blessed Spiritshot S"
+    },
+    {
+      "index": 3,
+      "label": "+ Soultaker",
+      "classes": ["Storm Screamer", "Mystic Muse", "Archmage", "Soultaker"],
+      "skills": 139,
+      "passiveSkills": 25,
+      "activeSkills": 114,
+      "magicAttack": 1344.9620,
+      "castSpeed": 366,
+      "averageDps": 83.4468,
+      "averageCasts": 37,
+      "averageMpUsed": 2553,
+      "rotation": "Aura Flare + Blessed Spiritshot S"
+    }
+  ],
+  "eliteReference": {
+    "name": "Nyx Élite",
+    "npcId": 900201,
+    "magicAttack": 21277.1681,
+    "castSpeed": 1999,
+    "magicAttackRatioVsPureStormScreamer": 16.2585,
+    "magicAttackRatioVsFourClassBuild": 15.8199
+  },
+  "conclusion": {
+    "attributeFinding": "Las primeras dos Subs no alteran M.Atk ni casteo; Soultaker añade 2,77% de M.Atk.",
+    "damageFinding": "Mystic Muse casi duplica el DPS porque habilita Aura Flare y más lanzamientos en el protocolo, no por aumento de M.Atk.",
+    "balanceFinding": "Nyx conserva estadísticas de rival élite y no representa una progresión normal de personaje.",
+    "nextStep": "Separar comparación por skill fija y comparación de mejor rotación antes de decidir buffs o nerfs."
+  }
+}

@@ -420,3 +420,40 @@ el NPC real**. La próxima ronda debe concentrarse alrededor de 30%, 25% y 20%.
 Respaldo local:
 `backups/telemetry-phase5a-2026-10-07/phase5a-nyx-calibration.sql`.
 El repositorio conserva el mismo volcado y un resumen JSON en `data/telemetry/`.
+
+## Fase 5A.2 — Storm Screamer y crecimiento por Subs
+
+El 7 de octubre de 2026 se ejecutó una progresión real sobre Myrentha, el ancla
+Dark Mystic. En cada etapa Storm Screamer quedó como clase activa a nivel 80 y se
+añadieron, en orden acumulativo, Mystic Muse, Archmage y Soultaker. Las cuatro
+etapas usaron Atlas, Arcana Mace +0, robe S, joyería S común, Blessed Spiritshots,
+sin buffs externos y tres repeticiones de 60 segundos acelerados.
+
+| Etapa | Skills | Pasivas | M.Atk | Cast | DPS medio | Rotación |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| Storm Screamer | 74 | 24 | 1.308,68 | 366 | 44,07 | Hurricane |
+| + Mystic Muse | 103 | 24 | 1.308,68 | 366 | 87,38 | Aura Flare |
+| + Archmage | 118 | 24 | 1.308,68 | 366 | 85,19 | Aura Flare |
+| + Soultaker | 139 | 25 | 1.344,96 | 366 | 83,45 | Aura Flare |
+
+La medición separa dos fenómenos. Las Subs no acumularon linealmente las masteries:
+M.Atk y casteo permanecieron iguales hasta que Soultaker añadió una sola pasiva y
+2,77% de M.Atk. El salto tras Mystic Muse se produjo porque el selector encontró
+Aura Flare y realizó 37 lanzamientos, frente a 15 Hurricanes del perfil puro; no
+fue un crecimiento del atributo mágico. Las diferencias pequeñas entre las tres
+últimas etapas están dentro de la variación crítica de solo tres repeticiones.
+
+Nyx quedó intacta como **Nyx Élite**: 21.277,17 M.Atk y 1.999 de casteo, frente a
+1.308,68/366 del Storm Screamer puro y 1.344,96/366 de la build completa. Es una
+referencia especial —15,82 a 16,26 veces el M.Atk normal de esta prueba— y no una
+meta alcanzable mediante tres Subs normales.
+
+Auditoría: 12/12 pasadas, tres por etapa, cero métricas inválidas, 285 filas de 4D
+y 360 de calibración preservadas. Myrentha terminó offline, nivel 1, Dark Mystic,
+sin Subs ni objetos. Antes de ajustar balance, la siguiente comparación debe tener
+dos carriles: una skill fija común para aislar stats y una mejor rotación por build
+para medir el valor práctico del catálogo acumulado.
+
+Respaldo local:
+`backups/telemetry-phase5a2-2026-10-07/phase5a2-magic-progression.sql`.
+El volcado y su resumen JSON también están en `data/telemetry/`.

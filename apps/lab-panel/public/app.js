@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var state = { view: 'overview', characters: [], opponents: [], classes: [], skills: [], fights: [], catalog: [], pairs: [], buildCandidates: [], finalists: [], benchmarks: [], externalReferences: [], nyxCalibration: null, coverage: null, selectedCharacter: null, selectedOpponent: null, selectedClass: null, selectedSkill: null, selectedFight: null };
+  var state = { view: 'overview', characters: [], opponents: [], classes: [], skills: [], fights: [], catalog: [], pairs: [], buildCandidates: [], finalists: [], benchmarks: [], externalReferences: [], nyxCalibration: null, magicProgression: null, coverage: null, selectedCharacter: null, selectedOpponent: null, selectedClass: null, selectedSkill: null, selectedFight: null };
   var titles = { overview: 'Resumen del laboratorio', characters: 'Personajes y equipamiento', creator: 'Crear rival NPC', balance: 'Balance de razas y clases', skills: 'Editor de skills', telemetry: 'Análisis de combate' };
 
   function $(selector, root) { return (root || document).querySelector(selector); }
@@ -301,19 +301,21 @@
   function renderSkillDetail(skill){var preferred=['power','mpConsume','ench1Power','ench2MpConsume'];var tableNames=Object.keys(skill.tables).sort(function(a,b){var ai=preferred.indexOf(a),bi=preferred.indexOf(b);if(ai===-1)ai=99;if(bi===-1)bi=99;return ai-bi||a.localeCompare(b);});var tableRows=tableNames.map(function(name){var count=skill.tables[name].trim().split(/\s+/).length;return '<div class="editor-row"><label>#'+escapeHtml(name)+'<small>'+count+' valores</small></label><div class="field"><textarea name="table_'+escapeHtml(name)+'">'+escapeHtml(skill.tables[name])+'</textarea></div></div>';}).join('');var valueRows=Object.keys(skill.values).map(function(name){return '<div class="field"><label>'+escapeHtml(name)+'</label><input name="value_'+escapeHtml(name)+'" value="'+escapeHtml(skill.values[name])+'"></div>';}).join('');$('#skill-detail').innerHTML='<div class="detail-header"><div class="identity">'+skillIcon(skill,true)+'<div><p class="eyebrow">SKILL #'+skill.id+' · '+skill.levels+' NIVELES</p><h2>'+escapeHtml(skill.name)+'</h2><div class="skill-meta"><span class="badge">'+escapeHtml(skill.operateType||'sin operateType')+'</span><span class="badge">Target '+escapeHtml(skill.targetType||'—')+'</span><span class="badge">'+escapeHtml(skill.icon||'sin icono')+'</span></div></div></div><span class="badge">XML</span></div><div class="detail-body"><div class="notice">Los valores separados por espacios corresponden a niveles consecutivos. Mantén la misma cantidad salvo que también cambies la definición de niveles.</div><form id="skill-form"><h4 class="section-title">Valores directos</h4><div class="form-grid three">'+(valueRows||'<p class="muted">Este skill no tiene valores directos editables.</p>')+'</div><h4 class="section-title">Tablas por nivel</h4><div class="editor-list">'+(tableRows||'<p class="muted">Este skill no contiene tablas numéricas.</p>')+'</div><div class="form-actions"><p>'+escapeHtml(skill.file)+'</p><button class="button primary">Guardar skill</button></div></form></div>';$('#skill-form').onsubmit=async function(event){event.preventDefault();var f=new FormData(event.target),tables={},values={};tableNames.forEach(function(name){tables[name]=f.get('table_'+name);});Object.keys(skill.values).forEach(function(name){values[name]=f.get('value_'+name);});try{await api('/api/skills/'+skill.id,{method:'PATCH',body:JSON.stringify({tables:tables,values:values})});toast('Skill guardado con copia de seguridad.','success');$('#pending-badge').classList.remove('hidden');}catch(error){toast(error.message,'error');}};}
 
   async function loadTelemetry(){
-    var loadingIds=['fight-list','telemetry-catalog','telemetry-pairs','telemetry-build-candidates','telemetry-finalists','telemetry-benchmarks','telemetry-coverage','telemetry-external-references','telemetry-nyx-calibration'];
+    var loadingIds=['fight-list','telemetry-catalog','telemetry-pairs','telemetry-build-candidates','telemetry-finalists','telemetry-benchmarks','telemetry-coverage','telemetry-external-references','telemetry-nyx-calibration','telemetry-magic-progression'];
     loadingIds.forEach(function(id){var node=$('#'+id);if(node)node.innerHTML='<div class="loading">Actualizando telemetría…</div>';});
     try{
       var result=await Promise.all([
         api('/api/telemetry/fights'),api('/api/telemetry/catalog'),api('/api/telemetry/coverage'),
         api('/api/telemetry/pairs'),api('/api/telemetry/build-candidates'),api('/api/telemetry/finalists'),
-        api('/api/telemetry/benchmarks'),api('/api/telemetry/external-references'),api('/api/telemetry/nyx-calibration')
+        api('/api/telemetry/benchmarks'),api('/api/telemetry/external-references'),api('/api/telemetry/nyx-calibration'),
+        api('/api/telemetry/magic-progression')
       ]);
       state.fights=result[0];state.catalog=result[1];state.coverage=result[2];state.pairs=result[3];
       state.buildCandidates=result[4];state.finalists=result[5];state.benchmarks=result[6];
       state.externalReferences=result[7];state.nyxCalibration=result[8];
+      state.magicProgression=result[9];
       renderCoverage();renderPairs();renderBuildCandidates();renderFinalists();renderBenchmarks();
-      renderExternalReferences();renderNyxCalibration();renderCatalog();renderFights();
+      renderExternalReferences();renderNyxCalibration();renderMagicProgression();renderCatalog();renderFights();
       if(state.fights.length){
         if(!state.selectedFight||!state.fights.some(function(f){return f.id===state.selectedFight;}))state.selectedFight=state.fights[0].id;
         selectFight(state.selectedFight);
@@ -360,6 +362,20 @@
     }).join('');
     var recommendation=closest?'<div class="notice">Perfil más cercano al centro de 15 s: <strong>'+escapeHtml(closest.label)+'</strong> con '+number(closest.timeAlive,2)+' s de media. Esta lectura orienta la siguiente ronda; no modifica el NPC Nyx original.</div>':'<div class="notice">La cola se ejecutará automáticamente cuando el Game Server reinicie y no haya jugadores conectados. La fase 4D permanece intacta.</div>';
     $('#telemetry-nyx-calibration').innerHTML=recommendation+'<table><thead><tr><th>Perfil</th><th>Pasadas</th><th>Supervivencia</th><th>Daño recibido</th><th>HP+CP restante</th><th>Control</th><th>Objetivo</th><th>Por categoría</th></tr></thead><tbody>'+(rows||'<tr><td colspan="8">Calibración pendiente.</td></tr>')+'</tbody></table>';
+  }
+
+  function renderMagicProgression(){
+    var progression=state.magicProgression||{expectedRuns:12,totalRuns:0,stages:[],elite:null};
+    var stages=progression.stages||[];
+    var elite=progression.elite;
+    $('#magic-progression-count').textContent=number(progression.totalRuns)+' / '+number(progression.expectedRuns);
+    var eliteNotice=elite?'<div class="notice">Nyx Élite queda como referencia separada e intacta: <strong>'+number(elite.mAtk,1)+' M.Atk</strong> · '+number(elite.mAtkSpeed,0)+' cast. La progresión usa una Dark Mystic real, Arcana Mace +0, equipo S común, Blessed Spiritshots y Storm Screamer activo en las cuatro etapas.</div>':'<div class="notice">Nyx Élite permanece fuera de esta progresión. La referencia aparecerá cuando el catálogo del NPC esté disponible.</div>';
+    var rows=stages.map(function(stage){
+      var build=[stage.main].concat(stage.subclasses||[]).filter(Boolean).map(function(item){return item.name;}).join(' + ');
+      var gain=stage.index===0?'Base':'M.Atk '+(stage.gains.mAtk>=0?'+':'')+number(stage.gains.mAtk,1)+'% · DPS '+(stage.gains.dps>=0?'+':'')+number(stage.gains.dps,1)+'%';
+      return '<tr><td><strong>'+escapeHtml(stage.label)+'</strong><span class="build-mini">'+escapeHtml(build)+'</span></td><td>'+number(stage.runs)+' / 3</td><td><strong>'+number(stage.skillCount,0)+'</strong><span class="build-mini">'+number(stage.passiveSkills,0)+' pasivas · '+number(stage.activeSkills,0)+' activas</span></td><td><strong>'+number(stage.mAtk,1)+'</strong><span class="build-mini">'+escapeHtml(gain)+'</span></td><td>'+number(stage.mAtkSpeed,0)+'<span class="build-mini">'+(stage.gains.mAtkSpeed>=0?'+':'')+number(stage.gains.mAtkSpeed,1)+'%</span></td><td><strong>'+number(stage.dps,1)+'</strong><span class="build-mini">'+number(stage.damage,0)+' daño / 60 s</span></td><td>'+number(stage.casts,1)+'<span class="build-mini">'+number(stage.criticalRate,1)+'% críticos</span></td><td>'+number(stage.mpUsed,0)+'<span class="build-mini">'+escapeHtml(stage.rotation||'—')+'</span></td></tr>';
+    }).join('');
+    $('#telemetry-magic-progression').innerHTML=eliteNotice+'<table><thead><tr><th>Etapa / build</th><th>Pasadas</th><th>Skills</th><th>M.Atk</th><th>Cast</th><th>DPS</th><th>Lanzamientos</th><th>MP / rotación</th></tr></thead><tbody>'+(rows||'<tr><td colspan="8">La progresión comenzará al reiniciar el Game Server sin jugadores conectados.</td></tr>')+'</tbody></table>';
   }
 
   function renderCatalog(){var rows=state.catalog.map(function(p){var build=[p.baseClassInfo].concat(p.subclasses||[]).filter(Boolean).map(function(c){return c.name;}).join(' + ');var context=Number(p.effect_count)===0?'Limpio':'Con '+number(p.effect_count)+' efectos';return '<tr><td><strong>'+escapeHtml(p.name)+'</strong><span class="build-mini">'+escapeHtml(build)+'</span></td><td>'+escapeHtml(String(p.race_name||'').replace('_',' '))+'</td><td><strong>'+escapeHtml(p.slotName)+'</strong><span class="build-mini">'+escapeHtml(p.classInfo.name)+'</span></td><td>'+number(p.level)+'</td><td>'+number(p.p_atk,1)+'</td><td>'+number(p.m_atk,1)+'</td><td>'+number(p.p_def,1)+'</td><td>'+number(p.m_def,1)+'</td><td>'+number(p.max_hp)+' / '+number(p.max_cp)+'</td><td>'+number(p.p_atk_speed)+' / '+number(p.m_atk_speed)+'</td><td><span class="'+(Number(p.effect_count)===0?'context-clean':'context-active')+'">'+escapeHtml(context)+'</span><span class="build-mini">'+number(p.equipped_count)+' equipados · '+number(p.skill_count)+' skills</span></td><td>'+escapeHtml(date(p.observed_ms))+'</td></tr>';}).join('');$('#catalog-count').textContent=number(state.catalog.length)+' perfiles';$('#telemetry-catalog').innerHTML='<table><thead><tr><th>Personaje / build</th><th>Raza</th><th>Ranura / clase activa</th><th>Nivel</th><th>P. Atk</th><th>M. Atk</th><th>P.Def</th><th>M.Def</th><th>HP / CP</th><th>Atk / Cast</th><th>Contexto</th><th>Lectura</th></tr></thead><tbody>'+(rows||'<tr><td colspan="12">Todavía no hay perfiles. Reinicia el Game Server y entra con un personaje.</td></tr>')+'</tbody></table>';}

@@ -722,6 +722,61 @@ async function telemetryNyxCalibration() {
   };
 }
 
+
+async function telemetryMagicProgression() {
+  let rows = [];
+  let eliteRows = [];
+  try {
+    const results = await Promise.all([
+      database.query(
+        'SELECT stage_index,MIN(stage_label) stage_label,MIN(main_class_id) main_class_id,MIN(sub1_class_id) sub1_class_id,'+
+        'MIN(sub2_class_id) sub2_class_id,MIN(sub3_class_id) sub3_class_id,MIN(class_count) class_count,COUNT(*) runs,'+
+        'AVG(skill_count) skill_count,AVG(passive_skill_count) passive_skill_count,AVG(active_skill_count) active_skill_count,'+
+        'AVG(p_atk) p_atk,AVG(m_atk) m_atk,AVG(p_def) p_def,AVG(m_def) m_def,AVG(p_atk_speed) p_atk_speed,AVG(m_atk_speed) m_atk_speed,'+
+        'AVG(max_hp) max_hp,AVG(max_cp) max_cp,AVG(max_mp) max_mp,AVG(damage_dealt) damage_dealt,AVG(dps) dps,'+
+        'AVG(casts) casts,AVG(critical_count/NULLIF(casts,0))*100 critical_rate,AVG(mp_used) mp_used,MIN(rotation) rotation '+
+        'FROM lab_magic_progression_runs GROUP BY stage_index ORDER BY stage_index'
+      ),
+      database.query('SELECT template_id,name,p_atk,m_atk,p_def,m_def,p_atk_speed,m_atk_speed,max_hp,max_cp,max_mp FROM lab_creature_stats WHERE template_id=900201')
+    ]);
+    rows = results[0];
+    eliteRows = results[1];
+  } catch (error) {
+    if (error && error.code === 'ER_NO_SUCH_TABLE') return { expectedRuns: 12, totalRuns: 0, stages: [], elite: null };
+    throw error;
+  }
+  const base = rows.length ? rows[0] : null;
+  function gain(value, baseValue) {
+    value = Number(value || 0); baseValue = Number(baseValue || 0);
+    return baseValue ? ((value / baseValue) - 1) * 100 : 0;
+  }
+  const stages = rows.map(function (row) {
+    return {
+      index: Number(row.stage_index), label: row.stage_label, runs: Number(row.runs), classCount: Number(row.class_count),
+      main: classInfo(row.main_class_id),
+      subclasses: [row.sub1_class_id,row.sub2_class_id,row.sub3_class_id].map(Number).filter(function(id){return id >= 0;}).map(classInfo),
+      skillCount: Number(row.skill_count), passiveSkills: Number(row.passive_skill_count), activeSkills: Number(row.active_skill_count),
+      pAtk: Number(row.p_atk), mAtk: Number(row.m_atk), pDef: Number(row.p_def), mDef: Number(row.m_def),
+      pAtkSpeed: Number(row.p_atk_speed), mAtkSpeed: Number(row.m_atk_speed),
+      maxHp: Number(row.max_hp), maxCp: Number(row.max_cp), maxMp: Number(row.max_mp),
+      damage: Number(row.damage_dealt), dps: Number(row.dps), casts: Number(row.casts),
+      criticalRate: Number(row.critical_rate), mpUsed: Number(row.mp_used), rotation: row.rotation,
+      gains: {
+        mAtk: gain(row.m_atk, base && base.m_atk), mAtkSpeed: gain(row.m_atk_speed, base && base.m_atk_speed),
+        dps: gain(row.dps, base && base.dps), skills: gain(row.skill_count, base && base.skill_count)
+      }
+    };
+  });
+  const elite = eliteRows.length ? {
+    id: Number(eliteRows[0].template_id), name: eliteRows[0].name,
+    pAtk: Number(eliteRows[0].p_atk), mAtk: Number(eliteRows[0].m_atk),
+    pDef: Number(eliteRows[0].p_def), mDef: Number(eliteRows[0].m_def),
+    pAtkSpeed: Number(eliteRows[0].p_atk_speed), mAtkSpeed: Number(eliteRows[0].m_atk_speed),
+    maxHp: Number(eliteRows[0].max_hp), maxCp: Number(eliteRows[0].max_cp), maxMp: Number(eliteRows[0].max_mp)
+  } : null;
+  return { expectedRuns: 12, totalRuns: stages.reduce(function(sum,item){return sum+item.runs;},0), stages: stages, elite: elite };
+}
+
 async function api(req, res, url) {
   const route = url.pathname;
   if (req.method === 'GET' && route === '/api/status') {
@@ -785,6 +840,7 @@ async function api(req, res, url) {
   if (req.method === 'GET' && route === '/api/telemetry/finalists') return json(res, 200, await telemetryFinalists());
 	if (req.method === 'GET' && route === '/api/telemetry/benchmarks') return json(res, 200, await telemetryBenchmarks());
 	if (req.method === 'GET' && route === '/api/telemetry/nyx-calibration') return json(res, 200, await telemetryNyxCalibration());
+	if (req.method === 'GET' && route === '/api/telemetry/magic-progression') return json(res, 200, await telemetryMagicProgression());
 	if (req.method === 'GET' && route === '/api/telemetry/external-references') return json(res, 200, externalReferences());
   match = route.match(/^\/api\/telemetry\/fights\/(\d+)$/);
   if (match && req.method === 'GET') {

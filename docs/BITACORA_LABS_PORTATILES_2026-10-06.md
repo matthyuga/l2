@@ -678,3 +678,39 @@ Auditoría de cierre: 285 filas originales de 4D intactas, 90 filas por cada esc
 tres repeticiones exactas por caso, cero métricas inválidas y los nueve anclajes
 offline, nivel 1, sin Subs ni objetos. El volcado recuperable está en
 `backups/telemetry-phase5a-2026-10-07/phase5a-nyx-calibration.sql`.
+
+## 21. Fase 5A.2: progresión mágica normal y Nyx Élite separada
+
+Se creó una prueba incremental sobre Myrentha para responder cuánto crece un mago
+normal al sumar Subs. El personaje se midió como Storm Screamer puro y luego con
+Mystic Muse, Archmage y Soultaker acumulados, manteniendo Storm Screamer activo.
+Se fijaron nivel 80, Atlas, Arcana Mace +0, robe S, joyería S común, Blessed
+Spiritshots, cero buffs externos, 60 segundos acelerados y tres repeticiones.
+
+La corrida cerró 12/12. El Storm Screamer puro registró 1.308,68 M.Atk, 366 de
+casteo y 44,07 DPS con Hurricane. Mystic Muse mantuvo exactamente los atributos,
+pero habilitó Aura Flare, elevó los lanzamientos de 15 a 37 y llevó el promedio a
+87,38 DPS. Archmage tampoco cambió M.Atk/casteo y promedió 85,19 DPS. Soultaker
+añadió una pasiva, elevó M.Atk a 1.344,96 (+2,77%) y promedió 83,45 DPS. La leve
+baja de los últimos promedios responde a la variación de críticos; no constituye
+evidencia de que una Sub reste daño.
+
+Nyx no fue editada. Se conserva explícitamente como Nyx Élite con 21.277,17 M.Atk
+y 1.999 de casteo, entre 15,82 y 16,26 veces el M.Atk de estos perfiles normales.
+Esto confirma que sirve como rival especial y referencia extrema, no como modelo
+de progresión de un personaje.
+
+Se agregó la tabla `lab_magic_progression_runs`, el endpoint
+`/api/telemetry/magic-progression` y una sección del panel con etapas, skills,
+atributos, DPS, recursos y rotación. La cola es incremental y, si encuentra un
+jugador conectado o todavía no encuentra Atlas, vuelve a intentarlo al minuto.
+
+Auditoría: tres filas por etapa, cero métricas inválidas, 285 resultados 4D y 360
+de calibración preservados. Myrentha volvió offline a nivel 1, Dark Mystic, sin
+Subs ni objetos. El respaldo está en
+`backups/telemetry-phase5a2-2026-10-07`; el repositorio conserva SQL y resumen JSON
+en `data/telemetry/`.
+
+La siguiente medición deberá distinguir una skill fija común —para comparar la
+contribución pura de stats— de la mejor rotación disponible —para medir la utilidad
+real de acumular catálogos de skills—. No se aplicaron buffs ni nerfs.

@@ -82,6 +82,12 @@ public class LabTelemetry extends Script
 	private static final int EXPECTED_NYX_CALIBRATION_CASE_COUNT = 30;
 	private static final int[] NYX_CALIBRATION_SCALES = {100, 75, 60, 50};
 	private static final int EXPECTED_NYX_CALIBRATION_RUN_COUNT = EXPECTED_NYX_CALIBRATION_CASE_COUNT * 3 * NYX_CALIBRATION_SCALES.length;
+	private static final int[] MAGIC_PROGRESSION_CLASS_IDS = {110, 103, 94, 95};
+	private static final String[] MAGIC_PROGRESSION_LABELS = {"Storm Screamer", "+ Mystic Muse", "+ Archmage", "+ Soultaker"};
+	private static final int MAGIC_PROGRESSION_WEAPON_ID = 6579;
+	private static final int MAGIC_PROGRESSION_DURATION_SECONDS = 60;
+	private static final int MAGIC_PROGRESSION_REPETITIONS = 3;
+	private static final int EXPECTED_MAGIC_PROGRESSION_RUN_COUNT = MAGIC_PROGRESSION_CLASS_IDS.length * MAGIC_PROGRESSION_REPETITIONS;
 	private static final int BENCHMARK_ATLAS_ID = 900202;
 	private static final int BENCHMARK_ARES_ID = 900200;
 	private static final int BENCHMARK_NYX_ID = 900201;
@@ -311,6 +317,37 @@ public class LabTelemetry extends Script
 		"critical_count=VALUES(critical_count),miss_count=VALUES(miss_count),bss_used=VALUES(bss_used),damage_received=VALUES(damage_received)," +
 		"time_alive=VALUES(time_alive),hp_cp_remaining=VALUES(hp_cp_remaining),control_time=VALUES(control_time),notes=VALUES(notes)";
 
+	private static final String CREATE_MAGIC_PROGRESSION_RUN_TABLE =
+		"CREATE TABLE IF NOT EXISTS lab_magic_progression_runs (" +
+		"stage_index SMALLINT NOT NULL,run_number SMALLINT NOT NULL,executed_ms BIGINT UNSIGNED NOT NULL," +
+		"engine_mode VARCHAR(32) NOT NULL DEFAULT 'CORE_ACCELERATED',stage_label VARCHAR(80) NOT NULL," +
+		"main_class_id INT NOT NULL,sub1_class_id INT NOT NULL DEFAULT -1,sub2_class_id INT NOT NULL DEFAULT -1,sub3_class_id INT NOT NULL DEFAULT -1," +
+		"class_count SMALLINT NOT NULL,char_id INT NOT NULL,char_name VARCHAR(45) NOT NULL,active_class_id INT NOT NULL,active_class_index SMALLINT NOT NULL,level SMALLINT NOT NULL," +
+		"skill_count SMALLINT NOT NULL,passive_skill_count SMALLINT NOT NULL,active_skill_count SMALLINT NOT NULL," +
+		"equipment_kit VARCHAR(32) NOT NULL,weapon_id INT NOT NULL,weapon_name VARCHAR(80) NOT NULL," +
+		"p_atk DOUBLE NOT NULL,m_atk DOUBLE NOT NULL,p_def DOUBLE NOT NULL,m_def DOUBLE NOT NULL,p_atk_speed DOUBLE NOT NULL,m_atk_speed DOUBLE NOT NULL," +
+		"max_hp DOUBLE NOT NULL,max_cp DOUBLE NOT NULL,max_mp DOUBLE NOT NULL,duration_seconds SMALLINT NOT NULL," +
+		"rotation VARCHAR(512) NOT NULL DEFAULT '',actions INT NOT NULL DEFAULT 0,hits INT NOT NULL DEFAULT 0,casts INT NOT NULL DEFAULT 0," +
+		"critical_count INT NOT NULL DEFAULT 0,miss_count INT NOT NULL DEFAULT 0,bss_used INT NOT NULL DEFAULT 0," +
+		"damage_dealt DOUBLE NOT NULL DEFAULT 0,dps DOUBLE NOT NULL DEFAULT 0,mp_used DOUBLE NOT NULL DEFAULT 0,notes VARCHAR(512) NOT NULL DEFAULT ''," +
+		"PRIMARY KEY(stage_index,run_number),KEY idx_lab_magic_progression_time(executed_ms)" +
+		") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+
+	private static final String INSERT_MAGIC_PROGRESSION_RUN =
+		"INSERT INTO lab_magic_progression_runs (stage_index,run_number,executed_ms,engine_mode,stage_label," +
+		"main_class_id,sub1_class_id,sub2_class_id,sub3_class_id,class_count,char_id,char_name,active_class_id,active_class_index,level," +
+		"skill_count,passive_skill_count,active_skill_count,equipment_kit,weapon_id,weapon_name," +
+		"p_atk,m_atk,p_def,m_def,p_atk_speed,m_atk_speed,max_hp,max_cp,max_mp,duration_seconds," +
+		"rotation,actions,hits,casts,critical_count,miss_count,bss_used,damage_dealt,dps,mp_used,notes) " +
+		"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) " +
+		"ON DUPLICATE KEY UPDATE executed_ms=VALUES(executed_ms),engine_mode=VALUES(engine_mode),stage_label=VALUES(stage_label)," +
+		"sub1_class_id=VALUES(sub1_class_id),sub2_class_id=VALUES(sub2_class_id),sub3_class_id=VALUES(sub3_class_id),class_count=VALUES(class_count)," +
+		"skill_count=VALUES(skill_count),passive_skill_count=VALUES(passive_skill_count),active_skill_count=VALUES(active_skill_count)," +
+		"p_atk=VALUES(p_atk),m_atk=VALUES(m_atk),p_def=VALUES(p_def),m_def=VALUES(m_def),p_atk_speed=VALUES(p_atk_speed),m_atk_speed=VALUES(m_atk_speed)," +
+		"max_hp=VALUES(max_hp),max_cp=VALUES(max_cp),max_mp=VALUES(max_mp),rotation=VALUES(rotation),actions=VALUES(actions),hits=VALUES(hits)," +
+		"casts=VALUES(casts),critical_count=VALUES(critical_count),miss_count=VALUES(miss_count),bss_used=VALUES(bss_used)," +
+		"damage_dealt=VALUES(damage_dealt),dps=VALUES(dps),mp_used=VALUES(mp_used),notes=VALUES(notes)";
+
 	private static final String INSERT_EVENT =
 		"INSERT INTO lab_combat_events (occurred_ms,event_type," +
 		"attacker_object_id,attacker_name,attacker_kind,attacker_template_id,attacker_class_id,attacker_level," +
@@ -418,6 +455,7 @@ public class LabTelemetry extends Script
 		ThreadPool.schedule(this::runFourClassCoverage, 30000);
 		ThreadPool.schedule(this::runCombatBenchmarks, 45000);
 		ThreadPool.schedule(this::runNyxCalibration, 60000);
+		ThreadPool.schedule(this::runMagicProgression, 75000);
 	}
 
 	/**
@@ -1520,6 +1558,176 @@ public class LabTelemetry extends Script
 		}
 	}
 
+	/**
+	 * Phase 5A.2: measures a normal Storm Screamer and the same character after
+	 * each cumulative subclass is added. Storm Screamer remains active in every
+	 * stage and all stages use the same S-grade equipment without external buffs.
+	 */
+	private void runMagicProgression()
+	{
+		Player player = null;
+		final PlayerClass restoreRoot = PlayerClass.getPlayerClass(38); // Dark Mystic.
+		try
+		{
+			if (countMagicProgressionRuns() >= EXPECTED_MAGIC_PROGRESSION_RUN_COUNT)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A.2: progresion magica completa (" + EXPECTED_MAGIC_PROGRESSION_RUN_COUNT + "/" + EXPECTED_MAGIC_PROGRESSION_RUN_COUNT + ").");
+				return;
+			}
+			if (countOnlineCharacters() > 0)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A.2: hay jugadores conectados; la progresion se posterga.");
+				ThreadPool.schedule(this::runMagicProgression, 60000);
+				return;
+			}
+			final Npc atlas = getBenchmarkNpc(BENCHMARK_ATLAS_ID);
+			if (atlas == null)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A.2: espera a Atlas en el Coliseo.");
+				ThreadPool.schedule(this::runMagicProgression, 60000);
+				return;
+			}
+
+			final PlayerClass mainClass = PlayerClass.getPlayerClass(MAGIC_PROGRESSION_CLASS_IDS[0]);
+			player = Player.load(findCharacterId(anchorForRoot(restoreRoot)));
+			if ((player == null) || (mainClass == null))
+			{
+				throw new IllegalStateException("No se pudo cargar el ancla Dark Mystic o Storm Screamer.");
+			}
+			CONTROLLED_CAPTURE_IDS.add(player.getObjectId());
+			BENCHMARK_CAPTURE_IDS.add(player.getObjectId());
+			prepareAnchor(player);
+			configureCleanClass(player, mainClass, CLEAN_PROFILE_LEVEL);
+			final Set<String> completedRuns = loadCompletedMagicProgressionRuns();
+			int measured = completedRuns.size();
+
+			for (int stage = 0; stage < MAGIC_PROGRESSION_CLASS_IDS.length; stage++)
+			{
+				if (stage > 0)
+				{
+					final PlayerClass subClass = PlayerClass.getPlayerClass(MAGIC_PROGRESSION_CLASS_IDS[stage]);
+					if ((subClass == null) || !player.addSubClass(subClass.getId(), stage))
+					{
+						throw new IllegalStateException("No se pudo agregar Sub " + stage + " " + MAGIC_PROGRESSION_CLASS_IDS[stage] + ".");
+					}
+					player.setActiveClass(stage);
+					maximizeActiveClass(player, CLEAN_PROFILE_LEVEL);
+				}
+				player.setActiveClass(0);
+				cleanPairState(player);
+
+				final List<Item> createdItems = new ArrayList<>();
+				try
+				{
+					equipMagicProgressionKit(player, createdItems);
+					final CreatureSnapshot snapshot = new CreatureSnapshot(player);
+					int passiveSkills = 0;
+					for (Skill skill : player.getAllSkills())
+					{
+						if (skill.isPassive())
+						{
+							passiveSkills++;
+						}
+					}
+					for (int runNumber = 1; runNumber <= MAGIC_PROGRESSION_REPETITIONS; runNumber++)
+					{
+						final String runKey = stage + ":" + runNumber;
+						if (completedRuns.contains(runKey))
+						{
+							continue;
+						}
+						final BenchmarkResult result = new BenchmarkResult(player, "magic-progression-" + stage, runNumber,
+							MAGIC_PROGRESSION_DURATION_SECONDS, BENCHMARK_ATLAS_ID, "Atlas", "S_ROBE", MAGIC_PROGRESSION_WEAPON_ID);
+						cleanBenchmarkActors(player, atlas);
+						runMagicalOutput(result, player, atlas);
+						storeMagicProgressionRun(stage, result, snapshot, passiveSkills);
+						completedRuns.add(runKey);
+						measured++;
+						LOGGER.info("Laboratorio L2 fase 5A.2: progreso " + measured + "/" + EXPECTED_MAGIC_PROGRESSION_RUN_COUNT +
+							" (" + MAGIC_PROGRESSION_LABELS[stage] + ").");
+					}
+				}
+				finally
+				{
+					removeBenchmarkKit(player, createdItems);
+					cleanBenchmarkActors(player, atlas);
+				}
+			}
+			LOGGER.info("Laboratorio L2 fase 5A.2: progresion terminada; pasadas=" + countMagicProgressionRuns() + "/" + EXPECTED_MAGIC_PROGRESSION_RUN_COUNT + ".");
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.WARNING, "Laboratorio L2 fase 5A.2: no se pudo medir la progresion magica.", e);
+		}
+		finally
+		{
+			if (player != null)
+			{
+				restoreBenchmarkAnchor(player, restoreRoot);
+			}
+		}
+	}
+
+	private static int countMagicProgressionRuns() throws SQLException
+	{
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM lab_magic_progression_runs"); ResultSet rs = ps.executeQuery())
+		{
+			return rs.next() ? rs.getInt(1) : 0;
+		}
+	}
+
+	private static Set<String> loadCompletedMagicProgressionRuns() throws SQLException
+	{
+		final Set<String> result = new HashSet<>();
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT stage_index,run_number FROM lab_magic_progression_runs"); ResultSet rs = ps.executeQuery())
+		{
+			while (rs.next())
+			{
+				result.add(rs.getInt(1) + ":" + rs.getInt(2));
+			}
+		}
+		return result;
+	}
+
+	private static void equipMagicProgressionKit(Player player, List<Item> createdItems)
+	{
+		for (int itemId : ROBE_ARMOR_IDS)
+		{
+			addAndEquipBenchmarkItem(player, itemId, createdItems);
+		}
+		for (int itemId : COMMON_JEWELRY_IDS)
+		{
+			addAndEquipBenchmarkItem(player, itemId, createdItems);
+		}
+		addAndEquipBenchmarkItem(player, MAGIC_PROGRESSION_WEAPON_ID, createdItems);
+		player.setCurrentHpMp(player.getMaxHp(), player.getMaxMp());
+		player.setCurrentCp(player.getMaxCp());
+	}
+
+	private static void storeMagicProgressionRun(int stage, BenchmarkResult r, CreatureSnapshot s, int passiveSkills) throws SQLException
+	{
+		final int sub1 = stage >= 1 ? MAGIC_PROGRESSION_CLASS_IDS[1] : -1;
+		final int sub2 = stage >= 2 ? MAGIC_PROGRESSION_CLASS_IDS[2] : -1;
+		final int sub3 = stage >= 3 ? MAGIC_PROGRESSION_CLASS_IDS[3] : -1;
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement(INSERT_MAGIC_PROGRESSION_RUN))
+		{
+			int i = 1;
+			ps.setInt(i++, stage); ps.setInt(i++, r.runNumber); ps.setLong(i++, System.currentTimeMillis()); ps.setString(i++, "CORE_ACCELERATED");
+			ps.setString(i++, MAGIC_PROGRESSION_LABELS[stage]); ps.setInt(i++, MAGIC_PROGRESSION_CLASS_IDS[0]);
+			ps.setInt(i++, sub1); ps.setInt(i++, sub2); ps.setInt(i++, sub3); ps.setInt(i++, stage + 1);
+			ps.setInt(i++, r.charId); ps.setString(i++, r.charName); ps.setInt(i++, r.activeClassId); ps.setInt(i++, r.activeClassIndex); ps.setInt(i++, s.level);
+			ps.setInt(i++, s.skillCount); ps.setInt(i++, passiveSkills); ps.setInt(i++, s.skillCount - passiveSkills);
+			ps.setString(i++, r.equipmentKit); ps.setInt(i++, r.weaponId); ps.setString(i++, "Arcana Mace");
+			ps.setDouble(i++, s.pAtk); ps.setDouble(i++, s.mAtk); ps.setDouble(i++, s.pDef); ps.setDouble(i++, s.mDef);
+			ps.setDouble(i++, s.pAtkSpeed); ps.setDouble(i++, s.mAtkSpeed); ps.setDouble(i++, s.maxHp); ps.setDouble(i++, s.maxCp); ps.setDouble(i++, s.maxMp);
+			ps.setInt(i++, r.durationSeconds); ps.setString(i++, r.rotation); ps.setInt(i++, r.actions); ps.setInt(i++, r.hits); ps.setInt(i++, r.casts);
+			ps.setInt(i++, r.criticals); ps.setInt(i++, r.misses); ps.setInt(i++, r.bssUsed); ps.setDouble(i++, r.damageDealt);
+			ps.setDouble(i++, r.damageDealt / Math.max(1, r.durationSeconds)); ps.setDouble(i++, r.mpUsed);
+			ps.setString(i, "Storm Screamer activa; Arcana Mace +0, set robe S y joyeria comun S; sin buffs externos.");
+			ps.executeUpdate();
+		}
+	}
+
 	private static int countBenchmarkCases() throws SQLException
 	{
 		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM lab_combat_benchmark_plan"); ResultSet rs = ps.executeQuery())
@@ -2249,6 +2457,13 @@ public class LabTelemetry extends Script
 			charId = player.getObjectId(); charName = player.getName(); activeClassId = benchmark.activeClassId; activeClassIndex = benchmark.activeClassIndex;
 			opponentId = benchmark.opponentId; opponentName = benchmark.opponentName; equipmentKit = benchmark.equipmentKit; weaponId = benchmark.weaponId;
 		}
+
+		private BenchmarkResult(Player player, String id, int number, int seconds, int targetId, String targetName, String kit, int itemId)
+		{
+			caseId = id; runNumber = number; durationSeconds = seconds;
+			charId = player.getObjectId(); charName = player.getName(); activeClassId = player.getPlayerClass().getId(); activeClassIndex = player.getClassIndex();
+			opponentId = targetId; opponentName = targetName; equipmentKit = kit; weaponId = itemId;
+		}
 	}
 
 	private static final class FourClassBuild
@@ -2412,6 +2627,7 @@ public class LabTelemetry extends Script
 			st.executeUpdate(CREATE_FOUR_CLASS_PROFILE_TABLE);
 			st.executeUpdate(CREATE_BENCHMARK_RUN_TABLE);
 			st.executeUpdate(CREATE_NYX_CALIBRATION_RUN_TABLE);
+			st.executeUpdate(CREATE_MAGIC_PROGRESSION_RUN_TABLE);
 		}
 		catch (SQLException e)
 		{

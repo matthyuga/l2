@@ -1,0 +1,28 @@
+name: Validar snapshot
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  panel:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/lab-panel
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+      - name: Preparar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: apps/lab-panel/package-lock.json
+      - name: Instalar dependencias
+        run: npm ci --ignore-scripts
+      - name: Revisar JavaScript
+        run: npm run check

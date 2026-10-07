@@ -1,0 +1,53 @@
+# Configuración y secretos locales
+**/config.json
+**/.env
+**/.env.*
+!**/.env.example
+*.pem
+*.key
+
+# Dependencias y compilación
+**/node_modules/
+**/build/
+**/dist-build/
+**/*.class
+**/*.jar
+**/*.zip
+**/*.7z
+**/*.rar
+
+# Runtime y datos locales
+**/runtime/
+**/office-runtime/
+**/database/
+**/logs/
+**/log/
+**/run/
+**/temp/
+**/tmp*/
+**/backups/
+**/downloads/
+**/quarantine/
+*.pid
+*.log
+*.pml
+
+# Navegadores y sistema operativo
+**/browser-profile/
+**/Login Data*
+**/Web Data*
+**/History*
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Cliente y formatos propietarios de Lineage II
+*.u
+*.utx
+*.usx
+*.ukx
+*.uax
+*.unr
+*.cab
+*.dll
+*.exe

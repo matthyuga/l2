@@ -1,0 +1,749 @@
+que seria frozen o l2 off?
+Son dos cosas distintas dentro del ecosistema de servidores de Lineage II.
+
+L2OFF son, en esencia, los files del servidor oficial de Lineage II o derivados muy cercanos a ellos. Están mucho más pegados al comportamiento original del juego: fórmulas, IA, quests, skills, geodata, etc. Suelen ser más rígidos y complicados de modificar, pero históricamente se los valoraba por ser más “retail-like”.
+
+L2J es una reimplementación no oficial del servidor hecha en Java. En vez de usar el software original del servidor, la comunidad reconstruyó cómo funcionaba L2. Eso permitió modificar muchísimo más fácilmente el juego.
+
+L2JFrozen, o simplemente Frozen, era una rama/proyecto basado en L2J, muy conocido sobre todo para Interlude. Era popular porque venía bastante preparado para servidores custom: configuración, NPC buffers, eventos, multisell, zonas, modificaciones de rates, etc. Y como estaba en Java, podías alterar directamente la lógica del servidor.
+
+Simplificándolo:
+
+Tipo	Qué es	Ventaja principal
+L2OFF	Files basados en el servidor oficial	Fidelidad al L2 original
+L2J	Emulación/reimplementación en Java	Muy modificable
+L2JFrozen	Rama de L2J orientada sobre todo a Interlude	Customización fácil y comunidad enorme
+Así que si ustedes hace 10 años tenían una carpeta con cosas tipo gameserver, loginserver, data, XML, Java, MySQL/Navicat y configuraban mobs, drops, teleporters, etc., es muy probable que estuvieran usando L2JFrozen o algún derivado de L2J.
+
+Y cuando tu amigo hablaba de “los files L2OFF”, seguramente se refería a otro enfoque completamente distinto, más cercano al servidor oficial que a Frozen.
+
+hace tiempo que no veo a mi amigo, no quiero molestarlo de momento con que me pase todos esos archivos, quisiera saber si se puede localizar en internet y descargar? que tenemos disponible?
+
+Ha pensado durante 14s
+Sí. Revisé qué sigue disponible actualmente y, para reconstruir algo parecido a lo que ustedes tenían, no necesitas esperar a tu amigo. Hay bastante material vivo todavía.
+
+Lo más cercano a vuestro proyecto antiguo sería L2JFrozen para Interlude. Existe todavía el foro de L2JFrozen y además hay copias del source preservadas en repositorios públicos; encontré específicamente L2JFrozen 1.5 revision 1596 dentro de un archivo de proyectos L2J para Interlude. 
+
+Repositorio L2jOpenSource
+
+Pero hoy tenemos alternativas que probablemente sean mejores como base:
+
+Base	Chronicle	Para nuestro proyecto
+L2JFrozen	Interlude	⭐⭐⭐⭐ Muy parecido a lo que recuerdas
+aCis	Interlude	⭐⭐⭐⭐⭐ Muy buena base limpia para modificar
+L2J Mobius	Interlude y muchas otras	⭐⭐⭐⭐⭐ Probablemente la más interesante hoy
+L2jBrasil	Interlude	⭐⭐⭐⭐ También muy orientada al custom
+L2J Orion	Interlude	⭐⭐⭐⭐ Bastante contenido custom incluido
+La opción que más me llama la atención para nosotros: L2J Mobius
+Encontré una rama actual de L2J Mobius CT0 Interlude. No es simplemente un viejo backup: la rama seguía recibiendo releases en 2026 y contiene login, game, configuraciones, datos y source. 
+
+Mobius además mantiene estructuras para muchas chronicles diferentes, no solamente Interlude: Interlude, Epilogue, High Five, Ertheia, Helios, Grand Crusade, Classic, Essence, etc. 
+
+Eso es particularmente interesante para tu idea porque podríamos tener:
+
+Interlude como núcleo → contenido custom → estudiar chronicles posteriores → adaptar sistemas/ideas.
+
+Es prácticamente la filosofía que estabas aplicando hace diez años.
+
+También encontré algo curioso que demuestra lo lejos que se puede llevar hoy: un proyecto basado en Mobius Interlude llamado Living World, que convierte L2 en una experiencia casi single-player, llena las ciudades con NPCs simulados, tiendas privadas, cazadores por el mundo, grupos reclutables y módulos propios. Incluso tiene un framework para añadir módulos. 
+
+Eso es MUY cercano conceptualmente a lo que estamos hablando con tus NPC vivientes, facciones y campaña.
+
+Y Frozen no está muerto
+También encontré directamente copias públicas de L2JFrozen. Una contiene el source empaquetado como head-src.zip, mientras que el archivo L2jOpenSource conserva Frozen 1.5 Rev.1596. 
+
+Por lo tanto, si algún día recuperamos los archivos de tu amigo, incluso podríamos comparar:
+
+tu antiguo Frozen → Frozen preservado → Mobius moderno
+
+y saber exactamente qué habían modificado ustedes.
+
+También sigue existiendo L2jBrasil
+Y esto probablemente te traiga recuerdos porque mencionaste precisamente los foros brasileños.
+
+Hay proyectos Interlude públicos relacionados con L2jBrasil, con GameServer, LoginServer, Datapack y compilación mediante Gradle. También encontré releases disponibles. 
+
+Incluso hay proyectos derivados con cosas que hace diez años ustedes probablemente descargaban por separado:
+
+NPC buffer, Deathmatch, Team vs Team, Capture the Flag, offline shops, rebirth, custom items, custom spawn, geodata, etc. 
+
+¿Y L2OFF?
+Ahí haría una distinción importante.
+
+L2J/Frozen/Mobius/aCis: podemos conseguir el código de emuladores comunitarios/open-source y trabajar tranquilamente sobre él.
+
+L2OFF: muchos de los paquetes que circulan bajo nombres como PTS files, L2OFF files, C4 OFF, etc. provienen históricamente de software propietario filtrado. Yo no tomaría esos files como punto de partida para nuestro proyecto.
+
+Además, para lo que quieres hacer, L2OFF probablemente sería peor.
+
+Tu proyecto necesita justamente romper las reglas originales de L2:
+
+NPC con memoria, relaciones, facciones, decisiones, triggers complejos, armas con efectos condicionales, telemetría, academia, campañas, bosses propios, mapas custom...
+
+En Java podemos literalmente modificar el cerebro del servidor.
+
+Con L2OFF estaríamos tratando de convencer al viejo servidor oficial de hacer cosas para las cuales nunca fue diseñado.
+
+Yo empezaría así
+No descargaría veinte packs aleatorios de Mega/MediaFire.
+
+Empezaría con:
+
+L2J Mobius CT0 Interlude + source + datapack + geodata.
+
+Y aparte conservaría:
+
+L2JFrozen 1.5 Rev.1596
+
+como referencia histórica para reconocer lo que usaban ustedes.
+
+Después montamos todo localmente, sin abrir puertos ni hacer un servidor público todavía.
+
+Cuando tengamos:
+
+Login Server → Game Server → DB → cliente Interlude → personaje GM
+
+funcionando, podemos empezar a hacer las primeras locuras.
+
+Y una prueba perfecta sería justamente algo muy parecido a lo que hacías antes:
+
+crear un NPC custom → ponerlo en Giran → darle diálogo → darle una variable de relación con el jugador → hacer que recuerde una decisión.
+
+En ese momento ya habríamos cruzado la línea entre “servidor privado de L2” y “nuestro RPG construido dentro de Lineage II”.
+
+se que es hablar demasiado pronto pero me surge la duda de cuanto podria costar un servidor para lanzarlo? mantenerlo?
+
+Ha pensado durante 10s
+Sí, y la buena noticia es que un L2 pequeño no necesita empezar con una infraestructura carísima. Para una primera etapa pública, yo pensaría más en decenas de dólares al mes que en cientos.
+
+Como referencia actual, un VPS de 8 GB puede rondar aproximadamente US$8–50/mes, dependiendo muchísimo del proveedor y de si la CPU es compartida o dedicada. OVH, por ejemplo, muestra VPS de 8 GB desde unos US$8,50/mes, mientras DigitalOcean cobra alrededor de US$48/mes por 8 GB en su gama básica. 
+
+Para nuestro caso lo dividiría así:
+
+Etapa	Hardware orientativo	Coste mensual aprox.
+Desarrollo/local	Tu propia PC	US$0
+Alpha 5–20 jugadores	4 vCPU / 8 GB RAM	US$10–40
+Server público 20–100 concurrentes	4–8 CPU buenos / 16 GB	US$30–100
+100–300 concurrentes	CPU rápida / 16–32 GB	US$70–180
+Comunidad grande	dedicado 32–64 GB	US$100–400+
+No tomaría esos números de jugadores como límites exactos. En L2J importa muchísimo qué está haciendo el servidor. Un Interlude prácticamente vanilla consume muchísimo menos que nuestro hipotético L2 con NPCs dinámicos, telemetría, sistemas de reputación, triggers, bosses complejos, IA adicional, etc.
+
+De hecho, en la propia comunidad de Mobius se ha mencionado 8 GB como una base razonable para servidor + MariaDB + Java + geodata para desarrollo. 
+
+Lo que importa más que tener 64 GB de RAM
+Para L2J yo priorizaría:
+
+CPU con buen rendimiento por núcleo → RAM suficiente → NVMe → buena red → protección DDoS.
+
+No compraría un monstruo de 32 núcleos simplemente porque tenga muchos cores. Gran parte del trabajo de un gameserver antiguo no escala perfectamente a decenas de núcleos.
+
+Por eso un Ryzen moderno con 16–32 GB podría ser muchísimo más interesante para nosotros que un Xeon viejo con 64–128 GB.
+
+Cuando realmente creces, los dedicados empiezan aproximadamente en el rango de US$100+. Por ejemplo, Hetzner actualmente tiene un AX42 alrededor de US$117/mes antes de IPv4/impuestos, mientras la gama especializada Game de OVH se va a unos US$397/mes con hardware muy potente y protección orientada a juegos. 
+
+Pero yo no gastaría US$400 para lanzar nuestro L2.
+
+Yo haría algo bastante más progresivo
+Durante todo el desarrollo:
+
+PC propia → $0.
+
+Cuando queramos que entren 5, 10 o 20 personas a probar:
+
+VPS 8 GB → ~US$15–40/mes.
+
+Si empieza a haber una comunidad real:
+
+16 GB + CPU mejor → ~US$40–100.
+
+Y solamente cuando veamos que la concurrencia lo justifica:
+
+servidor dedicado → US$100–200+.
+
+Además, podemos migrar la base de datos y el gameserver. No es necesario comprar desde el primer día la máquina que hipotéticamente soportaría 1.000 jugadores.
+
+Hay otro detalle importante para nosotros por estar en Argentina: la ubicación.
+
+Un servidor barato en Alemania puede funcionar perfectamente técnicamente, pero nuestros jugadores sudamericanos pueden sufrir más latencia. Por eso, llegado el momento, habría que comparar centros de datos de São Paulo, Miami y quizá Santiago/Buenos Aires, según dónde termine estando la comunidad.
+
+Para un L2 tradicional, 150–200 ms todavía puede jugarse.
+
+Pero si vamos a potenciar PvP, timing, esquivas, habilidades especiales y sistemas más activos, yo intentaría mantener a nuestros jugadores principales bastante por debajo de eso.
+
+Y mantenerlo tiene otros pequeños costes
+El servidor sería el gasto principal, pero podríamos terminar teniendo algo como:
+
+Servidor: US$30–100
+Dominio: ~US$10–20 al año
+Backups: US$5–20/mes o incluidos
+Web/launcher: puede estar en la misma máquina al principio
+Discord: gratis
+Base de datos: misma máquina
+Cloudflare: probablemente gratis inicialmente
+Desarrollo: nosotros 😄
+
+Así que un proyecto modesto podría funcionar perfectamente por algo como:
+
+US$30–70 al mes.
+
+Y si alcanza, digamos, 100 jugadores que realmente participan, incluso una monetización extremadamente suave podría cubrir eso. Por ejemplo, 10 personas aportando US$5 ya serían US$50.
+
+Eso me parece importante para tu concepto: no necesitamos diseñarlo desde el comienzo alrededor de vender cosas. Primero podemos intentar hacer un L2 que realmente sea distinto; después, si la gente quiere mantenerlo vivo, pensamos una monetización que no destruya precisamente aquello que lo hace interesante.
+
+Y técnicamente tenemos una ventaja enorme respecto a hace diez años: podemos montar primero todo el servidor completo en tu PC y no pagar absolutamente nada hasta que tengamos algo que merezca ser mostrado.
+
+bien tengo otras dudas, por un lado me llama la atencion eso de una experiencia single player, se puede hacer algo asi? una persona solo descarga el l2 y un componente y vive una campaña, entrenamiento solo con bots y todo organizado en su pc.
+por otro lado si fuera online pensaba en esos cpu o gpu dedicado explusivamente para ia, esos aparatitos de nvidia que traen como 100gb de vram o algo asi, ahi le instalaban cualquier ia, ya entrando en el campo de comprar un servidor, tener uno propio o construirlo, de cuanto hablamos en terminos de presupuesto y logistica?
+Sí, se puede hacer un Lineage II casi completamente single-player, y de hecho hoy ya hay proyectos que demuestran exactamente esa idea.
+
+Por ejemplo, L2 Living Worlds toma Interlude/Mobius y lo convierte en una experiencia local: el jugador ejecuta todo en su propia PC, las ciudades están pobladas con “fake players”, hay tiendas privadas funcionales, bots cazando por el mundo, parties reclutables e incluso un “cerebro” opcional con LLM para conversaciones. Todo funciona sin otros humanos conectados. 
+
+También apareció L2Solo, basado en C4, que simula más de 1.700 bots, incluyendo bots “fríos” que siguen existiendo y progresando aunque estén fuera de la zona visible del jugador. 
+
+Eso nos abre una posibilidad muy interesante para tu proyecto:
+
+L2 convertido en un RPG offline con campaña propia.
+
+El usuario podría descargar algo como:
+
+Juego + launcher + servidor local + base de datos + bots
+
+y hacer doble clic en un ejecutable. Internamente su PC arrancaría:
+
+LoginServer → GameServer → DB → IA/bots → cliente L2
+
+pero el jugador ni siquiera tendría que saber que existe un “servidor”. Para él sería simplemente abrir el juego.
+
+Podríamos incluso diseñarlo específicamente así: academia llena de alumnos NPC, instructores, duelos contra bots, facciones, companions, personajes del Último Bastión, diálogos, decisiones, bosses, campañas y eventos. En ese contexto, el antiguo concepto de MMORPG se convierte simplemente en el motor del mundo.
+
+Y tendría una ventaja enorme: podríamos desarrollar primero toda la campaña offline y después reutilizar buena parte de esos sistemas para el servidor online.
+
+Lo de la computadora NVIDIA que recuerdas existe
+Probablemente estés pensando en equipos tipo NVIDIA DGX Spark o sus hermanos mayores.
+
+El DGX Spark actual es ese aparatito pequeño que quizás viste. Tiene:
+
+128 GB de memoria unificada, CPU ARM de 20 núcleos, GPU Blackwell, hasta 1 PFLOP FP4 y SSD NVMe de 4 TB. NVIDIA dice que puede ejecutar localmente modelos de hasta aproximadamente 200.000 millones de parámetros. Consume relativamente poco: el chip ronda 140 W y la fuente es de 240 W. 
+
+Actualmente NVIDIA lo lista alrededor de:
+
+US$4.699 por el modelo de 128 GB. 
+
+Esto sí sería interesante para nuestro L2.
+
+Pero yo no lo utilizaría como servidor principal.
+
+Lo utilizaría como:
+
+servidor de IA dedicado
+
+mientras otra PC ejecuta Lineage.
+
+Por ejemplo:
+
+                  INTERNET
+                     │
+                 Router
+                     │
+           ┌─────────┴─────────┐
+           │                   │
+      SERVIDOR L2          SERVIDOR IA
+   Ryzen / Xeon / EPYC      DGX Spark
+   32-64 GB RAM           128 GB unified
+          │                   │
+    GameServer             LLM local
+    LoginServer            memoria NPC
+    MariaDB                diálogos
+    Web/Launcher           planificación
+          │                   │
+          └────── LAN ────────┘
+El servidor L2 podría preguntarle al DGX:
+
+“NPC Svetra recibió esta frase del jugador. Estado: hostil, afinidad -37, misión X completada. Genera respuesta.”
+
+La IA responde.
+
+Pero el servidor L2 sigue controlando las reglas reales.
+
+Esto es importante: yo jamás dejaría que el LLM decidiera directamente:
+
+dar 20.000 adena
+matar jugador
+cambiar reputación
+entregar item
+
+La IA propondría la respuesta/intención; nuestro código validaría todo.
+
+Comprar nuestro propio servidor
+Aquí es donde la cosa se pone divertida, porque no necesariamente necesitamos alquilar uno eternamente.
+
+Podríamos construir una máquina dedicada.
+
+Para un proyecto como el nuestro yo imaginaría tres niveles.
+
+Nivel 1 — servidor L2 casero serio
+Algo tipo:
+
+Ryzen 9
+
+64 GB RAM
+
+2× NVMe 2 TB
+
+fuente de buena calidad
+
+UPS
+
+buena refrigeración
+
+Linux
+
+Sin GPU potente.
+
+Podría costar aproximadamente:
+
+US$1.200–2.000
+
+Y sería una barbaridad comparado con los servidores que utilizaban muchos L2 privados hace 15 años.
+
+Podría manejar el servidor L2, DB, web, backups y bastantes bots tradicionales.
+
+Nivel 2 — L2 + IA local potente
+Aquí agregamos una GPU seria.
+
+Por ejemplo una workstation con:
+
+Ryzen 9 / Threadripper
+
+128 GB RAM
+
+NVMe 4–8 TB
+
+GPU con 24–48 GB VRAM
+
+UPS
+
+buena fuente y refrigeración.
+
+Rango aproximado:
+
+US$3.000–7.000
+
+Esto permitiría ejecutar modelos locales bastante capaces para NPCs.
+
+Y probablemente sea la zona de precio/rendimiento más lógica para empezar.
+
+No necesitamos que cada NPC tenga un modelo independiente.
+
+Podríamos tener un único modelo atendiendo a todos los NPCs, cambiándole el contexto:
+
+IA
+ │
+ ├── Harribel
+ ├── Svetra
+ ├── comerciante Giran
+ ├── profesor Academia
+ ├── guardia
+ ├── compañero
+ └── boss
+Cada uno tendría su personalidad y memoria almacenadas aparte.
+
+Nivel 3 — workstation monstruosa
+Actualmente una RTX PRO 6000 Blackwell tiene 96 GB de VRAM.
+
+Pero la GPU sola aparece en el marketplace de NVIDIA aproximadamente entre:
+
+US$11.000 y US$16.000 
+
+Así que una máquina completa con:
+
+Threadripper Pro / Xeon / EPYC
+
+256–512 GB RAM
+
+RTX PRO 6000 96 GB
+
+NVMe
+
+fuente 1600 W
+
+rack/workstation
+
+UPS serio
+
+podría terminar fácilmente alrededor de:
+
+US$15.000–25.000+
+
+Eso ya sería un servidor de IA bastante impresionante para un proyecto independiente.
+
+Y después está la locura: DGX Station
+Este es probablemente el aparato de cientos de GB que también viste.
+
+La DGX Station actual utiliza Blackwell Ultra y tiene aproximadamente:
+
+252 GB de HBM3e para GPU + 496 GB de RAM CPU, comunicadas mediante NVLink-C2C; NVIDIA habla de hasta 748 GB de memoria coherente. Tiene CPU Grace de 72 núcleos y consume hasta 1.600 W. 
+
+Eso puede ejecutar modelos gigantescos localmente.
+
+Pero esto ya no cuesta US$5.000.
+
+Los sistemas DGX Station que están apareciendo en 2026 se están moviendo aproximadamente en:
+
+US$80.000–125.000.
+
+ServeTheHome ha visto configuraciones cercanas a US$125.000. 
+
+Es básicamente comprar un pequeño servidor de datacenter disfrazado de workstation.
+
+Para nuestro L2 sería una exageración absurda inicialmente.
+
+Hay otra cosa que me parece mucho más interesante
+Podríamos separar completamente IA y simulación.
+
+Los bots normales no necesitan LLM.
+
+Por ejemplo:
+
+                   NPCs DEL MUNDO
+
+NPC normal ────────► IA clásica
+mob ───────────────► IA clásica
+guardia ───────────► IA clásica
+bot PvP ───────────► behavior tree
+bot farming ───────► behavior tree
+
+                          │
+                          ▼
+
+NPC IMPORTANTE ─────► LLM
+companion ──────────► LLM
+Svetra ─────────────► LLM
+profesor ───────────► LLM
+personaje historia ─► LLM
+Así podríamos tener:
+
+5.000 bots simulados
+
+pero quizá sólo:
+
+20–100 NPC importantes usando IA generativa.
+
+Eso reduce brutalmente el hardware necesario.
+
+Además, no tienen que estar pensando continuamente.
+
+Svetra no necesita generar tokens mientras está sola en una habitación.
+
+La IA sólo despierta cuando ocurre un evento significativo.
+
+Y esto cambia muchísimo la economía del proyecto
+Imagina tres etapas.
+
+Primera etapa
+
+Tu PC.
+
+L2 local.
+
+Bots tradicionales.
+
+IA pequeña mediante Ollama.
+
+Coste:
+
+US$0 adicional.
+
+Segunda etapa
+
+Servidor L2 propio:
+
+US$1.500–2.500
+
+y quizás un DGX Spark:
+
+~US$4.700
+
+Total:
+
+~US$6.000–8.000
+
+Tendrías literalmente tu propio pequeño datacenter doméstico para el juego.
+
+Tercera etapa
+
+Si el proyecto explotara, ahí tendría sentido hablar de Threadripper/EPYC, múltiples GPUs, colocation, fibra dedicada y demás.
+
+Pero no antes.
+
+Y hay una arquitectura que me gusta todavía más para nosotros:
+
+hacer que el juego soporte exactamente el mismo mundo tanto offline como online.
+
+En modo offline:
+
+Jugador → servidor local → bots
+
+En online:
+
+Jugadores → servidor nuestro → mismos bots
+
+La campaña, quests, NPCs, relaciones, facciones y sistemas serían prácticamente los mismos.
+
+Eso significa que podríamos crear primero “Battlestars/L2 Campaign” como RPG individual, probar durante meses todas nuestras locuras sin pagar hosting y, cuando esté maduro, activar la versión MMORPG.
+
+Para el tipo de L2 que vienes describiendo, me parece bastante más sensato que empezar intentando levantar directamente un servidor para cientos de personas.
+
+tengo mi computadora, con intel i9, 32 de ram, rtx 3060
+tengo otra pc que herede de mi hermana, es ryzen 7 creo, 16 de ram y una placa similar o mejor no recuerdo si rtx 3080 o 70, pero tengo 2 computadoras gaming.
+eso se puede usar? sobre tiempo de encendido, cuanto tiempo aguantan? eso debe reducir su vida util no? que es lo que se gasta?
+Sí, esas dos PCs te sirven perfectamente para empezar, y de hecho tienes una base bastante buena.
+
+Con lo que describes, yo usaría la i9 + 32 GB + RTX 3060 como máquina principal de desarrollo/juego, y la Ryzen 7 + 16 GB + RTX 3070/3080 como servidor de pruebas, bots o IA. Incluso podríamos invertirlo si la segunda termina teniendo mejor GPU.
+
+Una PC gaming puede estar encendida 24/7 durante años si está bien refrigerada, limpia y con una fuente decente. Lo que más reduce la vida útil no suele ser simplemente “estar encendida”, sino el calor, el polvo, los ventiladores trabajando fuerte, una fuente mala y los ciclos térmicos extremos.
+
+Lo que más se desgasta normalmente es esto:
+
+Ventiladores: tienen rodamientos y son piezas mecánicas. Es probablemente lo primero que eventualmente falle.
+SSD/NVMe: se desgasta por cantidad de escrituras, no tanto por horas encendido. Un servidor que escribe logs o bases de datos constantemente lo castiga más.
+Fuente de alimentación: capacitores y temperatura. Una buena fuente puede durar muchos años; una barata trabajando caliente 24/7 es otro asunto.
+HDD, si tienes alguno: al tener partes mecánicas es más sensible que un SSD.
+GPU: no “se gasta” rápidamente por estar encendida, pero correr IA o minería al 100% constantemente sí aumenta temperatura y desgaste de ventiladores, VRAM y componentes de alimentación.
+Pasta térmica / pads térmicos: con los años pierden eficiencia y puede subir la temperatura.
+CPU y RAM, en cambio, suelen durar muchísimo. Es bastante común que se vuelvan obsoletas antes de morir físicamente.
+
+Hay una cosa curiosa: encender y apagar todo el tiempo tampoco es necesariamente mejor. Cuando una PC pasa de fría a 70–80 °C y vuelve a enfriarse, los materiales se expanden y contraen. Mantener una máquina estable a una temperatura moderada puede ser menos agresivo que hacerle muchos ciclos térmicos diariamente.
+
+Para un servidor doméstico, yo apuntaría a algo como:
+
+CPU normalmente por debajo de ~70–75 °C
+GPU por debajo de ~75–80 °C bajo carga continua
+buen flujo de aire
+limpieza cada algunos meses
+UPS/protector ante cortes y variaciones de tensión
+
+Esto último, estando en Argentina, para mí sería bastante importante: una UPS decente probablemente proteja más la vida del servidor que preocuparte por si lleva 72 horas encendido.
+
+También hay un detalle importante con tu configuración: para L2 no necesitas mantener la GPU trabajando casi nada. El servidor principal es CPU/RAM/SSD.
+
+Podríamos organizar tus PCs así:
+
+PC 1 — i9 / 32 GB / RTX 3060
+--------------------------------
+Tu uso diario
+VS Code / Codex
+Cliente L2
+Editor
+Pruebas
+Creación del contenido
+
+
+PC 2 — Ryzen 7 / 16 GB / RTX 3070-3080
+--------------------------------
+Linux o Windows Server
+L2 GameServer
+LoginServer
+MariaDB
+Bots
+Servidor web
+IA local opcional
+Y la segunda podría estar encendida sólo cuando trabajas o haces pruebas.
+
+Después, cuando ya queramos una alpha con amigos:
+
+Ryzen PC
+   │
+   ├── L2 Server
+   ├── DB
+   ├── bots
+   └── Ollama / IA
+          │
+Internet ─┴── amigos
+Así podríamos descubrir cuánto consume realmente nuestro proyecto antes de gastar un solo dólar en servidores.
+
+Y si esa segunda PC realmente tiene una RTX 3080, tenemos bastante margen para experimentar con modelos locales pequeños/medianos. Su limitación sería principalmente la VRAM: muchas 3080 tienen 10 o 12 GB, mientras una 3070 normalmente tiene 8 GB. Eso sigue alcanzando para experimentar con modelos cuantizados y para construir toda la arquitectura de NPCs inteligentes.
+
+La única cosa que vigilaría seriamente si la dejas 24/7 es el consumo eléctrico.
+
+Una PC gaming en reposo podría estar alrededor de, por ejemplo, 60–120 W dependiendo del hardware y configuración. Pero con CPU y GPU cargadas podría fácilmente subir a 300–600 W o más.
+
+Por eso, para L2 puro:
+
+consumo relativamente bajo.
+
+Para IA usando la GPU permanentemente:
+
+ahí sí sube bastante la factura y el calor.
+
+Mi idea para tu caso sería que la GPU duerma la mayor parte del tiempo. Cuando un NPC importante necesite IA, se procesa la consulta y luego vuelve a bajar el uso.
+
+En otras palabras: con las dos PCs que ya tienes, podemos hacer prácticamente toda la etapa de desarrollo, single-player, bots, pruebas online entre amigos e incluso una alpha cerrada sin comprar hardware nuevo. El hardware especializado recién tendría sentido cuando sepamos que el concepto funciona y que la IA realmente necesita más capacidad.
+
+podria turnarlas, lo que si me gustaria saber cuanto podria ganar y como lo haria?
+
+Ha pensado durante 23s
+Sí. Pero conviene separar facturación de ganancia, porque un servidor de L2 puede recibir bastante dinero un mes y aun así dejar poco si requiere publicidad, protección, infraestructura o mucho trabajo.
+
+No encontré cifras públicas confiables de ingresos reales de servidores privados —y muchas comunidades inflan incluso el número de jugadores—, así que sería engañoso decirte “100 jugadores = US$X”. Lo que sí podemos hacer es construir un modelo bastante realista.
+
+Hoy siguen existiendo servidores Interlude latinoamericanos que monetizan con Donate Coins, VIP, cosméticos y servicios, usando Mercado Pago, PayPal, criptomonedas, etc. Por ejemplo, L2 NYX vende VIP y Donate Coins en Argentina; L2 Singular declara una tienda sin ventajas competitivas; otros proyectos utilizan monedas premium obtenibles también jugando. 
+
+Una forma útil de calcularlo
+No usaría jugadores simultáneos. Usaría jugadores activos mensuales.
+
+La fórmula básica sería:
+
+Ingresos mensuales = jugadores activos × % que paga × gasto medio del que paga
+
+Imaginemos nuestro servidor y una monetización relativamente sana:
+
+Activos mensuales	Pagan	Gasto medio	Facturación
+100	10%	US$10	US$100/mes
+300	10%	US$12	US$360/mes
+500	12%	US$15	US$900/mes
+1.000	12%	US$15	US$1.800/mes
+2.000	15%	US$20	US$6.000/mes
+5.000	15%	US$20	US$15.000/mes
+Eso no significa que conseguir 2.000 jugadores sea fácil. Es muchísimo más difícil conseguir la comunidad que montar técnicamente el servidor.
+
+Para un proyecto nuevo yo asumiría inicialmente:
+
+US$0–300 al mes.
+
+Y consideraría cualquier cosa por encima de eso una señal de que la comunidad realmente está respondiendo.
+
+En tu caso no haría el típico L2 Pay-to-Win
+Porque destruiría precisamente lo que estás intentando construir.
+
+No vendería:
+
+Boss jewels +20
+Arma exclusiva más poderosa
+Stats absurdos
+Enchant garantizado
+Clase premium OP
+
+Eso puede generar dinero rápido, pero convierte tu mundo otra vez en otro servidor PvP custom.
+
+En cambio, tu proyecto permite vender cosas muchísimo más interesantes sin romperlo.
+
+Yo pensaría en:
+
+VIP mensual, pero con comodidad y no poder bruto: slots adicionales, estadísticas, almacenamiento, personalización, teleports secundarios, etc.
+Cosméticos: armaduras visuales, capas, monturas, auras, títulos, skins de armas.
+Housing / decoración si desarrollamos algo parecido.
+Personalización de personaje.
+Pases de campaña/evento, siempre que el contenido esencial siga siendo accesible.
+Founder packs al lanzamiento.
+Slots adicionales para personajes o configuraciones.
+Apoyo voluntario con insignias, títulos Discord, estatua/nombre en algún sitio, créditos, etc.
+Eventualmente contenido original completamente nuestro.
+Hay servidores actuales que ya intentan explícitamente ese enfoque de monetización no-P2W mediante cosméticos y utilidad. 
+
+Y algo que me gustaría particularmente para tu idea sería que la moneda premium también pueda conseguirse jugando.
+
+Así:
+
+alguien con dinero compra tiempo/comodidad;
+alguien con muchísimo tiempo puede conseguir prácticamente lo mismo jugando.
+
+Un servidor actual, L2 Afterwork, está haciendo exactamente una variante de eso con su Coin of Luck. 
+
+Supongamos que un día tenemos 500 jugadores activos
+Por ejemplo:
+
+60 compran algo al mes.
+
+Gasto promedio:
+
+US$15.
+
+Facturación:
+
+~US$900/mes.
+
+Entonces podríamos tener algo parecido a:
+
+Servidor/Internet/infraestructura: US$100
+Dominio/web/backups: US$30
+Procesamiento de pagos: ~US$30–70
+Publicidad: US$100
+Otros: US$50
+
+Te podrían quedar aproximadamente:
+
+US$550–600 antes de impuestos y antes de valorar tu propio trabajo.
+
+Si utilizas inicialmente tus propias PCs, algunos costes de hosting desaparecen, aunque aparecen electricidad, conexión, UPS y riesgo de cortes.
+
+Ahora imagina que llegamos realmente a 2.000 jugadores activos y generamos US$5.000–6.000 mensuales.
+
+Ahí ya deja de ser “el servidor que tengo en la habitación”.
+
+Tendríamos que pensar en:
+
+servidor dedicado,
+DDoS,
+backups externos,
+monitorización,
+soporte,
+moderadores,
+administración,
+contabilidad,
+métodos de pago,
+seguridad de cuentas,
+etc.
+
+Y probablemente migraría fuera de tus PCs.
+
+Pero hay una advertencia grande antes de pensar en convertirlo en negocio
+Lineage II pertenece a NCSOFT.
+
+Usar L2J en sí como proyecto de software no significa automáticamente tener derechos comerciales sobre el cliente, mapas, modelos, nombres, música y demás propiedad intelectual de Lineage II.
+
+Y esto no es solamente una cuestión teórica. En marzo de 2026, NCSOFT anunció acciones legales contra operadores de servidores privados de Lineage, incluyendo embargo preventivo de cuentas y demandas por daños; la compañía dijo explícitamente que continuará tomando medidas contra servidores privados no autorizados. Era Lineage, no específicamente Lineage II, y el caso es coreano, así que no significa automáticamente que sucedería lo mismo aquí, pero demuestra que NCSOFT sigue persiguiendo comercialmente este tipo de actividad. 
+
+Por eso no asumiría:
+
+“si lo llamamos donación es legal”.
+
+Cobrar mediante “donaciones” no elimina automáticamente un problema de propiedad intelectual.
+
+Y aquí aparece una posibilidad que considero mucho más interesante
+Podemos empezar usando L2 como laboratorio privado.
+
+Construimos:
+
+academia,
+NPCs inteligentes,
+facciones,
+reputación,
+companions,
+campaña,
+Svetra,
+Último Bastión,
+armas condicionales,
+IA,
+PvP,
+mundo dinámico...
+
+Y descubrimos qué funciona.
+
+Si algún día eso se convierte en algo grande comercialmente, hay una ruta mucho más poderosa:
+
+separar nuestro juego de Lineage II.
+
+Cambiar gradualmente modelos, mapas, nombres, interfaces, música y contenido de NCSoft por propiedad intelectual nuestra.
+
+Entonces ya no estaríamos preguntando:
+
+“¿cuánto puedo ganar con un servidor privado de L2?”
+
+sino:
+
+“¿cuánto puede ganar nuestro propio MMORPG/RPG que nació como experimento dentro de L2?”
+
+Y ahí desaparece gran parte del techo legal/comercial que tiene inevitablemente un servidor privado.
+
+Con tus dos PCs, además, estamos en una posición particularmente buena: podemos experimentar con casi todo esto sin necesitar rentabilidad durante bastante tiempo. Si algún día vemos 50, 100, 300 personas entrando porque realmente quieren jugar lo que construimos, recién ahí tendría sentido diseñar seriamente el negocio.

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laboratorio L2</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark"><span>II</span></div>
+        <div><strong>Laboratorio L2</strong><small>Interlude · entorno local</small></div>
+      </div>
+      <nav id="nav">
+        <button class="nav-item active" data-view="overview"><span>◈</span>Resumen</button>
+        <button class="nav-item" data-view="characters"><span>♙</span>Personajes</button>
+        <button class="nav-item" data-view="creator"><span>✚</span>Crear rival</button>
+        <button class="nav-item" data-view="balance"><span>⚖</span>Razas y clases</button>
+        <button class="nav-item" data-view="skills"><span>✦</span>Skills</button>
+        <button class="nav-item" data-view="telemetry"><span>⌁</span>Telemetría</button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="connection-row"><i id="side-status-dot"></i><span id="side-status">Comprobando servidor…</span></div>
+        <button id="restart-button" class="button ghost full">Reiniciar para aplicar cambios</button>
+        <small>Si hay cambios pendientes: cierra Lineage II y pulsa este botón.<br>No necesitas usar los archivos 5 y 6.</small>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">BANCO DE PRUEBAS</p>
+          <h1 id="page-title">Resumen del laboratorio</h1>
+        </div>
+        <div class="top-actions">
+          <span id="pending-badge" class="badge warning hidden">Cambios pendientes</span>
+          <span id="clock" class="muted"></span>
+        </div>
+      </header>
+
+      <div id="toast-root"></div>
+
+      <section id="view-overview" class="view active">
+        <div id="status-grid" class="status-grid skeleton-block"></div>
+        <div class="grid overview-grid">
+          <article class="panel hero-panel">
+            <div class="hero-copy">
+              <p class="eyebrow gold">CONTROL LOCAL</p>
+              <h2>Experimenta. Mide. Ajusta.</h2>
+              <p>Edita un valor por vez, pelea contra Ares o Nyx y compara el resultado. El panel conserva una copia de cada XML antes de tocarlo.</p>
+              <div class="hero-actions">
+                <button class="button primary" data-jump="telemetry">Ver últimos combates</button>
+                <button class="button subtle" data-jump="skills">Ajustar un skill</button>
+              </div>
+            </div>
+            <div class="radar" aria-hidden="true"><i></i><i></i><i></i><span></span></div>
+          </article>
+          <article class="panel">
+            <div class="panel-heading"><div><p class="eyebrow">ÚLTIMA PRUEBA</p><h3>Lectura rápida</h3></div><span class="live-dot"></span></div>
+            <div id="latest-fight" class="empty-state compact">Todavía no hay telemetría. Reinicia el servidor y comienza una pelea.</div>
+          </article>
+        </div>
+        <article class="panel workflow-panel">
+          <div class="panel-heading"><div><p class="eyebrow">MÉTODO RECOMENDADO</p><h3>Una variable por combate</h3></div></div>
+          <div class="workflow">
+            <div><b>01</b><span><strong>Prepara</strong><small>Equipo, buffs y barra de skills</small></span></div>
+            <div><b>02</b><span><strong>Combate</strong><small>Ares físico o Nyx mágico</small></span></div>
+            <div><b>03</b><span><strong>Analiza</strong><small>DPS, recursos y habilidades</small></span></div>
+            <div><b>04</b><span><strong>Ajusta</strong><small>Clase o skill, luego repite</small></span></div>
+          </div>
+        </article>
+      </section>
+
+      <section id="view-characters" class="view">
+        <div class="split-layout">
+          <article class="panel list-panel">
+            <div class="panel-heading"><div><p class="eyebrow">CUENTAS LOCALES</p><h3>Personajes</h3></div><button id="refresh-characters" class="icon-button" title="Actualizar">↻</button></div>
+            <div id="character-list" class="select-list"></div>
+          </article>
+          <article class="panel detail-panel" id="character-detail">
+            <div class="empty-state"><span>♙</span><h3>Selecciona un personaje</h3><p>Podrás revisar su build, recursos, inventario y valores seguros.</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="view-creator" class="view">
+        <div class="creator-layout">
+          <article class="panel creator-main">
+            <div class="detail-header"><div><p class="eyebrow">NUEVO PERSONAJE NPC</p><h2>Constructor de rival</h2><p>Define su identidad, build acumulativa y perfil inicial de combate.</p></div><span class="badge">ID automático</span></div>
+            <div class="detail-body">
+              <div class="notice">La clase principal fija la raza y apariencia. Las tres subclases agregan sus skills al NPC sin cambiar su cuerpo. Después podrás ajustar cada skill, el equipo visual y la IA desde Personajes.</div>
+              <form id="creator-form">
+                <div class="stat-group"><h4>Identidad</h4><div class="form-grid three">
+                  <div class="field"><label for="creator-name">Nombre</label><input id="creator-name" name="name" maxlength="40" placeholder="Ej. Kael" required></div>
+                  <div class="field"><label for="creator-title">Título</label><input id="creator-title" name="title" maxlength="60" value="Rival de Laboratorio" required></div>
+                  <div class="field"><label for="creator-sex">Sexo</label><select id="creator-sex" name="sex"><option value="MALE">Masculino</option><option value="FEMALE">Femenino</option></select></div>
+                  <div class="field"><label for="creator-level">Nivel</label><input id="creator-level" name="level" type="number" min="1" max="80" value="80"></div>
+                  <div class="field"><label for="creator-profile">Perfil inicial</label><select id="creator-profile" name="profile"><option value="physical">Físico</option><option value="magic">Mágico</option><option value="hybrid">Híbrido</option></select></div>
+                  <div class="field"><label for="creator-race">Raza principal</label><select id="creator-race" name="race"></select></div>
+                </div></div>
+                <div class="stat-group"><h4>Principal + 3 subclases</h4><div class="creator-build">
+                  <div class="build-picker primary"><span>Principal</span><div class="field"><label for="creator-primary">Clase final</label><select id="creator-primary" name="primaryClassId" required></select></div><small>Define raza, cuerpo y clase visual.</small></div>
+                  <div class="build-picker"><span>Sub 1</span><div class="field"><label for="creator-sub1">Clase final</label><select id="creator-sub1" name="sub1"></select></div><small>Acumula sus skills.</small></div>
+                  <div class="build-picker"><span>Sub 2</span><div class="field"><label for="creator-sub2">Clase final</label><select id="creator-sub2" name="sub2"></select></div><small>Acumula sus skills.</small></div>
+                  <div class="build-picker"><span>Sub 3</span><div class="field"><label for="creator-sub3">Clase final</label><select id="creator-sub3" name="sub3"></select></div><small>Acumula sus skills.</small></div>
+                </div><label class="creator-check"><input type="checkbox" name="accumulateSkills" checked> Incorporar automáticamente los skills aprendidos hasta el nivel elegido</label></div>
+                <div class="form-actions"><p>Se generará también su punto de aparición dentro de la arena.</p><button type="submit" class="button primary">Crear rival NPC</button></div>
+              </form>
+            </div>
+          </article>
+          <aside class="panel creator-aside">
+            <div class="panel-heading"><div><p class="eyebrow">QUÉ SE GENERA</p><h3>Plantilla completa</h3></div></div>
+            <div class="creator-summary"><div><b>01</b><span><strong>Identidad visual</strong><small>Raza, sexo y clase principal</small></span></div><div><b>02</b><span><strong>Build acumulativa</strong><small>Linajes y skills de cuatro clases</small></span></div><div><b>03</b><span><strong>Perfil de combate</strong><small>Físico, mágico o híbrido</small></span></div><div><b>04</b><span><strong>Spawn de arena</strong><small>Posición automática sin superponerse</small></span></div></div>
+            <div class="creator-warning"><strong>Equipo visual</strong><p>Los IDs de armadura y arma cambian la apariencia. No aportan estadísticas por sí mismos a un FakePlayer NPC; el balance real se controla con su XML y sus skills.</p></div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="view-balance" class="view">
+        <div class="toolbar panel">
+          <div class="field search-field"><label for="class-search">Buscar clase</label><input id="class-search" placeholder="Duelist, Soultaker…"></div>
+          <div class="field"><label for="race-filter">Raza</label><select id="race-filter"><option value="">Todas</option></select></div>
+          <div class="field"><label for="stage-filter">Etapa</label><select id="stage-filter"><option value="">Todas</option><option value="0">Inicial</option><option value="1">Primera</option><option value="2">Segunda</option><option value="3">Tercera</option></select></div>
+        </div>
+        <div class="split-layout balance-layout">
+          <article class="panel list-panel"><div id="class-list" class="select-list class-list"></div></article>
+          <article class="panel detail-panel" id="class-detail">
+            <div class="empty-state"><span>⚖</span><h3>Selecciona una clase</h3><p>Compara atributos base y progresión de nivel 80.</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="view-skills" class="view">
+        <div class="toolbar panel skill-toolbar">
+          <div class="field search-field"><label for="skill-search">ID o nombre del skill</label><div class="input-action"><input id="skill-search" placeholder="1, Triple Slash, Hurricane…"><button id="skill-search-button" class="button primary">Buscar</button></div></div>
+          <div class="toolbar-note"><span>i</span><p>“Power” suele ser una tabla: cada número corresponde a un nivel del skill.</p></div>
+        </div>
+        <div class="split-layout">
+          <article class="panel list-panel"><div id="skill-list" class="select-list skill-list"></div></article>
+          <article class="panel detail-panel" id="skill-detail">
+            <div class="empty-state"><span>✦</span><h3>Busca un skill</h3><p>Podrás ajustar potencia, consumo, casteo y reutilización.</p></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="view-telemetry" class="view">
+        <div class="telemetry-head">
+          <div><p class="eyebrow">REGISTRO DE CAMPO</p><h2>Combates recientes</h2><p class="muted">Se agrupan automáticamente por rival y pausas de 15 segundos.</p></div>
+          <button id="refresh-telemetry" class="button subtle">↻ Actualizar</button>
+        </div>
+        <article class="panel telemetry-coverage-panel">
+          <div class="panel-heading"><div><p class="eyebrow">COBERTURA BASE</p><h3>Mapa de las 89 clases</h3></div><span id="coverage-count" class="badge">0 / 89</span></div>
+          <div id="telemetry-coverage" class="coverage-body"><div class="loading">Calculando recorrido…</div></div>
+        </article>
+        <article class="panel telemetry-catalog-panel">
+          <div class="panel-heading"><div><p class="eyebrow">FASE 3</p><h3>Matriz de parejas de tercera profesión</h3></div><span id="pair-count" class="badge">0 / 465</span></div>
+          <div class="notice">Cada pareja conserva dos estados reales: principal activa y Sub activa. Se comparan skills compartidas, masteries que se pisan y stats finales sin equipo ni efectos.</div>
+          <div id="telemetry-pairs" class="table-wrap"><div class="loading">Esperando mediciones de parejas…</div></div>
+        </article>
+        <article class="panel telemetry-catalog-panel">
+          <div class="panel-heading"><div><p class="eyebrow">FASES 4A–4B</p><h3>Candidatos y mediciones de cuatro clases</h3></div><span id="build-candidate-count" class="badge">0 / 125.860</span></div>
+          <div class="notice">El catálogo teórico enumera todas las builds sin alterar personajes. La muestra dirigida conserva cinco criterios por cada profesión principal: amplitud, afinidad, estrés, híbrida y cobertura. Solapamiento y masteries son sumas de las seis parejas internas, no conflictos únicos.</div>
+          <div id="telemetry-build-candidates" class="table-wrap"><div class="loading">Calculando candidatos de cuatro clases…</div></div>
+        </article>
+        <article class="panel telemetry-catalog-panel">
+          <div class="panel-heading"><div><p class="eyebrow">FASE 4C</p><h3>Finalistas para combate controlado</h3></div><span id="finalist-count" class="badge">0 / 30</span></div>
+          <div class="notice">Treinta builds elegidas desde las 155 mediciones reales: cinco físicas, cinco mágicas, cinco tanques, cinco de soporte, cinco summoner y cinco híbridas. Los índices sirven para seleccionar casos; todavía no representan poder de combate.</div>
+          <div id="telemetry-finalists" class="table-wrap"><div class="loading">Analizando finalistas…</div></div>
+        </article>
+        <article class="panel telemetry-catalog-panel">
+          <div class="panel-heading"><div><p class="eyebrow">FASE 4D</p><h3>Cola de combate controlado</h3></div><span id="benchmark-count" class="badge">0 / 285</span></div>
+          <div class="notice">Cada caso fija clase activa, rival, equipo por función, ausencia de buffs externos, duración y tres repeticiones. Atlas mide salida sin responder; Ares y Nyx miden resistencia física y mágica.</div>
+          <div id="telemetry-benchmarks" class="table-wrap"><div class="loading">Preparando ensayos…</div></div>
+        </article>
+        <article class="panel telemetry-catalog-panel">
+          <div class="panel-heading"><div><p class="eyebrow">CATÁLOGO VIVO</p><h3>Raza, clase activa y build acumulativa</h3></div><span id="catalog-count" class="badge">0 perfiles</span></div>
+          <div class="notice">Cada fila conserva por separado Principal, Sub 1, Sub 2 y Sub 3. También registra las cuatro clases de la build, el equipo y los efectos presentes para evitar comparaciones mezcladas.</div>
+          <div id="telemetry-catalog" class="table-wrap"><div class="loading">Esperando perfiles del Game Server…</div></div>
+        </article>
+        <div class="split-layout telemetry-layout">
+          <article class="panel list-panel"><div id="fight-list" class="select-list fight-list"></div></article>
+          <article class="detail-panel" id="fight-detail">
+            <div class="panel empty-state"><span>⌁</span><h3>Sin combates registrados</h3><p>La próxima pelea aparecerá aquí con daño, recursos y recomendaciones.</p></div>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>

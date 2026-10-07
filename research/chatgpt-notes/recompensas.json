@@ -1,0 +1,437 @@
+hablando sobre ideas para el l2 estaba pensando en algo de otros juegos, por un lado un sistema de recompensas diarias, todos los dias una recompensa pequeña, tal ves suministros o potas o tikets para gastar, a los 10 dias algo mejor, luego a los 50, luego 100, 150 200 250 300 350 y luego al completar un año un premio final y se resetea el ciclo
+Sí, encaja muy bien con el tipo de L2 que estás imaginando porque recompensa la constancia sin convertir todo en puro farmeo. Y además puede ayudar mucho a reforzar esa sensación de “academia/mundo vivo” si las recompensas no son solo consumibles, sino también cosas que conecten con facciones, personajes y progresión.
+
+Yo lo haría como un ciclo anual de asistencia, pero con una diferencia importante: no obligaría a entrar todos los días consecutivos. Contaría “días reclamados”. Así alguien que juega 5 días, falta 2 y vuelve no pierde todo el progreso. Eso evita frustración.
+
+Podría quedar más o menos así:
+
+Días normales: suministros, pociones, comida, scrolls básicos, pequeñas cantidades de moneda especial, tickets de transporte o teletransporte, materiales de crafting.
+Cada 7 o 10 días: cofre algo mejor, ticket de academia, consumibles raros, buff especial de unas horas, puntos de reputación.
+Día 50: recompensa mediana importante.
+Día 100: recompensa especial.
+150 / 200 / 250 / 300 / 350: recompensas progresivamente más interesantes.
+Día 365: recompensa anual exclusiva y reinicio del ciclo.
+Pero evitaría que el día 365 dé simplemente “un arma muchísimo mejor”, porque entonces termina siendo poder obligatorio. Me gusta más que el premio grande sea prestigio + utilidad + colección. Por ejemplo: una montura exclusiva, un uniforme especial de la academia, un título tipo Veterano del Primer Año, un accesorio visual, un summon cosmético, decoración de habitación, una capa especial o incluso acceso a una pequeña quest anual.
+
+Y hay una idea todavía mejor para tu proyecto: hacer que el calendario represente el paso del jugador por la Academia.
+
+Por ejemplo:
+
+Días 1–50: Novato
+Recompensas de supervivencia: soulshots, potas, alimentos, scrolls, tickets.
+
+51–100: Aspirante
+Materiales, recetas, consumibles tácticos.
+
+101–150: Cadete
+Reputación con profesores/facciones, libros, técnicas secundarias.
+
+151–200: Combatiente
+Cofres especiales, acceso temporal a zonas, encargos únicos.
+
+201–250: Veterano
+Cosméticos, títulos, equipamiento alternativo.
+
+251–300: Élite
+Misiones especiales de academia.
+
+301–350: Maestro
+Recompensas de prestigio.
+
+365: Graduación anual
+Ceremonia, quest especial y premio conmemorativo.
+
+Eso hace que el sistema deje de sentirse como el típico:
+
+Día 1: 5 potas
+Día 2: 10 potas
+Día 3: scroll...
+
+y pase a formar parte de la narrativa del servidor.
+
+Incluso podrías tener una interfaz tipo “Diario de la Academia”, donde ves los 365 casilleros. Algunos días tendrían símbolos especiales y, al pasar el mouse, mostrarían qué se desbloquea.
+
+Otra cosa interesante sería meter recompensas sorpresa. Por ejemplo, sabes que el día 100 hay algo especial, pero no sabes exactamente qué hasta reclamarlo. Eso genera curiosidad.
+
+Y también introduciría una moneda propia:
+
+Ticket de Academia
+
+Se obtiene principalmente mediante asistencia diaria, eventos y actividades de la academia. Luego existe una tienda donde el jugador decide qué comprar. Eso es mejor que regalarle objetos que quizá no necesita.
+
+Ahí podrías vender cosas como:
+
+cosméticos;
+dyes;
+skins;
+consumibles;
+materiales;
+tickets para actividades;
+cambios estéticos;
+habitaciones/decoraciones;
+emotes;
+libros;
+mascotas;
+elementos sociales.
+Y podrías hacer algo bastante diferente de otros L2: que algunos NPC reconozcan tu antigüedad.
+
+Un profesor podría decirte:
+
+“Ya llevas más de cien jornadas con nosotros. Parece que finalmente dejaste de ser un turista.”
+
+O un NPC nuevo podría tratarte diferente si tienes 250 días.
+
+Eso conecta perfectamente con lo que veníamos hablando de Baldur's Gate, Fallout y NPC que recuerdan lo que hiciste: el login diario deja de ser solamente una mecánica económica y se convierte en una variable más de identidad del personaje.
+
+Además, yo separaría tres cosas:
+
+Racha actual: días consecutivos entrando.
+Asistencia anual: progreso hacia 365.
+Antigüedad total: todos los días reclamados desde que existe el personaje.
+
+Así puedes premiar las rachas sin castigar brutalmente al que falta un día. Por ejemplo, 7 días consecutivos pueden dar un pequeño bonus, pero perder la racha no reinicia los 217 días acumulados del año.
+
+Y cuando llegas al día 365, en vez de borrarlo todo, guardaría:
+
+Año completado: I
+
+Después comienza:
+
+Segundo ciclo — Año II
+
+Y cada año podría tener un premio final diferente. Eso permite que un personaje de cuatro años tenga algún detalle visible que realmente diga: “este tipo lleva muchísimo tiempo aquí”.
+
+Creo que este sistema pega especialmente bien con tu idea porque convierte algo típico de los MMO —el reward diario— en otra herramienta para construir la sensación de pertenecer a una academia y tener una trayectoria dentro del mundo, en vez de ser simplemente otro calendario de regalos.
+
+otra idea que tengo es que hayan stats raros o personalizados para las armas, sets o tattos, por ejemplo una espada que tiene 250 de p atak, incrementa 50% el atk speed cuando pegas 5 hits, el efecto dura 10 segundos, tiempo de enfriamiento de 15 segundos, solo un ejemplo.
+un escudo que aumenta el p def en un 180% cuando hay mas de 2 personajes atacandote, el sistema detecta cuando mas de 2 nombres aparecen dañandote, eso requeriria tener la telemetria bien afinada, luego podriamos jugar con eso
+Sí, y esta idea puede ser mucho más importante que simplemente agregar “items custom”. Si la haces bien, cambia cómo se construyen los personajes, porque el equipo deja de ser solamente más P. Atk / más P. Def / más crit y empieza a definir estilos de juego.
+
+La clave sería construir primero un sistema genérico de efectos y luego usarlo para armas, armaduras, joyas, tattoos, sets e incluso buffs.
+
+Yo lo pensaría como una estructura de cuatro piezas:
+
+Disparador → Condición → Efecto → Restricción
+
+Tu espada sería:
+
+Disparador: impactar a un enemigo.
+Condición: acumular 5 golpes válidos.
+Efecto: +50% Attack Speed durante 10 s.
+Restricción: 15 s de cooldown.
+
+El escudo:
+
+Disparador: recibir daño.
+Condición: recibir daño de al menos 3 atacantes únicos dentro de una ventana determinada.
+Efecto: +180% P. Def.
+Restricción: mientras se mantenga la situación / X segundos / cooldown.
+
+Y ahí aparece lo interesante: una vez que el motor puede reconocer esas condiciones, puedes inventar cientos de objetos sin programar cada uno desde cero.
+
+La telemetría sería el corazón
+No necesitarías solamente saber “recibió daño”. Conviene guardar pequeños estados temporales del combate:
+
+Atacantes únicos recientes: A, B, C.
+Cantidad de golpes consecutivos: 4.
+Tiempo desde último golpe: 1,4 s.
+HP actual: 34%.
+Objetivo actual: NPC / jugador / boss.
+Distancia al atacante: 250.
+Cantidad de enemigos cercanos: 6.
+Última habilidad recibida: stun.
+Daño recibido últimos 5 s: 8.420.
+Críticos recibidos consecutivos: 2.
+
+Entonces los objetos pueden “preguntarle” cosas al sistema.
+
+Y ahí puedes hacer estadísticas realmente raras.
+
+Por ejemplo, un arma:
+
+Espada del Duelista
+
+250 P. Atk.
+
+Mientras estés siendo atacado por un solo jugador, ganas:
+
++15% P. Atk
++10% accuracy.
+
+Si aparece un segundo atacante, el efecto desaparece.
+
+Eso genera un arma especializada en 1v1.
+
+Otra:
+
+Hacha del Carnicero
+
+Cada enemigo diferente golpeado aumenta el P. Atk +4%.
+
+Máximo 5 acumulaciones.
+
+Pero si pasas 6 segundos sin golpear un objetivo nuevo, se reinicia.
+
+Eso sirve para peleas masivas.
+
+O directamente algo extraño:
+
+Lanza del Último Hombre
+
+Por cada miembro muerto de tu party:
+
++8% P. Atk
++5% Attack Speed.
+
+Si eres el último miembro vivo:
+
++25% Critical Damage durante 15 segundos.
+
+Eso genera situaciones casi cinematográficas.
+
+Incluso podrías crear familias de efectos
+Esto sería muy bueno para organizar el sistema.
+
+Momentum
+Premian atacar continuamente.
+
+Ejemplo:
+
+Cada tercer golpe aumenta Attack Speed 7%.
+Máximo 5 stacks.
+Perder 4 segundos sin atacar elimina las cargas.
+
+Adversity
+Premian estar en desventaja.
+
+Si tienes menos del 25% HP: +30% P. Atk.
+
+Outnumbered
+
+Si 3+ personajes te atacan: +150% P. Def.
+
+Execution
+
++20% daño contra enemigos debajo del 30% HP.
+
+Predator
+
++15% daño si el objetivo te está dando la espalda.
+
+Retaliation
+
+Después de recibir un crítico: tu próximo ataque tiene +50% Critical Rate.
+
+Guardian
+
+Si un compañero cercano tiene menos del 30% HP: +25% P. Def y M. Def.
+
+Isolation
+
+Si no tienes aliados a 600 unidades: +20% daño.
+
+Con eso ya empiezas a crear una especie de sistema de “affixes”, como en ARPG.
+
+Y podrías ponerles distintos niveles:
+
+Normal
++4% P. Atk.
+
+Especial
++15% P. Atk si HP < 50%.
+
+Raro
+Después de recibir 3 golpes diferentes, +20% P. Def.
+
+Exótico
+Cada 5 golpes activa Frenesí.
+
+Entonces encontrar un arma deja de ser solamente:
+
+“Esta tiene 267 P. Atk y la anterior 252.”
+
+Y pasa a ser:
+
+“¿Cuál encaja mejor con mi build?”
+
+Eso es muchísimo más interesante.
+
+Tu ejemplo del escudo además abre algo particularmente bueno: detectar contexto PvP.
+
+Supongamos que tenemos:
+
+recent_attackers = {Kevin, Greg, Svetra}
+
+Cada atacante permanece registrado, por ejemplo, 5 segundos desde su último daño.
+
+Si hay:
+
+recent_attackers >= 3
+
+el escudo activa:
+
+Último Bastión
+
+P. Def +180% durante 6 s.
+Resistance to Stun +30%.
+Cooldown 25 s.
+
+Si los tres dejan de atacarte, desaparecen progresivamente del registro.
+
+Esto evita que alguien te pegue una vez y quede registrado durante cinco minutos.
+
+Incluso podrías hacer que el sistema distinga:
+
+personajes
+summons
+pets
+NPC
+bosses
+
+Porque si no, un summoner con cuatro summons podría activar solo el escudo.
+
+Tendrías que decidir qué cuenta como “atacante único”.
+
+Yo probablemente usaría dueño efectivo, de forma que:
+
+Jugador A + sus summons = 1 atacante.
+
+Eso evita exploits.
+
+Y con tattoos puedes hacer cosas todavía más locas porque no necesitan representar un arma física.
+
+Por ejemplo:
+
+Tattoo de Sangre
+Cada 10% de HP perdido:
+
++3% P. Atk.
+
+Al curarte, las cargas desaparecen.
+
+Tattoo del Cobarde
+Si un enemigo entra a menos de 200 unidades:
+
++30 Speed durante 3 segundos.
+
+Cooldown 20 s.
+
+Literalmente una build para escapar.
+
+Tattoo del Cazador
+Después de perseguir al mismo enemigo durante 8 segundos:
+
++15 Speed
++10 Accuracy contra ese objetivo.
+
+Tattoo del Verdugo
+Matar un jugador concede una carga de Sed de Sangre.
+
+Cada carga:
+
++2% P. Atk.
+
+Máximo 10.
+
+Morir elimina todas las cargas.
+
+Imagínate ver a alguien con Sed de Sangre ×10 y saber:
+
+“Ese tipo lleva una racha.”
+
+Eso genera información social sin siquiera necesitar texto.
+
+Los sets también podrían reaccionar al comportamiento.
+
+Por ejemplo:
+
+Set del Guardián
+2 piezas: +5% P. Def.
+
+3 piezas: cuando un compañero cercano recibe un crítico, ganas +10% P. Def.
+
+4 piezas: recibir daño de 3 jugadores diferentes activa Fortaleza.
+
+Set completo: mientras haya 4+ enemigos alrededor, los miembros de tu party reciben 10% menos daño.
+
+Eso crea un verdadero tanque PvP.
+
+Mientras otro set podría ser:
+
+Set del Asesino
+Si nadie te ha golpeado durante los últimos 8 segundos:
+
++15% Movement Speed.
+
+Tu primer ataque:
+
++40% Critical Damage.
+
+Después pierdes el bonus durante 12 segundos.
+
+Ya estás creando roles nuevos sin crear clases nuevas.
+
+Y hay una cosa que me gusta especialmente para tu L2: que estos efectos aparezcan claramente en la interfaz.
+
+Si algo activa:
+
+FRENESÍ — 9.4 s
+
+que aparezca un pequeño icono.
+
+Y cuando alguien activa:
+
+ÚLTIMO BASTIÓN
+
+quizá incluso un pequeño efecto visual.
+
+Eso permite aprender los objetos jugando.
+
+Porque si todo ocurre internamente, los jugadores no entienden por qué alguien repentinamente tiene el doble de defensa.
+
+Además podrías mostrar en la descripción:
+
+Último Bastión
+Cuando eres atacado por 3 o más jugadores diferentes, aumenta P. Def +180% durante 6 segundos.
+Enfriamiento: 25 segundos.
+
+Y debajo:
+
+Atacantes actuales: 2 / 3
+
+Eso sería excelente.
+
+También veo otra aplicación: contrajuego.
+
+Por ejemplo, sabes que cierto tanque tiene:
+
++180% defensa contra 3+ atacantes.
+
+Entonces tu clan aprende:
+
+“No lo golpeen todos. Que lo mantengan solamente dos.”
+
+Su propio objeto cambia la estrategia del enemigo.
+
+Eso ya es mucho más parecido a diseño de habilidades de MOBA que al equipamiento tradicional de L2.
+
+Y creo que ahí está una oportunidad enorme de tu servidor: no solamente hacer Lineage 2 con contenido, sino introducir mecánicas de RPG moderno, ARPG y MOBA dentro del sistema de L2.
+
+Incluso podríamos llegar a tener objetos con efectos negativos a cambio de poder:
+
++40% P. Atk.
+Pero cada golpe recibido reduce P. Def 3%, hasta -30%.
+
+O:
+
++100% Critical Damage.
+Tus críticos consumen 2% HP.
+
+O:
+
++25% Attack Speed.
+No puedes recibir buffs de Attack Speed externos.
+
+Eso hace que el balance sea muchísimo más interesante porque el objeto tiene identidad y coste, no solamente estadísticas superiores.
+
+Y si terminamos construyendo el sistema sobre esa estructura de Trigger + Condition + Effect + Cooldown, después podríamos reutilizar exactamente el mismo motor para armas, armaduras, tattoos, skills pasivas, bosses, reliquias, beneficios de facciones e incluso recompensas de la Academia. Ahí sí empiezas a tener una base de sistemas realmente potente para todo el servidor.

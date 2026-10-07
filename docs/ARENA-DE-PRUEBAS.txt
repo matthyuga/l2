@@ -1,0 +1,202 @@
+ARENA DE PRUEBAS SOLO
+=====================
+
+PERSONAJE
+  Hellkevin es Duelist nivel 80 y GM (nivel de acceso 100).
+  Tiene las habilidades maximas de Human Fighter -> Warrior -> Gladiator -> Duelist.
+  En el inventario hay un equipo Imperial Crusader +10, duales S-grade +10,
+  joyas, 5.000 Soulshots S y 100.000.000 Adena.
+
+PRIMER COMBATE
+  1. Entra con solo / solo123 y selecciona Hellkevin.
+  2. Abre el inventario y equipa las duales, armadura y joyas nuevas.
+  3. Estaras en el Coliseo, a distancia segura del rival.
+  4. Thiago, el Scheme Buffer gratuito, esta junto al punto seguro.
+  5. Ares esta en 149500 46100 -3400 y ataca al acercarte a menos de 450.
+     Ahora es un FakePlayer humano Duelist, no un modelo de monstruo.
+  6. Usa Imperial Crusader +10, duales S-grade +10, Soulshots y habilidades
+     de Duelist. Sus joyas se representan mediante defensa magica y drops.
+  7. Reaparece 60 segundos despues de morir.
+
+BUILD LAB: PRINCIPAL + 3 SUBCLASES ACUMULATIVAS
+  Escribe //buildlab dentro del juego. Se abre un panel con cuatro ranuras:
+  Principal, Sub 1, Sub 2 y Sub 3.
+
+  - Solo la principal define la raza, cuerpo, cara, pelo y animaciones.
+  - Cambiar raza reinicia la principal en la clase inicial elegida y conserva las Sub.
+  - Evolucionar avanza la principal paso a paso: inicial, 1ra, 2da y 3ra profesion.
+  - Reiniciar devuelve la principal al origen de su raza y elimina sus skills anteriores.
+  - Las Sub no tienen raza propia: Elegir/Cambiar muestra directamente profesiones de 2da.
+  - Subir a 3ra: evoluciona solamente esa ranura a su profesion final.
+  - Usar: activa esa clase y conserva los skills aprendidos en las otras ranuras.
+  - Vaciar elimina una Sub; Vaciar las 3 conserva la principal.
+  - Reiniciar todas las clases devuelve la principal a su origen y vacia las tres Sub.
+  - Nivel principal: inicial 20, primera 40, segunda 76, tercera 80.
+  - Nivel Sub: segunda 76, tercera 80.
+  - Una rama ya usada por otra Sub aparece desactivada para evitar duplicados.
+  - Si dos clases comparten un skill, se conserva el nivel mas alto.
+  - Los skills se aprenden automaticamente, sin libros ni quest de subclase.
+
+  La raza permanece ligada a la Principal al usar cualquiera de las tres Sub.
+  "Cambiar raza" es una operacion separada; para un servidor publico se reservara
+  como servicio especial y no formara parte del cambio normal de clase.
+
+  Ejemplo de la ruta que se muestra para una profesion magica humana:
+  Human Mage -> Wizard -> Necromancer -> Soultaker.
+  Al elegir Necromancer se guardan Necromancer y sus skills hasta nivel 76; luego
+  decides si esa ranura evoluciona a Soultaker nivel 80. No es obligatorio convertir
+  las tres subclases en tercera profesion.
+
+  Sin un objetivo seleccionado, //buildlab modifica tu propio personaje. Si eres
+  GM y seleccionas a otro jugador conectado, el panel modifica a ese jugador.
+  Las restricciones de arma siguen existiendo: por ejemplo, los skills de Duelist
+  necesitan duales y muchos hechizos necesitan un arma magica apropiada.
+
+  Combinaciones iniciales sugeridas:
+  - Fisica: Duelist + Titan + Grand Khavatari + Doomcryer.
+  - Magica: Storm Screamer + Archmage + Mystic Muse + Cardinal.
+  - Resistente: Phoenix Knight + Eva's Templar + Shillien Templar + Cardinal.
+
+GM SHOP
+  Mirellas esta al lado de Thiago, en 149020 46700 -3400. Vende armas, armaduras,
+  joyas, consumibles, libros y objetos de todos los grados. El boton
+  "Recibir 1.000M Adena" de //buildlab aporta dinero sin agregar peso.
+
+RIVAL MAGO: NYX
+  Nyx esta al oeste del punto seguro, en 148300 46100 -3400. Es una FakePlayer
+  Dark Elf femenina, Storm Screamer nivel 80, con Major Arcana +10, Arcana Mace
+  +10 y Blessed Spiritshots S. Ares permanece al este.
+
+  Nyx no lanza skills al azar. Su estrategia es:
+  1. Activa Arcane Power.
+  2. Intenta controlar con Silence.
+  3. Baja resistencia con Surrender to Wind.
+  4. Aplica Wind Vortex.
+  5. Ataca con Hurricane y usa Demon Wind como golpe fuerte.
+  6. Con poca vida aprovecha Curse Death Link como remate.
+
+  Acercate solo al lado del rival que quieras probar para no activar ambos a la vez.
+
+BLANCO NEUTRAL: ATLAS
+  Atlas esta al sur del punto seguro, en 148900 45500 -3400. Es el blanco fijo
+  de la Fase 4D para medir salida sin que la IA enemiga mezcle el resultado.
+
+  - Nivel 80, 10.000.000 HP y regeneracion suficiente para series repetidas.
+  - 1.000 P. Def y 1.000 M. Def exactas.
+  - No camina, no contraataca y no inicia agresion.
+  - Es inmortal: el daño se registra, pero no interrumpe una pasada por muerte.
+  - Ares y Nyx se conservan para los ensayos de supervivencia física y mágica.
+
+  La cola 4D contiene 95 casos y tres repeticiones por caso: 285 pasadas. El
+  primer contexto usa equipo S a +0, arma compatible con la clase activa,
+  joyeria Tateossian y ningun buff externo. El manifiesto exacto esta en:
+  E:\l2-local\lab-panel\phase4d-kits.json
+
+CONTROL TACTICO DE ARES Y NYX (MACROS)
+  Son comandos de chat pensados para colocarlos dentro de macros del cliente.
+  El prefijo elige a quien obedece: .ares, .nyx o .squad (los dos).
+
+  ATAQUE
+  1. Selecciona con el mouse al personaje o criatura que sera el objetivo.
+  2. Ejecuta una macro que contenga: .ares attack
+  3. Ares perseguira y atacara al objetivo seleccionado.
+
+  Ejemplos:
+  .ares attack       Ares ataca a tu objetivo actual.
+  .nyx attack        Nyx ataca a tu objetivo actual.
+  .squad attack      Ares y Nyx atacan juntos a tu objetivo actual.
+
+  MOVIMIENTO Y FORMACION
+  .ares move         Ares va al lugar donde tu personaje esta parado.
+  .nyx follow        Nyx te sigue.
+  .squad move        Los dos van a tu posicion, separados en formacion.
+  .squad hold        Se detienen y mantienen posicion sin autoagredir.
+  .squad free        Recuperan su IA autonoma normal.
+
+  PATRULLA ENTRE DOS PUNTOS
+  1. Parate en el primer extremo y ejecuta .squad patrol1
+  2. Parate en el segundo extremo y ejecuta .squad patrol2
+  3. Ares y Nyx patrullaran continuamente entre ambos puntos.
+
+  UTILIDAD
+  .ares status       Muestra la orden actual y si Ares esta presente.
+  .squad help        Muestra la ayuda breve dentro del juego.
+
+  Tambien se aceptan las ordenes en espanol: atacar, mover, seguir,
+  mantener, parar, libre, patrulla1, patrulla2, estado y ayuda.
+  Solo un personaje GM puede usar estos controles.
+
+HUD GRAFICO DE ARES
+  Al seleccionar a Ares aparece debajo del objetivo el panel nativo de combate
+  de Interlude: nombre y dos barras graficas separadas, CP y HP. Los valores se
+  actualizan con cada golpe y el panel desaparece al cambiar de objetivo.
+
+  Ares tiene 12.000 CP reales y 18.000 HP. El dano de un jugador consume
+  primero el CP y despues el HP, igual que en PvP. Conserva 30.000 puntos
+  totales de resistencia, por lo que el balance original no cambia.
+
+  Cliente HUD: D:\l2\system-hud
+  Cliente limpio de respaldo: D:\l2\system-clean
+  Build Lab esta distribuido para el ancho clasico de 310 px del cliente Interlude:
+  usa una sola columna y paginas de ocho profesiones, sin opciones ocultas a la derecha.
+
+COMANDOS GM UTILES
+  //admin                         Abre el panel principal.
+  //buildlab                      Abre la principal fija + 3 subclases progresivas.
+  //move_to 149500 46700 -3400   Vuelve al punto seguro del Coliseo.
+  //spawn 900200                  Crea otro Ares donde estas parado.
+  //spawn 900201                  Crea otra Nyx donde estas parado.
+  //spawn 50010                   Crea otra Mirellas (GM Shop).
+
+MODIFICAR ARES
+  Archivo:
+  D:\l2-local\server\game\data\stats\npcs\custom\solo_arena.xml
+
+  Este mismo archivo contiene a Nyx (NPC 900201) y los siete slots Strategy*
+  que forman su rotacion magica.
+
+  hp             Vida total.
+  cp             Combat Points del FakePlayer; se consumen antes que el HP.
+  hpRegen        Regeneracion de vida.
+  physical       Poder de ataque fisico.
+  magical        Poder de ataque magico.
+  attackSpeed    Velocidad de ataque.
+  defence        Defensa fisica y magica.
+  aggroRange     Distancia a la que inicia el combate.
+  skill          Poderes que utiliza la IA.
+  dropLists      Objetos, cantidades y probabilidades de drop.
+
+FAKE PLAYER E INVENTARIO
+  Ares usa el sistema FakePlayer integrado de L2JMobius. Se representa como un
+  personaje humano y su equipo, Soulshots, habilidades y objetos se definen en
+  la plantilla XML. No tiene una cuenta ni una tabla de inventario como un jugador
+  conectado; los objetos que "lleva" se modelan mediante equipamiento visual,
+  estadisticas y dropLists. Puede recoger drops durante la sesion si se habilita.
+
+BUFFER
+  Thiago usa el buffer de esquemas incluido en el servidor con 85 buffs.
+  Para esta arena cada buff cuesta 0 Adena.
+  Configuracion: D:\l2-local\server\game\config\Custom\SchemeBuffer.ini
+
+POSICION Y RESPAWN
+  Archivo:
+  D:\l2-local\server\game\data\spawns\Others\SoloArena.xml
+
+  x/y/z          Posicion en el mapa.
+  respawnDelay   Segundos hasta reaparecer.
+  chaseRange     Distancia maxima de persecucion.
+
+TASAS GLOBALES
+  D:\l2-local\server\game\config\Rates.ini
+
+  Los cambios de XML o INI se aplican reiniciando el servidor:
+  1. Cierra el juego.
+  2. Ejecuta D:\l2-local\5-DETENER-SERVIDOR.cmd
+  3. Ejecuta D:\l2-local\2-JUGAR.cmd
+
+RESPALDO ANTERIOR
+  D:\l2-local\backups\Hellkevin-before-solo-arena
+  D:\l2-local\backups\buildlab-progressive-2026-10-05
+  D:\l2-local\backups\buildlab-v3-wide-2026-10-05
+  D:\l2-local\backups\buildlab-v4-main-race-wide-2026-10-05
+  D:\l2-local\backups\buildlab-v5-narrow-layout-2026-10-05

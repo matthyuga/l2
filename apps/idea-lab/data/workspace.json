@@ -1,0 +1,541 @@
+{
+    "version":  1,
+    "meta":  {
+                 "name":  "Laboratorio de Ideas L2",
+                 "createdAt":  "2026-10-06T12:00:00-03:00",
+                 "updatedAt":  "2026-10-06T12:00:00-03:00",
+                 "portable":  true
+             },
+    "today":  {
+                  "date":  "",
+                  "objective":  "Convertir ideas grandes en decisiones pequeñas y próximos pasos comprobables.",
+                  "notes":  "",
+                  "focusIds":  [
+                                   "academy-challenges",
+                                   "effect-engine",
+                                   "reward-calendar"
+                               ]
+              },
+    "ideas":  [
+                  {
+                      "id":  "academy-challenges",
+                      "title":  "Pruebas estructuradas de la Academia PvP",
+                      "area":  "Academia",
+                      "status":  "explorando",
+                      "priority":  "alta",
+                      "impact":  5,
+                      "effort":  3,
+                      "summary":  "Convertir los combates contra instructores en ejercicios medibles: supervivencia, burst, control, distancia y recuperación.",
+                      "nextStep":  "Definir la primera prueba completa con objetivo, reglas, telemetría y nota final.",
+                      "questions":  [
+                                        "¿Qué prueba enseña mejor usando solamente Ares y Nyx?",
+                                        "¿Cómo distinguir falta de equipo de un error manual?",
+                                        "¿Qué rango de notas motiva sin castigar al jugador nuevo?"
+                                    ],
+                      "dependencies":  [
+                                           "combat-grading",
+                                           "instructor-personalities"
+                                       ],
+                      "notes":  "Empezar con una prueba de supervivencia de 60 segundos y otra de daño en 30 segundos.",
+                      "source":  "academia.json",
+                      "tags":  [
+                                   "pvp",
+                                   "entrenamiento",
+                                   "telemetría"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "combat-grading",
+                      "title":  "Sistema de evaluación y consejos de combate",
+                      "area":  "Academia",
+                      "status":  "explorando",
+                      "priority":  "alta",
+                      "impact":  5,
+                      "effort":  4,
+                      "summary":  "Usar DPS, daño recibido, fallos, críticos, recursos y rotación para explicar qué hizo bien o mal el jugador.",
+                      "nextStep":  "Elegir cinco métricas confiables y escribir una regla de consejo para cada una.",
+                      "questions":  [
+                                        "¿Las recomendaciones deben variar por clase o por rol?",
+                                        "¿Cómo detectar mal posicionamiento con la telemetría disponible?"
+                                    ],
+                      "dependencies":  [
+
+                                       ],
+                      "notes":  "El Lab de combate ya captura una base útil. Falta convertir observaciones en criterios pedagógicos.",
+                      "source":  "academia.json",
+                      "tags":  [
+                                   "telemetría",
+                                   "diagnóstico",
+                                   "progresión"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "instructor-personalities",
+                      "title":  "Ares y Nyx como instructores con personalidad",
+                      "area":  "Academia",
+                      "status":  "bandeja",
+                      "priority":  "media",
+                      "impact":  4,
+                      "effort":  3,
+                      "summary":  "Dar a cada rival una voz, especialidad, respuestas al desempeño y una relación persistente con el alumno.",
+                      "nextStep":  "Escribir diez comentarios de Ares y diez de Nyx ligados a eventos medibles.",
+                      "questions":  [
+                                        "¿Hablan durante el combate o sólo al terminar?",
+                                        "¿Recuerdan derrotas, mejoras y estilos del jugador?"
+                                    ],
+                      "dependencies":  [
+                                           "npc-memory"
+                                       ],
+                      "notes":  "Ares enseña presión física; Nyx enseña distancia, casteo e interrupciones.",
+                      "source":  "academia.json",
+                      "tags":  [
+                                   "npc",
+                                   "diálogo",
+                                   "profesores"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "reward-calendar",
+                      "title":  "Diario anual de recompensas de la Academia",
+                      "area":  "Recompensas",
+                      "status":  "explorando",
+                      "priority":  "alta",
+                      "impact":  4,
+                      "effort":  3,
+                      "summary":  "Ciclo de 365 días reclamados, no consecutivos, con hitos 10/50/100/150/200/250/300/350/365.",
+                      "nextStep":  "Diseñar la economía de los primeros 50 días y el contenido exacto de los hitos 10 y 50.",
+                      "questions":  [
+                                        "¿Cuánto poder puede entregar sin convertirse en obligación?",
+                                        "¿Qué premios deben ser prestigio, utilidad o colección?",
+                                        "¿El ciclo se reinicia automáticamente al reclamar el día 365?"
+                                    ],
+                      "dependencies":  [
+                                           "academy-tickets"
+                                       ],
+                      "notes":  "El premio anual debería contar una trayectoria, no entregar simplemente el arma más fuerte.",
+                      "source":  "recompensas.json",
+                      "tags":  [
+                                   "diario",
+                                   "365 días",
+                                   "retención"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "academy-tickets",
+                      "title":  "Tickets y tienda de elección personal",
+                      "area":  "Recompensas",
+                      "status":  "bandeja",
+                      "priority":  "media",
+                      "impact":  4,
+                      "effort":  2,
+                      "summary":  "Entregar una moneda de Academia para que cada jugador elija consumibles, cosméticos o accesos que realmente necesite.",
+                      "nextStep":  "Crear un catálogo inicial de 15 recompensas con precio y categoría.",
+                      "questions":  [
+                                        "¿Los tickets se pueden comerciar?",
+                                        "¿Qué evita acumularlos indefinidamente?"
+                                    ],
+                      "dependencies":  [
+
+                                       ],
+                      "notes":  "Separar suministros, progresión, colección y prestigio.",
+                      "source":  "recompensas.json",
+                      "tags":  [
+                                   "economía",
+                                   "tienda",
+                                   "elección"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "effect-engine",
+                      "title":  "Motor genérico de efectos raros",
+                      "area":  "Sistemas",
+                      "status":  "explorando",
+                      "priority":  "crítica",
+                      "impact":  5,
+                      "effort":  5,
+                      "summary":  "Base reutilizable Trigger + Condición + Efecto + Duración + Cooldown para armas, sets, tattoos, reliquias, bosses y facciones.",
+                      "nextStep":  "Especificar un formato de datos para tres efectos y simular sus estados sin modificar todavía el Game Server.",
+                      "questions":  [
+                                        "¿Qué eventos ofrece Mobius sin parchear demasiado el núcleo?",
+                                        "¿Cómo se muestra al jugador que el efecto está listo o en cooldown?",
+                                        "¿Cómo se limita la acumulación de modificadores?"
+                                    ],
+                      "dependencies":  [
+                                           "combat-grading"
+                                       ],
+                      "notes":  "Debe tener dueño efectivo, protección contra exploits y telemetría propia.",
+                      "source":  "recompensas.json",
+                      "tags":  [
+                                   "triggers",
+                                   "efectos",
+                                   "framework"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "five-hit-weapon",
+                      "title":  "Arma reactiva de cinco golpes",
+                      "area":  "Objetos",
+                      "status":  "bandeja",
+                      "priority":  "media",
+                      "impact":  3,
+                      "effort":  2,
+                      "summary":  "Tras cinco impactos válidos, aumenta 50% Atk. Speed durante 10 segundos con 15 segundos de enfriamiento.",
+                      "nextStep":  "Definir qué cuenta como golpe, reinicio de contador, límite de velocidad y comportamiento al cambiar de objetivo.",
+                      "questions":  [
+                                        "¿Cuentan misses, daño reflejado o golpes de summon?",
+                                        "¿El cooldown comienza al activar o al terminar?"
+                                    ],
+                      "dependencies":  [
+                                           "effect-engine"
+                                       ],
+                      "notes":  "Primer caso de prueba del motor por ser fácil de observar en telemetría.",
+                      "source":  "recompensas.json",
+                      "tags":  [
+                                   "arma",
+                                   "atk speed",
+                                   "proc"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "anti-focus-shield",
+                      "title":  "Escudo reactivo contra focus grupal",
+                      "area":  "Objetos",
+                      "status":  "bandeja",
+                      "priority":  "media",
+                      "impact":  4,
+                      "effort":  4,
+                      "summary":  "Aumenta fuertemente P. Def cuando más de dos atacantes reales dañan al portador dentro de una ventana temporal.",
+                      "nextStep":  "Definir ventana, atacantes únicos, magnitud razonable, duración y contrajuego.",
+                      "questions":  [
+                                        "¿Cómo contar pets, summons y miembros del mismo dueño?",
+                                        "¿Qué impide activarlo con aliados?",
+                                        "¿Debe reducirse frente a cada golpe recibido?"
+                                    ],
+                      "dependencies":  [
+                                           "effect-engine"
+                                       ],
+                      "notes":  "La cifra de 180% es una hipótesis; debe probarse contra múltiples perfiles.",
+                      "source":  "recompensas.json",
+                      "tags":  [
+                                   "escudo",
+                                   "tanque",
+                                   "anti-focus"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "npc-memory",
+                      "title":  "Memoria persistente de NPC y relaciones",
+                      "area":  "Narrativa",
+                      "status":  "bandeja",
+                      "priority":  "alta",
+                      "impact":  5,
+                      "effort":  5,
+                      "summary":  "Los personajes recuerdan acciones concretas, promesas, derrotas, favores y decisiones, cambiando diálogos y opciones futuras.",
+                      "nextStep":  "Diseñar diez variables narrativas y una escena que cambie con tres de ellas.",
+                      "questions":  [
+                                        "¿La memoria pertenece al personaje o a la cuenta?",
+                                        "¿Qué recuerdos caducan y cuáles son permanentes?",
+                                        "¿Cómo depurar estados narrativos contradictorios?"
+                                    ],
+                      "dependencies":  [
+                                           "faction-memory"
+                                       ],
+                      "notes":  "Inspiración: personajes persistentes y consecuencias al estilo BG3, Fallout y Kenshi.",
+                      "source":  "academia.json",
+                      "tags":  [
+                                   "memoria",
+                                   "diálogo",
+                                   "decisiones"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "faction-memory",
+                      "title":  "Facciones con reputación y recuerdos concretos",
+                      "area":  "Narrativa",
+                      "status":  "bandeja",
+                      "priority":  "alta",
+                      "impact":  5,
+                      "effort":  4,
+                      "summary":  "Combinar una reputación general con hechos recordados por distintos miembros de la facción.",
+                      "nextStep":  "Crear dos facciones, cinco acciones recordables y una consecuencia por umbral.",
+                      "questions":  [
+                                        "¿Puede una facción perdonar sin olvidar?",
+                                        "¿Cómo se comunican sus miembros los actos del jugador?"
+                                    ],
+                      "dependencies":  [
+
+                                       ],
+                      "notes":  "Evitar que toda la relación quede reducida a una sola barra numérica.",
+                      "source":  "academia.json",
+                      "tags":  [
+                                   "facciones",
+                                   "reputación",
+                                   "consecuencias"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "svetra-boss",
+                      "title":  "Svetra como boss humano multifase",
+                      "area":  "Campaña",
+                      "status":  "bandeja",
+                      "priority":  "media",
+                      "impact":  5,
+                      "effort":  5,
+                      "summary":  "Encuentro narrativo: primera fase mágica, transición ligada a la historia y forma final duelista con dos espadas.",
+                      "nextStep":  "Escribir el propósito narrativo de cada fase y las condiciones que pueden alterar o evitar el combate.",
+                      "questions":  [
+                                        "¿Qué decisiones previas cambian el encuentro?",
+                                        "¿Puede terminar sin muerte?",
+                                        "¿Qué aprende el jugador mediante sus mecánicas?"
+                                    ],
+                      "dependencies":  [
+                                           "npc-memory",
+                                           "custom-character-pipeline"
+                                       ],
+                      "notes":  "El estilo de pelea debe contar quién es Svetra, no ser sólo una lista de skills.",
+                      "source":  "academia.json",
+                      "tags":  [
+                                   "Svetra",
+                                   "boss",
+                                   "Último Bastión"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "custom-character-pipeline",
+                      "title":  "Prototipo de personaje Blender → Interlude",
+                      "area":  "Arte y cliente",
+                      "status":  "bloqueado",
+                      "priority":  "media",
+                      "impact":  5,
+                      "effort":  5,
+                      "summary":  "Prueba mínima con un NPC personalizado, adaptado al esqueleto de L2 y empaquetado para el cliente Interlude.",
+                      "nextStep":  "Identificar herramientas y obtener un mesh y skeleton donante verificables antes de trabajar con Svetra.",
+                      "questions":  [
+                                        "¿Qué exportador conserva mejor weights y materiales?",
+                                        "¿Qué variante exacta del editor acepta este cliente?",
+                                        "¿Cómo distribuir los paquetes sin romper archivos existentes?"
+                                    ],
+                      "dependencies":  [
+
+                                       ],
+                      "notes":  "Bloqueado para oficina: requiere Blender, herramientas del cliente y pruebas visuales en la PC potente.",
+                      "source":  "importar modelos.json",
+                      "tags":  [
+                                   "Blender",
+                                   "Koikatsu",
+                                   "skeleton"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "appearance-layer",
+                      "title":  "Separar estadísticas, objeto y apariencia",
+                      "area":  "Arte y cliente",
+                      "status":  "explorando",
+                      "priority":  "alta",
+                      "impact":  5,
+                      "effort":  4,
+                      "summary":  "Permitir equipamiento funcional estable con armas y ropajes visuales independientes, más modificadores raros separados.",
+                      "nextStep":  "Definir las cuatro capas de datos y qué ve cada paquete del cliente y del servidor.",
+                      "questions":  [
+                                        "¿La apariencia ocupa slots existentes o una capa nueva?",
+                                        "¿Cómo se sincroniza con observadores y transformaciones?",
+                                        "¿Qué cosméticos cuentan logros y facciones?"
+                                    ],
+                      "dependencies":  [
+                                           "custom-character-pipeline",
+                                           "effect-engine"
+                                       ],
+                      "notes":  "Modelo conceptual: Personaje → Equipamiento real → Apariencia → Modificadores especiales.",
+                      "source":  "ropajes.json",
+                      "tags":  [
+                                   "transmog",
+                                   "ropa",
+                                   "armas"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "horizontal-endgame",
+                      "title":  "Endgame horizontal por campañas",
+                      "area":  "Campaña",
+                      "status":  "explorando",
+                      "priority":  "alta",
+                      "impact":  5,
+                      "effort":  5,
+                      "summary":  "Expandir el mundo con historias, regiones, accesos, colecciones y mecánicas sin invalidar el equipo anterior.",
+                      "nextStep":  "Diseñar una expansión pequeña: una zona reutilizada, cinco misiones, una dungeon y tres recompensas horizontales.",
+                      "questions":  [
+                                        "¿Qué contenido permanece útil después de terminar la historia?",
+                                        "¿Cómo descubrir la región sin un anuncio artificial?",
+                                        "¿Qué recompensa cambia posibilidades sin aumentar sólo estadísticas?"
+                                    ],
+                      "dependencies":  [
+                                           "world-anomaly"
+                                       ],
+                      "notes":  "Tomar de GW2 la filosofía de progresión, no copiar literalmente sus sistemas.",
+                      "source":  "endgame.json",
+                      "tags":  [
+                                   "endgame",
+                                   "campaña",
+                                   "horizontal"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "world-anomaly",
+                      "title":  "Primera anomalía y región oculta",
+                      "area":  "Mundo",
+                      "status":  "bandeja",
+                      "priority":  "media",
+                      "impact":  4,
+                      "effort":  4,
+                      "summary":  "Usar un lugar olvidado, una estructura o una dungeon pequeña para introducir lore, pistas y botín antes de crear terreno nuevo.",
+                      "nextStep":  "Elegir una ubicación existente y dibujar el recorrido del descubrimiento en cinco momentos.",
+                      "questions":  [
+                                        "¿Qué ubicación base tiene espacio y atmósfera?",
+                                        "¿Qué hace que los jugadores regresen?"
+                                    ],
+                      "dependencies":  [
+
+                                       ],
+                      "notes":  "Una anomalía en Schuttgart, caravana cerca de Goddard o dungeon temporal en Rune son candidatos.",
+                      "source":  "ropajes.json",
+                      "tags":  [
+                                   "mapas",
+                                   "exploración",
+                                   "secreto"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "hidden-hunt",
+                      "title":  "Marca de cacería y percepción alterada",
+                      "area":  "Eventos",
+                      "status":  "bandeja",
+                      "priority":  "media",
+                      "impact":  5,
+                      "effort":  5,
+                      "summary":  "Un jugador activa sin saberlo una cacería: los demás lo perciben como monstruo, ven otro nombre y reciben recompensa por encontrarlo.",
+                      "nextStep":  "Separar la fantasía central de sus riesgos y diseñar una versión mínima sin chat alterado.",
+                      "questions":  [
+                                        "¿Cómo evitar abuso entre amigos o clanes?",
+                                        "¿Qué información recibe el marcado?",
+                                        "¿Cómo cambia la recompensa con el tiempo sobrevivido?",
+                                        "¿Qué ocurre al desconectarse?"
+                                    ],
+                      "dependencies":  [
+                                           "observer-dependent-appearance"
+                                       ],
+                      "notes":  "El valor está en la asimetría de información y en que parezca un acontecimiento espontáneo.",
+                      "source":  "endgame.json",
+                      "tags":  [
+                                   "cacería",
+                                   "asimetría",
+                                   "pvp"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "observer-dependent-appearance",
+                      "title":  "Apariencia dependiente del observador",
+                      "area":  "Sistemas",
+                      "status":  "bandeja",
+                      "priority":  "baja",
+                      "impact":  5,
+                      "effort":  5,
+                      "summary":  "Enviar una representación distinta del mismo personaje según facción, estado, percepción o rol del observador.",
+                      "nextStep":  "Investigar qué paquetes de personaje se construyen por receptor en Mobius Interlude.",
+                      "questions":  [
+                                        "¿Nombre, título y apariencia pueden variar sin desincronizar targeting?",
+                                        "¿Qué datos deben permanecer verdaderos para administradores?"
+                                    ],
+                      "dependencies":  [
+
+                                       ],
+                      "notes":  "Sistema reutilizable para infiltración, maldiciones, ilusiones y cacería oculta.",
+                      "source":  "endgame.json",
+                      "tags":  [
+                                   "packets",
+                                   "percepción",
+                                   "identidad"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  },
+                  {
+                      "id":  "infection-crisis",
+                      "title":  "Crisis de infección conectada con sieges",
+                      "area":  "Eventos",
+                      "status":  "bandeja",
+                      "priority":  "baja",
+                      "impact":  5,
+                      "effort":  5,
+                      "summary":  "Evento raro donde la infección transforma roles, limita recursos y puede convertirse en una tercera fuerza durante un siege.",
+                      "nextStep":  "Diseñar primero una crisis regional sin siege, con condición de victoria para infectados y supervivientes.",
+                      "questions":  [
+                                        "¿Cómo participa quien se infecta temprano sin sentir que perdió?",
+                                        "¿Qué impide sabotaje deliberado?",
+                                        "¿Cómo vuelve el mundo a su estado normal?"
+                                    ],
+                      "dependencies":  [
+                                           "effect-engine",
+                                           "hidden-hunt"
+                                       ],
+                      "notes":  "Debe ser raro para conservar tensión y admitir varias resoluciones, incluida una cura incompleta.",
+                      "source":  "endgame.json",
+                      "tags":  [
+                                   "infección",
+                                   "siege",
+                                   "crisis"
+                               ],
+                      "updatedAt":  "2026-10-06T12:00:00-03:00"
+                  }
+              ],
+    "decisions":  [
+                      {
+                          "id":  "decision-claimed-days",
+                          "title":  "El calendario cuenta días reclamados, no rachas consecutivas",
+                          "area":  "Recompensas",
+                          "state":  "aceptada",
+                          "context":  "Perder todo el progreso por faltar un día convertiría la asistencia en obligación.",
+                          "decision":  "El contador avanza solamente al reclamar y conserva el progreso entre ausencias.",
+                          "reason":  "Premia constancia sin castigar la vida real.",
+                          "date":  "2026-10-06"
+                      },
+                      {
+                          "id":  "decision-appearance-stats",
+                          "title":  "Apariencia y estadísticas serán capas separadas",
+                          "area":  "Arte y cliente",
+                          "state":  "provisional",
+                          "context":  "Cada modelo visual no debería obligar a crear una progresión de poder nueva.",
+                          "decision":  "Mantener equipamiento funcional, apariencia y efectos especiales como conceptos distintos.",
+                          "reason":  "Permite variedad visual, balance estable y recompensas horizontales.",
+                          "date":  "2026-10-06"
+                      },
+                      {
+                          "id":  "decision-final-stats",
+                          "title":  "Los stats finales se observan, no se escriben manualmente",
+                          "area":  "Balance",
+                          "state":  "aceptada",
+                          "context":  "Equipo, skills, pasivos y buffs participan en el cálculo del servidor.",
+                          "decision":  "Editar bases y usar telemetría del Game Server como fuente de los resultados finales.",
+                          "reason":  "Evita predicciones engañosas y conserva la lógica real de Mobius.",
+                          "date":  "2026-10-06"
+                      }
+                  ],
+    "sessions":  [
+
+                 ],
+    "activeSession":  null
+}

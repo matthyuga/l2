@@ -1,0 +1,1093 @@
+asi como pense en traer personajes de koikatsu, previamente importados a blender y a unity, que tal con las armas y los atuendos o ropas? eso le daria una personalizacion que nadie tiene
+Sí. Y de hecho, armas + armaduras/ropa custom pueden diferenciar tu L2 incluso más que importar personajes.
+
+Tu idea podría convertir el equipamiento en algo parecido a un sistema de loot RPG moderno, en lugar del esquema clásico de Lineage II de “todos terminan usando el mismo set S/S80/S84”.
+
+Lo interesante: separar apariencia de estadísticas
+Yo no haría que cada modelo importado sea necesariamente un ítem distinto con estadísticas propias. Crearía varias capas:
+
+Personaje → Equipamiento real → Apariencia → Modificadores especiales
+
+Por ejemplo, tienes una espada de L2:
+
+Espada base: Forgotten Blade
+P.Atk: 281
+SA: Focus
+
+Pero visualmente el jugador podría equiparle un modelo importado desde Blender:
+
+Apariencia: Espada de Svetra
+Modelo completamente nuevo
+Animación/efecto rojo propio
+
+Y aparte podría existir tu sistema de propiedades raras:
+
+Furia Carmesí
+Después de 5 golpes consecutivos: +50% Atk.Speed durante 10 s.
+Cooldown: 15 s.
+
+Así puedes tener cientos de combinaciones sin necesitar cientos de sistemas diferentes.
+
+Y con la ropa puedes ir muchísimo más lejos
+Aquí veo una oportunidad enorme para tu servidor porque ya estás pensando en traer personajes de Koikatsu → Blender → Unity.
+
+Podrías crear categorías que L2 normalmente no maneja de esa forma:
+
+Capa	Ejemplo
+Armadura	Dark Crystal
+Skin	Vestimenta de Svetra
+Cabeza	Cuernos / sombrero / corona
+Espalda	Alas / capa / mochila
+Accesorio	Collar / cadenas / aura
+Arma	Espada personalizada
+Efecto	Fuego, vacío, electricidad
+Aura	Roja, oscura, celestial
+Título visual	Academia / facción / logro
+Entonces dos jugadores pueden llevar exactamente el mismo equipo estadístico y verse completamente diferentes.
+
+Y eso encaja especialmente bien con tu concepto de Academia. Podrías hacer que determinados cosméticos cuenten una historia:
+
+Graduado de Academia PvP → uniforme especial.
+
+100 victorias en duelos → guantes/capa.
+
+Afinidad máxima con Svetra → espada de Svetra.
+
+Ruta del Último Bastión completada → atuendo exclusivo.
+
+Reputación máxima con una facción → armadura ceremonial.
+
+Eso hace que cuando alguien vea a otro jugador piense:
+
+“¿De dónde sacó esa ropa?”
+
+en lugar de simplemente:
+
+“Tiene Dynasty.”
+
+Pero hay algo todavía más interesante con Koikatsu
+Si consigues establecer correctamente el pipeline:
+
+Koikatsu → Blender → adaptación al esqueleto L2 → Unreal/cliente L2
+
+no estás limitado a personajes.
+
+Puedes aprovechar Blender como estación intermedia universal.
+
+Podrías traer:
+
+Koikatsu / Unity / otros assets → Blender → formato compatible con L2
+
+y desde ahí adaptar:
+
+personajes;
+vestidos;
+armaduras;
+zapatos;
+guantes;
+armas;
+alas;
+accesorios;
+peinados;
+monstruos;
+objetos;
+decoraciones.
+La ropa probablemente será más complicada que una espada.
+
+Una espada esencialmente necesita estar correctamente modelada, texturizada y asociada al punto/mano correspondiente.
+
+Una vestimenta tiene que deformarse con el cuerpo.
+
+Eso significa rigging/skinning y pesos de vértices:
+
+hombro se mueve → manga acompaña
+pierna se mueve → pantalón acompaña
+personaje corre → falda responde correctamente
+
+Si importas directamente una ropa diseñada para el esqueleto de Koikatsu, no necesariamente coincidirá con el esqueleto de un humano de Lineage II.
+
+Ahí Blender sería fundamental para transferir/adaptar pesos.
+
+Incluso podrías hacer algo bastante raro en L2
+Que los NPC importantes tengan equipamiento obtenible.
+
+Supongamos que introduces a Svetra como boss, como veníamos hablando.
+
+Primera fase:
+
+Svetra — Maga
+
+Tiene su atuendo, báculo, efectos, etc.
+
+Segunda fase:
+
+Svetra — Duelista
+
+Rompe/descarta el báculo y aparecen las dos espadas.
+
+Al derrotarla podría existir una probabilidad extremadamente baja de conseguir:
+
+Fragmento de Svetra
+
+Con varios fragmentos desbloqueas una réplica de una de sus espadas.
+
+Pero no necesariamente sería la mejor arma del juego. Puede ser una apariencia legendaria.
+
+Eso evita el problema de pay-to-win o power creep.
+
+Y aquí aparece una posibilidad comercial bastante fuerte
+Si algún día monetizas el servidor, los cosméticos personalizados son muchísimo más sanos que vender poder.
+
+Podrías tener cosméticos gratuitos obtenibles jugando y otros cosméticos especiales, pases o apariencias premium, siempre cuidando las licencias y derechos de los assets que uses.
+
+Y como tú mismo puedes producir/importar contenido, no estarías limitado al catálogo visual original de L2.
+
+Podrías llegar a una situación bastante curiosa:
+
+el jugador reconoce que está jugando Lineage II por el combate, movimiento, mundo y clases... pero visualmente tu servidor parece otro RPG.
+
+Eso sí sería una diferencia enorme respecto del típico:
+
+L2 Interlude x50
+NPC Buffer
+GM Shop
+Custom Wings
++25 enchant.
+
+Y combinado con lo que ya planteaste —Academia PvP + campaña narrativa + NPC que recuerdan decisiones + facciones tipo Fallout + personajes del Último Bastión + estadísticas de equipamiento reactivas— empieza a parecer menos un “servidor privado de L2” y más un RPG construido encima de Lineage II.
+
+estaba pensando en algo sobre el dinero y la economia, estan los que pagan, estos pueden importar al juego las armas y vestimentas o articulos custom, por otro lado estarian los que farmean o le meten vicio todo el dia. los que vician anhelan tener las armas de los que pagan, entonces que tal si los que pagan anhelan algo que tienen los que vician? tal ves un token o la adena, en caso de que la adena no se venda, en el caso que si se venda tal ves uno tokens, un mob te da 1 token, entonces 1000 tokens te dan algo valioso que el dinero no puede comprar, tal vez nuevos skills, tattos, armas muy raras, asi se justifica las horas de vicio
+Sí, esa lógica puede darte una economía mucho más interesante porque evita que “pagar” sea simplemente el camino superior.
+
+La clave sería que existan dos tipos de riqueza que se necesiten mutuamente:
+
+Dinero real / créditos premium: permite importar cosméticos, armas visuales, atuendos personalizados, efectos, servicios de personalización, quizá housing o decoración.
+Riqueza de juego: solo se consigue jugando mucho y sirve para cosas que el dinero real no puede comprar directamente.
+Ahí aparece el equilibrio: el que paga tiene algo que el farmer desea, pero el farmer también posee algo que el que paga no puede saltarse con la billetera.
+
+Tu ejemplo de los tokens funciona muy bien. Yo incluso evitaría que el mob dé siempre “1 token” de manera plana, porque terminaría siendo una moneda de farmeo aburrida. Haría varias capas. Un mob común puede dar fragmentos, elites más cantidad, raids una moneda superior, PvP otra fuente y contenido difícil multiplicadores. Luego esos tokens se usan para cosas realmente deseables: tatuajes únicos, skills alternativos, encantamientos especiales, evolución de armas, recetas, materiales de ascensión, habilidades pasivas o incluso permisos para fabricar objetos excepcionales.
+
+Lo potente sería que algunos de esos objetos pudieran intercambiarse entre jugadores.
+
+Ejemplo: un jugador premium paga por importar una espada completamente custom. Visualmente es espectacular, pero necesita un material del juego para “despertarla”.
+
+Espada personalizada de Kael
+Apariencia: importada/custom
+Estado: sellada
+Despertar: 4.000 Sellos de Batalla
+
+El jugador que pagó quizá no quiere matar 4.000 mobs.
+
+El farmer tiene 15.000 Sellos.
+
+Entonces aparece el comercio.
+
+El premium dice:
+
+“Te compro 4.000 tokens.”
+
+Pero no necesariamente con dinero real. Puede ofrecer Adena, materiales, servicios o incluso un objeto cosmético transferible.
+
+Esto crea una cosa muy importante: el tiempo del farmer adquiere valor económico dentro del juego.
+
+Y al mismo tiempo el jugador que paga aporta valor al ecosistema porque introduce objetos visuales/custom que otros desean.
+
+Incluso podrías tener una economía triangular:
+
+Premium → artesano/farmer → jugador normal → Premium
+
+Por ejemplo, alguien paga para importar un modelo de espada. Un jugador dedicado consigue el mineral raro necesario para fabricarla. Otro jugador especializado en herrería tiene el nivel necesario para terminarla. El dueño necesita a ambos.
+
+Entonces el dinero no sustituye al juego: financia contenido que necesita jugadores para existir.
+
+Hay otra variante que me parece todavía mejor para tu servidor: permitir que quien paga un diseño custom decida si será privado o liberado al mundo.
+
+Un jugador paga por crear/importar:
+
+Armadura Carmesí de Svetra.
+
+Puede pagar una tarifa mayor para tener exclusividad temporal, por ejemplo 60 días. Después de ese período, su diseño entra en una tabla extremadamente rara del juego o puede ser fabricado mediante tokens.
+
+Entonces ocurre algo interesante: los jugadores premium indirectamente expanden el contenido del servidor.
+
+El servidor podría terminar teniendo cientos o miles de objetos porque los propios usuarios financiaron su incorporación.
+
+Eso sí, yo separaría estrictamente apariencia y poder en la parte de pago. Si alguien puede pagar 50 dólares y obtener directamente una espada objetivamente superior a lo que otro consiguió jugando 300 horas, destruyes precisamente el intercambio que estás intentando crear.
+
+En cambio:
+
+Dinero compra individualidad.
+Tiempo compra poder/progreso/prestigio.
+
+Y ambos pueden cruzarse mediante el mercado del juego.
+
+También podrías introducir una moneda que yo llamaría, por ejemplo, Mérito, que sea totalmente imposible de comprar, regalar o transferir. Eso garantiza que ciertas cosas demuestren que realmente jugaste.
+
+Por ejemplo:
+
+1.000 Mérito → tatuaje especial.
+5.000 Mérito → skill secundario.
+10.000 Mérito → aura.
+25.000 Mérito → evolución de clase.
+50.000 Mérito → arma legendaria.
+100.000 Mérito → apariencia/título extremadamente prestigioso.
+
+Cuando alguien camine por Giran llevando eso, todos sabrán:
+
+“Ese tipo no pagó por eso. Se lo ganó.”
+
+Y podrías tener exactamente lo contrario:
+
+un objeto custom espectacular que todos reconozcan como algo encargado por un jugador.
+
+Así surgen dos formas distintas de estatus.
+
+Una dice:
+
+“Tengo recursos.”
+
+La otra:
+
+“Tengo trayectoria.”
+
+Y probablemente los jugadores más poderosos socialmente sean los que tengan ambas.
+
+De hecho, esto encaja muchísimo con la Academia que veníamos diseñando. Puedes hacer que parte de esos tokens no provengan solo de matar mobs, sino de participar en todo tu mundo: graduarse de cursos PvP, ganar torneos, completar historias, mejorar reputación con facciones, descubrir zonas, derrotar bosses, conseguir logros, ayudar a otros alumnos, etc.
+
+Así evitas que “viciar” signifique únicamente matar el mismo mob durante 12 horas. Pasa a significar vivir dentro del servidor.
+
+aprovecho para hablar sobre un server de l2 llamado l2 fenix, ese me invito mi amigo, al principio parecia interesante y divertido, pero tenia sus falencias,
+por un lado si matabas a alguien aparecia un mensaje gloval, nombre de quien mato a quien y en donde o que mapa o hubicacion, yo al ser algo timido practicaba en dion o en algun lugar alejado y saltaba mi nick y el lugar, lo sentia como invasion a la privasidad, no podias hacer nada sin que todos supieran.
+otro tema era el farmeo para la joyeria unica, por un lado ya se ha quedado atras el valakas, antharas baium etc, falta algo mas de originalidad, ademas para conseguirlos necesitabas 5000 gemas verdes, 1000 azules, 500 rojas, y solo habian unos pocos sitios para farmearlas, las verdes en varka silenos estaban bien porque tenias todo varka para hacerlo, pero el problema venia con las demas, las azules en toy 11 o por ahi, los angeles, solo habian 2 pisos parar conseguirlas, y un solo mobeador se llebaba una sala para si mismo y ni asi te alcanzaba, debias estar horas y horas mobeando las 2 salas para tener algo, imaginate que 10 jugadores se peleen por eso, las rojas por otro lado creo que en foul sepulcher o imperial tomb entre las escalinatas laberinticas o fog al fondo, aunque paresca diverso y variable no lo era, un solo mobeador se podia llevar facil toda una sala entera y aun asi no sumar ni 10 de las gemas, luego el cansancio por la repeticion, el aburrimiento, la falta de actividad original.
+el gm tampoco es que estaba, igual el server duro 2 meses o 3 a lo mucho y desaparecio por completo, cuando yo entre ya el server entro en decadencia, le pague la donacion y me atendieron una semana despues o 2, para ese momento ya no tenia sentido seguir, la gente comenzo a vender todo y a trasladarse a otro server, me senti como un imbecil completo en ese momento, ya no habia nadie, los personajes simplemente quedaban parados en giran, habia un sistema para que no desaparescan tras deslogearse, daba verguenza caminar por ahi, eran todos zombis practicamente los que estaban quietos y solo entraba gente nueva a ver que habia, ni ganas de hablar con nadie ya que se sentia la muerte del servidor , mal sabor que me lleve con todo eso
+…
+Sí, y de hecho lo que contás de L2 Fenix sirve como caso de estudio de casi todo lo que conviene evitar si armás tu propio servidor.
+
+Hay varios problemas distintos ahí, y no eran pequeños.
+
+1. El mensaje global de PvP estaba mal pensado
+Que aparezca algo como:
+
+Kevin mató a X en Dion
+
+puede parecer divertido desde la perspectiva del GM porque “muestra actividad”, pero elimina algo importante: la posibilidad de jugar sin estar permanentemente en exhibición.
+
+Especialmente en un juego como L2, donde uno puede querer:
+
+practicar una clase;
+probar una build;
+enseñarle algo a un amigo;
+pelear 1 vs 1 tranquilamente;
+explorar;
+hacer PvP mediocre sin que todo el servidor lo vea.
+Tu experiencia en Dion es buen ejemplo. No estabas haciendo nada malo, simplemente querías practicar sin público.
+
+Yo, en nuestro servidor, haría que el killfeed tuviera niveles de relevancia.
+
+Una muerte normal en cualquier parte del mapa no debería anunciarse globalmente.
+
+Sí podrían anunciarse cosas como:
+
+Arena: Gregoret derrotó a Selto — 8 victorias consecutivas.
+Siege: Clan X eliminó al líder de Clan Y.
+Bounty: Svetra ha eliminado al jugador más buscado.
+Torneo: Kevin avanza a semifinales.
+
+Eso tiene valor informativo.
+
+Pero:
+
+Kevin mató a Pepito en Dion.
+
+¿A quién le importa aparte de Kevin y Pepito?
+
+Incluso podría existir un comando:
+
+/privacy pvp
+
+para que tus duelos casuales no formen parte de estadísticas públicas.
+
+Y la Academia PvP debería ser directamente un entorno privado o semiprivado. Nadie tendría por qué enterarse de que estás aprendiendo a cancelar casts o practicando contra bots.
+
+2. Lo de las gemas es uno de los errores clásicos del farming
+Sobre el papel:
+
+5.000 verdes
+1.000 azules
+500 rojas
+parece una progresión.
+
+Pero en realidad hay que preguntarse:
+
+¿Cuántas horas interesantes representan esos números?
+
+Porque 10 horas jugando cosas diferentes pueden ser entretenidas.
+
+10 horas mobeando exactamente los mismos ángeles en TOI es trabajo no remunerado.
+
+Y peor todavía si el recurso tiene:
+
+pocos mobs + pocos mapas + baja probabilidad + requerimiento enorme.
+
+Ahí fabricaste un cuello de botella.
+
+Si caben cómodamente 2 jugadores y entran 10:
+
+el contenido no escala con la población.
+
+Y aparece algo perverso: otro jugador deja de ser alguien con quien jugar y pasa a ser alguien que te molesta.
+
+Eso es terrible para un MMO.
+
+Yo aplicaría una regla bastante sencilla
+Si un recurso importante requiere mucho farmeo:
+
+cuanto mayor sea la cantidad requerida, mayor debe ser la diversidad de formas de obtenerlo.
+
+Por ejemplo, imaginemos nuestros Sellos del Vacío.
+
+Necesitás 5.000.
+
+Perfecto.
+
+Pero podrías conseguirlos mediante:
+
+mobs normales;
+elites;
+raids;
+quests;
+Academia;
+PvP;
+exploración;
+contratos diarios;
+mazmorras;
+bosses;
+crafting;
+eventos;
+comercio con otros jugadores.
+Entonces alguien puede decir:
+
+“Yo odio farmear mobs, voy a hacer arenas.”
+
+Otro:
+
+“A mí me encanta mobeando.”
+
+Otro:
+
+“Voy a comerciar.”
+
+Otro:
+
+“Voy a hacer raids.”
+
+Los cuatro están progresando hacia el mismo objetivo utilizando estilos diferentes.
+
+Ahí la cantidad grande deja de ser necesariamente un problema.
+
+3. Además pondría protección contra mala suerte
+Hay algo que personalmente evitaría:
+
+“Maté 40 mobs y no cayó absolutamente nada.”
+
+Especialmente con un recurso que necesitás cientos de veces.
+
+Puedes mantener RNG, pero introducir progreso garantizado.
+
+Por ejemplo:
+
+Un mob tiene:
+
+25% de probabilidad → 1 token.
+
+Pero cada mob además suma:
+
+1 punto invisible de esencia.
+
+Cada 10 mobs:
+
++1 token garantizado.
+
+Entonces puedes tener suerte, pero nunca puedes tener una racha completamente inútil.
+
+Eso psicológicamente cambia muchísimo el farmeo.
+
+4. Y el mundo entero debería poder participar
+Lo que describís de Varka y TOI también muestra otro desperdicio enorme de L2.
+
+Lineage II tiene un mapa gigantesco.
+
+¿Para qué utilizar solamente tres habitaciones?
+
+Podríamos hacer que un recurso tenga regiones equivalentes:
+
+Token azul
+
+TOI;
+Wall of Argos;
+Valley of Saints;
+Frozen Labyrinth;
+una dungeon propia;
+alguna región de Belon;
+un mapa temporal.
+Pero los enemigos pueden requerir estrategias distintas.
+
+Por ejemplo:
+
+TOI → enemigos resistentes físicamente.
+
+Argos → alta resistencia mágica.
+
+Dungeon → grupos.
+
+Belon → enemigos inteligentes/NPC.
+
+Así no es simplemente:
+
+“la misma moneda en otro mapa.”
+
+Cambia la experiencia.
+
+5. Lo de la joyería también tiene razón de fondo
+Valakas / Antharas / Baium son icónicos.
+
+Pero llevamos literalmente décadas viendo:
+
+Necklace of Valakas
+Earring of Antharas
+Ring of Baium
+
+En un servidor custom como el que estamos planteando sería extraño que la cúspide del equipamiento siga siendo exactamente la misma de siempre.
+
+Puedes conservarlos como contenido histórico.
+
+Pero encima crear tu propia progresión.
+
+Por ejemplo:
+
+Reliquias
+
+Ojo de Svetra
+Corazón del Vacío
+Fragmento de Gregoret
+Sello de Blake
+Anillo de Belon
+Lágrima de Yesod
+
+Y no necesariamente serían solamente:
+
++5% P.Atk
+
+Podrían tener comportamientos.
+
+Ejemplo:
+
+Ojo de Svetra
+Cuando recibes daño de tres personajes diferentes durante 5 segundos:
+
+Despertar
+
++20% resistencia
++15% velocidad
+durante 8 segundos.
+
+Cooldown: 40 segundos.
+
+Ahora una joya tiene identidad.
+
+Eso conecta perfectamente con las armas raras que hablábamos antes.
+
+6. Pero probablemente lo peor de Fenix fue otra cosa
+Esto:
+
+pagaste la donación
+te respondieron una o dos semanas después
+el servidor ya estaba muriendo.
+
+Eso destruye algo muchísimo más importante que cualquier balance:
+
+la confianza.
+
+Si una persona paga algo, tiene que sentir:
+
+“Esto existe mañana.”
+
+De lo contrario empiezan los rumores:
+
+“El GM abandonó.”
+“Está cerrando.”
+“Vendé las cosas.”
+“Nos vamos al otro server.”
+
+Y los MMO tienen una característica peligrosa:
+
+la muerte puede ser exponencial.
+100 jugadores.
+
+Se van 15.
+
+Quedan 85.
+
+Otros ven menos PvP y se van 20.
+
+Los clanes empiezan a migrar.
+
+El marketplace deja de funcionar.
+
+Los últimos ven Giran vacío.
+
+Servidor muerto.
+
+No necesariamente porque el juego fuera malo.
+
+Porque desapareció la confianza en que habría gente mañana.
+
+7. Y eso explica perfectamente los “zombis de Giran”
+Lo que describiste me parece especialmente importante:
+
+personajes desconectados que permanecían visibles.
+
+Probablemente la idea del administrador era:
+
+“Así Giran parece lleno.”
+
+Pero produce exactamente el efecto contrario.
+
+Entrás.
+
+Ves 30 personajes.
+
+Intentás hablar.
+
+Nadie contesta.
+
+Otro.
+
+Nada.
+
+Otro.
+
+Nada.
+
+Entonces tu cerebro entiende rápidamente:
+
+“Todos estos personajes están muertos.”
+
+Y Giran deja de parecer una ciudad.
+
+Parece un cementerio.
+
+Si usamos offline shops o personajes persistentes, deberían identificarse claramente.
+
+Por ejemplo:
+
+🛒 Tienda Offline
+
+y ponerlos en un mercado específico.
+
+No mezclar treinta cuerpos desconectados con jugadores activos.
+
+Incluso nuestra idea de NPCs inteligentes podría ayudar muchísimo.
+
+Imaginá un Giran donde hay solamente 15 jugadores conectados, pero:
+
+NPC caminan;
+comerciantes hablan;
+guardias patrullan;
+aprendices entrenan;
+personajes del Último Bastión tienen rutinas;
+NPC discuten;
+ocurren eventos pequeños.
+Entonces el mundo no parece muerto.
+
+Pero sin intentar engañar al jugador sobre cuántas personas reales están conectadas.
+
+8. Y tu recuerdo me hace pensar en algo para nuestra economía
+No deberíamos diseñar el servidor alrededor de:
+
+“¿Cómo hacemos para que juegue 500 horas?”
+
+sino alrededor de:
+
+“¿Cómo hacemos para que después de 500 horas todavía encuentre cosas distintas que hacer?”
+
+Son preguntas completamente diferentes.
+
+La primera genera:
+
+5.000 verdes + 1.000 azules + 500 rojas.
+
+La segunda genera:
+
+campaña + Academia + facciones + crafting + PvP + exploración + bosses + NPC vivos + economía + equipo raro + colecciones + builds + profesiones + secretos.
+
+El jugador puede igualmente terminar jugando 500 horas.
+
+Pero no porque lo hayas encadenado a una habitación de TOI.
+
+Sino porque siempre piensa:
+
+“Hoy voy a hacer otra cosa.”
+
+Y tu experiencia con Fenix también explica por qué tu idea anterior de hacer que el tiempo invertido produzca una riqueza que incluso los jugadores que pagan deseen tiene sentido: el farmeo puede ser valioso, pero solo si respetamos el tiempo del jugador y le damos variedad. No necesitamos convertirlo en esclavo de una sala para justificar que un objeto sea raro.
+
+ahhh y otra cosa que vi que al final termino pareciendo contraproducente es que casa 2 horas habia evento, tvt y cosas asi, al principio estaba bueno porque te invitaba a participar, pero cuando se fueron todos los eventos se iniciaban y se cancelaban por falta de participantes, asi cada 2 horas, moralmente era negativo para la imagen del server.
+yo solo alcance a jugar una noche unos tvt que no pude ni disfrutar porque me faltaba el equipo ya que no me contestaba el gm por las donaciones, no pude matar a nadie.
+luego la dungeon se vio interesante, un mapa que aparece solo unas horas para farmear itens, entrabas con tu gente a matar mobs muy poderosos y pelear contra otros jugadores por el dominio del territorio, pero no podia jugar porque me mataban todos, luego lo ultimo que vi fue un grupo fuerte, clan mas ally asediando y pvp masivo, estaba transmitiendo por kick, el tema fue que fui a verlo, y pude presenciar como el servidor colapsaba de lag por tanta gente, y quiza hayn sido 100 personas en total, osea que tampoco tenia cobertura para agites masivos
+Sí, y eso completa bastante bien el diagnóstico de por qué ese servidor daba sensación de decadencia incluso antes de quedar vacío.
+
+El problema de los eventos cada 2 horas no era la frecuencia en sí, sino que eran eventos diseñados bajo la suposición de población alta constante. Mientras había gente, daban sensación de actividad. Cuando la población cayó, se convirtieron en recordatorios automáticos de que el servidor estaba muriendo.
+
+Ver cada dos horas algo como:
+
+TVT inicia
+faltan participantes
+evento cancelado
+
+es casi publicidad negativa interna.
+
+Para un servidor nuestro haría lo contrario: eventos adaptativos.
+
+Si hay mucha gente conectada, habilitas TVT grande, faction wars, guerras abiertas, bosses competitivos.
+
+Si hay poca gente, el sistema no intenta fingir que puede montar un evento de 40 personas. Cambia automáticamente a cosas pequeñas:
+
+1v1
+2v2
+3v3
+cooperativo contra NPCs
+cacería de miniboss
+dungeon instanciada
+eventos con bots de relleno
+Así nunca aparece la sensación de “evento muerto”.
+
+Incluso podrías tener un sistema que diga internamente:
+
+12 jugadores online → evento pequeño
+30 jugadores → evento medio
+80+ → evento masivo
+
+y el jugador ni siquiera tiene por qué saber que el sistema está escalando.
+
+Lo del TVT también muestra otro problema: meter a un jugador nuevo en PvP contra gente ya equipada.
+
+Eso mata las ganas enseguida.
+
+Si tú entraste sin el equipo que estabas esperando y literalmente no podías matar a nadie, el evento no estaba diseñado como competencia, estaba diseñado como exhibición de la diferencia de gear.
+
+Yo separaría:
+
+PvP de progresión
+equipamiento real, builds reales, economía real.
+
+PvP competitivo
+gear normalizado o con brackets.
+
+Por ejemplo, una sala TVT podría poner a todos en un “perfil competitivo” temporal:
+
+armas equivalentes
+armadura equivalente
+mismos enchant máximos
+stats base balanceados
+
+y luego lo que diferencia a los jugadores es:
+
+clase, habilidad, coordinación, estrategia, posicionamiento.
+
+Entonces un novato sí puede entrar y divertirse.
+
+Y aparte tendrías arenas “open gear” para el que quiera presumir su personaje monstruoso.
+
+La dungeon que describís sí tenía una idea bastante buena: ventana temporal + recursos valiosos + PvE + control territorial + PvP emergente.
+
+Eso tiene potencial enorme.
+
+El problema fue que seguramente no tenía mecanismos para evitar que un clan dominante simplemente convirtiera toda la zona en propiedad privada.
+
+Una versión más sana podría dividirse en capas:
+
+zona exterior: PvE relativamente segura
+zona media: PvP habilitado
+núcleo: loot superior + PvP total
+
+Entonces el jugador débil puede participar aunque sea parcialmente.
+
+También podrías hacer que el dominio territorial cambie dinámicamente. Por ejemplo, si un clan controla una sección demasiado tiempo, aparecen penalizaciones, bosses anti-zerg, rutas alternativas o portales que permiten entrar por otros lados.
+
+No porque haya que castigar al clan fuerte, sino para evitar que una sola alianza convierta un contenido entero en:
+
+“esto es nuestro, ustedes no juegan”.
+
+Y lo del asedio que colapsó con unos 100 jugadores es quizá la señal técnica más grave de todas.
+
+Un servidor de L2 puede verse estable durante semanas con 20 o 30 jugadores y aun así estar muy mal preparado. El verdadero examen es cuando tienes:
+
+muchos jugadores
+en la misma zona
+lanzando skills
+summons
+buffs
+debuffs
+movimiento
+daño AoE
+NPCs
+packets de posición
+actualizaciones de HP/CP
+efectos visuales
+IA
+
+todo al mismo tiempo.
+
+Ahí aparecen los cuellos de botella.
+
+No importa demasiado que tengas “100 jugadores online”; importa cuántos están en la misma celda/área de interés haciendo cosas simultáneamente.
+
+Por eso para nuestro proyecto yo consideraría obligatoria una fase de estrés antes de abrir.
+
+No basta con probar:
+
+“entra mi amigo, matamos mobs, funciona.”
+
+Hay que simular cosas absurdas:
+
+100 bots pegando al mismo boss
+200 personajes moviéndose en Giran
+50 vs 50 lanzando skills
+500 mobs activos
+cientos de buffs/debuffs simultáneos
+
+y medir:
+
+tick rate
+latencia
+CPU por core
+RAM
+tráfico de red
+tiempo de respuesta de la base de datos
+GC
+procesamiento de IA
+
+Porque el peor momento para descubrir que el servidor no aguanta un siege es durante el siege, transmitido en vivo, exactamente como viste.
+
+Y además eso destruye confianza muchísimo.
+
+Un jugador perdona:
+
+“hay una textura fea”
+
+pero si organiza su clan durante toda la semana, llega al castillo, empieza el PvP y el servidor muere de lag, ahí puede decidir no volver.
+
+De todo lo que contaste de Fenix, yo sacaría cuatro reglas casi fundamentales para nuestro L2:
+
+Nunca mostrar fracaso poblacional de forma repetitiva.
+Nunca obligar a un jugador nuevo a servir de saco de boxeo.
+El contenido competitivo debe escalar con la población.
+La infraestructura se prueba para el peor escenario, no para el promedio.
+Y hay una quinta que aparece en casi todos tus ejemplos: no diseñar el servidor para que “parezca activo”, sino para que siga siendo divertido incluso cuando hay poca gente.
+
+Si consigues eso, el servidor no entra tan fácilmente en esa espiral de muerte que viste en Fenix.
+
+algo mas que olvide mencionar era lo de la quest de nobles, creo que en ese server la volvi a hacer por completo o no recuerdo hasta que parte, pero la ultima siempre es ir a matar al barakiel, el problema es que se amontonan todos y siempre hay un grupo que mata a los demas imposibilitando llegar a el o siquiera completar la quest, si bien sirve como separacion de clases, un grupo dominante que no permite que el otro gane status o algo como nobles, por otro lado puede llegar a ser frustrante por lo que deberia administrarse de otra forma, ademas aprovechar para hacerlo custom, que tenga los suyo pero que no sea un parto hacerlo
+Sí, ahí hay una idea buena escondida dentro de una ejecución bastante frustrante.
+
+Barakiel como último filtro tiene sentido temático porque convierte la nobleza en algo que no se obtiene solo haciendo mandados. El problema es cuando el filtro deja de ser “demostrá que estás listo” y pasa a ser “esperá a que el clan dominante te deje jugar”.
+
+Eso rompe la progresión personal.
+
+Para tu servidor haría una quest de nobleza completamente custom, manteniendo parte del espíritu clásico pero cambiando el cuello de botella final.
+
+Podría funcionar así:
+
+primera parte: recorrido, historia, materiales, NPCs y alguna prueba de conocimiento del mundo;
+segunda parte: combate PvE individual o en grupo;
+tercera parte: una prueba de mérito;
+final: elección entre varias rutas para obtener la nobleza.
+Por ejemplo, para el tramo final podrías elegir una de estas vías:
+
+Ruta del guerrero: derrotar un boss equivalente a Barakiel, pero instanciado para tu grupo.
+
+Ruta del conquistador: completar una serie de objetivos PvP.
+
+Ruta del explorador: superar una dungeon difícil con mecánicas.
+
+Ruta del prestigio: alcanzar cierta reputación con una facción importante.
+
+Así la nobleza sigue requiriendo esfuerzo, pero no dependes de que diez tipos estén campeando un spawn.
+
+Y si querés mantener la sensación de mundo abierto, incluso Barakiel podría seguir existiendo públicamente, pero no debería ser la única puerta.
+
+Por ejemplo:
+
+matar a Barakiel abierto = ruta rápida + recompensa extra + título especial
+
+Mientras que:
+
+derrotar su “Avatar” en instancia = progreso normal de nobleza.
+
+Eso convierte el PvP alrededor del boss en contenido optativo de alto riesgo, no en una barrera obligatoria.
+
+También podés usar lo que mencionabas de la separación de clases sociales dentro del juego, porque esa idea sí es interesante: que haya jugadores con prestigio y jerarquías. Pero esa separación debería surgir de logros, economía, reputación o poder real, no de poder bloquear indefinidamente la quest de otro.
+
+Podrías incluso renombrar todo el sistema.
+
+En vez de “Nobleza” clásica:
+
+Ascensión
+
+Aspirante → Reconocido → Noble → Alto Noble → Campeón del Reino
+
+Y cada rango puede desbloquear cosas diferentes:
+
+teleport especial;
+skills sociales;
+acceso a zonas;
+títulos;
+cosméticos;
+votos en ciertos eventos;
+acceso a quests;
+crafting especial;
+mejoras de clan;
+participación en política/facciones.
+Ahí ya no es simplemente “hacer nobles para Olympiad”.
+
+Pasa a ser una progresión social del personaje.
+
+Y algo importante: yo haría que la quest no sea un parto, pero tampoco algo trivial de 20 minutos.
+
+Un buen objetivo podría ser que un jugador normal la complete en varias sesiones, con variedad, sin repetir 500 veces lo mismo.
+
+Por ejemplo:
+
+30% exploración
+20% combate
+20% historia/decisiones
+20% cooperación
+10% desafío final
+
+Eso da sensación de viaje.
+
+Y si un clan fuerte quiere presumir, le das objetivos exclusivos por encima:
+
+“Noble del Reino” lo consigue cualquiera que complete la campaña.
+
+“Señor de Barakiel” requiere derrotar al boss abierto en PvP.
+
+“Linaje Imperial” requiere logros mucho más difíciles.
+
+Así no bloqueás el progreso básico de nadie, pero seguís teniendo estatus que no todos alcanzan.
+
+Ese equilibrio me parece bastante más sano para el tipo de L2 que estás imaginando.
+
+bien volviendo al punto del servidor que no aguanta un siege, que tal esto? y si de manera discreta diluimos la nuclearizacion de gente en un mismo sitio? por ejemplo con campañas y misiones originales, contenido interesante que te lleve a explorar los rincones del mundo con tus amigos, los sieges seguirian estando pero habrian mas cosas por hacer en un fin de semana que solo asediar aden por ejemplo, podria dejarlo como un evento groso pero tambien tener otros asi la gente que no puede por no ser tan fuerte o no tener clan puede ir a explorar masmorras o descubrir eventos en lugares reconditos y llevarse sorpresas interesantes
+Sí, y esa idea tiene bastante sentido porque ataca el problema desde diseño de juego, no solo desde infraestructura.
+
+En vez de pensar “¿cómo hacemos para que el servidor aguante 300 personas en Aden?”, también podés pensar:
+
+“¿Por qué obligaríamos a 300 personas a estar en Aden al mismo tiempo?”
+
+Eso es mucho más inteligente.
+
+La clave sería que el fin de semana tenga varios focos de actividad importantes en paralelo, no un único evento que absorba a todo el servidor.
+
+Por ejemplo, podrías tener un sábado así:
+
+Siege de Aden para clanes grandes.
+Expedición a una dungeon perdida para grupos de 5–9.
+Evento narrativo en Rune.
+Boss secreto en Wall of Argos.
+Academia PvP con torneo para jugadores nuevos.
+Quest de exploración individual.
+Evento de facción en otra región.
+Dungeon temporal de alto riesgo.
+Evento económico/crafting en Giran.
+Entonces si tenés 300 jugadores conectados, quizá no son:
+
+300 en Aden.
+
+Sino:
+
+90 Aden
+40 dungeon
+30 boss
+25 Academia
+35 explorando
+40 haciendo quests
+40 dispersos haciendo otras cosas
+
+Y técnicamente eso cambia muchísimo.
+
+Además tiene un beneficio de diseño todavía mayor: no todos los jugadores tienen que participar del endgame competitivo para sentir que están jugando el contenido importante del servidor.
+
+Ese problema lo tienen muchos MMOs.
+
+Parece que todo conduce a:
+
+tener clan grande → tener gear máximo → siege → PvP masivo.
+
+Y el jugador que no quiere eso queda relegado a contenido secundario.
+
+En tu servidor podríamos decir:
+
+El Siege es uno de los grandes acontecimientos.
+No el acontecimiento.
+
+Eso cambia todo.
+
+También me gusta tu idea de descubrir cosas en lugares recónditos porque Lineage II tiene enormes regiones que normalmente terminan siendo decorado.
+
+Podrías aprovecharlas con eventos semiocultos.
+
+Por ejemplo, un grupo está explorando cerca de Ivory Tower y encuentra a un NPC herido que normalmente no está ahí.
+
+Hablan con él.
+
+Se inicia una cadena:
+
+“Algo apareció en las montañas.”
+
+Van siguiendo rastros.
+
+Encuentran una entrada que ayer no existía.
+
+Dungeon temporal.
+
+Adentro descubren lore, enemigos nuevos y quizás un miniboss.
+
+Y quizá ese evento solamente permanece abierto durante 48 horas.
+
+No necesitás mandar un anuncio global enorme.
+
+Incluso sería mejor que se propagara socialmente:
+
+“Che, encontramos algo raro al norte de Oren.”
+
+Entonces otros empiezan a investigar.
+
+Eso crea rumores dentro de la comunidad, algo que los MMO modernos muchas veces pierden porque todo está marcado con un signo de interrogación gigante en el mapa.
+
+Podríamos incluso clasificar los eventos según visibilidad.
+
+Públicos: siege, torneo, invasiones.
+
+Regionales: solamente reciben aviso los personajes cercanos.
+
+Secretos: no tienen anuncio.
+
+Descubribles: aparecen mediante pistas.
+
+Encadenados: una acción de jugadores activa otra cosa en otro mapa.
+
+Ahí el mundo empieza a parecer vivo.
+
+Y además podés utilizarlo para distribuir carga automáticamente.
+
+Imaginemos que el sistema detecta mucha actividad en Aden.
+
+Sin decir:
+
+“Estamos intentando bajar el lag.”
+
+puede activar naturalmente:
+
+una anomalía en Schuttgart
+una caravana rara cerca de Goddard
+una dungeon temporal en Rune
+
+y ofrecer recompensas interesantes.
+
+Parte de la población se desplaza voluntariamente.
+
+Eso sería una especie de balanceador de población disfrazado de contenido.
+
+No obligás a nadie a irse de Aden.
+
+Simplemente haces que haya razones para estar en otro lugar.
+
+Incluso las recompensas pueden ayudar.
+
+Si Aden está saturado:
+
+Siege → recompensa normal.
+
+Mientras otra actividad poco poblada podría recibir temporalmente:
+
++20% drop de determinado recurso.
+
+No necesariamente anunciado como “bonus porque Aden está lleno”, sino mediante lore:
+
+“La energía del Vacío se intensifica en Forgotten Temple.”
+
+Ahora tenés jugadores diciendo:
+
+“Vamos para allá, está dando materiales raros.”
+
+Y técnicamente acabás de redistribuir carga.
+
+Hay otra ventaja: hace que los jugadores pequeños tengan oportunidades económicas.
+
+Mientras los grandes clanes se están destruyendo en Aden, un grupo de cuatro personas podría encontrar una dungeon rara y conseguir materiales que los clanes necesitarán después.
+
+Entonces alguien que no participó del siege puede volver a Giran diciendo:
+
+“Mientras ustedes se mataban, conseguimos esto.”
+
+Y resulta que tiene muchísimo valor.
+
+Eso conecta directamente con la economía que hablábamos antes: distintos estilos de jugador producen cosas que otros necesitan.
+
+El PvPero produce prestigio o materiales PvP.
+
+El explorador descubre recursos.
+
+El farmer produce materias primas.
+
+El crafter transforma esos recursos.
+
+El jugador premium introduce diseños custom.
+
+El comerciante conecta a todos.
+
+Así no existe una sola escalera donde todos tienen que hacer exactamente lo mismo.
+
+Incluso yo evitaría que todos los sieges importantes sean simultáneos siempre. Podrías tener un calendario dinámico.
+
+Un fin de semana:
+
+gran guerra por Aden.
+
+El siguiente:
+
+invasión narrativa en Rune.
+
+Otro:
+
+expedición de clanes a una región custom.
+
+Otro:
+
+torneo de Academia.
+
+Y de vez en cuando:
+
+Gran Siege de Aden
+
+Ahí sí lo convertís en algo excepcional.
+
+Cuando sucede una vez cada cierto tiempo, la gente lo espera.
+
+Si ocurre constantemente, se transforma en rutina.
+
+Y para la infraestructura sigue siendo importante que Aden pueda aguantar un siege grande. No usaría esta estrategia como excusa para tener un servidor débil. Pero sí como una segunda línea de defensa.
+
+Idealmente:
+
+infraestructura capaz de soportar 200 personas juntas
+
+diseño que hace improbable que las 200 quieran estar siempre juntas.
+Eso es muchísimo más robusto que depender exclusivamente del hardware.
+
+Y encaja bastante con la dirección que está tomando todo este proyecto: no construir un L2 donde uno entra, farmea, hace PvP y repite, sino un mundo donde un sábado podés entrar pensando que vas a hacer una cosa y terminar tres horas después diciendo:
+
+“Fuimos a buscar materiales y encontramos una dungeon que ni sabíamos que existía.”
+
+Ahí ya tenés algo que puede generar las historias que después los propios jugadores cuentan.

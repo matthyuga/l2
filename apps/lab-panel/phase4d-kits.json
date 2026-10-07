@@ -1,0 +1,41 @@
+{
+  "enchant": 0,
+  "jewelry": [
+    { "id": 858, "name": "Tateossian Earring", "count": 2 },
+    { "id": 889, "name": "Tateossian Ring", "count": 2 },
+    { "id": 920, "name": "Tateossian Necklace", "count": 1 }
+  ],
+  "kits": {
+    "S_HEAVY": [
+      { "id": 6373, "name": "Imperial Crusader Breastplate" },
+      { "id": 6374, "name": "Imperial Crusader Gaiters" },
+      { "id": 6375, "name": "Imperial Crusader Gauntlets" },
+      { "id": 6376, "name": "Imperial Crusader Boots" },
+      { "id": 6378, "name": "Imperial Crusader Helmet" }
+    ],
+    "S_LIGHT": [
+      { "id": 6379, "name": "Draconic Leather Armor" },
+      { "id": 6380, "name": "Draconic Leather Gloves" },
+      { "id": 6381, "name": "Draconic Leather Boots" },
+      { "id": 6382, "name": "Draconic Leather Helmet" }
+    ],
+    "S_ROBE": [
+      { "id": 6383, "name": "Major Arcana Robe" },
+      { "id": 6384, "name": "Major Arcana Gloves" },
+      { "id": 6385, "name": "Major Arcana Boots" },
+      { "id": 6386, "name": "Major Arcana Circlet" }
+    ]
+  },
+  "tankShield": { "id": 6377, "name": "Imperial Crusader Shield" },
+  "consumables": [
+    { "id": 1467, "name": "Soulshot: S-grade" },
+    { "id": 3952, "name": "Blessed Spiritshot: S-grade" }
+  ],
+  "rules": [
+    "Todas las piezas y armas comienzan a +0.",
+    "Cada clase activa usa su tipo de armadura natural y un arma compatible con su mastery.",
+    "La joyería Tateossian es idéntica para todos.",
+    "No se aplican buffs externos en la primera línea base.",
+    "Soulshots y Blessed Spiritshots S se contabilizan por separado."
+  ]
+}

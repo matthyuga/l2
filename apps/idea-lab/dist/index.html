@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Laboratorio de Ideas L2</title>
+  <meta name="description" content="Taller portátil para ordenar, desarrollar y decidir ideas del proyecto Lineage II.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">II</div>
+        <div><strong>Laboratorio de Ideas</strong><small>Lineage II · portátil</small></div>
+      </div>
+      <nav aria-label="Secciones">
+        <button class="nav-item active" data-view="today"><span>⌂</span>Jornada</button>
+        <button class="nav-item" data-view="ideas"><span>◇</span>Ideas <b id="nav-ideas-count">0</b></button>
+        <button class="nav-item" data-view="decisions"><span>⌁</span>Decisiones</button>
+        <button class="nav-item" data-view="sources"><span>≡</span>Fuentes</button>
+      </nav>
+      <div class="sidebar-foot">
+        <div class="portable-state"><i></i><div><strong>Datos en el disco</strong><small>Sin nube ni almacenamiento local</small></div></div>
+        <button class="button ghost full" id="backup-button">Crear copia en el disco</button>
+      </div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div><p class="eyebrow" id="view-eyebrow">TALLER PORTÁTIL</p><h1 id="view-title">Jornada de diseño</h1></div>
+        <div class="top-actions"><span class="save-state" id="save-state"><i></i>Guardado</span><button class="button primary" id="new-idea-button">+ Nueva idea</button></div>
+      </header>
+
+      <section class="view active" id="view-today">
+        <article class="focus-hero">
+          <div class="focus-copy"><p class="eyebrow">OBJETIVO DE LA JORNADA</p><textarea id="today-objective" rows="2" aria-label="Objetivo de la jornada"></textarea><p>Un buen turno termina con menos incertidumbre, no necesariamente con más funciones.</p></div>
+          <div class="session-clock"><small id="clock-label">SIN SESIÓN ACTIVA</small><strong id="session-clock">00:00</strong><button class="button cyan" id="session-action">Iniciar bloque</button></div>
+        </article>
+
+        <div class="metric-grid" id="metric-grid"></div>
+
+        <div class="dashboard-grid">
+          <article class="panel">
+            <div class="panel-head"><div><p class="eyebrow">ENFOQUE</p><h2>Tres frentes para hoy</h2></div><span class="quiet">Edita la selección</span></div>
+            <div class="focus-list" id="focus-list"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><div><p class="eyebrow">SIGUIENTE MOVIMIENTO</p><h2>Acciones concretas</h2></div></div>
+            <div class="next-list" id="next-list"></div>
+          </article>
+        </div>
+
+        <div class="dashboard-grid lower">
+          <article class="panel session-panel">
+            <div class="panel-head"><div><p class="eyebrow">BLOQUE DE TRABAJO</p><h2>Convertir tiempo en una decisión</h2></div></div>
+            <div id="session-planner"></div>
+          </article>
+          <article class="panel">
+            <div class="panel-head"><div><p class="eyebrow">BITÁCORA</p><h2>Notas de hoy</h2></div><span class="quiet">Autoguardado</span></div>
+            <textarea class="notes-area" id="today-notes" placeholder="Hallazgos, dudas, conexiones entre sistemas…"></textarea>
+          </article>
+        </div>
+
+        <article class="panel recent-panel">
+          <div class="panel-head"><div><p class="eyebrow">HISTORIAL</p><h2>Últimos bloques terminados</h2></div></div>
+          <div id="session-history"></div>
+        </article>
+      </section>
+
+      <section class="view" id="view-ideas">
+        <div class="toolbar panel">
+          <label class="search"><span>⌕</span><input id="idea-search" placeholder="Buscar idea, tag o texto…"></label>
+          <label><span>Área</span><select id="area-filter"><option value="">Todas</option></select></label>
+          <label><span>Estado</span><select id="status-filter"><option value="">Todos</option></select></label>
+          <label><span>Orden</span><select id="sort-filter"><option value="score">Impacto / esfuerzo</option><option value="priority">Prioridad</option><option value="updated">Última edición</option><option value="title">Nombre</option></select></label>
+        </div>
+        <div class="idea-layout">
+          <aside class="panel idea-list" id="idea-list"></aside>
+          <article class="panel idea-detail" id="idea-detail"><div class="empty"><span>◇</span><h2>Selecciona una idea</h2><p>Aquí podrás convertirla en un problema concreto, registrar preguntas y definir el próximo paso.</p></div></article>
+        </div>
+      </section>
+
+      <section class="view" id="view-decisions">
+        <div class="section-intro"><div><p>Las decisiones evitan volver a discutir lo ya resuelto y permiten conservar el porqué.</p></div><button class="button secondary" id="new-decision-button">+ Registrar decisión</button></div>
+        <div class="decision-grid" id="decision-grid"></div>
+      </section>
+
+      <section class="view" id="view-sources">
+        <div class="section-intro"><p>Conversaciones originales en <code>docs chatsgpt</code>. Esta sección es de sólo lectura.</p></div>
+        <div class="source-grid" id="source-grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal-backdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-head"><div><p class="eyebrow" id="modal-eyebrow">EDITOR</p><h2 id="modal-title">Nueva idea</h2></div><button class="icon-button" id="modal-close" aria-label="Cerrar">×</button></div>
+      <div class="modal-body" id="modal-body"></div>
+    </section>
+  </div>
+  <div class="toast-root" id="toast-root" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,1121 @@
+abro otro tema para hablar sobre l2, en este caso el contenido end game, he jugado guild war2, he visto que tiene varias expansiones, se pagan eso si, pero que tal si fueran gratis o su valor no fuera tan alto? tendria una campaña con historia y mas cosas, quiza de ahi vendrian mas cosas custom como sets o armas etc. regiones inexplorables, recuerdo haber manipulado los mapas, las regiones, cada una tenia un id y se abria desde el unreal, era un pedaso de tierra fertil donde iban colocados como assets las estructuras y personajes, una capa mas del sistema, y si pudiera agregar un pedaso de tierra extra ? tal vez una masmorra cerrada seria mas facil pero me gusta pensar en la idea de expandir el mundo o crear lugares que no existen, o tal vez crear una estructura donde antes solo habia monte o montañas, alli habria un pedasito de lore, una campaña o una pista o tal vez un npc con algo interesante o un botin.
+que me dices de guildwar2? como se manejan ellos?
+Sí. Y de hecho, Guild Wars 2 es probablemente uno de los MMO más interesantes para estudiar para lo que estás imaginando con tu Lineage II, porque su filosofía de endgame no gira simplemente alrededor de “subir a un grado de equipo todavía mayor”.
+
+Cómo entiende Guild Wars 2 el endgame
+Guild Wars 2 tiene una filosofía bastante distinta de muchos MMO tradicionales. ArenaNet menciona explícitamente entre sus pilares la progresión horizontal, la autonomía del jugador y construir cosas nuevas sobre sistemas anteriores. 
+
+Eso significa que una expansión no necesita decir:
+
+Antes el máximo era S Grade.
+Ahora existe S+ Grade con +40% de estadísticas.
+Todo lo anterior quedó obsoleto.
+
+Puede decir:
+
+Hay una región que nadie conocía. Algo ocurrió allí. Ve a descubrirlo.
+
+Y la recompensa puede ser una habilidad, una mecánica, una montura, una apariencia, materiales especiales, acceso a otro lugar, una colección, una historia o equipo con propiedades particulares.
+
+De hecho, su antiguo sistema Living World hacía precisamente algo muy cercano a lo que describes: continuar la historia después del nivel máximo, abrir nuevas zonas y ofrecer recompensas y progresión horizontal. 
+
+Y hay una frase de ArenaNet que encaja muchísimo con tu idea: planteaban introducir nuevos mapas y regiones permanentemente, pero haciendo que su aparición y descubrimiento estuvieran impulsados por la historia, para que parecieran parte natural del mundo y no contenido pegado artificialmente. 
+
+Eso sería una filosofía excelente para tu L2.
+
+Imagina aplicar eso a Lineage II
+En lugar de:
+
+Lineage II Custom Server → farm → enchant → PvP → raid → siege → repetir
+
+tendrías:
+
+Lineage II → mundo base → misterios → campañas → regiones → personajes → descubrimientos → raids → facciones → secretos.
+
+Y aquí entra justamente lo que mencionabas sobre Unreal.
+
+Si tienes una región de montaña aparentemente inútil:
+
+████████████████████
+████ MONTAÑAS ██████
+████████████████████
+        ↑
+  normalmente nadie
+     viene aquí
+no necesitas crear inmediatamente un continente entero.
+
+Puedes abrir un pequeño camino.
+
+              Montañas
+                 │
+                 │ sendero
+                 ▼
+        ┌─────────────────┐
+        │ Ruinas olvidadas│
+        └────────┬────────┘
+                 │
+             NPC extraño
+                 │
+          misión / pista
+                 │
+        entrada subterránea
+                 ▼
+          Dungeon secreto
+Y acabas de conseguir algo extremadamente importante:
+
+hacer que el jugador vuelva a mirar el mapa de Lineage II como si nunca lo hubiera conocido.
+
+Ese efecto me parece incluso más valioso que crear 20 mapas nuevos.
+
+Tus "expansiones" podrían ser campañas
+Por ejemplo:
+
+Expansión I — Las ruinas de Oren
+Gratis.
+
+Empiezan a aparecer rumores de desapariciones cerca de Oren.
+
+No aparece un enorme cartel diciendo:
+
+NEW CONTENT HERE →
+
+Simplemente agregas pequeños indicios.
+
+Un NPC nuevo en una taberna.
+
+Un cadáver en un bosque.
+
+Un libro.
+
+Un campamento abandonado.
+
+Una estructura que antes no estaba.
+
+Un NPC que dice:
+
+"Hace tres noches vimos luces detrás de las montañas."
+
+Los jugadores investigan.
+
+Encuentran un paso.
+
+Y descubren:
+
+una instalación subterránea completamente nueva.
+
+Ahí podrías introducir:
+
+una campaña de 5-10 misiones;
+una dungeon;
+un boss;
+varios NPC;
+decisiones;
+reputación con una facción;
+materiales nuevos;
+recetas;
+un set;
+2-3 armas con las estadísticas especiales que veníamos imaginando;
+lore;
+secretos.
+Y eso constituye prácticamente una mini expansión.
+
+Y aquí copiaría algo importantísimo de GW2
+No necesariamente aumentaría el nivel máximo.
+
+Tampoco haría:
+
+Expansion 1 → arma 500 P.Atk
+Expansion 2 → arma 600
+Expansion 3 → arma 750
+Expansion 4 → arma 1000
+Porque eventualmente destruyes todo tu contenido anterior.
+
+Usaría las expansiones para aumentar posibilidades, no simplemente números.
+
+Por ejemplo:
+
+Espada de las Ruinas
+
+250 P.Atk
+
+Después de acertar 5 ataques consecutivos:
+
++50% Attack Speed durante 10 segundos
+
+Cooldown: 15 segundos.
+
+Exactamente el tipo de objeto que propusiste antes.
+
+Otra expansión podría tener:
+
+Espada de Sangre
+
+250 P.Atk
+
+Cada golpe acumula Sangrado.
+
+A 10 acumulaciones puedes consumirlas para recuperar HP.
+
+Ahora ninguna es necesariamente superior.
+
+Son builds diferentes.
+
+Eso es progresión horizontal, precisamente uno de los principios que GW2 declara para su diseño. 
+
+Pero hay otra idea de GW2 todavía más interesante
+El mundo puede cambiar.
+
+El concepto original de Living World contemplaba eventos que alterasen lugares existentes, dejando cambios, destrucción, monumentos y contenido permanente. 
+
+Esto en Lineage II podría quedar espectacular.
+
+Imagina que durante meses existe:
+
+Bosque de los Espejos
+Primera versión:
+
+bosque normal
+↓
+aparecen NPC extraños
+↓
+animales desaparecen
+↓
+aparecen criaturas
+↓
+se descubre una grieta
+↓
+evento mundial
+Los jugadores finalmente derrotan al boss.
+
+Actualizas el mapa.
+
+Ahora queda:
+
+        BOSQUE DE LOS ESPEJOS
+
+             ╲  │  ╱
+               💥
+             ╱  │  ╲
+
+         enorme cráter
+
+       ruinas alrededor
+              │
+              ▼
+       dungeon permanente
+Un jugador que entre seis meses después preguntaría:
+
+¿Qué pasó acá?
+
+Y un veterano podría decir:
+
+"Eso pasó durante la campaña de los Espejos."
+
+Eso genera historia propia del servidor.
+
+Incluso podrías esconder contenido
+Y creo que esto encaja especialmente bien con el servidor que estás imaginando.
+
+No anunciaría absolutamente todo.
+
+Patch notes:
+
+Nueva campaña disponible.
+Se han registrado sucesos extraños en distintos lugares de Aden.
+
+Nada más.
+
+Y metes 30 pequeños cambios por el mundo.
+
+Quizás solamente 7 sean importantes.
+
+Una casa nueva.
+
+Una puerta que ahora abre.
+
+Un NPC caminando por un lugar extraño.
+
+Una estatua.
+
+Una tumba.
+
+Una cueva.
+
+Un barco encallado.
+
+Un cadáver con una carta.
+
+Una fogata.
+
+Una torre abandonada.
+
+Incluso algo tan simple como:
+
+un NPC sentado en una montaña mirando el horizonte.
+
+Hablas con él.
+
+Tiene cuatro líneas.
+
+Pero si llevas determinado objeto:
+
+"¿Dónde encontraste eso?"
+
+Y comienza una quest enorme.
+
+Eso hace que explorar tenga valor.
+
+No necesitas empezar agregando un continente
+Esto es importante técnicamente.
+
+Crear algo como:
+
+████████████████████████
+████ CONTINENTE NUEVO ███
+████████████████████████
+sería una tarea monstruosa.
+
+Pero crear:
+
+Mapa existente
+     │
+     ├── edificio nuevo
+     │
+     ├── cueva nueva
+     │
+     ├── dungeon instanciada
+     │
+     ├── isla pequeña
+     │
+     └── región oculta
+es muchísimo más manejable.
+
+Y progresivamente podrías aprender hasta llegar a:
+
+crear terreno completamente nuevo.
+
+Por lo que recuerdas de haber trabajado con los mapas y colocar estructuras/assets sobre el terreno, tu intuición conceptual es correcta: un espacio nuevo no necesita estar abarrotado para convertirse en contenido. Una pequeña porción de terreno bien diseñada puede sostener una campaña completa.
+
+Y cambiaría una cosa respecto de Guild Wars 2
+GW2 históricamente experimentó con episodios de Living World que se desbloqueaban gratuitamente si entrabas durante su ventana de lanzamiento y que después podían adquirirse; su modelo posterior cambió para integrar el contenido post-expansión dentro de la expansión correspondiente. 
+
+Para un servidor privado pequeño yo simplificaría muchísimo:
+
+Todas las expansiones jugables gratis.
+
+Y monetizaría cosas periféricas, si algún día decides monetizar:
+
+Campañas                 GRATIS
+Regiones                 GRATIS
+Bosses                    GRATIS
+Dungeons                  GRATIS
+Historia                  GRATIS
+Sistemas                  GRATIS
+
+Cosméticos                opcional
+Skins                     opcional
+Decoraciones              opcional
+Servicios de cuenta       opcional
+Sobre todo evitaría vender poder.
+
+Porque entonces alguien que descubrió una espada extraña en una mazmorra puede presumir:
+
+"Encontré esto haciendo la campaña de las Ruinas."
+
+No:
+
+"Pagué 20 dólares."
+
+Hay una diferencia enorme para la identidad del mundo.
+
+Y además esto conecta perfectamente con lo que veníamos hablando sobre diluir las concentraciones masivas de jugadores.
+
+Un fin de semana podrías tener simultáneamente:
+
+Siege de Aden
+       │
+       ├── 150 jugadores
+
+Dungeon nueva
+       │
+       ├── 40 jugadores
+
+Campaña de Oren
+       │
+       ├── 35 jugadores
+
+Boss secreto
+       │
+       ├── 25 jugadores
+
+Exploración
+       │
+       ├── 20 jugadores
+
+Academia / PvP
+       │
+       ├── 30 jugadores
+
+Misiones de facción
+       │
+       └── 25 jugadores
+Ya no tienes 300 personas intentando entrar por la misma puerta del castillo.
+
+Y lo más interesante es que, llegado cierto punto, tu servidor dejaría de sentirse como:
+
+"Lineage II con cosas custom".
+
+Empezaría a sentirse como:
+
+"un RPG/MMO construido dentro de Lineage II".
+
+Ahí es donde creo que la comparación con Guild Wars 2 se vuelve realmente fértil: no copiar sus mapas o sistemas literalmente, sino adoptar su idea de que el nivel máximo no significa que terminó el viaje; significa que se abre otra clase de contenido. 
+
+Y con las cosas que ya planteaste —campañas, NPC que recuerdan acciones, facciones estilo Fallout, decisiones tipo BG3, objetos con efectos raros, academia, contenido distribuido y ahora regiones nuevas— ya tienes prácticamente las piezas para construir ese modelo.
+
+bien algo que me gustaria agregar que es similar en cuanto a idea, una vez jugando al mu online un amigo encontro un iten raro, creo que lo fabrico era como un pote negro y con algo de rojo o naranja, al principio ni el sabia para que servia, pero la fascinacion por descubrir algo asi era increible, como un secreto, tiempo despues en otro mu con otro amigo este me conto sobre los combos, apretabas 1 2 3 y el dk o bk que era el guerrero hacia sus 3 poderes y si los combinabas tenias la chance de soltar una onda expansiva, a eso le llamaban combo y era brutal en cuanto a poder y a efecto visual. entonces luego le comente a mi amigo sobre eso y probamos y funciono ya que el lo tenia integrado en su pj con una quest que habia hecho, lo tenia activo pero no sabia que era.
+Eso que contás apunta a una idea muy poderosa para tu L2: sistemas que existen antes de que el jugador entienda que existen.
+
+Y eso cambia totalmente la sensación del juego, porque el mundo deja de parecer una lista de features documentadas y empieza a parecer un lugar con secretos reales.
+
+Lo del MU tenía justamente ese encanto. Tu amigo tenía algo activado por una quest, probablemente sabía que había obtenido “algo”, pero no comprendía qué hacía. Después aparece otra persona que conoce el combo, prueban una secuencia, y de repente:
+
+funciona.
+
+Ese momento vale muchísimo más que leer:
+
+“Nueva habilidad desbloqueada: Combo explosivo. Pulse 1-2-3.”
+
+En tu L2 yo explotaría eso a propósito.
+
+Podrías tener cosas como:
+
+armas con efectos que no muestran toda la descripción;
+quests que desbloquean estados internos del personaje sin explicarlos del todo;
+combinaciones de skills;
+objetos que parecen inútiles hasta que coinciden con otro;
+NPC que reaccionan a algo que llevás encima;
+técnicas que solo aparecen bajo determinadas condiciones;
+secuencias de combate que producen un efecto especial;
+recetas que los jugadores deben reconstruir;
+objetos “misteriosos” cuyo uso se descubre socialmente.
+Y hay una diferencia clave: no ocultaría información necesaria para jugar; ocultaría información interesante de descubrir.
+
+Por ejemplo, no haría que una clase sea inútil porque nadie sabe cómo desbloquear una habilidad obligatoria. Pero sí podría existir algo como:
+
+Técnica secreta de Duelista
+El jugador hace normalmente:
+
+Triple Slash → Sonic Blaster → Sonic Rage
+
+No pasa nada especial.
+
+Pero si antes completó una misión antigua y tiene cierta pasiva oculta:
+
+Triple Slash → Sonic Blaster → Sonic Rage
+
+en menos de 2,5 segundos...
+
+se produce:
+
+Sonic Rupture
+
+Una onda expansiva enorme.
+
+Daño adicional.
+
+Animación distinta.
+
+Sonido especial.
+
+Y lo mejor: la interfaz no necesariamente te dice “haz esta combinación”.
+
+Quizás un viejo NPC te dice:
+
+“Los verdaderos duelistas no atacaban tres veces. Atacaban una sola vez, dividida en tres movimientos.”
+
+Eso es todo.
+
+Años atrás, los jugadores hubieran hablado de eso en foros. En tu servidor, hablarían por Discord, clan chat o dentro del juego.
+
+Y eso produce algo que muchos MMO modernos perdieron:
+
+mitología comunitaria.
+
+“Dicen que si llevás esa espada a Imperial Tomb pasa algo.”
+
+“Un tipo activó un aura roja peleando contra Baium.”
+
+“Creo que el pote negro sirve para algo en Forge of the Gods.”
+
+“No, es para una quest.”
+
+“Yo vi a uno usarlo y apareció un NPC.”
+
+“Mentira.”
+
+Ese tipo de conversación es oro para un MMO.
+
+También podés hacer objetos como ese pote de MU.
+
+Por ejemplo:
+
+Fragmento vitrificado
+Descripción:
+
+“Una sustancia negra endurecida. Está caliente al tacto.”
+
+Nada más.
+
+No dice:
+
+quest item;
+crafting;
+consumible;
+dónde usarlo.
+Entonces alguien prueba venderlo.
+
+Otro intenta craftear.
+
+Otro se lo lleva a un NPC.
+
+Nada.
+
+Hasta que alguien entra con el objeto a una cueva específica y escucha un sonido.
+
+Luego ve que una pared tiene una grieta roja.
+
+Usa el objeto.
+
+Se abre una puerta.
+
+Y detrás hay una mini zona secreta.
+
+Eso genera una memoria brutal.
+
+Yo incluso haría varios niveles de secreto:
+
+Nivel 1: secretos fáciles
+El jugador curioso los descubre solo.
+
+Nivel 2: secretos sociales
+Se necesita compartir información entre jugadores.
+
+Nivel 3: secretos de servidor
+Requieren que la comunidad conecte pistas durante días o semanas.
+
+Nivel 4: secretos legendarios
+Quizás pasan meses antes de que alguien descubra uno.
+
+Y los combos pueden ser una categoría completa.
+
+No solo:
+
+1 → 2 → 3 = explosión
+
+También podrían depender de situación:
+
+Stun → golpe crítico → skill de carga
+
+produce otra técnica.
+
+O de dos jugadores:
+
+Paladín usa una barrera.
+
+Mago lanza fuego contra la barrera.
+
+La barrera se convierte en:
+
+Muro Solar
+
+O:
+
+Dagger aplica veneno.
+
+Archer golpea con una skill perforante.
+
+El veneno explota.
+
+Ahí empezás a crear combos cooperativos, que serían tremendos para parties.
+
+Incluso podrías tener secretos que nadie conoce al lanzamiento.
+
+Eso requiere disciplina de diseño: no poner todo en changelogs, wiki oficial o NPC tutoriales.
+
+Podrías publicar algo como:
+
+“Se han añadido nuevas interacciones, objetos y comportamientos en distintas regiones del mundo.”
+
+Y nada más.
+
+Entonces cada actualización vuelve a generar exploración.
+
+De hecho, creo que esta idea puede convertirse en uno de los pilares de identidad de tu servidor:
+
+el jugador nunca está completamente seguro de conocer todo lo que el juego permite hacer.
+
+Eso es muy distinto de un servidor donde al entrar ya tenés:
+
+/commands
+/drop
+/rates
+/features
+/custom
+/wiki
+
+y en 20 minutos sabés absolutamente todo.
+
+Tu servidor podría deliberadamente tener una capa visible y otra capa oculta.
+
+La visible es Lineage II.
+
+La oculta es todo el mundo de sistemas, interacciones y secretos que fuiste agregando.
+
+Y ahí sí aparece esa sensación que describís del MU: encontrarte un objeto extraño, no entenderlo, guardarlo “por si acaso”, y meses después descubrir que llevabas encima una pieza de algo enorme.
+
+bien tengo una experiencia muy rara que me paso en el l2, me encontraba con una amiga paseando por varka silenos, matabamos de a uno con nuestros magos, dos soultakers, pero como la adena y el drop eran tan elevados cada tanto iba al baul a cambiar la adena por tokens, no habia necesidad de mobear, de hecho ni conocia la pole ni la sub de mober, una tarde mientras estabamos normal matando mobs y cada tanto pvpando paso algo raro, de pronto esa tarde todos nos empezaban a perseguir, como si buscaran cazarnos, los matabamos y nos curabamos y huiamos pero los ataques no cesaban, era algo adrenalinico y emocionante, no sabia porque pasaba eso pero de seguro fue una casualidad ya que no habia nada programado pues era el año 2007.
+que tal si ese jugador lleva algo y sin darse cuenta es buscado por todos?, los demas lo ven con una apariencia diferente, nombre diferente, el no lo sabe pues ve todo normal, si habla o escribe solo el ve lo que escribe, los demas solo ven gruñidos, como los orcos de blazing, esos hasta donde se son los unicos que hablan, entonces el jugador pudo recoger algo que hace que se libere un juego de captura o recompensa por matarlo, otros jugadores pueden ver en sus interfaces se busca a tal mounstro, si lo ven matenlo, dropea tal cosa, es solo un ejemplo, entonces el jugador que recogio eso ni se imagina lo que le espera, cuando muere se termina el juego
+…
+Sí, eso puede ser excelente. De hecho, ahí ya no estás hablando solo de una quest o un evento: estás hablando de convertir temporalmente a un jugador en contenido vivo para el resto del servidor.
+
+Lo más fuerte de tu idea es que el afectado no sabe que entró al evento. Para él, todo parece normal. Para los demás, no.
+
+Eso reproduce justamente la sensación que contás de Varka: “¿por qué demonios todos vienen por nosotros?”. La diferencia es que ahora sí habría una lógica sistémica detrás.
+
+Yo lo diseñaría como una especie de Marca de Cacería Oculta.
+
+El jugador mata un mob raro, abre un cofre, toca una estatua, recoge un objeto o completa sin saberlo una condición muy específica. En ese momento el servidor le aplica una marca invisible.
+
+Para él:
+
+su personaje se ve normal;
+su nombre se ve normal;
+sus mensajes parecen normales;
+no recibe una ventana diciendo “evento iniciado”;
+quizá solo nota algún detalle ambiguo, como un sonido o una frase rara de un NPC.
+Para los demás:
+
+su apariencia cambia;
+su nombre podría mostrarse como algo tipo “Bestia Errante”, “Portador de la Marca” o incluso un nombre aleatorio;
+su chat normal se traduce a gruñidos, sonidos o frases deformadas;
+aparece un aviso de cacería;
+quizá se marca vagamente la región, pero no la posición exacta;
+al matarlo cae una recompensa especial.
+Eso es buenísimo porque genera asimetría de información.
+
+Y la asimetría de información produce historias.
+
+El jugador marcado piensa:
+
+“¿Por qué me están siguiendo todos?”
+
+Los cazadores piensan:
+
+“¡Ahí está! ¡No lo dejen escapar!”
+
+Y sus amigos pueden quedar completamente confundidos también.
+
+Incluso podrías hacer que los miembros de su party tampoco sepan inicialmente qué ocurre. Ven que todos atacan a su compañero y creen que es una vendetta, una guerra de clan o alguna cosa personal.
+
+Eso crea caos auténtico.
+
+También se puede llevar mucho más lejos.
+
+Imaginate que el marcado escribe:
+
+“¿Qué les pasa?”
+
+Él ve exactamente eso.
+
+Los demás ven:
+
+“GRAAAKH... THA’RUK!”
+
+O directamente sonidos de monstruo.
+
+Entonces intenta explicar que es un jugador real y nadie puede entenderlo.
+
+Eso es muy bueno.
+
+Otra posibilidad sería que ciertos personajes o NPC especiales sí puedan entenderlo. Por ejemplo:
+
+Shillien Elder;
+ciertos quest NPC;
+personajes con un objeto de traducción;
+gente perteneciente a una facción;
+jugadores que ya hayan vivido el evento.
+Ahí metés otra capa de misterio.
+
+También podrías jugar con la transformación visual. No necesariamente transformarlo en un monstruo completo; podría ser algo más inquietante.
+
+Por ejemplo, para los demás:
+
+piel oscura;
+aura roja;
+ojos brillantes;
+humo;
+nombre corrupto;
+arma visual distinta;
+silueta tipo raid boss pequeña.
+Mientras que él sigue viéndose como su personaje normal.
+
+Eso es técnicamente interesante porque implica que la representación del personaje sería dependiente del observador.
+
+Y eso abre un montón de sistemas futuros.
+
+No solo “todos ven al marcado diferente”.
+
+Podrías tener:
+
+Facciones ocultas
+Un clan ve a cierto NPC como aliado, otro como enemigo.
+
+Ilusiones
+Algunos jugadores ven un puente; otros no.
+
+Identidades secretas
+Un jugador infiltrado se ve normal para su facción y distinto para otra.
+
+Maleficios
+Todos te ven como un monstruo excepto vos.
+
+Eventos psicológicos
+Solo ciertos jugadores ven determinadas criaturas.
+
+Ese sistema base sería extremadamente reutilizable.
+
+Con la cacería, además, no haría que siempre sea simplemente:
+
+“matá al jugador y ganá 10kk”.
+
+Le pondría variantes.
+
+Por ejemplo:
+
+Variante 1 — Bestia cazada
+Todos pueden matarlo.
+
+Variante 2 — Portador
+El objeto pasa al jugador que lo mata.
+
+Ahora la cacería continúa.
+
+Eso sería tremendo.
+
+Jugador A lleva la marca.
+
+Jugador B lo mata.
+
+La marca pasa a B.
+
+Ahora todos persiguen a B.
+
+El evento puede recorrer medio mapa.
+
+Variante 3 — Maldito
+Mientras más sobreviva, mejor es la recompensa.
+
+5 minutos → recompensa pequeña.
+15 minutos → mayor.
+30 minutos → enorme.
+
+Eso incentiva al marcado a huir aunque no entienda del todo qué pasa.
+
+Variante 4 — Entidad
+Si sobrevive lo suficiente, empieza a ganar habilidades especiales.
+
+Primero:
+
++5% velocidad.
+
+Después:
+
++10% defensa.
+
+Luego alguna skill rara.
+
+Y finalmente puede transformarse en un pequeño boss humano controlado por jugador.
+
+Ahí ya tenés prácticamente un “raid boss PvP emergente”.
+
+También metería condiciones para evitar abuso. Porque si la recompensa es demasiado buena, los clanes pueden intentar farmear deliberadamente el evento.
+
+Entonces la activación podría ser difícil de forzar:
+
+probabilidad muy baja;
+condiciones secretas;
+cooldown por cuenta;
+recompensa decreciente si lo mata alguien relacionado;
+sin premio si lo mata alguien de la misma IP/hardware/clan/party reciente;
+aparición irregular.
+La gracia es conservar la sensación de:
+
+“¿Qué está pasando?”
+
+No convertirlo en:
+
+“A las 18:00 vamos a farmear al marcado.”
+
+Y hay algo que me parece aún mejor: no explicar completamente el sistema ni siquiera después.
+
+Cuando muere el marcado podría recibir algo mínimo:
+
+“La marca se ha extinguido.”
+
+Nada más.
+
+Los demás reciben:
+
+“La criatura ha sido abatida.”
+
+Y listo.
+
+No pantalla de estadísticas.
+
+No tutorial.
+
+No explicación.
+
+Los jugadores tienen que reconstruir qué ocurrió.
+
+Eso encaja perfecto con lo que veníamos hablando de secretos.
+
+Además, pensá en la dimensión social. Al día siguiente en Discord:
+
+“Ayer apareció un orco raro en Varka y resultó que era Juan.”
+
+Otro:
+
+“No era un orco, yo lo vi como una sombra.”
+
+Otro:
+
+“A mí me figuraba otro nombre.”
+
+Y ahí incluso podrías hacer una locura: no todos los jugadores tienen que verlo igual.
+
+Por ejemplo, dependiendo de raza, clase o facción:
+
+Humanos → ven un demonio.
+Elfos oscuros → ven una entidad roja.
+Orcos → ven un guerrero ancestral.
+Enanos → ven una criatura mineral.
+
+Ahora ni siquiera se ponen de acuerdo sobre lo que vieron.
+
+Eso es muchísimo más memorable que un simple evento de cacería.
+
+Yo incluso le pondría un nombre interno bastante neutro, algo como Sistema de Percepción Alterada, porque la cacería sería solo una de sus aplicaciones.
+
+Y creo que esta idea sí podría convertirse en uno de los sistemas estrella del servidor, porque genera exactamente lo que estás buscando desde hace rato: situaciones que parecen haber ocurrido espontáneamente aunque detrás haya diseño.
+
+La mejor parte sería que, años después, alguien pueda contar una historia exactamente como la que vos contaste de Varka, pero sin saber que el servidor le había preparado toda la situación.
+
+y hablando de ese tipo de diseños para eventos, que tal uno en el que se libera una infeccion, algo como zombis quiza tal vez por un lado los playeres deben pelear a puño limpio pero ganan muchos stats, deben acabar con el resto de los players.
+otros serian supervivientes, quiza los recursos escasean en ese momento, tal vez aparescan armas unicas para esa ocacion.
+la otra seria una infeccion viral que acabe con los players o tenga algun otro efecto que no sea de zombis, tal vez haya que farmear una cura antes de tiempo
+Sí, y ahí ya podés construir una familia entera de eventos de crisis, no solo “zombis”. Lo interesante es que cambien temporalmente las reglas normales de Lineage II y obliguen a jugadores acostumbrados a sus builds perfectas a improvisar.
+
+La versión zombi podría ser especialmente divertida si la infección no significa simplemente “cambiar skin”. Cuando un jugador es infectado pierde acceso al equipo y skills normales, pelea a puño limpio, pero recibe estadísticas brutales: velocidad, HP, resistencia, ataque físico y quizá alguna habilidad muy simple como salto/carga, derribo o agarre. El resultado sería una especie de depredador humano manejado por un jugador.
+
+Mientras tanto, los supervivientes conservarían parcialmente sus capacidades, pero podrías limitar recursos. Por ejemplo, durante ese evento desaparecen temporalmente las tiendas normales de consumibles, no funciona el teleport libre en la región afectada y las Soulshots/Spiritshots escasean. Entonces empiezan a importar cosas que normalmente nadie miraría: edificios defensivos, caminos secundarios, altura, puertas, party pequeña y movimiento.
+
+Ahí metería algo que me parece crucial: armamento exclusivo del evento que no necesariamente sea más poderoso que el equipo normal, sino específicamente útil contra infectados.
+
+Por ejemplo:
+
+antorcha improvisada: poco daño normal, mucho contra infectados;
+ballesta experimental: lenta pero con knockback;
+bomba incendiaria: crea un área que los infectados no pueden cruzar durante unos segundos;
+daga de plata: aplica una herida que reduce regeneración;
+escudo improvisado: permite resistir una embestida;
+antídoto incompleto: retrasa la infección, no la cura.
+Y podrías esparcir esos objetos por el escenario en vez de comprarlos.
+
+Eso haría que un jugador con equipo endgame no necesariamente sea el rey del evento. Tiene que buscar recursos como todos los demás.
+
+La infección además puede propagarse entre jugadores. Supongamos que empieza con 3 infectados entre 100 personas. Cada superviviente muerto reaparece del lado infectado.
+
+Entonces tenés una progresión natural:
+
+3 vs 97 → 12 vs 88 → 38 vs 62 → 71 vs 29 → últimos supervivientes
+
+Ahí los últimos diez empiezan a sentirse realmente acosados.
+
+Podrías incluso dar una recompensa diferente según el rol. El infectado gana por contagiar gente y contribuir a destruir supervivientes. El superviviente gana por sobrevivir, rescatar personas o completar objetivos. Así nadie siente que “perdió el evento” simplemente porque fue infectado temprano.
+
+Pero la segunda idea que mencionaste, una epidemia sin zombis, me parece todavía más interesante porque puede funcionar completamente diferente.
+
+Imaginá que aparece:
+
+La Fiebre Carmesí
+Algunos jugadores empiezan a enfermar.
+
+Al principio solamente reciben:
+
+-3% regeneración
+
+Después:
+
+-5% movimiento
+
+Luego:
+
+-10% HP
+
+Más tarde aparecen efectos extraños, visión alterada o ataques involuntarios.
+
+Pero nadie sabe inmediatamente de dónde viene.
+
+Y la infección puede propagarse mediante proximidad, party, ciudades congestionadas o ciertos mobs.
+
+Entonces el servidor empieza a reaccionar socialmente.
+
+“Ese está infectado.”
+
+“No lo metas a la party.”
+
+“Salí de Giran.”
+
+“Dicen que empezó en Dion.”
+
+Incluso podrías tener jugadores que todavía no muestran síntomas pero ya son portadores. Ahí aparece una capa casi detectivesca.
+
+Y mientras tanto existe una carrera contra reloj:
+
+fabricar la cura.
+
+No simplemente matar 100 mobs.
+
+Podrías necesitar elementos provenientes de lugares distintos:
+
+Hierba de Ivory Tower + Sangre de criatura de Blazing Swamp + mineral de Cruma + muestra de un infectado
+
+Entonces la comunidad empieza a distribuirse por el mundo.
+
+Un grupo busca plantas.
+
+Otro investiga mobs.
+
+Otro protege al alquimista.
+
+Otro transporta materiales.
+
+Otro busca pistas.
+
+Eso además encaja perfectamente con tu idea anterior de sacar jugadores de los puntos tradicionales de concentración.
+
+Y podrías hacer que el servidor no diga:
+
+“Para fabricar la cura necesitas X + Y + Z.”
+
+Sino que los NPC investiguen progresivamente.
+
+Día 1:
+
+“No conocemos la enfermedad.”
+
+Horas después, cuando suficientes jugadores llevan muestras:
+
+“Parece reaccionar con determinadas hierbas.”
+
+Después alguien descubre una planta correcta.
+
+“Podemos retrasar los síntomas.”
+
+Todavía no es una cura.
+
+Después aparece otro componente.
+
+Hasta que finalmente alguien crea la primera dosis.
+
+Y acá aparece una decisión buenísima:
+
+¿qué pasa si hay menos cura que enfermos?
+
+Podrías tener 200 jugadores infectados y solamente materiales para producir 40 dosis antes del fin del evento.
+
+¿Quién recibe la cura?
+
+Ya eso genera política entre clanes, comercio, alianzas y conflictos sin que tengas que programar una historia rígida.
+
+También podrías tener una tercera variante más extraña:
+
+Infección mutagénica
+No mata.
+
+Transforma lentamente al personaje.
+
+Algunos reciben efectos positivos y negativos aleatorios:
+
++20% STR / -30% CON
+
+otro:
+
++40% velocidad / no puede usar teleport
+
+otro:
+
++30% M.Atk / pierde HP constantemente
+
+otro:
+
+ve criaturas invisibles
+
+Y tal vez solo los infectados puedan entrar en determinadas zonas.
+
+Entonces ya no queda claro si curarse es siquiera lo mejor.
+
+Eso me gusta muchísimo porque rompe la ecuación:
+
+infectado = malo.
+
+Un jugador podría decir:
+
+“No quiero la cura, con esto puedo entrar a esa cueva.”
+
+Mientras otro está desesperado por conseguirla.
+
+Otra modalidad sería convertir la enfermedad en algo casi parasitario.
+
+El jugador recibe una entidad que lentamente aumenta sus estadísticas pero también adquiere control sobre él. Cuanto más tiempo la conserva:
+
+más poderoso se vuelve, pero más cosas pierde.
+
+Primero no puede usar ciertos NPC.
+
+Después los guardias lo atacan.
+
+Luego otros jugadores empiezan a verlo como monstruo.
+
+Y eventualmente puede terminar transformándose en un boss controlado por jugador, parecido al sistema de cacería que acabamos de imaginar.
+
+Ahí empezás a conectar sistemas.
+
+Por ejemplo:
+
+Crisis biológica → infección → mutación → jugador monstruo → recompensa mundial por cazarlo.
+
+Ya no serían eventos aislados.
+
+Serían piezas de un mismo motor.
+
+Y agregaría una última cosa: no todos estos eventos deberían anunciarse.
+
+Un día el servidor podría simplemente empezar a hacer cosas raras.
+
+Un NPC tose.
+
+Otro deja de aparecer.
+
+Ciertos mobs tienen una textura ligeramente diferente.
+
+Aparecen cadáveres cerca de una aldea.
+
+Un healer comenta:
+
+“Hoy atendí cinco casos iguales.”
+
+Y recién varias horas después los jugadores comprenden:
+
+algo comenzó.
+
+Ahí recuperás exactamente la sensación que venís buscando en todas estas ideas: no “entré al evento de zombis de las 20:00”, sino “estaba jugando Lineage II y de repente el mundo se fue al demonio”.
+
+Ese segundo enfoque tiene mucha más personalidad.
+
+y que tal algo de caos? imagina que hay un asedio en algun castillo como aden o giran y de repente aparece un grupo de infectados?
+Sí, eso puede quedar excelente si lo tratás como caos emergente dentro de otro evento, no como un evento separado.
+
+Imaginate un siege normal en Aden. Dos clanes peleando por puertas, cristales y control del castillo. Todo va según lo previsto… y de repente aparece una tercera fuerza que no responde a ninguna alianza: infectados entrando desde un lateral, catacumbas, alcantarillas o incluso desde dentro del castillo.
+
+Lo interesante es que el objetivo de cada grupo cambia sobre la marcha. El clan atacante quiere tomar el castillo. El defensor quiere resistir. Pero ambos descubren que, si ignoran a los infectados, estos pueden empezar a comerse literalmente el campo de batalla.
+
+Podrías tener una progresión así:
+
+al principio aparecen 5 o 10 infectados;
+si matan jugadores, esos jugadores reaparecen infectados;
+si alcanzan NPC clave, pueden bloquear puertas, destruir suministros o apagar cristales;
+si entran al corazón del castillo, el siege puede transformarse temporalmente en una crisis mayor.
+Ahí aparece algo muy bueno: enemigos que hace cinco minutos se estaban matando pueden verse obligados a cooperar durante treinta segundos para contener una oleada.
+
+Y cuando la oleada baja, vuelven a matarse entre ellos.
+
+Eso genera situaciones memorables.
+
+Por ejemplo:
+
+Clan A está rompiendo la puerta.
+
+Clan B defiende.
+
+Aparecen infectados atrás de A.
+
+A queda atrapado entre muralla e infectados.
+
+B podría aprovechar para rematarlos… o abrir fuego contra los infectados porque, si estos llegan a la puerta, también les arruinan la defensa.
+
+Entonces aparece una especie de cooperación táctica no pactada.
+
+Eso es mucho más interesante que simplemente meter “zombis en un siege”.
+
+Incluso podés hacer que los infectados tengan objetivos propios, no solo atacar lo primero que vean. Por ejemplo:
+
+ir hacia el artefacto central;
+matar healers;
+contaminar zonas;
+destruir respawns;
+romper puertas laterales;
+apagar torres;
+convertir guardias NPC.
+Y ahí el mapa del castillo cambia durante el evento.
+
+También podrías meter variantes raras:
+
+Infectados silenciosos
+Aparecen pocos y se infiltran.
+
+Horda
+Entran decenas desde fuera.
+
+Infectado alfa
+Un jugador transformado recibe estadísticas enormes y liderazgo de la horda.
+
+Plaga interna
+La infección empieza dentro del castillo, no fuera.
+
+Traidor biológico
+Un jugador entra al siege ya infectado sin saberlo y se transforma en medio de la pelea.
+
+Esa última sería brutal.
+
+Imaginá que un healer importante del clan defensor de repente deja de responder, se transforma y empieza a atacar a los suyos.
+
+No porque haya traicionado al clan, sino porque el sistema lo convirtió en una amenaza.
+
+También podrías hacer que no siempre ocurra. Si pasa en todos los sieges, se vuelve rutinario. Pero si tiene una probabilidad baja o ciertas condiciones ocultas, cada siege conserva tensión.
+
+Algo como:
+
+“Dicen que en el último siege de Giran apareció la plaga.”
+
+Y los siguientes jugadores entran pensando:
+
+“¿Puede volver a pasar?”
+
+Eso mete paranoia sin saturar.
+
+Y técnicamente podrías usar el mismo sistema para más cosas aparte de infectados. Durante un siege podrían aparecer:
+
+demonios;
+mercenarios neutrales;
+monstruos atraídos por la batalla;
+criaturas invocadas accidentalmente;
+un raid boss que despierta por la cantidad de muertes;
+una tormenta mágica;
+una invasión de NPC de una facción externa.
+O sea: el siege deja de ser una actividad cerrada y se vuelve un escenario donde el mundo puede intervenir.
+
+Creo que esa idea encaja muchísimo con el tipo de servidor que estás imaginando: que el jugador no sienta “ahora estoy en el modo siege”, sino “estoy en un mundo donde el siege está ocurriendo y otras cosas también pueden pasar”.
+

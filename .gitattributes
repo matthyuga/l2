@@ -1,0 +1,10 @@
+* text=auto
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.java text eol=lf
+*.xml text eol=lf
+*.json text eol=lf
+*.js text eol=lf
+*.md text eol=lf
+*.png binary
+*.sql text eol=lf

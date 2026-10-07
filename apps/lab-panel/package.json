@@ -1,0 +1,18 @@
+{
+  "name": "lineage2-laboratorio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Panel local de personajes, balance, skills y telemetria para Lineage II Interlude",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && node --check lib/data.js && node --check lib/database.js && node --check public/app.js && node --check scripts/generate-phase4a.js && node --check scripts/analyze-phase4c.js && node --check scripts/prepare-phase4d.js",
+    "init-db": "node scripts/init-db.js",
+    "phase4a": "node scripts/generate-phase4a.js",
+    "phase4c": "node scripts/analyze-phase4c.js",
+    "phase4d": "node scripts/prepare-phase4d.js"
+  },
+  "dependencies": {
+    "mysql2": "2.3.3"
+  }
+}

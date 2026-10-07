@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/spawns.xsd">
+	<spawn name="SoloArenaAres">
+		<npc id="900200" x="149500" y="46100" z="-3400" heading="16384" respawnDelay="60" chaseRange="1500" />
+		<npc id="900201" x="148300" y="46100" z="-3400" heading="49152" respawnDelay="60" chaseRange="1500" />
+		<npc id="900202" x="148900" y="45500" z="-3400" heading="0" respawnDelay="5" chaseRange="0" />
+		<npc id="50008" x="148900" y="46700" z="-3400" heading="0" respawnDelay="60" /> <!-- Thiago, free Scheme Buffer -->
+		<npc id="50010" x="149020" y="46700" z="-3400" heading="0" respawnDelay="60" /> <!-- Mirellas, full GM Shop -->
+	</spawn>
+</list>

@@ -8,7 +8,9 @@ Fecha de inicio: 6 de octubre de 2026.
 - Fase 2 — cobertura limpia de clases: **completa, 89/89 perfiles**.
 - Fase 3 — interacciones por parejas: **completa, 465/465 parejas y 930/930 estados**.
 - Fase 4 — combinaciones de cuatro clases: **completa; 4A, 4B, 4C y 4D terminadas, 285/285 pasadas**.
-- Fase 5 — contraste con otros servidores: **5A en curso; L2Nyx documentado y primera calibración de Nyx completa (360/360)**.
+- Fase 5 — contraste y balance: **5A en curso; L2Nyx documentado, Nyx calibrada
+  (360/360), comparación mágica terminada (240/240) y base racial Humana
+  terminada (240/240)**.
 
 Personajes físicos creados:
 
@@ -493,3 +495,48 @@ modificada.
 
 Respaldo: backups/telemetry-phase5a3-2026-10-07/phase5a3-magic-comparison.sql.
 El repositorio conserva el SQL y el resumen JSON en data/telemetry/.
+
+## Fase 5A.4 — primera base racial física: Humano
+
+El 7 de octubre de 2026 se fijó el primer control para estudiar razas sin mezclar
+su efecto con cambios de clase. Arden conserva Human Fighter como raíz racial;
+Dreadnought queda activa a nivel 80 y se añaden Titan, Fortune Seeker y Maestro
+como Subs acumulativas. El equipo es Saint Spear +0, heavy S, joyería S común,
+Soulshots, cero buffs externos y Atlas como objetivo.
+
+Se midieron dos carriles durante 60 segundos acelerados: autoataque fijo y la
+skill física compatible con mejor relación potencia/ciclo. Cada carril tuvo
+treinta repeticiones por etapa, para un total de **240/240 pasadas**.
+
+| Etapa | Skills | Pasivas | P.Atk | Velocidad | DPS auto | Skill compatible | DPS skill |
+| --- | ---: | ---: | ---: | ---: | ---: | --- | ---: |
+| Dreadnought | 59 | 21 | 1.007,28 | 351 | 67,95 | Earthquake | 10,68 |
+| + Titan | 75 | 24 | 1.007,28 | 351 | 68,16 | Earthquake | 9,13 |
+| + Fortune Seeker | 86 | 28 | 1.007,28 | 351 | 68,32 | Earthquake | 9,46 |
+| + Maestro | 92 | 29 | 1.007,28 | 351 | 69,63 | Earthquake | 9,44 |
+
+La raza permaneció `HUMAN` en las 240 filas, incluso al incorporar clases cuya
+raíz natural es orca o enana. P.Atk, velocidad, crítico, precisión, HP/CP/MP y
+STR/DEX/CON fueron exactamente iguales en las cuatro etapas. El aumento aparente
+de 2,48% en el último promedio de autoataque es menor que su dispersión y, con
+stats idénticos, se atribuye a críticos y fallos aleatorios. No hay evidencia de
+que estas masteries físicas se acumulen.
+
+Earthquake fue elegida en las cuatro etapas, pero su ciclo de 28.461 ms permite
+sólo dos acciones por minuto. Por eso el carril de skill no representa “mejor DPS
+total”: describe la mejor relación potencia/ciclo dentro de las skills físicas
+compatibles, mientras el autoataque sigue siendo muy superior en este protocolo.
+
+La fase valida persistencia racial y establece el control humano; todavía no
+cuantifica una ventaja de raza. El siguiente experimento debe repetir la misma
+build, equipo y objetivo sobre otro ancla racial, y luego comparar cada atributo
+y carril contra esta tabla.
+
+Auditoría: 240 claves únicas, cero diferencias de raza, clase o equipo y seis
+filas sin daño explicadas por dos fallos consecutivos de Earthquake. Arden volvió
+offline, nivel 1, Human Fighter, sin Subs ni objetos. Se preservaron 285 resultados
+4D, 360 calibraciones de Nyx, 12 progresiones mágicas y 240 comparaciones mágicas.
+
+Respaldo local:
+`backups/telemetry-phase5a4-human-2026-10-07/phase5a4-human-physical-baseline.sql`.
+El SQL y su resumen JSON también quedan en `data/telemetry/`.

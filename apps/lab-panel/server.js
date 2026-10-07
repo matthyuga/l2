@@ -852,6 +852,83 @@ async function telemetryMagicComparison() {
 }
 
 
+
+
+async function telemetryPhysicalRaceBaseline() {
+  let rows = [];
+  try {
+    rows = await database.query(
+      'SELECT anchor_root_class_id,race_id,MIN(race_name) race_name,stage_index,protocol,MIN(stage_label) stage_label,'+
+      'MIN(main_class_id) main_class_id,MIN(sub1_class_id) sub1_class_id,MIN(sub2_class_id) sub2_class_id,MIN(sub3_class_id) sub3_class_id,'+
+      'MIN(class_count) class_count,COUNT(*) runs,AVG(skill_count) skill_count,AVG(passive_skill_count) passive_skill_count,'+
+      'AVG(active_skill_count) active_skill_count,AVG(p_atk) p_atk,AVG(p_atk_speed) p_atk_speed,AVG(p_critical) p_critical,'+
+      'AVG(accuracy) accuracy,AVG(max_hp) max_hp,AVG(max_cp) max_cp,AVG(max_mp) max_mp,AVG(stat_str) stat_str,AVG(stat_dex) stat_dex,AVG(stat_con) stat_con,'+
+      'MIN(selected_skill_id) selected_skill_id,MIN(selected_skill_level) selected_skill_level,MIN(selected_skill_name) selected_skill_name,'+
+      'AVG(selected_skill_power) selected_skill_power,AVG(selected_skill_cycle_ms) selected_skill_cycle_ms,'+
+      'AVG(damage_dealt) damage_dealt,AVG(dps) dps,STDDEV_POP(dps) dps_sd,AVG(actions) actions,AVG(hits) hits,'+
+      'AVG(critical_count/NULLIF(hits,0))*100 critical_rate,AVG(miss_count/NULLIF(actions,0))*100 miss_rate,AVG(mp_used) mp_used,MIN(rotation) rotation '+
+      'FROM lab_physical_race_runs GROUP BY anchor_root_class_id,race_id,stage_index,protocol ORDER BY anchor_root_class_id,stage_index,protocol'
+    );
+  } catch (error) {
+    if (error && error.code === 'ER_NO_SUCH_TABLE') return { expectedRuns: 240, totalRuns: 0, baselines: [] };
+    throw error;
+  }
+  function percent(value, base) {
+    value = Number(value || 0); base = Number(base || 0);
+    return base ? ((value / base) - 1) * 100 : 0;
+  }
+  function profile(row) {
+    if (!row) return null;
+    const actions = Number(row.actions);
+    const damage = Number(row.damage_dealt);
+    return {
+      protocol: row.protocol, runs: Number(row.runs),
+      skill: { id: Number(row.selected_skill_id), level: Number(row.selected_skill_level), name: row.selected_skill_name, power: Number(row.selected_skill_power), cycleMs: Number(row.selected_skill_cycle_ms) },
+      pAtk: Number(row.p_atk), pAtkSpeed: Number(row.p_atk_speed), pCritical: Number(row.p_critical), accuracy: Number(row.accuracy),
+      maxHp: Number(row.max_hp), maxCp: Number(row.max_cp), maxMp: Number(row.max_mp),
+      str: Number(row.stat_str), dex: Number(row.stat_dex), con: Number(row.stat_con),
+      skillCount: Number(row.skill_count), passiveSkills: Number(row.passive_skill_count), activeSkills: Number(row.active_skill_count),
+      damage: damage, dps: Number(row.dps), dpsSd: Number(row.dps_sd), actions: actions, hits: Number(row.hits),
+      criticalRate: Number(row.critical_rate), missRate: Number(row.miss_rate), mpUsed: Number(row.mp_used),
+      damagePerAction: actions ? damage / actions : 0, rotation: row.rotation
+    };
+  }
+  const roots = {};
+  rows.forEach(function(row) {
+    const root = Number(row.anchor_root_class_id);
+    const stage = Number(row.stage_index);
+    if (!roots[root]) roots[root] = { rootId: root, raceId: Number(row.race_id), race: row.race_name, stages: {} };
+    if (!roots[root].stages[stage]) roots[root].stages[stage] = { row: row, protocols: {} };
+    roots[root].stages[stage].protocols[row.protocol] = row;
+  });
+  const baselines = Object.keys(roots).map(Number).sort(function(a,b){return a-b;}).map(function(rootId) {
+    const root = roots[rootId];
+    const stages = Object.keys(root.stages).map(Number).sort(function(a,b){return a-b;}).map(function(index) {
+      const group = root.stages[index];
+      const fixed = profile(group.protocols.FIXED_AUTOATTACK);
+      const best = profile(group.protocols.BEST_COMPATIBLE);
+      const row = group.row;
+      return {
+        index: index, label: row.stage_label, classCount: Number(row.class_count),
+        main: classInfo(row.main_class_id),
+        subclasses: [row.sub1_class_id,row.sub2_class_id,row.sub3_class_id].map(Number).filter(function(id){return id >= 0;}).map(classInfo),
+        fixed: fixed, best: best,
+        bestVsFixedDps: fixed && best ? percent(best.dps, fixed.dps) : 0
+      };
+    });
+    const baseFixed = stages.length ? stages[0].fixed : null;
+    stages.forEach(function(stage) {
+      stage.fixedVsBase = stage.fixed && baseFixed ? {
+        pAtk: percent(stage.fixed.pAtk, baseFixed.pAtk),
+        pAtkSpeed: percent(stage.fixed.pAtkSpeed, baseFixed.pAtkSpeed),
+        dps: percent(stage.fixed.dps, baseFixed.dps)
+      } : { pAtk: 0, pAtkSpeed: 0, dps: 0 };
+    });
+    return { rootClassId: root.rootId, raceId: root.raceId, race: root.race, racePreserved: new Set(rows.filter(function(row){return Number(row.anchor_root_class_id)===root.rootId;}).map(function(row){return row.race_name;})).size === 1, stages: stages };
+  });
+  return { expectedRuns: 240, totalRuns: rows.reduce(function(sum,row){return sum+Number(row.runs);},0), baselines: baselines };
+}
+
 async function api(req, res, url) {
   const route = url.pathname;
   if (req.method === 'GET' && route === '/api/status') {
@@ -917,6 +994,7 @@ async function api(req, res, url) {
 	if (req.method === 'GET' && route === '/api/telemetry/nyx-calibration') return json(res, 200, await telemetryNyxCalibration());
 	if (req.method === 'GET' && route === '/api/telemetry/magic-progression') return json(res, 200, await telemetryMagicProgression());
 	if (req.method === 'GET' && route === '/api/telemetry/magic-comparison') return json(res, 200, await telemetryMagicComparison());
+	if (req.method === 'GET' && route === '/api/telemetry/physical-race-baseline') return json(res, 200, await telemetryPhysicalRaceBaseline());
 	if (req.method === 'GET' && route === '/api/telemetry/external-references') return json(res, 200, externalReferences());
   match = route.match(/^\/api\/telemetry\/fights\/(\d+)$/);
   if (match && req.method === 'GET') {

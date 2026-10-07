@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "phase": "5A.4",
+  "capturedAt": "2026-10-07T19:12:32-03:00",
+  "engineMode": "CORE_ACCELERATED",
+  "purpose": "Fijar la primera línea base física racial y comprobar que añadir o cambiar clases no altera la raza de nacimiento.",
+  "protocol": {
+    "anchor": "Arden",
+    "birthRace": "Human",
+    "rootClass": {"id": 0, "name": "Human Fighter"},
+    "mainClass": {"id": 89, "name": "Dreadnought"},
+    "activeClassAtEveryStage": "Dreadnought",
+    "level": 80,
+    "durationSeconds": 60,
+    "repetitionsPerStageAndLane": 30,
+    "lanes": ["FIXED_AUTOATTACK", "BEST_COMPATIBLE"],
+    "skillLaneRule": "Mejor relación potencia/ciclo entre skills físicas de daño compatibles con el arma; no incluye el autoataque como candidato.",
+    "opponent": {"id": 900202, "name": "Atlas"},
+    "weapon": {"id": 6370, "name": "Saint Spear +0"},
+    "equipment": "Set heavy S y joyería S común",
+    "shots": "Soulshots S",
+    "externalBuffs": false,
+    "subclassOrder": ["Titan", "Fortune Seeker", "Maestro"]
+  },
+  "audit": {
+    "runs": 240,
+    "expectedRuns": 240,
+    "runsPerStageAndLane": 30,
+    "uniqueRunKeys": 240,
+    "raceMismatchRows": 0,
+    "classOrEquipmentMismatchRows": 0,
+    "skillCountMismatchRows": 0,
+    "zeroDamageRowsFromTwoConsecutiveMisses": 6,
+    "phase4dRunsPreserved": 285,
+    "nyxCalibrationRunsPreserved": 360,
+    "magicProgressionRunsPreserved": 12,
+    "magicComparisonRunsPreserved": 240,
+    "anchorOnlineAfterRun": false,
+    "anchorLevelAfterRun": 1,
+    "anchorClassAfterRun": "Human Fighter",
+    "anchorRaceAfterRun": "Human",
+    "anchorSubclassesAfterRun": 0,
+    "anchorItemsAfterRun": 0
+  },
+  "constantStats": {
+    "physicalAttack": 1007.2798,
+    "attackSpeed": 351,
+    "physicalCritical": 86,
+    "accuracy": 123,
+    "maxHp": 6542,
+    "maxCp": 4718,
+    "maxMp": 1794,
+    "str": 42,
+    "dex": 28,
+    "con": 43
+  },
+  "stages": [
+    {
+      "index": 0,
+      "label": "Dreadnought",
+      "classes": ["Dreadnought"],
+      "skillCount": 59,
+      "passiveSkillCount": 21,
+      "activeSkillCount": 38,
+      "fixedAutoattack": {"actions": 42, "averageDps": 67.9473, "dpsStandardDeviation": 5.8753, "damagePerAction": 97.0675, "mpUsed": 0},
+      "compatibleSkill": {"id": 347, "level": 1, "name": "Earthquake", "power": 4040, "cycleMs": 28461, "actions": 2, "averageDps": 10.6796, "dpsStandardDeviation": 4.4249, "mpUsed": 174}
+    },
+    {
+      "index": 1,
+      "label": "+ Titan",
+      "classes": ["Dreadnought", "Titan"],
+      "skillCount": 75,
+      "passiveSkillCount": 24,
+      "activeSkillCount": 51,
+      "fixedAutoattack": {"actions": 42, "averageDps": 68.1604, "dpsStandardDeviation": 4.3816, "damagePerAction": 97.3720, "mpUsed": 0},
+      "compatibleSkill": {"id": 347, "level": 1, "name": "Earthquake", "power": 4040, "cycleMs": 28461, "actions": 2, "averageDps": 9.1339, "dpsStandardDeviation": 4.4020, "mpUsed": 174}
+    },
+    {
+      "index": 2,
+      "label": "+ Fortune Seeker",
+      "classes": ["Dreadnought", "Titan", "Fortune Seeker"],
+      "skillCount": 86,
+      "passiveSkillCount": 28,
+      "activeSkillCount": 58,
+      "fixedAutoattack": {"actions": 42, "averageDps": 68.3244, "dpsStandardDeviation": 4.8001, "damagePerAction": 97.6062, "mpUsed": 0},
+      "compatibleSkill": {"id": 347, "level": 1, "name": "Earthquake", "power": 4040, "cycleMs": 28461, "actions": 2, "averageDps": 9.4584, "dpsStandardDeviation": 3.8508, "mpUsed": 174}
+    },
+    {
+      "index": 3,
+      "label": "+ Maestro",
+      "classes": ["Dreadnought", "Titan", "Fortune Seeker", "Maestro"],
+      "skillCount": 92,
+      "passiveSkillCount": 29,
+      "activeSkillCount": 63,
+      "fixedAutoattack": {"actions": 42, "averageDps": 69.6346, "dpsStandardDeviation": 6.6581, "damagePerAction": 99.4780, "mpUsed": 0},
+      "compatibleSkill": {"id": 347, "level": 1, "name": "Earthquake", "power": 4040, "cycleMs": 28461, "actions": 2, "averageDps": 9.4416, "dpsStandardDeviation": 3.5182, "mpUsed": 174}
+    }
+  ],
+  "findings": {
+    "racePersistence": "Las 240 filas conservaron race_id 0, HUMAN, aunque las tres Subs pertenecen naturalmente a otras razas.",
+    "masteryStacking": "Las Subs ampliaron el catálogo de 59 a 92 skills, pero no cambiaron P.Atk, velocidad, crítico, stats base ni recursos. No hay evidencia de acumulación física de masteries en esta build.",
+    "autoattackVariation": "El +2,48% observado entre la primera y la última etapa es menor que la dispersión de las muestras y aparece con atributos idénticos; se interpreta como ruido de críticos y fallos.",
+    "compatibleSkill": "Earthquake fue seleccionada en las cuatro etapas. Sus dos acciones por minuto producen menos DPS que las 42 acciones de autoataque; este carril describe una skill compatible, no el mejor DPS total.",
+    "raceComparisonScope": "Esta fase establece únicamente la referencia humana. Para aislar el efecto racial hay que repetir exactamente el mismo protocolo sobre cada raza y comparar contra estos valores."
+  }
+}

@@ -92,6 +92,13 @@ public class LabTelemetry extends Script
 	private static final int MAGIC_COMPARISON_FIXED_SKILL_ID = 1239;
 	private static final int MAGIC_COMPARISON_REPETITIONS = 30;
 	private static final int EXPECTED_MAGIC_COMPARISON_RUN_COUNT = MAGIC_PROGRESSION_CLASS_IDS.length * MAGIC_COMPARISON_PROTOCOLS.length * MAGIC_COMPARISON_REPETITIONS;
+	private static final int[] PHYSICAL_RACE_ROOT_CLASS_IDS = {0}; // Human Fighter first; extend for cross-race replication.
+	private static final int[] PHYSICAL_RACE_CLASS_IDS = {89, 113, 117, 118}; // Dreadnought + Titan + Fortune Seeker + Maestro.
+	private static final String[] PHYSICAL_RACE_STAGE_LABELS = {"Dreadnought", "+ Titan", "+ Fortune Seeker", "+ Maestro"};
+	private static final String[] PHYSICAL_RACE_PROTOCOLS = {"FIXED_AUTOATTACK", "BEST_COMPATIBLE"};
+	private static final int PHYSICAL_RACE_WEAPON_ID = 6370; // Saint Spear.
+	private static final int PHYSICAL_RACE_REPETITIONS = 30;
+	private static final int EXPECTED_PHYSICAL_RACE_RUN_COUNT = PHYSICAL_RACE_ROOT_CLASS_IDS.length * PHYSICAL_RACE_CLASS_IDS.length * PHYSICAL_RACE_PROTOCOLS.length * PHYSICAL_RACE_REPETITIONS;
 	private static final int BENCHMARK_ATLAS_ID = 900202;
 	private static final int BENCHMARK_ARES_ID = 900200;
 	private static final int BENCHMARK_NYX_ID = 900201;
@@ -384,6 +391,41 @@ public class LabTelemetry extends Script
 		"actions=VALUES(actions),hits=VALUES(hits),casts=VALUES(casts),critical_count=VALUES(critical_count),miss_count=VALUES(miss_count)," +
 		"bss_used=VALUES(bss_used),damage_dealt=VALUES(damage_dealt),dps=VALUES(dps),mp_used=VALUES(mp_used),notes=VALUES(notes)";
 
+	private static final String CREATE_PHYSICAL_RACE_RUN_TABLE =
+		"CREATE TABLE IF NOT EXISTS lab_physical_race_runs (" +
+		"anchor_root_class_id INT NOT NULL,race_id SMALLINT NOT NULL,race_name VARCHAR(20) NOT NULL,stage_index SMALLINT NOT NULL," +
+		"protocol VARCHAR(24) NOT NULL,run_number SMALLINT NOT NULL,executed_ms BIGINT UNSIGNED NOT NULL," +
+		"engine_mode VARCHAR(32) NOT NULL DEFAULT 'CORE_ACCELERATED',stage_label VARCHAR(80) NOT NULL," +
+		"main_class_id INT NOT NULL,sub1_class_id INT NOT NULL DEFAULT -1,sub2_class_id INT NOT NULL DEFAULT -1,sub3_class_id INT NOT NULL DEFAULT -1," +
+		"class_count SMALLINT NOT NULL,char_id INT NOT NULL,char_name VARCHAR(45) NOT NULL,active_class_id INT NOT NULL,active_class_index SMALLINT NOT NULL,level SMALLINT NOT NULL," +
+		"skill_count SMALLINT NOT NULL,passive_skill_count SMALLINT NOT NULL,active_skill_count SMALLINT NOT NULL," +
+		"equipment_kit VARCHAR(32) NOT NULL,weapon_id INT NOT NULL,weapon_name VARCHAR(80) NOT NULL," +
+		"p_atk DOUBLE NOT NULL,p_atk_speed DOUBLE NOT NULL,p_critical DOUBLE NOT NULL,accuracy INT NOT NULL," +
+		"max_hp DOUBLE NOT NULL,max_cp DOUBLE NOT NULL,max_mp DOUBLE NOT NULL,stat_str SMALLINT NOT NULL,stat_dex SMALLINT NOT NULL,stat_con SMALLINT NOT NULL," +
+		"duration_seconds SMALLINT NOT NULL,selected_skill_id INT NOT NULL,selected_skill_level INT NOT NULL,selected_skill_name VARCHAR(80) NOT NULL," +
+		"selected_skill_power DOUBLE NOT NULL,selected_skill_cycle_ms INT NOT NULL,rotation VARCHAR(512) NOT NULL DEFAULT ''," +
+		"actions INT NOT NULL DEFAULT 0,hits INT NOT NULL DEFAULT 0,casts INT NOT NULL DEFAULT 0,critical_count INT NOT NULL DEFAULT 0," +
+		"miss_count INT NOT NULL DEFAULT 0,soulshots_used INT NOT NULL DEFAULT 0,damage_dealt DOUBLE NOT NULL DEFAULT 0,dps DOUBLE NOT NULL DEFAULT 0," +
+		"mp_used DOUBLE NOT NULL DEFAULT 0,notes VARCHAR(512) NOT NULL DEFAULT ''," +
+		"PRIMARY KEY(anchor_root_class_id,stage_index,protocol,run_number),KEY idx_lab_physical_race(race_id,stage_index,protocol)" +
+		") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+
+	private static final String INSERT_PHYSICAL_RACE_RUN =
+		"INSERT INTO lab_physical_race_runs (anchor_root_class_id,race_id,race_name,stage_index,protocol,run_number,executed_ms,engine_mode,stage_label," +
+		"main_class_id,sub1_class_id,sub2_class_id,sub3_class_id,class_count,char_id,char_name,active_class_id,active_class_index,level," +
+		"skill_count,passive_skill_count,active_skill_count,equipment_kit,weapon_id,weapon_name,p_atk,p_atk_speed,p_critical,accuracy," +
+		"max_hp,max_cp,max_mp,stat_str,stat_dex,stat_con,duration_seconds,selected_skill_id,selected_skill_level,selected_skill_name," +
+		"selected_skill_power,selected_skill_cycle_ms,rotation,actions,hits,casts,critical_count,miss_count,soulshots_used,damage_dealt,dps,mp_used,notes) " +
+		"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) " +
+		"ON DUPLICATE KEY UPDATE executed_ms=VALUES(executed_ms),race_id=VALUES(race_id),race_name=VALUES(race_name),stage_label=VALUES(stage_label)," +
+		"skill_count=VALUES(skill_count),passive_skill_count=VALUES(passive_skill_count),active_skill_count=VALUES(active_skill_count)," +
+		"p_atk=VALUES(p_atk),p_atk_speed=VALUES(p_atk_speed),p_critical=VALUES(p_critical),accuracy=VALUES(accuracy)," +
+		"max_hp=VALUES(max_hp),max_cp=VALUES(max_cp),max_mp=VALUES(max_mp),stat_str=VALUES(stat_str),stat_dex=VALUES(stat_dex),stat_con=VALUES(stat_con)," +
+		"selected_skill_id=VALUES(selected_skill_id),selected_skill_level=VALUES(selected_skill_level),selected_skill_name=VALUES(selected_skill_name)," +
+		"selected_skill_power=VALUES(selected_skill_power),selected_skill_cycle_ms=VALUES(selected_skill_cycle_ms),rotation=VALUES(rotation)," +
+		"actions=VALUES(actions),hits=VALUES(hits),casts=VALUES(casts),critical_count=VALUES(critical_count),miss_count=VALUES(miss_count)," +
+		"soulshots_used=VALUES(soulshots_used),damage_dealt=VALUES(damage_dealt),dps=VALUES(dps),mp_used=VALUES(mp_used),notes=VALUES(notes)";
+
 	private static final String INSERT_EVENT =
 		"INSERT INTO lab_combat_events (occurred_ms,event_type," +
 		"attacker_object_id,attacker_name,attacker_kind,attacker_template_id,attacker_class_id,attacker_level," +
@@ -493,6 +535,7 @@ public class LabTelemetry extends Script
 		ThreadPool.schedule(this::runNyxCalibration, 60000);
 		ThreadPool.schedule(this::runMagicProgression, 75000);
 		ThreadPool.schedule(this::runMagicComparison, 105000);
+		ThreadPool.schedule(this::runPhysicalRaceBaseline, 135000);
 	}
 
 	/**
@@ -1939,6 +1982,297 @@ public class LabTelemetry extends Script
 	}
 
 
+
+	/**
+	 * Phase 5A.4: establishes a human physical baseline while preserving the
+	 * birth race through every class and subclass change. The table is keyed by
+	 * racial anchor so the exact same build can later be repeated on other races.
+	 */
+	private void runPhysicalRaceBaseline()
+	{
+		if (countSafePhysicalRaceRuns() >= EXPECTED_PHYSICAL_RACE_RUN_COUNT)
+		{
+			LOGGER.info("Laboratorio L2 fase 5A.4: base fisica racial completa (" + EXPECTED_PHYSICAL_RACE_RUN_COUNT + "/" + EXPECTED_PHYSICAL_RACE_RUN_COUNT + ").");
+			return;
+		}
+		try
+		{
+			if (countMagicComparisonRuns() < EXPECTED_MAGIC_COMPARISON_RUN_COUNT)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A.4: espera a que termine la comparacion magica 5A.3.");
+				ThreadPool.schedule(this::runPhysicalRaceBaseline, 60000);
+				return;
+			}
+			if (countOnlineCharacters() > 0)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A.4: hay jugadores conectados; la base fisica se posterga.");
+				ThreadPool.schedule(this::runPhysicalRaceBaseline, 60000);
+				return;
+			}
+			final Npc atlas = getBenchmarkNpc(BENCHMARK_ATLAS_ID);
+			if (atlas == null)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A.4: espera a Atlas en el Coliseo.");
+				ThreadPool.schedule(this::runPhysicalRaceBaseline, 60000);
+				return;
+			}
+			final Set<String> completedRuns = loadCompletedPhysicalRaceRuns();
+			int measured = completedRuns.size();
+			for (int rootId : PHYSICAL_RACE_ROOT_CLASS_IDS)
+			{
+				final PlayerClass restoreRoot = PlayerClass.getPlayerClass(rootId);
+				final PlayerClass mainClass = PlayerClass.getPlayerClass(PHYSICAL_RACE_CLASS_IDS[0]);
+				Player player = null;
+				try
+				{
+					player = Player.load(findCharacterId(anchorForRoot(restoreRoot)));
+					if ((player == null) || (restoreRoot == null) || (mainClass == null))
+					{
+						throw new IllegalStateException("No se pudo cargar el ancla racial o Dreadnought.");
+					}
+					final int expectedRaceId = restoreRoot.getRace().ordinal();
+					final String expectedRaceName = restoreRoot.getRace().name();
+					CONTROLLED_CAPTURE_IDS.add(player.getObjectId());
+					BENCHMARK_CAPTURE_IDS.add(player.getObjectId());
+					prepareAnchor(player);
+					configureCleanClass(player, mainClass, CLEAN_PROFILE_LEVEL);
+
+					for (int stage = 0; stage < PHYSICAL_RACE_CLASS_IDS.length; stage++)
+					{
+						if (stage > 0)
+						{
+							final PlayerClass subClass = PlayerClass.getPlayerClass(PHYSICAL_RACE_CLASS_IDS[stage]);
+							if ((subClass == null) || !player.addSubClass(subClass.getId(), stage))
+							{
+								throw new IllegalStateException("No se pudo agregar Sub fisica " + stage + " " + PHYSICAL_RACE_CLASS_IDS[stage] + ".");
+							}
+							player.setActiveClass(stage);
+							maximizeActiveClass(player, CLEAN_PROFILE_LEVEL);
+						}
+						player.setActiveClass(0);
+						cleanPairState(player);
+
+						final List<Item> createdItems = new ArrayList<>();
+						try
+						{
+							equipPhysicalRaceKit(player, createdItems);
+							final CreatureSnapshot snapshot = new CreatureSnapshot(player);
+							if ((snapshot.raceId != expectedRaceId) || !expectedRaceName.equals(snapshot.raceName))
+							{
+								throw new IllegalStateException("La raza base cambio de " + expectedRaceName + " a " + snapshot.raceName + " en la etapa " + stage + ".");
+							}
+							int passiveSkills = 0;
+							for (Skill skill : player.getAllSkills())
+							{
+								if (skill.isPassive())
+								{
+									passiveSkills++;
+								}
+							}
+							final Skill bestSkill = selectCompatiblePhysicalDamageSkill(player, atlas);
+							for (String protocol : PHYSICAL_RACE_PROTOCOLS)
+							{
+								for (int runNumber = 1; runNumber <= PHYSICAL_RACE_REPETITIONS; runNumber++)
+								{
+									final String runKey = rootId + ":" + stage + ":" + protocol + ":" + runNumber;
+									if (completedRuns.contains(runKey))
+									{
+										continue;
+									}
+									final BenchmarkResult result = new BenchmarkResult(player, "physical-race-" + rootId + "-" + stage + "-" + protocol, runNumber,
+										MAGIC_PROGRESSION_DURATION_SECONDS, BENCHMARK_ATLAS_ID, "Atlas", "S_HEAVY", PHYSICAL_RACE_WEAPON_ID);
+									cleanBenchmarkActors(player, atlas);
+									final Skill selectedSkill;
+									if ("BEST_COMPATIBLE".equals(protocol) && (bestSkill != null))
+									{
+										selectedSkill = bestSkill;
+										runPhysicalSkillOutput(result, player, atlas, bestSkill);
+									}
+									else
+									{
+										selectedSkill = null;
+										runPhysicalOutput(result, player, atlas);
+										if ("BEST_COMPATIBLE".equals(protocol))
+										{
+											result.notes = "No hubo skill fisica compatible; el mejor carril recurre al autoataque con Soulshot S.";
+										}
+									}
+									storePhysicalRaceRun(rootId, stage, protocol, result, snapshot, passiveSkills, selectedSkill, player, atlas);
+									completedRuns.add(runKey);
+									measured++;
+									LOGGER.info("Laboratorio L2 fase 5A.4: progreso " + measured + "/" + EXPECTED_PHYSICAL_RACE_RUN_COUNT +
+										" (" + expectedRaceName + ", " + PHYSICAL_RACE_STAGE_LABELS[stage] + ", " + protocol + ").");
+								}
+							}
+						}
+						finally
+						{
+							removeBenchmarkKit(player, createdItems);
+							cleanBenchmarkActors(player, atlas);
+						}
+					}
+				}
+				finally
+				{
+					if (player != null)
+					{
+						restoreBenchmarkAnchor(player, restoreRoot);
+					}
+				}
+			}
+			LOGGER.info("Laboratorio L2 fase 5A.4: base fisica racial terminada; pasadas=" + countPhysicalRaceRuns() + "/" + EXPECTED_PHYSICAL_RACE_RUN_COUNT + ".");
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.WARNING, "Laboratorio L2 fase 5A.4: no se pudo medir la base fisica racial.", e);
+		}
+	}
+
+	private static int countSafePhysicalRaceRuns()
+	{
+		try
+		{
+			return countPhysicalRaceRuns();
+		}
+		catch (SQLException e)
+		{
+			return 0;
+		}
+	}
+
+	private static int countPhysicalRaceRuns() throws SQLException
+	{
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM lab_physical_race_runs"); ResultSet rs = ps.executeQuery())
+		{
+			return rs.next() ? rs.getInt(1) : 0;
+		}
+	}
+
+	private static Set<String> loadCompletedPhysicalRaceRuns() throws SQLException
+	{
+		final Set<String> result = new HashSet<>();
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT anchor_root_class_id,stage_index,protocol,run_number FROM lab_physical_race_runs"); ResultSet rs = ps.executeQuery())
+		{
+			while (rs.next())
+			{
+				result.add(rs.getInt(1) + ":" + rs.getInt(2) + ":" + rs.getString(3) + ":" + rs.getInt(4));
+			}
+		}
+		return result;
+	}
+
+	private static void equipPhysicalRaceKit(Player player, List<Item> createdItems)
+	{
+		for (int itemId : HEAVY_ARMOR_IDS)
+		{
+			addAndEquipBenchmarkItem(player, itemId, createdItems);
+		}
+		for (int itemId : COMMON_JEWELRY_IDS)
+		{
+			addAndEquipBenchmarkItem(player, itemId, createdItems);
+		}
+		addAndEquipBenchmarkItem(player, PHYSICAL_RACE_WEAPON_ID, createdItems);
+		player.setCurrentHpMp(player.getMaxHp(), player.getMaxMp());
+		player.setCurrentCp(player.getMaxCp());
+	}
+
+	private static Skill selectCompatiblePhysicalDamageSkill(Player player, Npc target)
+	{
+		Skill best = null;
+		double bestScore = -1;
+		for (Skill skill : player.getAllSkills())
+		{
+			if (skill.isPassive() || !skill.isDamage() || skill.isSuicideAttack() || skill.isMagic())
+			{
+				continue;
+			}
+			try
+			{
+				if (!skill.checkCondition(player, target, false))
+				{
+					continue;
+				}
+			}
+			catch (RuntimeException e)
+			{
+				continue;
+			}
+			final double power = Math.max(0, skill.getPower(player, target, false, false));
+			final double score = power / Math.max(1, skillCycleMs(player, skill));
+			if (score > bestScore)
+			{
+				best = skill;
+				bestScore = score;
+			}
+		}
+		return best;
+	}
+
+	private static void runPhysicalSkillOutput(BenchmarkResult result, Player player, Npc target, Skill skill)
+	{
+		final int cycle = skillCycleMs(player, skill);
+		final int mpCost = skillMpCost(skill);
+		int casts = Math.max(1, (result.durationSeconds * 1000) / cycle);
+		if (mpCost > 0)
+		{
+			casts = Math.min(casts, Math.max(1, player.getMaxMp() / mpCost));
+		}
+		result.rotation = skill.getId() + ":" + skill.getLevel() + " " + skill.getName() + "+Soulshot_S";
+		result.actions = casts;
+		result.casts = casts;
+		result.soulshotsUsed = casts;
+		result.mpUsed = (double) casts * mpCost;
+		for (int i = 0; i < casts; i++)
+		{
+			if (Formulas.calcHitMiss(player, target))
+			{
+				result.misses++;
+				continue;
+			}
+			final boolean critical = Formulas.calcCrit(player, target);
+			final double damage = Formulas.calcPhysDam(player, target, skill, Formulas.calcShldUse(player, target), critical, true);
+			result.hits++;
+			result.damageDealt += Math.max(0, damage);
+			if (critical)
+			{
+				result.criticals++;
+			}
+		}
+		result.ownerDamage = result.damageDealt;
+		result.notes = "Mejor skill fisica compatible con Saint Spear; formula fisica real, MP finito y Soulshot S.";
+	}
+
+	private static void storePhysicalRaceRun(int rootId, int stage, String protocol, BenchmarkResult r, CreatureSnapshot s, int passiveSkills, Skill skill, Player player, Npc target) throws SQLException
+	{
+		final int sub1 = stage >= 1 ? PHYSICAL_RACE_CLASS_IDS[1] : -1;
+		final int sub2 = stage >= 2 ? PHYSICAL_RACE_CLASS_IDS[2] : -1;
+		final int sub3 = stage >= 3 ? PHYSICAL_RACE_CLASS_IDS[3] : -1;
+		final int skillId = skill != null ? skill.getId() : 0;
+		final int skillLevel = skill != null ? skill.getLevel() : 0;
+		final String skillName = skill != null ? skill.getName() : "Autoattack";
+		final double skillPower = skill != null ? skill.getPower(player, target, false, false) : 0;
+		final int cycle = skill != null ? skillCycleMs(player, skill) : Math.max(250, player.calculateTimeBetweenAttacks());
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement(INSERT_PHYSICAL_RACE_RUN))
+		{
+			int i = 1;
+			ps.setInt(i++, rootId); ps.setInt(i++, s.raceId); ps.setString(i++, s.raceName); ps.setInt(i++, stage);
+			ps.setString(i++, protocol); ps.setInt(i++, r.runNumber); ps.setLong(i++, System.currentTimeMillis()); ps.setString(i++, "CORE_ACCELERATED");
+			ps.setString(i++, PHYSICAL_RACE_STAGE_LABELS[stage]); ps.setInt(i++, PHYSICAL_RACE_CLASS_IDS[0]);
+			ps.setInt(i++, sub1); ps.setInt(i++, sub2); ps.setInt(i++, sub3); ps.setInt(i++, stage + 1);
+			ps.setInt(i++, r.charId); ps.setString(i++, r.charName); ps.setInt(i++, r.activeClassId); ps.setInt(i++, r.activeClassIndex); ps.setInt(i++, s.level);
+			ps.setInt(i++, s.skillCount); ps.setInt(i++, passiveSkills); ps.setInt(i++, s.skillCount - passiveSkills);
+			ps.setString(i++, r.equipmentKit); ps.setInt(i++, r.weaponId); ps.setString(i++, "Saint Spear");
+			ps.setDouble(i++, s.pAtk); ps.setDouble(i++, s.pAtkSpeed); ps.setDouble(i++, s.pCritical); ps.setInt(i++, s.accuracy);
+			ps.setDouble(i++, s.maxHp); ps.setDouble(i++, s.maxCp); ps.setDouble(i++, s.maxMp);
+			ps.setInt(i++, s.statStr); ps.setInt(i++, s.statDex); ps.setInt(i++, s.statCon); ps.setInt(i++, r.durationSeconds);
+			ps.setInt(i++, skillId); ps.setInt(i++, skillLevel); ps.setString(i++, skillName); ps.setDouble(i++, skillPower); ps.setInt(i++, cycle);
+			ps.setString(i++, r.rotation); ps.setInt(i++, r.actions); ps.setInt(i++, r.hits); ps.setInt(i++, r.casts); ps.setInt(i++, r.criticals);
+			ps.setInt(i++, r.misses); ps.setInt(i++, r.soulshotsUsed); ps.setDouble(i++, r.damageDealt);
+			ps.setDouble(i++, r.damageDealt / Math.max(1, r.durationSeconds)); ps.setDouble(i++, r.mpUsed); ps.setString(i, r.notes);
+			ps.executeUpdate();
+		}
+	}
+
 	private static int countBenchmarkCases() throws SQLException
 	{
 		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM lab_combat_benchmark_plan"); ResultSet rs = ps.executeQuery())
@@ -2845,6 +3179,7 @@ public class LabTelemetry extends Script
 			st.executeUpdate(CREATE_NYX_CALIBRATION_RUN_TABLE);
 			st.executeUpdate(CREATE_MAGIC_PROGRESSION_RUN_TABLE);
 			st.executeUpdate(CREATE_MAGIC_COMPARISON_RUN_TABLE);
+			st.executeUpdate(CREATE_PHYSICAL_RACE_RUN_TABLE);
 		}
 		catch (SQLException e)
 		{

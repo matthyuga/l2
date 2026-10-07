@@ -745,3 +745,38 @@ sin Subs ni objetos; Nyx Élite permaneció intacta.
 
 Respaldo recuperable: backups/telemetry-phase5a3-2026-10-07. El repositorio
 conserva SQL y resumen JSON en data/telemetry/. No se aplicaron buffs ni nerfs.
+
+## 23. Fase 5A.4: base racial Humana con clases acumuladas
+
+Se creó una prueba física sobre Arden para separar de forma explícita la raza de
+nacimiento de las clases adquiridas. Arden nació Human Fighter y mantuvo la raza
+Humana durante toda la corrida. Dreadnought quedó activa y se añadieron Titan,
+Fortune Seeker y Maestro sin cambiar la raza. Se fijaron nivel 80, Atlas, Saint
+Spear +0, heavy S, joyería S común, Soulshots y cero buffs externos.
+
+La corrida cerró 240/240: cuatro etapas, autoataque fijo y una skill física
+compatible, con treinta repeticiones por carril. P.Atk quedó en 1.007,28, velocidad
+en 351, crítico en 86 y STR/DEX/CON en 42/28/43 en todas las etapas. HP, CP, MP y
+precisión tampoco cambiaron. El catálogo sí creció de 59 a 92 skills, pero las
+masteries añadidas no aumentaron los atributos físicos de la build.
+
+El autoataque promedió 67,95; 68,16; 68,32 y 69,63 DPS. La diferencia final de
+2,48% está dentro de la dispersión y no representa un aumento de stats. Earthquake
+fue la skill compatible elegida por potencia/ciclo, pero su cooldown sólo permite
+dos acciones por minuto y produjo 9,13–10,68 DPS, muy por debajo del autoataque.
+Seis pasadas terminaron sin daño porque ambas acciones fallaron; son resultados
+válidos, no registros rotos.
+
+La auditoría verificó 240 claves únicas y cero filas con raza, clase activa, nivel
+o equipo incorrectos. Arden quedó restaurada offline, nivel 1, Human Fighter, sin
+Subs ni objetos; todo el roster telemétrico quedó limpio. Los resultados anteriores
+permanecieron intactos.
+
+Se añadió `lab_physical_race_runs`, el endpoint
+`/api/telemetry/physical-race-baseline` y el bloque 5A.4 del panel. El respaldo
+recuperable está en `backups/telemetry-phase5a4-human-2026-10-07`; el repositorio
+conserva el SQL y resumen JSON en `data/telemetry/`.
+
+Esta etapa es el control Humano, no una comparación racial terminada. El próximo
+paso correcto es replicar exactamente el protocolo en otro ancla de nacimiento y
+comparar contra esta base sin cambiar clase activa, Subs, equipo ni rival.

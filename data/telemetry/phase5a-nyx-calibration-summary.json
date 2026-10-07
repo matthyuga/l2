@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "phase": "5A",
+  "capturedAt": "2026-10-07T17:36:43-03:00",
+  "engineMode": "CORE_ACCELERATED_SCALED",
+  "source": {
+    "phase4dRunsPreserved": 285,
+    "sourceCases": 30,
+    "repetitionsPerCase": 3,
+    "opponent": "Nyx",
+    "opponentId": 900201
+  },
+  "protocol": {
+    "damageScalesPercent": [100, 75, 60, 50],
+    "scaledVariable": "Daño final producido por la fórmula real",
+    "unchangedVariables": ["rotación", "control", "debuffs", "casteo", "equipo", "build"],
+    "targetAverageSurvivalSeconds": {"min": 10, "max": 20}
+  },
+  "audit": {
+    "runs": 360,
+    "expectedRuns": 360,
+    "badRepetitionGroups": 0,
+    "badMetricRows": 0,
+    "anchorCharacters": 9,
+    "anchorsOnline": 0,
+    "anchorsOutsideLevelOne": 0,
+    "anchorsWithChangedBaseClass": 0,
+    "anchorSubclasses": 0,
+    "anchorItems": 0
+  },
+  "profiles": [
+    {"scalePercent": 100, "runs": 90, "cases": 30, "averageSurvivalSeconds": 3.1365, "minimumSurvivalSeconds": 2.049, "maximumSurvivalSeconds": 5.315, "runsInTarget": 0},
+    {"scalePercent": 75, "runs": 90, "cases": 30, "averageSurvivalSeconds": 3.2910, "minimumSurvivalSeconds": 2.049, "maximumSurvivalSeconds": 3.415, "runsInTarget": 0},
+    {"scalePercent": 60, "runs": 90, "cases": 30, "averageSurvivalSeconds": 3.9969, "minimumSurvivalSeconds": 2.049, "maximumSurvivalSeconds": 7.215, "runsInTarget": 0},
+    {"scalePercent": 50, "runs": 90, "cases": 30, "averageSurvivalSeconds": 4.9198, "minimumSurvivalSeconds": 2.049, "maximumSurvivalSeconds": 9.115, "runsInTarget": 0}
+  ],
+  "conclusion": {
+    "selectedScalePercent": null,
+    "reason": "Ninguna escala alcanzó la ventana de 10 a 20 segundos; incluso el máximo observado al 50% quedó en 9.115 segundos.",
+    "nextRoundSuggestedPercent": [30, 25, 20],
+    "npcXmlChanged": false
+  }
+}
+

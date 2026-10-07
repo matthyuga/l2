@@ -649,3 +649,32 @@ Server, MariaDB y panel quedaron activos. La siguiente etapa es la Fase 5 de
 comparación documentada con otros servidores; 4D queda cerrada y no se deben aplicar
 buffs o nerfs usando estos picos aislados sin antes analizar dispersión, contexto y
 calibración de oponentes.
+
+## 20. Fase 5A: L2Nyx externo y calibración no destructiva de Nyx
+
+Se etiquetó el commit público de la línea base como
+`phase4d-baseline-2026-10-07`. A partir de allí se incorporó un formato de
+expediente externo y se registró L2Nyx con sus fuentes oficiales, configuración
+SubAcu Base +3 y diferencias respecto del laboratorio local.
+
+El panel de Telemetría ahora posee dos bloques nuevos: Servidores externos y
+Calibración de Nyx. La API expone
+`/api/telemetry/external-references` y
+`/api/telemetry/nyx-calibration`.
+
+Para evitar alterar o reemplazar la evidencia de 4D se creó
+`lab_nyx_calibration_runs`. El ejecutor reutilizó los 30 casos de resistencia
+mágica, tres repeticiones por caso y cuatro escalas de daño final: 100%, 75%, 60%
+y 50%. Solo se escaló el daño obtenido de la fórmula real; el resto del protocolo
+quedó fijo.
+
+La corrida terminó el 7 de octubre a las 17:36 con 360/360 pasadas y cero fallos.
+Las supervivencias medias fueron 3,14 s, 3,29 s, 4,00 s y 4,92 s respectivamente.
+Ninguna pasada alcanzó 10 segundos; el máximo del perfil 50% fue 9,12 s. Por lo
+tanto no se cambió el XML de Nyx y la siguiente ronda deberá probar escalas menores,
+sugeridas en 30%, 25% y 20%.
+
+Auditoría de cierre: 285 filas originales de 4D intactas, 90 filas por cada escala,
+tres repeticiones exactas por caso, cero métricas inválidas y los nueve anclajes
+offline, nivel 1, sin Subs ni objetos. El volcado recuperable está en
+`backups/telemetry-phase5a-2026-10-07/phase5a-nyx-calibration.sql`.

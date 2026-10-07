@@ -8,7 +8,7 @@ Fecha de inicio: 6 de octubre de 2026.
 - Fase 2 — cobertura limpia de clases: **completa, 89/89 perfiles**.
 - Fase 3 — interacciones por parejas: **completa, 465/465 parejas y 930/930 estados**.
 - Fase 4 — combinaciones de cuatro clases: **completa; 4A, 4B, 4C y 4D terminadas, 285/285 pasadas**.
-- Fase 5 — contraste con otros servidores: pendiente.
+- Fase 5 — contraste con otros servidores: **5A en curso; L2Nyx documentado y primera calibración de Nyx completa (360/360)**.
 
 Personajes físicos creados:
 
@@ -384,3 +384,39 @@ El panel, dentro de Telemetría, muestra la cobertura total y por etapa, raza y 
 Las muestras con equipo o efectos permanecen en el catálogo, pero no avanzan el
 contador limpio. Los efectos forman parte de la clave del perfil para que una lectura
 buffeada no sobrescriba la lectura sin buffs.
+
+## Fase 5A — referencia externa y primera calibración de Nyx
+
+El 7 de octubre de 2026 se fijó la línea base de 4D con la etiqueta Git
+`phase4d-baseline-2026-10-07` y se abrió la Fase 5A sin modificar esos resultados.
+
+Primer servidor documentado: **L2Nyx externo**. Su expediente está en
+`research/external-servers/l2nyx-2026-10-07.{md,json}` y se muestra en el panel.
+Se usa ese nombre completo para no confundirlo con **Nyx, rival mágico interno**.
+La ficha conserva fuentes, fecha y diferencias de crónica/configuración; una regla
+no publicada queda como desconocida.
+
+La primera calibración interna repitió los 30 casos de resistencia contra Nyx tres
+veces en cuatro escalas de daño final: 100%, 75%, 60% y 50%. Rotación, control,
+debuffs, casteo, equipo, clases y fórmulas permanecieron iguales. Los resultados
+se guardaron en una tabla independiente, `lab_nyx_calibration_runs`, por lo que
+las 285 filas de 4D no se sobrescribieron.
+
+Resultado auditado:
+
+| Escala | Pasadas | Supervivencia media | Mínimo | Máximo | Pasadas entre 10–20 s |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 100% | 90 | 3,14 s | 2,05 s | 5,32 s | 0 |
+| 75% | 90 | 3,29 s | 2,05 s | 3,42 s | 0 |
+| 60% | 90 | 4,00 s | 2,05 s | 7,21 s | 0 |
+| 50% | 90 | 4,92 s | 2,05 s | 9,12 s | 0 |
+
+La ronda cerró 360/360 pasadas, cero grupos con repeticiones incorrectas y cero
+filas con métricas obligatorias inválidas. Los nueve anclajes quedaron offline,
+nivel 1, en su clase base, sin Subs ni objetos. Ninguna escala alcanzó el objetivo
+exploratorio de 10–20 segundos, de modo que **no se eligió todavía un valor para
+el NPC real**. La próxima ronda debe concentrarse alrededor de 30%, 25% y 20%.
+
+Respaldo local:
+`backups/telemetry-phase5a-2026-10-07/phase5a-nyx-calibration.sql`.
+El repositorio conserva el mismo volcado y un resumen JSON en `data/telemetry/`.

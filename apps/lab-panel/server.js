@@ -647,6 +647,81 @@ async function telemetryBenchmarks() {
   });
 }
 
+
+function externalReferences() {
+  const candidates = [
+    path.join(portableRoot, 'research', 'external-servers'),
+    path.resolve(ROOT, '..', '..', 'research', 'external-servers')
+  ];
+  const directory = candidates.find(function (candidate) { return fs.existsSync(candidate); });
+  if (!directory) return [];
+  return fs.readdirSync(directory)
+    .filter(function (name) { return name.toLowerCase().endsWith('.json'); })
+    .map(function (name) {
+      try { return JSON.parse(fs.readFileSync(path.join(directory, name), 'utf8')); }
+      catch (error) { return { slug: name, name: name, status: 'invalid', error: error.message }; }
+    })
+    .sort(function (a, b) { return String(b.capturedAt || '').localeCompare(String(a.capturedAt || '')); });
+}
+
+async function telemetryNyxCalibration() {
+  let summaryRows = [];
+  let categoryRows = [];
+  try {
+    const results = await Promise.all([
+      database.query(
+        'SELECT scale_percent,COUNT(*) runs,COUNT(DISTINCT source_case_id) cases_count,'+
+        'AVG(time_alive) avg_time_alive,MIN(time_alive) min_time_alive,MAX(time_alive) max_time_alive,'+
+        'AVG(damage_received) avg_damage_received,AVG(hp_cp_remaining) avg_hp_cp_remaining,AVG(control_time) avg_control_time,'+
+        'SUM(time_alive BETWEEN 10 AND 20) target_runs FROM lab_nyx_calibration_runs GROUP BY scale_percent ORDER BY scale_percent DESC'
+      ),
+      database.query(
+        'SELECT scale_percent,category,COUNT(*) runs,AVG(time_alive) avg_time_alive,AVG(damage_received) avg_damage_received '+
+        'FROM lab_nyx_calibration_runs GROUP BY scale_percent,category ORDER BY scale_percent DESC,category'
+      )
+    ]);
+    summaryRows = results[0];
+    categoryRows = results[1];
+  } catch (error) {
+    if (error && error.code === 'ER_NO_SUCH_TABLE') return { expectedRuns: 360, totalRuns: 0, targetSeconds: { min: 10, max: 20 }, profiles: [] };
+    throw error;
+  }
+  const categories = {};
+  categoryRows.forEach(function (row) {
+    const key = Number(row.scale_percent);
+    if (!categories[key]) categories[key] = [];
+    categories[key].push({
+      name: row.category,
+      runs: Number(row.runs),
+      timeAlive: Number(row.avg_time_alive),
+      damageReceived: Number(row.avg_damage_received)
+    });
+  });
+  const profiles = summaryRows.map(function (row) {
+    const scale = Number(row.scale_percent);
+    return {
+      scale: scale,
+      label: 'Nyx ' + scale + '%',
+      runs: Number(row.runs),
+      cases: Number(row.cases_count),
+      timeAlive: Number(row.avg_time_alive),
+      minTimeAlive: Number(row.min_time_alive),
+      maxTimeAlive: Number(row.max_time_alive),
+      damageReceived: Number(row.avg_damage_received),
+      hpCpRemaining: Number(row.avg_hp_cp_remaining),
+      controlTime: Number(row.avg_control_time),
+      targetRuns: Number(row.target_runs),
+      categories: categories[scale] || []
+    };
+  });
+  return {
+    expectedRuns: 360,
+    totalRuns: profiles.reduce(function (sum, item) { return sum + item.runs; }, 0),
+    targetSeconds: { min: 10, max: 20 },
+    profiles: profiles
+  };
+}
+
 async function api(req, res, url) {
   const route = url.pathname;
   if (req.method === 'GET' && route === '/api/status') {
@@ -708,7 +783,9 @@ async function api(req, res, url) {
   if (req.method === 'GET' && route === '/api/telemetry/pairs') return json(res, 200, await telemetryPairs());
   if (req.method === 'GET' && route === '/api/telemetry/build-candidates') return json(res, 200, await telemetryBuildCandidates());
   if (req.method === 'GET' && route === '/api/telemetry/finalists') return json(res, 200, await telemetryFinalists());
-  if (req.method === 'GET' && route === '/api/telemetry/benchmarks') return json(res, 200, await telemetryBenchmarks());
+	if (req.method === 'GET' && route === '/api/telemetry/benchmarks') return json(res, 200, await telemetryBenchmarks());
+	if (req.method === 'GET' && route === '/api/telemetry/nyx-calibration') return json(res, 200, await telemetryNyxCalibration());
+	if (req.method === 'GET' && route === '/api/telemetry/external-references') return json(res, 200, externalReferences());
   match = route.match(/^\/api\/telemetry\/fights\/(\d+)$/);
   if (match && req.method === 'GET') {
     const fights = await telemetryFights();

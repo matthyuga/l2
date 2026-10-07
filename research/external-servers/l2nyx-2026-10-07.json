@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "slug": "l2nyx-2026-10-07",
+  "name": "L2Nyx",
+  "kind": "external-server",
+  "capturedAt": "2026-10-07T17:20:00-03:00",
+  "status": "beta",
+  "opening": {
+    "date": "2026-10-09",
+    "time": "21:00",
+    "timezone": "America/Argentina/Buenos_Aires",
+    "betaSince": "2026-10-02"
+  },
+  "sources": [
+    {
+      "label": "Portada oficial",
+      "url": "https://l2nyx.com/",
+      "checkedAt": "2026-10-07",
+      "scope": "identidad, apertura, crónica, rates, SubAcu Base +3"
+    },
+    {
+      "label": "Configuración oficial",
+      "url": "https://l2nyx.com/info",
+      "checkedAt": "2026-10-07",
+      "scope": "nivel, subclases, buffs, masteries, controles y reglas de skills"
+    },
+    {
+      "label": "Catálogo oficial",
+      "url": "https://l2nyx.com/skins",
+      "checkedAt": "2026-10-07",
+      "scope": "cosméticos y Donate Coins"
+    }
+  ],
+  "identity": {
+    "chronicle": "Interlude",
+    "skillSet": "C4",
+    "maxLevel": 78,
+    "experienceRate": "x20",
+    "vipExperienceRate": "x25",
+    "manualPlay": true,
+    "autofarm": false,
+    "region": "LATAM"
+  },
+  "buildModel": {
+    "label": "SubAcu Base +3",
+    "mainClasses": 1,
+    "subclasses": 3,
+    "subclassesFromLevel": 40,
+    "subclassQuestRequired": false,
+    "anySubclassAllowed": true,
+    "skillsAutolearn": true,
+    "cumulativeSkills": true
+  },
+  "combatRules": {
+    "buffSlotsBase": 28,
+    "buffSlotsWithDivineInspiration": 32,
+    "debuffSlots": 8,
+    "danceSongSeparateSlots": null,
+    "buffDurationMinutes": 120,
+    "buffsLostOnDeath": false,
+    "masteries": "Solo cuenta la mastery de mayor nivel de cada grupo; buffs, toggles y pasivas se acumulan.",
+    "frenzyGutsTotems": "Frenzy y Guts reemplazan los totems y se reemplazan entre sí; un totem no reemplaza Frenzy o Guts activos.",
+    "zealotCoexistence": null,
+    "classStunChancePercent": 20,
+    "classStunDurationSeconds": 2,
+    "rootSleepSilenceMaxSeconds": 3,
+    "fearDurationSeconds": 2,
+    "cancelBuffsRemoved": 3,
+    "cancelReuseSeconds": 60,
+    "weaponMasteryAttackSpeedPercent": 7,
+    "bowMasteryRangeBonus": 100,
+    "summonAndCubicCastSeconds": 1
+  },
+  "economyAndCosmetics": {
+    "rebirthFromLevel": 76,
+    "rebirthLimit": 3,
+    "donateCoinArs": 100,
+    "designCount": 157,
+    "hairAndAccessoryCount": 41,
+    "outfitCount": 74,
+    "weaponSkinCount": 42
+  },
+  "comparisonWithLocalLab": {
+    "sharedPrinciples": [
+      "Una clase principal más tres subclases acumulativas.",
+      "Las masteries se pisan por grupo para reducir acumulaciones desbalanceadas.",
+      "Frenzy y Guts son mutuamente excluyentes y tienen prioridad frente a totems."
+    ],
+    "differences": [
+      "L2Nyx usa nivel máximo 78 y skills C4; el laboratorio local mide a nivel 80 sobre núcleo Interlude.",
+      "L2Nyx documenta 28 buffs y hasta 32 con Divine Inspiration; el laboratorio local separa 28 buffs y 16 dances/songs.",
+      "L2Nyx no documenta una política de conservación o cambio de raza.",
+      "L2Nyx no documenta si Zealot coexiste con Frenzy o Guts."
+    ],
+    "localDecisionsUnaffected": [
+      "La raza elegida se conserva al cambiar entre principal y subclases.",
+      "El cambio de raza será una operación especial y eventualmente de pago.",
+      "Zealot puede coexistir según la regla definida para el proyecto local.",
+      "Overlord puede elegirse como subclase.",
+      "Los totems locales no exigirán garra."
+    ]
+  },
+  "telemetryProfile": {
+    "label": "Perfil comparable inspirado en L2Nyx",
+    "targetLevel": 78,
+    "classSlots": 4,
+    "skillSet": "C4",
+    "masteryPolicy": "highest-per-group",
+    "buffSlots": 28,
+    "buffSlotsWithDivineInspiration": 32,
+    "controlWindowSeconds": "2-3",
+    "status": "documented-not-executed"
+  },
+  "cautions": [
+    "La configuración corresponde a una beta y puede cambiar antes o después de la apertura.",
+    "La página oficial mostraba dos precios distintos para VIP de 30 días; no se usa ese dato para balance.",
+    "Los campos nulos indican reglas no documentadas, no una respuesta negativa."
+  ]
+}
+

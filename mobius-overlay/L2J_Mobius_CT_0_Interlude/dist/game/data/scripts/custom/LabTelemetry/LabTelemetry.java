@@ -79,6 +79,9 @@ public class LabTelemetry extends Script
 	private static final int EXPECTED_BUILD_STATE_COUNT = EXPECTED_BUILD_COUNT * 4;
 	private static final int EXPECTED_BENCHMARK_CASE_COUNT = 95;
 	private static final int EXPECTED_BENCHMARK_RUN_COUNT = 285;
+	private static final int EXPECTED_NYX_CALIBRATION_CASE_COUNT = 30;
+	private static final int[] NYX_CALIBRATION_SCALES = {100, 75, 60, 50};
+	private static final int EXPECTED_NYX_CALIBRATION_RUN_COUNT = EXPECTED_NYX_CALIBRATION_CASE_COUNT * 3 * NYX_CALIBRATION_SCALES.length;
 	private static final int BENCHMARK_ATLAS_ID = 900202;
 	private static final int BENCHMARK_ARES_ID = 900200;
 	private static final int BENCHMARK_NYX_ID = 900201;
@@ -284,6 +287,30 @@ public class LabTelemetry extends Script
 		"effective_heal=VALUES(effective_heal),overheal=VALUES(overheal),mp_used=VALUES(mp_used),time_alive=VALUES(time_alive)," +
 		"hp_cp_remaining=VALUES(hp_cp_remaining),control_time=VALUES(control_time),summon_uptime=VALUES(summon_uptime),notes=VALUES(notes)";
 
+	private static final String CREATE_NYX_CALIBRATION_RUN_TABLE =
+		"CREATE TABLE IF NOT EXISTS lab_nyx_calibration_runs (" +
+		"source_case_id VARCHAR(48) NOT NULL,scale_percent SMALLINT NOT NULL,run_number SMALLINT NOT NULL,executed_ms BIGINT UNSIGNED NOT NULL," +
+		"engine_mode VARCHAR(32) NOT NULL DEFAULT 'CORE_ACCELERATED_SCALED',finalist_rank SMALLINT NOT NULL,category VARCHAR(16) NOT NULL," +
+		"char_id INT NOT NULL,char_name VARCHAR(45) NOT NULL,active_class_id INT NOT NULL,active_class_index SMALLINT NOT NULL," +
+		"opponent_id INT NOT NULL,opponent_name VARCHAR(45) NOT NULL,equipment_kit VARCHAR(32) NOT NULL,weapon_id INT NOT NULL," +
+		"duration_seconds SMALLINT NOT NULL,rotation VARCHAR(512) NOT NULL DEFAULT '',actions INT NOT NULL DEFAULT 0,hits INT NOT NULL DEFAULT 0," +
+		"casts INT NOT NULL DEFAULT 0,critical_count INT NOT NULL DEFAULT 0,miss_count INT NOT NULL DEFAULT 0,bss_used INT NOT NULL DEFAULT 0," +
+		"damage_received DOUBLE NOT NULL DEFAULT 0,time_alive DOUBLE NOT NULL DEFAULT 0,hp_cp_remaining DOUBLE NOT NULL DEFAULT 0," +
+		"control_time DOUBLE NOT NULL DEFAULT 0,notes VARCHAR(512) NOT NULL DEFAULT ''," +
+		"PRIMARY KEY(source_case_id,scale_percent,run_number),KEY idx_lab_nyx_calibration_scale(scale_percent)," +
+		"KEY idx_lab_nyx_calibration_category(category,scale_percent)" +
+		") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+
+	private static final String INSERT_NYX_CALIBRATION_RUN =
+		"INSERT INTO lab_nyx_calibration_runs (source_case_id,scale_percent,run_number,executed_ms,engine_mode,finalist_rank,category," +
+		"char_id,char_name,active_class_id,active_class_index,opponent_id,opponent_name,equipment_kit,weapon_id,duration_seconds," +
+		"rotation,actions,hits,casts,critical_count,miss_count,bss_used,damage_received,time_alive,hp_cp_remaining,control_time,notes) " +
+		"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE executed_ms=VALUES(executed_ms)," +
+		"engine_mode=VALUES(engine_mode),char_id=VALUES(char_id),char_name=VALUES(char_name),active_class_id=VALUES(active_class_id)," +
+		"active_class_index=VALUES(active_class_index),rotation=VALUES(rotation),actions=VALUES(actions),hits=VALUES(hits),casts=VALUES(casts)," +
+		"critical_count=VALUES(critical_count),miss_count=VALUES(miss_count),bss_used=VALUES(bss_used),damage_received=VALUES(damage_received)," +
+		"time_alive=VALUES(time_alive),hp_cp_remaining=VALUES(hp_cp_remaining),control_time=VALUES(control_time),notes=VALUES(notes)";
+
 	private static final String INSERT_EVENT =
 		"INSERT INTO lab_combat_events (occurred_ms,event_type," +
 		"attacker_object_id,attacker_name,attacker_kind,attacker_template_id,attacker_class_id,attacker_level," +
@@ -390,6 +417,7 @@ public class LabTelemetry extends Script
 		ThreadPool.schedule(this::runPairCoverage, 20000);
 		ThreadPool.schedule(this::runFourClassCoverage, 30000);
 		ThreadPool.schedule(this::runCombatBenchmarks, 45000);
+		ThreadPool.schedule(this::runNyxCalibration, 60000);
 	}
 
 	/**
@@ -1295,6 +1323,203 @@ public class LabTelemetry extends Script
 		}
 	}
 
+	/**
+	 * Phase 5A: replays the 30 Nyx resistance cases at four damage scales.
+	 * The original Phase 4D rows remain untouched; only the final damage from
+	 * the real core formula is scaled. Rotation, control, debuffs, equipment
+	 * and class builds are identical across profiles.
+	 */
+	private void runNyxCalibration()
+	{
+		Player player = null;
+		PlayerClass restoreRoot = null;
+		String loadedBuild = "";
+		try
+		{
+			if (countBenchmarkRuns() < EXPECTED_BENCHMARK_RUN_COUNT)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A: espera las 285 pasadas de fase 4D.");
+				return;
+			}
+			final List<BenchmarkCase> cases = loadNyxCalibrationCases();
+			if (cases.size() != EXPECTED_NYX_CALIBRATION_CASE_COUNT)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A: espera 30 casos de resistencia contra Nyx.");
+				return;
+			}
+			final int completed = countNyxCalibrationRuns();
+			if (completed >= EXPECTED_NYX_CALIBRATION_RUN_COUNT)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A: calibracion de Nyx completa (" + completed + "/" + EXPECTED_NYX_CALIBRATION_RUN_COUNT + "); fase 4D permanece intacta.");
+				return;
+			}
+			if (countOnlineCharacters() > 0)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A: hay jugadores conectados; la calibracion se posterga.");
+				return;
+			}
+			final Npc nyx = getBenchmarkNpc(BENCHMARK_NYX_ID);
+			if (nyx == null)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A: espera a Nyx en el Coliseo.");
+				return;
+			}
+
+			final Set<String> completedRuns = loadCompletedNyxCalibrationRuns();
+			int measured = completedRuns.size();
+			int failures = 0;
+			LOGGER.info("Laboratorio L2 fase 5A: calibrando Nyx desde " + measured + "/" + EXPECTED_NYX_CALIBRATION_RUN_COUNT + " pasadas.");
+
+			for (BenchmarkCase benchmark : cases)
+			{
+				if (!benchmark.buildKey().equals(loadedBuild))
+				{
+					if (player != null)
+					{
+						restoreBenchmarkAnchor(player, restoreRoot);
+						player = null;
+					}
+					restoreRoot = rootOf(benchmark.main);
+					player = Player.load(findCharacterId(anchorForRoot(restoreRoot)));
+					if (player == null)
+					{
+						throw new IllegalStateException("No se pudo cargar el ancla para " + benchmark.buildKey() + ".");
+					}
+					CONTROLLED_CAPTURE_IDS.add(player.getObjectId());
+					BENCHMARK_CAPTURE_IDS.add(player.getObjectId());
+					configureBenchmarkBuild(player, benchmark);
+					loadedBuild = benchmark.buildKey();
+				}
+
+				player.setActiveClass(benchmark.activeClassIndex);
+				cleanPairState(player);
+				final List<Item> createdItems = new ArrayList<>();
+				try
+				{
+					equipBenchmarkKit(player, benchmark, createdItems);
+					for (int scalePercent : NYX_CALIBRATION_SCALES)
+					{
+						for (int runNumber = 1; runNumber <= benchmark.repetitions; runNumber++)
+						{
+							final String runKey = benchmark.caseId + ":" + scalePercent + ":" + runNumber;
+							if (completedRuns.contains(runKey))
+							{
+								continue;
+							}
+							try
+							{
+								final BenchmarkResult result = executeNyxCalibrationRun(player, benchmark, runNumber, nyx, scalePercent);
+								storeNyxCalibrationRun(result, benchmark, scalePercent);
+								completedRuns.add(runKey);
+								measured++;
+								if ((measured % 30) == 0)
+								{
+									LOGGER.info("Laboratorio L2 fase 5A: progreso " + measured + "/" + EXPECTED_NYX_CALIBRATION_RUN_COUNT + " pasadas.");
+								}
+							}
+							catch (Exception e)
+							{
+								failures++;
+								LOGGER.log(Level.WARNING, "Laboratorio L2 fase 5A: fallo " + runKey + ".", e);
+							}
+						}
+					}
+				}
+				finally
+				{
+					removeBenchmarkKit(player, createdItems);
+					cleanBenchmarkActors(player, nyx);
+				}
+			}
+			LOGGER.info("Laboratorio L2 fase 5A: recorrido terminado; pasadas=" + countNyxCalibrationRuns() + "/" + EXPECTED_NYX_CALIBRATION_RUN_COUNT + ", fallos=" + failures + ".");
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.WARNING, "Laboratorio L2 fase 5A: no se pudo ejecutar la calibracion de Nyx.", e);
+		}
+		finally
+		{
+			if (player != null)
+			{
+				restoreBenchmarkAnchor(player, restoreRoot);
+			}
+		}
+		try
+		{
+			if (countNyxCalibrationRuns() < EXPECTED_NYX_CALIBRATION_RUN_COUNT)
+			{
+				ThreadPool.schedule(this::runNyxCalibration, 60000);
+			}
+		}
+		catch (SQLException e)
+		{
+			LOGGER.log(Level.WARNING, "Laboratorio L2 fase 5A: no se pudo verificar el progreso final.", e);
+		}
+	}
+
+	private static List<BenchmarkCase> loadNyxCalibrationCases() throws SQLException
+	{
+		final List<BenchmarkCase> result = new ArrayList<>(EXPECTED_NYX_CALIBRATION_CASE_COUNT);
+		final String sql = "SELECT case_id,finalist_rank,category,main_class_id,sub1_class_id,sub2_class_id,sub3_class_id," +
+			"active_class_id,active_class_index,benchmark_code,opponent_id,opponent_name,equipment_kit,weapon_id,duration_seconds,repetitions " +
+			"FROM lab_combat_benchmark_plan WHERE benchmark_code='resistencia_nyx' ORDER BY finalist_rank,priority";
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement(sql); ResultSet rs = ps.executeQuery())
+		{
+			while (rs.next())
+			{
+				result.add(new BenchmarkCase(rs));
+			}
+		}
+		return result;
+	}
+
+	private static int countNyxCalibrationRuns() throws SQLException
+	{
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM lab_nyx_calibration_runs"); ResultSet rs = ps.executeQuery())
+		{
+			return rs.next() ? rs.getInt(1) : 0;
+		}
+	}
+
+	private static Set<String> loadCompletedNyxCalibrationRuns() throws SQLException
+	{
+		final Set<String> result = new HashSet<>();
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT source_case_id,scale_percent,run_number FROM lab_nyx_calibration_runs"); ResultSet rs = ps.executeQuery())
+		{
+			while (rs.next())
+			{
+				result.add(rs.getString(1) + ":" + rs.getInt(2) + ":" + rs.getInt(3));
+			}
+		}
+		return result;
+	}
+
+	private static BenchmarkResult executeNyxCalibrationRun(Player player, BenchmarkCase benchmark, int runNumber, Npc nyx, int scalePercent)
+	{
+		cleanBenchmarkActors(player, nyx);
+		final BenchmarkResult result = new BenchmarkResult(player, benchmark, runNumber);
+		runSurvival(result, player, nyx, new int[] {337, 1064, 1074, 1341, 1239, 1291, 1159}, scalePercent / 100.0);
+		result.notes = "Fase 5A; formula real de Nyx con dano final al " + scalePercent + "%; control, debuffs y cadencia sin escalar.";
+		cleanBenchmarkActors(player, nyx);
+		return result;
+	}
+
+	private static void storeNyxCalibrationRun(BenchmarkResult r, BenchmarkCase benchmark, int scalePercent) throws SQLException
+	{
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement(INSERT_NYX_CALIBRATION_RUN))
+		{
+			int i = 1;
+			ps.setString(i++, r.caseId); ps.setInt(i++, scalePercent); ps.setInt(i++, r.runNumber); ps.setLong(i++, System.currentTimeMillis());
+			ps.setString(i++, "CORE_ACCELERATED_SCALED"); ps.setInt(i++, benchmark.finalistRank); ps.setString(i++, benchmark.category);
+			ps.setInt(i++, r.charId); ps.setString(i++, r.charName); ps.setInt(i++, r.activeClassId); ps.setInt(i++, r.activeClassIndex);
+			ps.setInt(i++, r.opponentId); ps.setString(i++, r.opponentName); ps.setString(i++, r.equipmentKit); ps.setInt(i++, r.weaponId);
+			ps.setInt(i++, r.durationSeconds); ps.setString(i++, r.rotation); ps.setInt(i++, r.actions); ps.setInt(i++, r.hits); ps.setInt(i++, r.casts);
+			ps.setInt(i++, r.criticals); ps.setInt(i++, r.misses); ps.setInt(i++, r.bssUsed); ps.setDouble(i++, r.damageReceived);
+			ps.setDouble(i++, r.timeAlive); ps.setDouble(i++, r.hpCpRemaining); ps.setDouble(i++, r.controlTime); ps.setString(i, r.notes);
+			ps.executeUpdate();
+		}
+	}
+
 	private static int countBenchmarkCases() throws SQLException
 	{
 		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM lab_combat_benchmark_plan"); ResultSet rs = ps.executeQuery())
@@ -1485,8 +1710,8 @@ public class LabTelemetry extends Script
 			case "salida_magica" -> runMagicalOutput(result, player, atlas);
 			case "soporte_sostenido" -> runSupportOutput(result, player);
 			case "salida_invocacion" -> runSummonOutput(result, player, atlas);
-			case "resistencia_ares" -> runSurvival(result, player, ares, new int[] {8, 6, 9, 261, 1});
-			case "resistencia_nyx" -> runSurvival(result, player, nyx, new int[] {337, 1064, 1074, 1341, 1239, 1291, 1159});
+			case "resistencia_ares" -> runSurvival(result, player, ares, new int[] {8, 6, 9, 261, 1}, 1.0);
+			case "resistencia_nyx" -> runSurvival(result, player, nyx, new int[] {337, 1064, 1074, 1341, 1239, 1291, 1159}, 1.0);
 			default -> throw new IllegalArgumentException("Protocolo 4D desconocido: " + benchmark.code);
 		}
 		cleanBenchmarkActors(player, atlas, ares, nyx);
@@ -1739,7 +1964,7 @@ public class LabTelemetry extends Script
 		return false;
 	}
 
-	private static void runSurvival(BenchmarkResult result, Player player, Npc opponent, int[] rotationIds)
+	private static void runSurvival(BenchmarkResult result, Player player, Npc opponent, int[] rotationIds, double damageScale)
 	{
 		final double pool = player.getMaxHp() + player.getMaxCp();
 		double elapsed = 0;
@@ -1813,7 +2038,7 @@ public class LabTelemetry extends Script
 						}
 					}
 				}
-				damage = Math.max(0, damage);
+				damage = Math.max(0, damage) * damageScale;
 				accumulatedDamage += damage;
 				result.hits += damage > 0 ? 1 : 0;
 				result.misses += damage > 0 ? 0 : 1;
@@ -2186,6 +2411,7 @@ public class LabTelemetry extends Script
 			st.executeUpdate(CREATE_PAIR_PROFILE_TABLE);
 			st.executeUpdate(CREATE_FOUR_CLASS_PROFILE_TABLE);
 			st.executeUpdate(CREATE_BENCHMARK_RUN_TABLE);
+			st.executeUpdate(CREATE_NYX_CALIBRATION_RUN_TABLE);
 		}
 		catch (SQLException e)
 		{

@@ -29,12 +29,16 @@ Al 7 de octubre de 2026:
 - Fase 4D completa: 95 casos y 285/285 pasadas de combate controlado.
 - Fase 5A: L2Nyx documentado, 360/360 pasadas de calibración de Nyx y
   progresión mágica Storm Screamer 12/12.
+- Fase 5A.3: Hurricane fija frente a mejor skill, 240/240 pasadas.
 
 La primera ronda 5A demostró que las escalas 100%, 75%, 60% y 50% siguen siendo
 demasiado severas para el objetivo de 10–20 segundos. El NPC original no fue
 modificado; la próxima ronda se concentrará en 30%, 25% y 20%. En paralelo se
 midió un Storm Screamer normal solo y tras añadir Mystic Muse, Archmage y
 Soultaker. Nyx se conserva como rival élite independiente.
+La comparación aislada mostró que Mystic Muse y Archmage no aumentan M.Atk:
+la ventaja práctica aparece porque Aura Flare puede lanzarse 37 veces frente a
+15 Hurricanes, aunque consume proporcionalmente más MP.
 
 ## Base técnica
 

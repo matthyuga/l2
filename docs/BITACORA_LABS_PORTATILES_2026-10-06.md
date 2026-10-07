@@ -714,3 +714,34 @@ en `data/telemetry/`.
 La siguiente medición deberá distinguir una skill fija común —para comparar la
 contribución pura de stats— de la mejor rotación disponible —para medir la utilidad
 real de acumular catálogos de skills—. No se aplicaron buffs ni nerfs.
+
+
+## 22. Fase 5A.3: stats aislados frente a catálogo práctico
+
+Se añadieron dos carriles comparables a la progresión mágica: Hurricane #1239
+nivel 28 fija en todas las etapas y el nuke con mejor potencia/cadencia disponible.
+El protocolo conserva Storm Screamer activa, nivel 80, Atlas, Arcana Mace +0, robe
+S, joyería común S, Blessed Spiritshots y cero buffs externos.
+
+La muestra inicial de tres repeticiones reveló demasiado ruido de críticos, por lo
+que se amplió a treinta repeticiones por carril y etapa: 240/240 pasadas. Hurricane
+promedió 44,23; 43,33; 43,57 y 45,70 DPS. El M.Atk fue idéntico en las primeras
+tres etapas y subió de 1.308,68 a 1.344,96 con Soultaker. La fórmula de raíz
+cuadrada convierte ese +2,77% de M.Atk en aproximadamente +1,38% de daño esperado.
+
+Desde Mystic Muse, el selector práctico elige Aura Flare: 84,03–86,23 DPS, entre
+88,67% y 95,17% por encima de Hurricane fija. Aura Flare pega menos por lanzamiento,
+pero su ciclo de 1.592 ms permite 37 casteos frente a 15 de Hurricane a 3.821 ms.
+El costo es proporcional: 2.553 MP frente a 1.035 MP.
+
+Esto confirma que la build no duplica daño acumulando M.Atk. Duplica la salida
+sostenida al adquirir una skill mucho más rápida. Por balance deben medirse juntos
+potencia, ciclo, cantidad de casteos, MP y contexto, no sólo el número de M.Atk.
+
+Se creó lab_magic_comparison_runs, el endpoint /api/telemetry/magic-comparison y
+el bloque 5A.3 del panel. La auditoría dio cero filas inválidas y preservó 4D,
+calibración de Nyx y 5A.2. Myrentha fue restaurada offline, nivel 1, Dark Mystic,
+sin Subs ni objetos; Nyx Élite permaneció intacta.
+
+Respaldo recuperable: backups/telemetry-phase5a3-2026-10-07. El repositorio
+conserva SQL y resumen JSON en data/telemetry/. No se aplicaron buffs ni nerfs.

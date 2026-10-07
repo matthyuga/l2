@@ -457,3 +457,39 @@ para medir el valor práctico del catálogo acumulado.
 Respaldo local:
 `backups/telemetry-phase5a2-2026-10-07/phase5a2-magic-progression.sql`.
 El volcado y su resumen JSON también están en `data/telemetry/`.
+
+
+## Fase 5A.3 — Hurricane fija frente a mejor skill
+
+El 7 de octubre de 2026 se ejecutó la comparación que separa stats de catálogo.
+Cada uno de los cuatro estados de la progresión 5A.2 se midió en dos carriles:
+Hurricane #1239 nivel 28 fija, y el nuke con mejor relación potencia/cadencia
+disponible. Se ampliaron las muestras de tres a treinta repeticiones por carril y
+etapa para reducir el ruido de críticos: **240/240 pasadas**.
+
+| Etapa | M.Atk | DPS Hurricane | Mejor skill | DPS mejor | Ventaja práctica |
+| --- | ---: | ---: | --- | ---: | ---: |
+| Storm Screamer | 1.308,68 | 44,23 | Hurricane | 44,48 | +0,56% |
+| + Mystic Muse | 1.308,68 | 43,33 | Aura Flare | 84,03 | +93,91% |
+| + Archmage | 1.308,68 | 43,57 | Aura Flare | 85,03 | +95,17% |
+| + Soultaker | 1.344,96 | 45,70 | Aura Flare | 86,23 | +88,67% |
+
+El resultado aclara el origen de la mejora. Mystic Muse y Archmage no elevan M.Atk
+ni casteo; Hurricane permanece alrededor de 43–44 DPS. Soultaker añade 2,77% de
+M.Atk. Como la fórmula local escala aproximadamente con la raíz cuadrada de M.Atk,
+su aporte teórico puro es sólo **+1,38% de daño mágico**, antes de variación y
+críticos.
+
+Aura Flare tiene menos poder y daño por lanzamiento que Hurricane, pero su ciclo
+es de 1.592 ms frente a 3.821 ms. En 60 segundos realiza 37 lanzamientos en lugar
+de 15: +146,67%. Esto produce cerca del doble de DPS, a cambio de consumir 2.553 MP
+en vez de 1.035 MP, también +146,67%. La ganancia dominante procede de la cadencia
+y del catálogo de skills, no de inflar el atributo mágico.
+
+Auditoría: treinta filas exactas por etapa/carril, cero métricas inválidas, 285
+resultados 4D, 360 calibraciones de Nyx y 12 progresiones preservadas. Myrentha
+terminó offline, nivel 1, Dark Mystic, sin Subs ni objetos. Nyx Élite no fue
+modificada.
+
+Respaldo: backups/telemetry-phase5a3-2026-10-07/phase5a3-magic-comparison.sql.
+El repositorio conserva el SQL y el resumen JSON en data/telemetry/.

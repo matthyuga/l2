@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "phase": "5A.3",
+  "capturedAt": "2026-10-07T18:43:29-03:00",
+  "engineMode": "CORE_ACCELERATED",
+  "purpose": "Separar el crecimiento de stats del valor práctico del catálogo acumulado de skills.",
+  "protocol": {
+    "anchor": "Myrentha",
+    "mainClass": "Storm Screamer",
+    "activeClassAtEveryStage": "Storm Screamer",
+    "level": 80,
+    "durationSeconds": 60,
+    "repetitionsPerStageAndLane": 30,
+    "lanes": ["FIXED_HURRICANE", "BEST_AVAILABLE"],
+    "fixedSkill": {"id": 1239, "level": 28, "name": "Hurricane"},
+    "opponent": {"id": 900202, "name": "Atlas"},
+    "weapon": {"id": 6579, "name": "Arcana Mace +0"},
+    "equipment": "Set robe S y joyería S común",
+    "shots": "Blessed Spiritshots S",
+    "externalBuffs": false,
+    "subclassOrder": ["Mystic Muse", "Archmage", "Soultaker"]
+  },
+  "audit": {
+    "runs": 240,
+    "expectedRuns": 240,
+    "runsPerStageAndLane": 30,
+    "badMetricRows": 0,
+    "phase4dRunsPreserved": 285,
+    "nyxCalibrationRunsPreserved": 360,
+    "magicProgressionRunsPreserved": 12,
+    "anchorOnlineAfterRun": false,
+    "anchorLevelAfterRun": 1,
+    "anchorClassAfterRun": "Dark Mystic",
+    "anchorSubclassesAfterRun": 0,
+    "anchorItemsAfterRun": 0,
+    "nyxNpcXmlChanged": false
+  },
+  "stages": [
+    {
+      "index": 0,
+      "label": "Storm Screamer",
+      "classes": ["Storm Screamer"],
+      "magicAttack": 1308.6806,
+      "castSpeed": 366,
+      "fixed": {"skill": "Hurricane", "power": 108, "cycleMs": 3821, "casts": 15, "averageDps": 44.2277, "dpsStandardDeviation": 2.8633, "damagePerCast": 176.9107, "criticalRatePercent": 0.6667, "mpUsed": 1035},
+      "best": {"skill": "Hurricane", "power": 108, "cycleMs": 3821, "casts": 15, "averageDps": 44.4760, "dpsStandardDeviation": 3.8474, "damagePerCast": 177.9038, "criticalRatePercent": 2.2222, "mpUsed": 1035},
+      "bestVsFixedDpsPercent": 0.5614
+    },
+    {
+      "index": 1,
+      "label": "+ Mystic Muse",
+      "classes": ["Storm Screamer", "Mystic Muse"],
+      "magicAttack": 1308.6806,
+      "castSpeed": 366,
+      "fixed": {"skill": "Hurricane", "power": 108, "cycleMs": 3821, "casts": 15, "averageDps": 43.3326, "dpsStandardDeviation": 2.6890, "damagePerCast": 173.3303, "criticalRatePercent": 0.6667, "mpUsed": 1035},
+      "best": {"skill": "Aura Flare", "power": 87, "cycleMs": 1592, "casts": 37, "averageDps": 84.0274, "dpsStandardDeviation": 3.5739, "damagePerCast": 136.2607, "criticalRatePercent": 1.0811, "mpUsed": 2553},
+      "bestVsFixedDpsPercent": 93.9128
+    },
+    {
+      "index": 2,
+      "label": "+ Archmage",
+      "classes": ["Storm Screamer", "Mystic Muse", "Archmage"],
+      "magicAttack": 1308.6806,
+      "castSpeed": 366,
+      "fixed": {"skill": "Hurricane", "power": 108, "cycleMs": 3821, "casts": 15, "averageDps": 43.5658, "dpsStandardDeviation": 3.2742, "damagePerCast": 174.2631, "criticalRatePercent": 0.8889, "mpUsed": 1035},
+      "best": {"skill": "Aura Flare", "power": 87, "cycleMs": 1592, "casts": 37, "averageDps": 85.0279, "dpsStandardDeviation": 3.8957, "damagePerCast": 137.8831, "criticalRatePercent": 1.5315, "mpUsed": 2553},
+      "bestVsFixedDpsPercent": 95.1713
+    },
+    {
+      "index": 3,
+      "label": "+ Soultaker",
+      "classes": ["Storm Screamer", "Mystic Muse", "Archmage", "Soultaker"],
+      "magicAttack": 1344.9620,
+      "castSpeed": 366,
+      "fixed": {"skill": "Hurricane", "power": 108, "cycleMs": 3821, "casts": 15, "averageDps": 45.7027, "dpsStandardDeviation": 2.9974, "damagePerCast": 182.8109, "criticalRatePercent": 2.0000, "mpUsed": 1035},
+      "best": {"skill": "Aura Flare", "power": 87, "cycleMs": 1592, "casts": 37, "averageDps": 86.2277, "dpsStandardDeviation": 4.4352, "damagePerCast": 139.8287, "criticalRatePercent": 1.1712, "mpUsed": 2553},
+      "bestVsFixedDpsPercent": 88.6709
+    }
+  ],
+  "findings": {
+    "masteryStacking": "Mystic Muse y Archmage no cambian M.Atk ni casteo. Soultaker añade 2,77% de M.Atk y no cambia casteo.",
+    "statOnlyExpectedDamageGainPercent": 1.3767,
+    "statOnlyFormula": "El daño mágico local escala aproximadamente con la raíz cuadrada de M.Atk; sqrt(1344.9620/1308.6806)-1.",
+    "catalogValue": "Aura Flare hace menos daño por lanzamiento que Hurricane, pero su ciclo de 1592 ms permite 37 lanzamientos frente a 15 y produce entre 88,67% y 95,17% más DPS que Hurricane fija.",
+    "resourceTradeoff": "Aura Flare usa 2553 MP frente a 1035 MP de Hurricane durante el protocolo: +146,67%.",
+    "balanceInterpretation": "La ganancia principal proviene de acceder a una skill más rápida, no de acumular M.Atk. Cualquier balance debe estudiar skill, cadencia y consumo además del atributo."
+  }
+}

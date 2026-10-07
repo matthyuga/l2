@@ -88,6 +88,10 @@ public class LabTelemetry extends Script
 	private static final int MAGIC_PROGRESSION_DURATION_SECONDS = 60;
 	private static final int MAGIC_PROGRESSION_REPETITIONS = 3;
 	private static final int EXPECTED_MAGIC_PROGRESSION_RUN_COUNT = MAGIC_PROGRESSION_CLASS_IDS.length * MAGIC_PROGRESSION_REPETITIONS;
+	private static final String[] MAGIC_COMPARISON_PROTOCOLS = {"FIXED_HURRICANE", "BEST_AVAILABLE"};
+	private static final int MAGIC_COMPARISON_FIXED_SKILL_ID = 1239;
+	private static final int MAGIC_COMPARISON_REPETITIONS = 30;
+	private static final int EXPECTED_MAGIC_COMPARISON_RUN_COUNT = MAGIC_PROGRESSION_CLASS_IDS.length * MAGIC_COMPARISON_PROTOCOLS.length * MAGIC_COMPARISON_REPETITIONS;
 	private static final int BENCHMARK_ATLAS_ID = 900202;
 	private static final int BENCHMARK_ARES_ID = 900200;
 	private static final int BENCHMARK_NYX_ID = 900201;
@@ -348,6 +352,38 @@ public class LabTelemetry extends Script
 		"casts=VALUES(casts),critical_count=VALUES(critical_count),miss_count=VALUES(miss_count),bss_used=VALUES(bss_used)," +
 		"damage_dealt=VALUES(damage_dealt),dps=VALUES(dps),mp_used=VALUES(mp_used),notes=VALUES(notes)";
 
+	private static final String CREATE_MAGIC_COMPARISON_RUN_TABLE =
+		"CREATE TABLE IF NOT EXISTS lab_magic_comparison_runs (" +
+		"stage_index SMALLINT NOT NULL,protocol VARCHAR(24) NOT NULL,run_number SMALLINT NOT NULL,executed_ms BIGINT UNSIGNED NOT NULL," +
+		"engine_mode VARCHAR(32) NOT NULL DEFAULT 'CORE_ACCELERATED',stage_label VARCHAR(80) NOT NULL," +
+		"main_class_id INT NOT NULL,sub1_class_id INT NOT NULL DEFAULT -1,sub2_class_id INT NOT NULL DEFAULT -1,sub3_class_id INT NOT NULL DEFAULT -1," +
+		"class_count SMALLINT NOT NULL,char_id INT NOT NULL,char_name VARCHAR(45) NOT NULL,active_class_id INT NOT NULL,active_class_index SMALLINT NOT NULL,level SMALLINT NOT NULL," +
+		"skill_count SMALLINT NOT NULL,passive_skill_count SMALLINT NOT NULL,active_skill_count SMALLINT NOT NULL," +
+		"equipment_kit VARCHAR(32) NOT NULL,weapon_id INT NOT NULL,weapon_name VARCHAR(80) NOT NULL," +
+		"m_atk DOUBLE NOT NULL,m_atk_speed DOUBLE NOT NULL,max_mp DOUBLE NOT NULL,duration_seconds SMALLINT NOT NULL," +
+		"selected_skill_id INT NOT NULL,selected_skill_level INT NOT NULL,selected_skill_name VARCHAR(80) NOT NULL," +
+		"selected_skill_power DOUBLE NOT NULL,selected_skill_cycle_ms INT NOT NULL,rotation VARCHAR(512) NOT NULL DEFAULT ''," +
+		"actions INT NOT NULL DEFAULT 0,hits INT NOT NULL DEFAULT 0,casts INT NOT NULL DEFAULT 0,critical_count INT NOT NULL DEFAULT 0," +
+		"miss_count INT NOT NULL DEFAULT 0,bss_used INT NOT NULL DEFAULT 0,damage_dealt DOUBLE NOT NULL DEFAULT 0,dps DOUBLE NOT NULL DEFAULT 0," +
+		"mp_used DOUBLE NOT NULL DEFAULT 0,notes VARCHAR(512) NOT NULL DEFAULT ''," +
+		"PRIMARY KEY(stage_index,protocol,run_number),KEY idx_lab_magic_comparison_time(executed_ms)" +
+		") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+
+	private static final String INSERT_MAGIC_COMPARISON_RUN =
+		"INSERT INTO lab_magic_comparison_runs (stage_index,protocol,run_number,executed_ms,engine_mode,stage_label," +
+		"main_class_id,sub1_class_id,sub2_class_id,sub3_class_id,class_count,char_id,char_name,active_class_id,active_class_index,level," +
+		"skill_count,passive_skill_count,active_skill_count,equipment_kit,weapon_id,weapon_name,m_atk,m_atk_speed,max_mp,duration_seconds," +
+		"selected_skill_id,selected_skill_level,selected_skill_name,selected_skill_power,selected_skill_cycle_ms,rotation," +
+		"actions,hits,casts,critical_count,miss_count,bss_used,damage_dealt,dps,mp_used,notes) " +
+		"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) " +
+		"ON DUPLICATE KEY UPDATE executed_ms=VALUES(executed_ms),stage_label=VALUES(stage_label),class_count=VALUES(class_count)," +
+		"skill_count=VALUES(skill_count),passive_skill_count=VALUES(passive_skill_count),active_skill_count=VALUES(active_skill_count)," +
+		"m_atk=VALUES(m_atk),m_atk_speed=VALUES(m_atk_speed),max_mp=VALUES(max_mp),selected_skill_id=VALUES(selected_skill_id)," +
+		"selected_skill_level=VALUES(selected_skill_level),selected_skill_name=VALUES(selected_skill_name)," +
+		"selected_skill_power=VALUES(selected_skill_power),selected_skill_cycle_ms=VALUES(selected_skill_cycle_ms),rotation=VALUES(rotation)," +
+		"actions=VALUES(actions),hits=VALUES(hits),casts=VALUES(casts),critical_count=VALUES(critical_count),miss_count=VALUES(miss_count)," +
+		"bss_used=VALUES(bss_used),damage_dealt=VALUES(damage_dealt),dps=VALUES(dps),mp_used=VALUES(mp_used),notes=VALUES(notes)";
+
 	private static final String INSERT_EVENT =
 		"INSERT INTO lab_combat_events (occurred_ms,event_type," +
 		"attacker_object_id,attacker_name,attacker_kind,attacker_template_id,attacker_class_id,attacker_level," +
@@ -456,6 +492,7 @@ public class LabTelemetry extends Script
 		ThreadPool.schedule(this::runCombatBenchmarks, 45000);
 		ThreadPool.schedule(this::runNyxCalibration, 60000);
 		ThreadPool.schedule(this::runMagicProgression, 75000);
+		ThreadPool.schedule(this::runMagicComparison, 105000);
 	}
 
 	/**
@@ -1728,6 +1765,180 @@ public class LabTelemetry extends Script
 		}
 	}
 
+	/**
+	 * Phase 5A.3: compares the same Hurricane in every cumulative stage against
+	 * the best nuke available to that build. This separates stat growth from the
+	 * practical value of the accumulated skill catalog.
+	 */
+	private void runMagicComparison()
+	{
+		Player player = null;
+		final PlayerClass restoreRoot = PlayerClass.getPlayerClass(38); // Dark Mystic.
+		try
+		{
+			if (countMagicComparisonRuns() >= EXPECTED_MAGIC_COMPARISON_RUN_COUNT)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A.3: comparacion magica completa (" + EXPECTED_MAGIC_COMPARISON_RUN_COUNT + "/" + EXPECTED_MAGIC_COMPARISON_RUN_COUNT + ").");
+				return;
+			}
+			if (countMagicProgressionRuns() < EXPECTED_MAGIC_PROGRESSION_RUN_COUNT)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A.3: espera a que termine la progresion 5A.2.");
+				ThreadPool.schedule(this::runMagicComparison, 60000);
+				return;
+			}
+			if (countOnlineCharacters() > 0)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A.3: hay jugadores conectados; la comparacion se posterga.");
+				ThreadPool.schedule(this::runMagicComparison, 60000);
+				return;
+			}
+			final Npc atlas = getBenchmarkNpc(BENCHMARK_ATLAS_ID);
+			if (atlas == null)
+			{
+				LOGGER.info("Laboratorio L2 fase 5A.3: espera a Atlas en el Coliseo.");
+				ThreadPool.schedule(this::runMagicComparison, 60000);
+				return;
+			}
+
+			final PlayerClass mainClass = PlayerClass.getPlayerClass(MAGIC_PROGRESSION_CLASS_IDS[0]);
+			player = Player.load(findCharacterId(anchorForRoot(restoreRoot)));
+			if ((player == null) || (mainClass == null))
+			{
+				throw new IllegalStateException("No se pudo cargar el ancla Dark Mystic o Storm Screamer.");
+			}
+			CONTROLLED_CAPTURE_IDS.add(player.getObjectId());
+			BENCHMARK_CAPTURE_IDS.add(player.getObjectId());
+			prepareAnchor(player);
+			configureCleanClass(player, mainClass, CLEAN_PROFILE_LEVEL);
+			final Set<String> completedRuns = loadCompletedMagicComparisonRuns();
+			int measured = completedRuns.size();
+
+			for (int stage = 0; stage < MAGIC_PROGRESSION_CLASS_IDS.length; stage++)
+			{
+				if (stage > 0)
+				{
+					final PlayerClass subClass = PlayerClass.getPlayerClass(MAGIC_PROGRESSION_CLASS_IDS[stage]);
+					if ((subClass == null) || !player.addSubClass(subClass.getId(), stage))
+					{
+						throw new IllegalStateException("No se pudo agregar Sub " + stage + " " + MAGIC_PROGRESSION_CLASS_IDS[stage] + ".");
+					}
+					player.setActiveClass(stage);
+					maximizeActiveClass(player, CLEAN_PROFILE_LEVEL);
+				}
+				player.setActiveClass(0);
+				cleanPairState(player);
+
+				final List<Item> createdItems = new ArrayList<>();
+				try
+				{
+					equipMagicProgressionKit(player, createdItems);
+					final CreatureSnapshot snapshot = new CreatureSnapshot(player);
+					int passiveSkills = 0;
+					for (Skill skill : player.getAllSkills())
+					{
+						if (skill.isPassive())
+						{
+							passiveSkills++;
+						}
+					}
+
+					for (String protocol : MAGIC_COMPARISON_PROTOCOLS)
+					{
+						final Skill selectedSkill = "FIXED_HURRICANE".equals(protocol) ? player.getKnownSkill(MAGIC_COMPARISON_FIXED_SKILL_ID) : selectDamageSkill(player, true);
+						if (selectedSkill == null)
+						{
+							throw new IllegalStateException("No se encontro la skill para el protocolo " + protocol + " en la etapa " + stage + ".");
+						}
+						for (int runNumber = 1; runNumber <= MAGIC_COMPARISON_REPETITIONS; runNumber++)
+						{
+							final String runKey = stage + ":" + protocol + ":" + runNumber;
+							if (completedRuns.contains(runKey))
+							{
+								continue;
+							}
+							final BenchmarkResult result = new BenchmarkResult(player, "magic-comparison-" + stage + "-" + protocol, runNumber,
+								MAGIC_PROGRESSION_DURATION_SECONDS, BENCHMARK_ATLAS_ID, "Atlas", "S_ROBE", MAGIC_PROGRESSION_WEAPON_ID);
+							cleanBenchmarkActors(player, atlas);
+							runMagicalOutput(result, player, atlas, selectedSkill,
+								"FIXED_HURRICANE".equals(protocol) ?
+									"Skill fija Hurricane; formula magica real, MP finito y Blessed Spiritshot S." :
+									"Mejor nuke por potencia/cadencia; formula magica real, MP finito y Blessed Spiritshot S.");
+							storeMagicComparisonRun(stage, protocol, result, snapshot, passiveSkills, selectedSkill, player, atlas);
+							completedRuns.add(runKey);
+							measured++;
+							LOGGER.info("Laboratorio L2 fase 5A.3: progreso " + measured + "/" + EXPECTED_MAGIC_COMPARISON_RUN_COUNT +
+								" (" + MAGIC_PROGRESSION_LABELS[stage] + ", " + protocol + ").");
+						}
+					}
+				}
+				finally
+				{
+					removeBenchmarkKit(player, createdItems);
+					cleanBenchmarkActors(player, atlas);
+				}
+			}
+			LOGGER.info("Laboratorio L2 fase 5A.3: comparacion terminada; pasadas=" + countMagicComparisonRuns() + "/" + EXPECTED_MAGIC_COMPARISON_RUN_COUNT + ".");
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.WARNING, "Laboratorio L2 fase 5A.3: no se pudo medir la comparacion magica.", e);
+		}
+		finally
+		{
+			if (player != null)
+			{
+				restoreBenchmarkAnchor(player, restoreRoot);
+			}
+		}
+	}
+
+	private static int countMagicComparisonRuns() throws SQLException
+	{
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM lab_magic_comparison_runs"); ResultSet rs = ps.executeQuery())
+		{
+			return rs.next() ? rs.getInt(1) : 0;
+		}
+	}
+
+	private static Set<String> loadCompletedMagicComparisonRuns() throws SQLException
+	{
+		final Set<String> result = new HashSet<>();
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT stage_index,protocol,run_number FROM lab_magic_comparison_runs"); ResultSet rs = ps.executeQuery())
+		{
+			while (rs.next())
+			{
+				result.add(rs.getInt(1) + ":" + rs.getString(2) + ":" + rs.getInt(3));
+			}
+		}
+		return result;
+	}
+
+	private static void storeMagicComparisonRun(int stage, String protocol, BenchmarkResult r, CreatureSnapshot s, int passiveSkills, Skill skill, Player player, Npc target) throws SQLException
+	{
+		final int sub1 = stage >= 1 ? MAGIC_PROGRESSION_CLASS_IDS[1] : -1;
+		final int sub2 = stage >= 2 ? MAGIC_PROGRESSION_CLASS_IDS[2] : -1;
+		final int sub3 = stage >= 3 ? MAGIC_PROGRESSION_CLASS_IDS[3] : -1;
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement(INSERT_MAGIC_COMPARISON_RUN))
+		{
+			int i = 1;
+			ps.setInt(i++, stage); ps.setString(i++, protocol); ps.setInt(i++, r.runNumber); ps.setLong(i++, System.currentTimeMillis());
+			ps.setString(i++, "CORE_ACCELERATED"); ps.setString(i++, MAGIC_PROGRESSION_LABELS[stage]); ps.setInt(i++, MAGIC_PROGRESSION_CLASS_IDS[0]);
+			ps.setInt(i++, sub1); ps.setInt(i++, sub2); ps.setInt(i++, sub3); ps.setInt(i++, stage + 1);
+			ps.setInt(i++, r.charId); ps.setString(i++, r.charName); ps.setInt(i++, r.activeClassId); ps.setInt(i++, r.activeClassIndex); ps.setInt(i++, s.level);
+			ps.setInt(i++, s.skillCount); ps.setInt(i++, passiveSkills); ps.setInt(i++, s.skillCount - passiveSkills);
+			ps.setString(i++, r.equipmentKit); ps.setInt(i++, r.weaponId); ps.setString(i++, "Arcana Mace");
+			ps.setDouble(i++, s.mAtk); ps.setDouble(i++, s.mAtkSpeed); ps.setDouble(i++, s.maxMp); ps.setInt(i++, r.durationSeconds);
+			ps.setInt(i++, skill.getId()); ps.setInt(i++, skill.getLevel()); ps.setString(i++, skill.getName());
+			ps.setDouble(i++, skill.getPower(player, target, false, false)); ps.setInt(i++, skillCycleMs(player, skill)); ps.setString(i++, r.rotation);
+			ps.setInt(i++, r.actions); ps.setInt(i++, r.hits); ps.setInt(i++, r.casts); ps.setInt(i++, r.criticals);
+			ps.setInt(i++, r.misses); ps.setInt(i++, r.bssUsed); ps.setDouble(i++, r.damageDealt);
+			ps.setDouble(i++, r.damageDealt / Math.max(1, r.durationSeconds)); ps.setDouble(i++, r.mpUsed); ps.setString(i, r.notes);
+			ps.executeUpdate();
+		}
+	}
+
+
 	private static int countBenchmarkCases() throws SQLException
 	{
 		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM lab_combat_benchmark_plan"); ResultSet rs = ps.executeQuery())
@@ -1956,6 +2167,11 @@ public class LabTelemetry extends Script
 	private static void runMagicalOutput(BenchmarkResult result, Player player, Npc target)
 	{
 		final Skill skill = selectDamageSkill(player, true);
+		runMagicalOutput(result, player, target, skill, "Mejor nuke por potencia/cadencia; formula magica real, MP finito y Blessed Spiritshot S.");
+	}
+
+	private static void runMagicalOutput(BenchmarkResult result, Player player, Npc target, Skill skill, String notes)
+	{
 		if (skill == null)
 		{
 			throw new IllegalStateException("La clase " + player.getPlayerClass().getId() + " no tiene una skill magica de dano.");
@@ -1991,7 +2207,7 @@ public class LabTelemetry extends Script
 			}
 		}
 		result.ownerDamage = result.damageDealt;
-		result.notes = "Mejor nuke por potencia/cadencia; formula magica real, MP finito y Blessed Spiritshot S.";
+		result.notes = notes;
 	}
 
 	private static void runSupportOutput(BenchmarkResult result, Player player)
@@ -2628,6 +2844,7 @@ public class LabTelemetry extends Script
 			st.executeUpdate(CREATE_BENCHMARK_RUN_TABLE);
 			st.executeUpdate(CREATE_NYX_CALIBRATION_RUN_TABLE);
 			st.executeUpdate(CREATE_MAGIC_PROGRESSION_RUN_TABLE);
+			st.executeUpdate(CREATE_MAGIC_COMPARISON_RUN_TABLE);
 		}
 		catch (SQLException e)
 		{

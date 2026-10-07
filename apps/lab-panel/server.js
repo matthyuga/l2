@@ -777,6 +777,81 @@ async function telemetryMagicProgression() {
   return { expectedRuns: 12, totalRuns: stages.reduce(function(sum,item){return sum+item.runs;},0), stages: stages, elite: elite };
 }
 
+async function telemetryMagicComparison() {
+  let rows = [];
+  try {
+    rows = await database.query(
+      'SELECT stage_index,protocol,MIN(stage_label) stage_label,MIN(main_class_id) main_class_id,'+
+      'MIN(sub1_class_id) sub1_class_id,MIN(sub2_class_id) sub2_class_id,MIN(sub3_class_id) sub3_class_id,'+
+      'MIN(class_count) class_count,COUNT(*) runs,AVG(skill_count) skill_count,AVG(passive_skill_count) passive_skill_count,'+
+      'AVG(active_skill_count) active_skill_count,AVG(m_atk) m_atk,AVG(m_atk_speed) m_atk_speed,AVG(max_mp) max_mp,'+
+      'MIN(selected_skill_id) selected_skill_id,MIN(selected_skill_level) selected_skill_level,'+
+      'MIN(selected_skill_name) selected_skill_name,AVG(selected_skill_power) selected_skill_power,'+
+      'AVG(selected_skill_cycle_ms) selected_skill_cycle_ms,AVG(damage_dealt) damage_dealt,AVG(dps) dps,'+
+      'AVG(casts) casts,AVG(critical_count/NULLIF(casts,0))*100 critical_rate,AVG(mp_used) mp_used,MIN(rotation) rotation '+
+      'FROM lab_magic_comparison_runs GROUP BY stage_index,protocol ORDER BY stage_index,protocol'
+    );
+  } catch (error) {
+    if (error && error.code === 'ER_NO_SUCH_TABLE') return { expectedRuns: 240, totalRuns: 0, stages: [] };
+    throw error;
+  }
+
+  function percent(value, base) {
+    value = Number(value || 0); base = Number(base || 0);
+    return base ? ((value / base) - 1) * 100 : 0;
+  }
+  function profile(row) {
+    if (!row) return null;
+    const casts = Number(row.casts);
+    const damage = Number(row.damage_dealt);
+    return {
+      protocol: row.protocol, runs: Number(row.runs),
+      skill: {
+        id: Number(row.selected_skill_id), level: Number(row.selected_skill_level), name: row.selected_skill_name,
+        power: Number(row.selected_skill_power), cycleMs: Number(row.selected_skill_cycle_ms)
+      },
+      mAtk: Number(row.m_atk), mAtkSpeed: Number(row.m_atk_speed), maxMp: Number(row.max_mp),
+      skillCount: Number(row.skill_count), passiveSkills: Number(row.passive_skill_count), activeSkills: Number(row.active_skill_count),
+      damage: damage, dps: Number(row.dps), casts: casts, criticalRate: Number(row.critical_rate),
+      mpUsed: Number(row.mp_used), damagePerCast: casts ? damage / casts : 0, rotation: row.rotation
+    };
+  }
+
+  const grouped = {};
+  rows.forEach(function (row) {
+    const index = Number(row.stage_index);
+    if (!grouped[index]) grouped[index] = { row: row, protocols: {} };
+    grouped[index].protocols[row.protocol] = row;
+  });
+  const stages = Object.keys(grouped).map(Number).sort(function (a, b) { return a - b; }).map(function (index) {
+    const group = grouped[index];
+    const fixed = profile(group.protocols.FIXED_HURRICANE);
+    const best = profile(group.protocols.BEST_AVAILABLE);
+    const row = group.row;
+    return {
+      index: index, label: row.stage_label, classCount: Number(row.class_count),
+      main: classInfo(row.main_class_id),
+      subclasses: [row.sub1_class_id,row.sub2_class_id,row.sub3_class_id].map(Number).filter(function(id){return id >= 0;}).map(classInfo),
+      fixed: fixed, best: best,
+      bestVsFixed: {
+        dps: best && fixed ? percent(best.dps, fixed.dps) : 0,
+        damagePerCast: best && fixed ? percent(best.damagePerCast, fixed.damagePerCast) : 0,
+        casts: best && fixed ? percent(best.casts, fixed.casts) : 0
+      }
+    };
+  });
+  const baseFixed = stages.length ? stages[0].fixed : null;
+  stages.forEach(function (stage) {
+    stage.statEffect = {
+      mAtk: stage.fixed && baseFixed ? percent(stage.fixed.mAtk, baseFixed.mAtk) : 0,
+      expectedMagicDamage: stage.fixed && baseFixed && baseFixed.mAtk ? (Math.sqrt(stage.fixed.mAtk / baseFixed.mAtk) - 1) * 100 : 0,
+      observedFixedDps: stage.fixed && baseFixed ? percent(stage.fixed.dps, baseFixed.dps) : 0
+    };
+  });
+  return { expectedRuns: 240, totalRuns: rows.reduce(function(sum,row){return sum+Number(row.runs);},0), stages: stages };
+}
+
+
 async function api(req, res, url) {
   const route = url.pathname;
   if (req.method === 'GET' && route === '/api/status') {
@@ -841,6 +916,7 @@ async function api(req, res, url) {
 	if (req.method === 'GET' && route === '/api/telemetry/benchmarks') return json(res, 200, await telemetryBenchmarks());
 	if (req.method === 'GET' && route === '/api/telemetry/nyx-calibration') return json(res, 200, await telemetryNyxCalibration());
 	if (req.method === 'GET' && route === '/api/telemetry/magic-progression') return json(res, 200, await telemetryMagicProgression());
+	if (req.method === 'GET' && route === '/api/telemetry/magic-comparison') return json(res, 200, await telemetryMagicComparison());
 	if (req.method === 'GET' && route === '/api/telemetry/external-references') return json(res, 200, externalReferences());
   match = route.match(/^\/api\/telemetry\/fights\/(\d+)$/);
   if (match && req.method === 'GET') {

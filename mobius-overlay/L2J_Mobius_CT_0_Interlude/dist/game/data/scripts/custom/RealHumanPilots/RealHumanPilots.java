@@ -57,6 +57,11 @@ public class RealHumanPilots extends Script
                 new int[]{6383,6384,6385,6386,858,858,889,889,920,6608,6377}, new int[]{175,180}, MAGE_BUFFS);
             prepareOne("Morvain", "telemetryf", false, 95, Race.HUMAN, "SOULTAKER", 1234,
                 new int[]{6383,6384,6385,6386,858,858,889,889,920,6608,6377}, new int[]{175,180}, MAGE_BUFFS);
+            // Existing telemetry accounts already have seven characters each.
+            prepareOne("Velith", "telemetryx", true, 110, Race.DARK_ELF, "STORM_DARK_ELF", 1239,
+                new int[]{6383,6384,6385,6386,858,858,889,889,920,6608,6377}, new int[]{175,180}, MAGE_BUFFS);
+            prepareOne("Sylira", "telemetryx", true, 110, Race.ELF, "STORM_ELF", 1239,
+                new int[]{6383,6384,6385,6386,858,858,889,889,920,6608,6377}, new int[]{175,180}, MAGE_BUFFS);
         }
         catch (Exception e)
         {

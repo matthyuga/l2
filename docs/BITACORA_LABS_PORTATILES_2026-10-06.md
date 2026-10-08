@@ -953,3 +953,17 @@ conserva la raza visual/guardada, pero los atributos base provienen de la
 plantilla de clase activa. Un ELF con clase 110 no tiene automáticamente los
 atributos base raciales de ELF; no se modificó esta regla ni se publicaron
 stats de ese personaje como si la raza ya estuviera aislada.
+
+### 8 de octubre: prueba cruzada Storm Screamer en dos razas
+
+El usuario pidió ambas variantes. Se crearon Velith `268473890` (DARK_ELF) y
+Sylira `268473929` (ELF), ambas Storm Screamer 110, nivel 80, cero subs,
+femeninas, mismo equipo mágico +4, dyes y buffs. Cuenta de agrupación nueva
+`telemetryx` (las dos anteriores ya tienen siete personajes cada una).
+Verificadas tras recarga, 74 skills y 20 efectos. Comparación automática:
+PAPERDOLL/enchant, dyes y efectos iguales; 29 valores registrados iguales.
+M.Atk 4727.93, casteo 1125, HP 5191, CP 1479, MP 4951; INT/WIT/MEN 49/24/27
+en ambas. La raza guardada/apariencia no gobierna los atributos base actuales;
+ambas usan stats de plantilla Storm Screamer. No se corrigió el core ni se
+retocaron stats para fabricar diferencias. Resultado completo en la receta.
+Respaldo: `backups/storm-race-comparison-2026-10-08`. Reinicio sin clientes.

@@ -130,8 +130,46 @@ Atk.Speed 413, HP 5356, CP 1526, MP 5060; STR/DEX/CON 22/21/27,
 INT/WIT/MEN 46/25/29. Coincide con Ignara en estos stats bajo la misma receta,
 pero no en su conjunto de skills ni necesariamente en desempeño de combate.
 
-El Spellhowler solicitado está pendiente de aclarar raza: DARK_ELF original
-o ELF claro conservado con Storm Screamer. El core conserva la raza guardada,
-pero los seis atributos base todavía proceden de la plantilla de clase activa;
-un cambio sólo de `_race` no transforma esos atributos. No se cambió esta
-semántica como parte de crear los pilotos.
+## Comparación Storm Screamer: elfo oscuro frente a elfo claro
+
+El usuario pidió crear los dos: Velith (DARK_ELF) y Sylira (ELF), ambas Storm
+Screamer 110, femeninas, nivel 80, sin subclases. Equipo, dyes y buffs mágicos
+idénticos a Ignara/Aelira/Morvain. No se modifican atributos manualmente ni
+el core para fabricar una diferencia entre ellas.
+
+Se agrupan en `telemetryx` porque telemetryf y telemetrym ya tienen siete
+personajes cada una. Player.create guarda estos personajes; esta tarea no
+establece una contraseña para esa cuenta. El login local permite registro
+automático normal al entrar con un usuario nuevo.
+
+El core conserva la raza guardada, pero los seis atributos base todavía
+proceden de la plantilla de clase activa; un cambio sólo de `_race` no
+transforma esos atributos. No se cambió esa semántica en esta prueba.
+
+Ambas ya creadas y verificadas: Velith `268473890` (race=2, DARK_ELF), Sylira
+`268473929` (race=1, ELF). Se compararon las filas PAPERDOLL con enchant,
+hennas, effect_key, cantidad de skills y 29 valores de `lab_player_stats`:
+equipo, dyes y buffs idénticos, 74 skills y 20 efectos cada una, cero subs.
+No hay diferencias en ninguno de los 29 valores, salvo identidad y tiempo
+de captura que se excluyeron de la comparación.
+
+| Stat | Velith DARK_ELF | Sylira ELF |
+|---|---:|---:|
+| P.Atk | 516,08 | 516,08 |
+| M.Atk | 4.727,93 | 4.727,93 |
+| P.Def | 929,35 | 929,35 |
+| M.Def | 1.477,03 | 1.477,03 |
+| Atk. Speed | 422 | 422 |
+| Casting Speed | 1.125 | 1.125 |
+| HP / CP / MP | 5191 / 1479 / 4951 | 5191 / 1479 / 4951 |
+| Accuracy / Evasion | 129 / 110 | 129 / 110 |
+| Physical / Magic critical (valores internos) | 41 / 190 | 41 / 190 |
+| Run Speed | 168,528 | 168,528 |
+| STR / DEX / CON | 23 / 23 / 24 | 23 / 23 / 24 |
+| INT / WIT / MEN | 49 / 24 / 27 | 49 / 24 / 27 |
+
+Conclusión: la identidad racial persiste correctamente, pero la raza guardada
+no gobierna los atributos base del motor actual. No concluir que elfo claro
+y oscuro son equivalentes; el cruce ELF/Storm Screamer está recibiendo la
+plantilla de stats de esa clase. Corregir una separación real raza/clase
+sería un cambio de core y de reglas globales, no un ajuste manual de estos NPC.

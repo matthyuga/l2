@@ -55,6 +55,8 @@ public class RealHumanPilots extends Script
                 new int[]{6383,6384,6385,6386,858,858,889,889,920,6608,6377}, new int[]{180}, MAGE_BUFFS);
             prepareOne("Aelira", "telemetrym", true, 103, Race.ELF, "MYSTIC_MUSE", 1235,
                 new int[]{6383,6384,6385,6386,858,858,889,889,920,6608,6377}, new int[]{175,180}, MAGE_BUFFS);
+            prepareOne("Morvain", "telemetryf", false, 95, Race.HUMAN, "SOULTAKER", 1234,
+                new int[]{6383,6384,6385,6386,858,858,889,889,920,6608,6377}, new int[]{175,180}, MAGE_BUFFS);
         }
         catch (Exception e)
         {

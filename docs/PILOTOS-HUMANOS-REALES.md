@@ -116,3 +116,22 @@ idénticas antes/después de recarga. Capturas visibles en Personajes del panel.
 
 Son clases distintas de razas distintas y con dyes legales distintos; no es
 una comparación aislada del efecto de la raza. No se midió combate ni DPS.
+
+## Soultaker humano
+
+Morvain se añade como HUMAN, masculino, Soultaker 95, nivel 80, sin subclases,
+en `telemetryf` (séptimo personaje de esa cuenta). Equipo, dyes y buffs mágicos
+idénticos a Ignara. No activa Transfer Pain, invocaciones ni otros toggles
+automáticamente; esta captura es la referencia de principal equipada/buffeada.
+
+Creado y verificado por recarga: `268473971`, 81 skills, 20 efectos, cero subs.
+M.Atk 4221.08, P.Atk 496.23, P.Def 929.35, M.Def 1508.38, casteo 1180,
+Atk.Speed 413, HP 5356, CP 1526, MP 5060; STR/DEX/CON 22/21/27,
+INT/WIT/MEN 46/25/29. Coincide con Ignara en estos stats bajo la misma receta,
+pero no en su conjunto de skills ni necesariamente en desempeño de combate.
+
+El Spellhowler solicitado está pendiente de aclarar raza: DARK_ELF original
+o ELF claro conservado con Storm Screamer. El core conserva la raza guardada,
+pero los seis atributos base todavía proceden de la plantilla de clase activa;
+un cambio sólo de `_race` no transforma esos atributos. No se cambió esta
+semántica como parte de crear los pilotos.

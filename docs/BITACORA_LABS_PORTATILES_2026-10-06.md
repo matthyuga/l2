@@ -938,3 +938,18 @@ completas en `PILOTOS-HUMANOS-REALES.md` y Personajes del laboratorio.
 No se modificó Hellkevin, no se añadieron subs ni activables automáticos y no
 se reemplazaron los nueve NPC. Reinicio sin clientes conectados. Respaldo:
 `backups/orc-elf-real-pilots-2026-10-08`.
+
+### 8 de octubre: Soultaker humano y aclaración de Spellhowler
+
+Creado Morvain `268473971`, humano Soultaker (95), nivel 80, cero subs, equipo,
+dyes y buffs mágicos iguales a Ignara. Verificado por recarga: 81 skills,
+20 efectos, M.Atk 4221.08, casteo 1180, HP 5356, CP 1526 y MP 5060.
+Reinicio sin clientes conectados. Respaldo:
+`backups/soultaker-storm-pilots-2026-10-08`.
+
+El segundo piloto «elfo Spellhowler» queda pendiente de aclaración explícita:
+elfo oscuro original o elfo claro con Storm Screamer. Se detectó que el core
+conserva la raza visual/guardada, pero los atributos base provienen de la
+plantilla de clase activa. Un ELF con clase 110 no tiene automáticamente los
+atributos base raciales de ELF; no se modificó esta regla ni se publicaron
+stats de ese personaje como si la raza ya estuviera aislada.

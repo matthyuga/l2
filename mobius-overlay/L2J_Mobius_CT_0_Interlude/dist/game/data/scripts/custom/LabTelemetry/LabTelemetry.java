@@ -57,8 +57,10 @@ import org.l2jmobius.gameserver.mechanics.effects.EffectType;
 import org.l2jmobius.gameserver.mechanics.skill.BuffInfo;
 import org.l2jmobius.gameserver.mechanics.skill.EffectScope;
 import org.l2jmobius.gameserver.mechanics.skill.Skill;
+import org.l2jmobius.gameserver.mechanics.stats.Calculator;
 import org.l2jmobius.gameserver.mechanics.stats.Formulas;
 import org.l2jmobius.gameserver.mechanics.stats.Stat;
+import org.l2jmobius.gameserver.mechanics.stats.functions.AbstractFunction;
 import org.l2jmobius.gameserver.network.Disconnection;
 
 /**
@@ -92,7 +94,7 @@ public class LabTelemetry extends Script
 	private static final int MAGIC_COMPARISON_FIXED_SKILL_ID = 1239;
 	private static final int MAGIC_COMPARISON_REPETITIONS = 30;
 	private static final int EXPECTED_MAGIC_COMPARISON_RUN_COUNT = MAGIC_PROGRESSION_CLASS_IDS.length * MAGIC_COMPARISON_PROTOCOLS.length * MAGIC_COMPARISON_REPETITIONS;
-	private static final int[] PHYSICAL_RACE_ROOT_CLASS_IDS = {0}; // Human Fighter first; extend for cross-race replication.
+	private static final int[] PHYSICAL_RACE_ROOT_CLASS_IDS = {0, 18, 31, 44, 53}; // Human, Elf, Dark Elf, Orc and Dwarf fighter roots.
 	private static final int[] PHYSICAL_RACE_CLASS_IDS = {89, 113, 117, 118}; // Dreadnought + Titan + Fortune Seeker + Maestro.
 	private static final String[] PHYSICAL_RACE_STAGE_LABELS = {"Dreadnought", "+ Titan", "+ Fortune Seeker", "+ Maestro"};
 	private static final String[] PHYSICAL_RACE_PROTOCOLS = {"FIXED_AUTOATTACK", "BEST_COMPATIBLE"};
@@ -426,6 +428,16 @@ public class LabTelemetry extends Script
 		"actions=VALUES(actions),hits=VALUES(hits),casts=VALUES(casts),critical_count=VALUES(critical_count),miss_count=VALUES(miss_count)," +
 		"soulshots_used=VALUES(soulshots_used),damage_dealt=VALUES(damage_dealt),dps=VALUES(dps),mp_used=VALUES(mp_used),notes=VALUES(notes)";
 
+	private static final String CREATE_PHYSICAL_RACE_DIAGNOSTIC_TABLE =
+		"CREATE TABLE IF NOT EXISTS lab_physical_race_diagnostics (" +
+		"anchor_root_class_id INT NOT NULL PRIMARY KEY,race_id SMALLINT NOT NULL,race_name VARCHAR(20) NOT NULL," +
+		"observed_ms BIGINT UNSIGNED NOT NULL,class_id INT NOT NULL,skill_count SMALLINT NOT NULL," +
+		"polearm_mastery_level INT NOT NULL,weapon_id INT NOT NULL,weapon_type VARCHAR(32) NOT NULL," +
+		"worn_mask BIGINT UNSIGNED NOT NULL,weapon_mask BIGINT UNSIGNED NOT NULL,mastery_passive_present BOOLEAN NOT NULL," +
+		"passive_effect_count SMALLINT NOT NULL,skill_key MEDIUMTEXT NOT NULL,p_atk_with_mastery DOUBLE NOT NULL," +
+		"p_atk_without_mastery DOUBLE NOT NULL,p_atk_after_readd DOUBLE NOT NULL" +
+		") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+
 	private static final String INSERT_EVENT =
 		"INSERT INTO lab_combat_events (occurred_ms,event_type," +
 		"attacker_object_id,attacker_name,attacker_kind,attacker_template_id,attacker_class_id,attacker_level," +
@@ -536,6 +548,7 @@ public class LabTelemetry extends Script
 		ThreadPool.schedule(this::runMagicProgression, 75000);
 		ThreadPool.schedule(this::runMagicComparison, 105000);
 		ThreadPool.schedule(this::runPhysicalRaceBaseline, 135000);
+		ThreadPool.schedule(this::capturePhysicalRaceDiagnostics, 20000);
 	}
 
 	/**
@@ -669,7 +682,10 @@ public class LabTelemetry extends Script
 
 	private static void configureCleanClass(Player player, PlayerClass playerClass, int level) throws SQLException
 	{
-		player.stopAllEffects();
+		// Offline anchors may have been persisted at 0 HP. Clear the dead flag first,
+		// otherwise setCurrentHpMp is ignored and low-HP passives contaminate the run.
+		player.setDead(false);
+		player.getEffectList().stopAllEffectsWithoutExclusions(true, false);
 		for (int slot = 0; slot < Inventory.PAPERDOLL_TOTALSLOTS; slot++)
 		{
 			player.getInventory().unEquipItemInSlot(slot);
@@ -678,6 +694,7 @@ public class LabTelemetry extends Script
 		{
 			player.removeSkill(skill, false, true);
 		}
+		purgeOrphanSkillFunctions(player);
 		try (Connection con = DatabaseFactory.getConnection())
 		{
 			deleteMainClassRows(con, "character_hennas", player.getObjectId());
@@ -694,6 +711,24 @@ public class LabTelemetry extends Script
 		player.setCurrentHpMp(player.getMaxHp(), player.getMaxMp());
 		player.setCurrentCp(player.getMaxCp());
 		player.storeMe();
+	}
+
+	private static void purgeOrphanSkillFunctions(Player player)
+	{
+		for (Calculator calculator : player.getCalculators())
+		{
+			if (calculator == null)
+			{
+				continue;
+			}
+			for (AbstractFunction function : calculator.getFunctions())
+			{
+				if ((function.getFuncOwner() instanceof Skill) || (function.getFuncOwner() instanceof AbstractEffect))
+				{
+					calculator.removeOwner(function.getFuncOwner());
+				}
+			}
+		}
 	}
 
 	private static void deleteMainClassRows(Connection con, String table, int objectId) throws SQLException
@@ -1984,7 +2019,7 @@ public class LabTelemetry extends Script
 
 
 	/**
-	 * Phase 5A.4: establishes a human physical baseline while preserving the
+	 * Phase 5A.6: compares the five playable races while preserving the
 	 * birth race through every class and subclass change. The table is keyed by
 	 * racial anchor so the exact same build can later be repeated on other races.
 	 */
@@ -1992,27 +2027,27 @@ public class LabTelemetry extends Script
 	{
 		if (countSafePhysicalRaceRuns() >= EXPECTED_PHYSICAL_RACE_RUN_COUNT)
 		{
-			LOGGER.info("Laboratorio L2 fase 5A.4: base fisica racial completa (" + EXPECTED_PHYSICAL_RACE_RUN_COUNT + "/" + EXPECTED_PHYSICAL_RACE_RUN_COUNT + ").");
+			LOGGER.info("Laboratorio L2 fase 5A.6: base fisica racial completa (" + EXPECTED_PHYSICAL_RACE_RUN_COUNT + "/" + EXPECTED_PHYSICAL_RACE_RUN_COUNT + ").");
 			return;
 		}
 		try
 		{
 			if (countMagicComparisonRuns() < EXPECTED_MAGIC_COMPARISON_RUN_COUNT)
 			{
-				LOGGER.info("Laboratorio L2 fase 5A.4: espera a que termine la comparacion magica 5A.3.");
+				LOGGER.info("Laboratorio L2 fase 5A.6: espera a que termine la comparacion magica 5A.3.");
 				ThreadPool.schedule(this::runPhysicalRaceBaseline, 60000);
 				return;
 			}
 			if (countOnlineCharacters() > 0)
 			{
-				LOGGER.info("Laboratorio L2 fase 5A.4: hay jugadores conectados; la base fisica se posterga.");
+				LOGGER.info("Laboratorio L2 fase 5A.6: hay jugadores conectados; la base fisica se posterga.");
 				ThreadPool.schedule(this::runPhysicalRaceBaseline, 60000);
 				return;
 			}
 			final Npc atlas = getBenchmarkNpc(BENCHMARK_ATLAS_ID);
 			if (atlas == null)
 			{
-				LOGGER.info("Laboratorio L2 fase 5A.4: espera a Atlas en el Coliseo.");
+				LOGGER.info("Laboratorio L2 fase 5A.6: espera a Atlas en el Coliseo.");
 				ThreadPool.schedule(this::runPhysicalRaceBaseline, 60000);
 				return;
 			}
@@ -2023,6 +2058,10 @@ public class LabTelemetry extends Script
 				final PlayerClass restoreRoot = PlayerClass.getPlayerClass(rootId);
 				final PlayerClass mainClass = PlayerClass.getPlayerClass(PHYSICAL_RACE_CLASS_IDS[0]);
 				Player player = null;
+				int restoreX = 0;
+				int restoreY = 0;
+				int restoreZ = 0;
+				int restoreHeading = 0;
 				try
 				{
 					player = Player.load(findCharacterId(anchorForRoot(restoreRoot)));
@@ -2032,6 +2071,15 @@ public class LabTelemetry extends Script
 					}
 					final int expectedRaceId = restoreRoot.getRace().ordinal();
 					final String expectedRaceName = restoreRoot.getRace().name();
+					restoreX = player.getX();
+					restoreY = player.getY();
+					restoreZ = player.getZ();
+					restoreHeading = player.getHeading();
+					// All anchors must attack from the same height and side. The retail hit
+					// formula includes positional bonuses, so their birth-village coordinates
+					// would otherwise look like racial differences in hit rate and DPS.
+					player.setXYZ(atlas.getX() + 100, atlas.getY(), atlas.getZ());
+					player.setHeading(0);
 					CONTROLLED_CAPTURE_IDS.add(player.getObjectId());
 					BENCHMARK_CAPTURE_IDS.add(player.getObjectId());
 					prepareAnchor(player);
@@ -2100,7 +2148,7 @@ public class LabTelemetry extends Script
 									storePhysicalRaceRun(rootId, stage, protocol, result, snapshot, passiveSkills, selectedSkill, player, atlas);
 									completedRuns.add(runKey);
 									measured++;
-									LOGGER.info("Laboratorio L2 fase 5A.4: progreso " + measured + "/" + EXPECTED_PHYSICAL_RACE_RUN_COUNT +
+									LOGGER.info("Laboratorio L2 fase 5A.6: progreso " + measured + "/" + EXPECTED_PHYSICAL_RACE_RUN_COUNT +
 										" (" + expectedRaceName + ", " + PHYSICAL_RACE_STAGE_LABELS[stage] + ", " + protocol + ").");
 								}
 							}
@@ -2116,15 +2164,17 @@ public class LabTelemetry extends Script
 				{
 					if (player != null)
 					{
+						player.setXYZ(restoreX, restoreY, restoreZ);
+						player.setHeading(restoreHeading);
 						restoreBenchmarkAnchor(player, restoreRoot);
 					}
 				}
 			}
-			LOGGER.info("Laboratorio L2 fase 5A.4: base fisica racial terminada; pasadas=" + countPhysicalRaceRuns() + "/" + EXPECTED_PHYSICAL_RACE_RUN_COUNT + ".");
+			LOGGER.info("Laboratorio L2 fase 5A.6: base fisica racial terminada; pasadas=" + countPhysicalRaceRuns() + "/" + EXPECTED_PHYSICAL_RACE_RUN_COUNT + ".");
 		}
 		catch (Exception e)
 		{
-			LOGGER.log(Level.WARNING, "Laboratorio L2 fase 5A.4: no se pudo medir la base fisica racial.", e);
+			LOGGER.log(Level.WARNING, "Laboratorio L2 fase 5A.6: no se pudo medir la base fisica racial.", e);
 		}
 	}
 
@@ -2270,6 +2320,139 @@ public class LabTelemetry extends Script
 			ps.setInt(i++, r.misses); ps.setInt(i++, r.soulshotsUsed); ps.setDouble(i++, r.damageDealt);
 			ps.setDouble(i++, r.damageDealt / Math.max(1, r.durationSeconds)); ps.setDouble(i++, r.mpUsed); ps.setString(i, r.notes);
 			ps.executeUpdate();
+		}
+	}
+
+	private void capturePhysicalRaceDiagnostics()
+	{
+		try
+		{
+			if (countPhysicalRaceDiagnostics() >= PHYSICAL_RACE_ROOT_CLASS_IDS.length)
+			{
+				return;
+			}
+			if (countOnlineCharacters() > 0)
+			{
+				ThreadPool.schedule(this::capturePhysicalRaceDiagnostics, 60000);
+				return;
+			}
+			for (int rootId : PHYSICAL_RACE_ROOT_CLASS_IDS)
+			{
+				if (hasPhysicalRaceDiagnostic(rootId))
+				{
+					continue;
+				}
+				final PlayerClass restoreRoot = PlayerClass.getPlayerClass(rootId);
+				final PlayerClass mainClass = PlayerClass.getPlayerClass(PHYSICAL_RACE_CLASS_IDS[0]);
+				Player player = null;
+				final List<Item> createdItems = new ArrayList<>();
+				try
+				{
+					player = Player.load(findCharacterId(anchorForRoot(restoreRoot)));
+					prepareAnchor(player);
+					configureCleanClass(player, mainClass, CLEAN_PROFILE_LEVEL);
+					equipPhysicalRaceKit(player, createdItems);
+					final CreatureSnapshot snapshot = new CreatureSnapshot(player);
+					final int weaponId = player.getActiveWeaponItem() != null ? player.getActiveWeaponItem().getId() : 0;
+					final String weaponType = player.getActiveWeaponItem() != null ? String.valueOf(player.getActiveWeaponItem().getItemType()) : "NONE";
+					final long wornMask = Integer.toUnsignedLong(player.getInventory().getWearedMask());
+					final long weaponMask = player.getActiveWeaponItem() != null ? Integer.toUnsignedLong(player.getActiveWeaponItem().getItemMask()) : 0;
+					final Skill polearmMastery = player.getKnownSkill(216);
+					final int polearmMasteryLevel = polearmMastery != null ? polearmMastery.getLevel() : 0;
+					final boolean masteryPassivePresent = player.getEffectList().getPassives().stream().anyMatch(info -> info.getSkill().getId() == 216);
+					final int passiveEffectCount = player.getEffectList().getPassives().size();
+					final List<String> skillParts = new ArrayList<>();
+					for (Skill skill : player.getAllSkills())
+					{
+						skillParts.add(skill.getId() + ":" + skill.getLevel());
+					}
+					Collections.sort(skillParts);
+					final String skillKey = String.join(",", skillParts);
+					if (polearmMastery != null)
+					{
+						player.removeSkill(polearmMastery, false, true);
+					}
+					final double pAtkWithoutMastery = player.getPAtk(null);
+					if (polearmMastery != null)
+					{
+						player.addSkill(polearmMastery, false);
+					}
+					final double pAtkAfterReadd = player.getPAtk(null);
+					try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement(
+						"REPLACE INTO lab_physical_race_diagnostics (anchor_root_class_id,race_id,race_name,observed_ms,class_id,skill_count,polearm_mastery_level,weapon_id,weapon_type,worn_mask,weapon_mask,mastery_passive_present,passive_effect_count,skill_key,p_atk_with_mastery,p_atk_without_mastery,p_atk_after_readd) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"))
+					{
+						ps.setInt(1, rootId); ps.setInt(2, snapshot.raceId); ps.setString(3, snapshot.raceName); ps.setLong(4, System.currentTimeMillis());
+						ps.setInt(5, snapshot.classId); ps.setInt(6, snapshot.skillCount); ps.setInt(7, polearmMasteryLevel);
+						ps.setInt(8, weaponId); ps.setString(9, weaponType); ps.setLong(10, wornMask); ps.setLong(11, weaponMask);
+						ps.setBoolean(12, masteryPassivePresent); ps.setInt(13, passiveEffectCount);
+						ps.setString(14, skillKey); ps.setDouble(15, snapshot.pAtk); ps.setDouble(16, pAtkWithoutMastery);
+						ps.setDouble(17, pAtkAfterReadd); ps.executeUpdate();
+					}
+					LOGGER.info("Laboratorio L2 diagnostico racial: " + snapshot.raceName + " mastery216=" + polearmMasteryLevel +
+						", weapon=" + weaponId + "/" + weaponType + ", masks=" + wornMask + "/" + weaponMask +
+						", passive=" + masteryPassivePresent + ", P.Atk=" + snapshot.pAtk + " -> without=" + pAtkWithoutMastery + " -> " + pAtkAfterReadd + ".");
+					LOGGER.info("Laboratorio L2 calculadora P.Atk " + snapshot.raceName + ": " + calculatorKey(player, Stat.POWER_ATTACK));
+				}
+				finally
+				{
+					if (player != null)
+					{
+						removeBenchmarkKit(player, createdItems);
+						restoreBenchmarkAnchor(player, restoreRoot);
+					}
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.WARNING, "Laboratorio L2: no se pudo capturar el diagnostico racial fisico.", e);
+		}
+	}
+
+	private static String calculatorKey(Player player, Stat stat)
+	{
+		final Calculator calculator = player.getCalculators()[stat.ordinal()];
+		if (calculator == null)
+		{
+			return "EMPTY";
+		}
+		final List<String> parts = new ArrayList<>();
+		for (AbstractFunction function : calculator.getFunctions())
+		{
+			final Object owner = function.getFuncOwner();
+			final String ownerKey;
+			if (owner instanceof Skill)
+			{
+				final Skill ownerSkill = (Skill) owner;
+				ownerKey = "Skill:" + ownerSkill.getId() + ":" + ownerSkill.getLevel();
+			}
+			else
+			{
+				ownerKey = owner == null ? "null" : owner.getClass().getSimpleName() + ":" + owner;
+			}
+			parts.add(function.getClass().getSimpleName() + "@" + function.getOrder() + "=" + function.getValue() + "[" + ownerKey + "]");
+		}
+		Collections.sort(parts);
+		return String.join(" | ", parts);
+	}
+
+	private static int countPhysicalRaceDiagnostics() throws SQLException
+	{
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT COUNT(*) FROM lab_physical_race_diagnostics"); ResultSet rs = ps.executeQuery())
+		{
+			return rs.next() ? rs.getInt(1) : 0;
+		}
+	}
+
+	private static boolean hasPhysicalRaceDiagnostic(int rootId) throws SQLException
+	{
+		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement("SELECT 1 FROM lab_physical_race_diagnostics WHERE anchor_root_class_id=?"))
+		{
+			ps.setInt(1, rootId);
+			try (ResultSet rs = ps.executeQuery())
+			{
+				return rs.next();
+			}
 		}
 	}
 
@@ -3180,6 +3363,7 @@ public class LabTelemetry extends Script
 			st.executeUpdate(CREATE_MAGIC_PROGRESSION_RUN_TABLE);
 			st.executeUpdate(CREATE_MAGIC_COMPARISON_RUN_TABLE);
 			st.executeUpdate(CREATE_PHYSICAL_RACE_RUN_TABLE);
+			st.executeUpdate(CREATE_PHYSICAL_RACE_DIAGNOSTIC_TABLE);
 		}
 		catch (SQLException e)
 		{

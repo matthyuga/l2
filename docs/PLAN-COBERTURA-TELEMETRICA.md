@@ -540,3 +540,47 @@ offline, nivel 1, Human Fighter, sin Subs ni objetos. Se preservaron 285 resulta
 Respaldo local:
 `backups/telemetry-phase5a4-human-2026-10-07/phase5a4-human-physical-baseline.sql`.
 El SQL y su resumen JSON también quedan en `data/telemetry/`.
+
+## Fase 5A.6 — cinco razas con posición y estado controlados
+
+El 7 de octubre de 2026 se completó la ampliación del protocolo físico a las
+cinco razas: Humano, Elfo, Elfo oscuro, Orco y Enano. Cada anclaje mantuvo su
+raza de nacimiento mientras usó Dreadnought como clase activa y añadió Titan,
+Fortune Seeker y Maestro. Se conservaron nivel 80, Saint Spear +0, heavy S,
+joyería S común, Atlas y cero buffs externos. El total final fue **1.200/1.200
+pasadas**: 240 por raza y 30 por raza, etapa y carril.
+
+Antes de aceptar los datos se corrigieron dos contaminantes del protocolo. Arden
+había quedado persistido con 0 HP; al cargarlo, Final Frenzy seguía aportando
+129,3 P.Atk y elevaba la base humana de 877,98 a 1.007,28. Además, cada anclaje
+conservaba las coordenadas de su aldea natal y la fórmula de acierto aplica
+bonificaciones por altura y lado respecto del objetivo. La limpieza ahora revive
+primero al personaje y elimina funciones huérfanas de skills/efectos; la prueba
+lo coloca temporalmente en una posición común frente a Atlas y restaura después
+sus coordenadas originales.
+
+La captura corregida dio exactamente los mismos atributos en las cinco razas:
+877,9798 P.Atk, 351 de velocidad, 86 de crítico, 123 de precisión, 6.542 HP,
+4.718 CP, 1.794 MP y 42/28/43 STR/DEX/CON. Polearm Mastery #216 nivel 45 estuvo
+presente en todos y aportó 129,3 P.Atk. Los catálogos también fueron idénticos:
+59/21, 75/24, 86/28 y 92/29 skills/pasivas en las cuatro etapas.
+
+El autoataque agrupado promedió 44,3296 DPS con desviación 4,6665. Por raza los
+promedios quedaron entre 43,7912 y 44,7144 DPS, dentro de la dispersión de las
+muestras y sin una diferencia de atributos que los explique. Earthquake fue la
+skill compatible común y promedió 7,3388 DPS agrupados. Estos valores no
+demuestran bonificación racial: en esta arquitectura la raza persistida controla
+identidad y apariencia, mientras la plantilla de la clase activa determina los
+stats numéricos medidos.
+
+Auditoría: cero filas inválidas, treinta registros exactos por grupo, cinco
+diagnósticos de mastery y cero personajes conectados al finalizar. Arden,
+Eryndor, Vaelkor, Gorvak y Brunna quedaron nivel 1, con HP completo, clase raíz,
+sin Subs ni objetos y en sus posiciones originales. El SQL y el resumen están
+en `data/telemetry/phase5a6-five-race-physical-comparison.*`; el respaldo local
+recuperable está en `backups/telemetry-phase5a6-five-races-2026-10-07`.
+
+La Fase 5A.4 se conserva únicamente como antecedente del error de estado. Si se
+desea que la raza modifique atributos aun usando una profesión ajena, eso debe
+definirse como una política de balance explícita y medirse en una fase nueva; no
+es un efecto presente que la telemetría haya ocultado.

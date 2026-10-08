@@ -426,6 +426,8 @@ public class Player extends Playable
 	private ScheduledFuture<?> _broadcastStatusUpdateTask;
 	
 	private boolean _subclassLock = false;
+	/** Permanent playable race. Class and subclass changes must not rewrite it. */
+	private Race _race;
 	protected int _baseClass;
 	protected int _activeClass;
 	protected int _classIndex = 0;
@@ -829,6 +831,7 @@ public class Player extends Playable
 	private Player(int objectId, PlayerTemplate template, String accountName, PlayerAppearance app)
 	{
 		super(objectId, template);
+		_race = template.getRace();
 		setInstanceType(InstanceType.Player);
 		initCharStatusUpdateValues();
 		initPcStatusUpdateValues();
@@ -2770,12 +2773,21 @@ public class Player extends Playable
 	@Override
 	public Race getRace()
 	{
-		if (!isSubClassActive())
+		return _race != null ? _race : getTemplate().getRace();
+	}
+
+	/**
+	 * Changes the permanent playable race. This must only be called by the
+	 * dedicated race-change service; normal profession changes leave it intact.
+	 * @param race the new playable race
+	 */
+	public void setRace(Race race)
+	{
+		if ((race == null) || (race.ordinal() < Race.HUMAN.ordinal()) || (race.ordinal() > Race.DWARF.ordinal()))
 		{
-			return getTemplate().getRace();
+			throw new IllegalArgumentException("Invalid playable race: " + race);
 		}
-		
-		return PlayerTemplateData.getInstance().getTemplate(_baseClass).getRace();
+		_race = race;
 	}
 	
 	public Radar getRadar()
@@ -6846,6 +6858,11 @@ public class Player extends Playable
 					final PlayerTemplate template = PlayerTemplateData.getInstance().getTemplate(activeClassId);
 					final PlayerAppearance app = new PlayerAppearance(rset.getByte("face"), rset.getByte("hairColor"), rset.getByte("hairStyle"), female);
 					player = new Player(objectId, template, rset.getString("account_name"), app);
+					final int storedRaceId = rset.getInt("race");
+					if ((storedRaceId >= Race.HUMAN.ordinal()) && (storedRaceId <= Race.DWARF.ordinal()))
+					{
+						player.setRace(Race.values()[storedRaceId]);
+					}
 					player.setName(rset.getString("char_name"));
 					player._lastAccess = rset.getLong("lastAccess");
 					final PlayerStat stat = player.getStat();

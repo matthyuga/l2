@@ -35,6 +35,10 @@ DPS que Hurricane fija porque ejecutó 37 casteos frente a 15, a cambio de usar
 
 ## Fase 5A.4 — primera base racial física
 
+> Registro histórico sustituido por 5A.6. Arden se cargó con 0 HP y Final
+> Frenzy elevó el P.Atk de 877,98 a 1.007,28. No debe usarse como referencia de
+> balance ni compararse numéricamente con la captura corregida.
+
 `phase5a4-human-physical-baseline.sql` contiene 240 pasadas sobre Arden, Human
 Fighter de nacimiento: cuatro etapas, dos carriles y treinta repeticiones. La
 clase activa es Dreadnought y se añaden acumulativamente Titan, Fortune Seeker y
@@ -48,3 +52,24 @@ cambiaron al sumar Subs; el catálogo creció de 59 a 92 skills. Earthquake fue 
 skill compatible elegida por potencia/ciclo, pero sus dos acciones por minuto no
 superan las 42 acciones del autoataque. Esta medición es la referencia humana;
 el efecto racial se aislará al replicarla sin cambiar ninguna otra variable.
+
+## Fase 5A.6 — comparación física de las cinco razas
+
+`phase5a6-five-race-physical-comparison.sql` contiene 1.200 pasadas: cinco
+razas, cuatro etapas acumulativas, dos carriles y treinta repeticiones por
+combinación. `phase5a6-five-race-physical-comparison-summary.json` conserva el
+protocolo, auditoría, diagnósticos y agregados por raza.
+
+La captura corrige dos contaminantes descubiertos durante la ampliación: revive
+el anclaje antes de limpiar HP/efectos y coloca temporalmente a todos los
+personajes en la misma posición respecto de Atlas. Esto evita que Final Frenzy o
+las bonificaciones de altura/lado de la fórmula de acierto parezcan diferencias
+raciales.
+
+Humano, Elfo, Elfo oscuro, Orco y Enano dieron exactamente 877,9798 P.Atk, 351
+de velocidad, 86 de crítico, 123 de precisión, 42/28/43 STR/DEX/CON y los mismos
+recursos. Polearm Mastery aportó 129,3 P.Atk por igual a todos. El autoataque
+promedió 43,79–44,71 DPS por raza, una dispersión pequeña dentro de desviaciones
+de 4,62–4,74; no hay evidencia de un coeficiente racial de daño. En la
+arquitectura actual la raza persistida conserva identidad/apariencia y la clase
+activa aporta la plantilla numérica.

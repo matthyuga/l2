@@ -143,6 +143,7 @@ public class AdminBuildLab implements IAdminCommandHandler
 		{
 			throw new IllegalArgumentException("elige una raza y clase inicial validas");
 		}
+		player.setRace(root.getRace());
 		replaceMainClass(player, root, true);
 		admin.sendSysMessage("Build Lab: principal reiniciada como " + originName(root) + ".");
 	}

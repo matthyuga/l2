@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "phase": "5A.6",
+  "capturedAt": "2026-10-07T22:11:34-03:00",
+  "engineMode": "CORE_ACCELERATED",
+  "purpose": "Comparar las cinco razas jugables con la misma clase activa, build, equipo, objetivo y posición, conservando la raza de nacimiento.",
+  "protocol": {
+    "anchors": [
+      {"name": "Arden", "raceId": 0, "race": "HUMAN", "rootClassId": 0},
+      {"name": "Eryndor", "raceId": 1, "race": "ELF", "rootClassId": 18},
+      {"name": "Vaelkor", "raceId": 2, "race": "DARK_ELF", "rootClassId": 31},
+      {"name": "Gorvak", "raceId": 3, "race": "ORC", "rootClassId": 44},
+      {"name": "Brunna", "raceId": 4, "race": "DWARF", "rootClassId": 53}
+    ],
+    "mainClass": {"id": 89, "name": "Dreadnought"},
+    "activeClassAtEveryStage": "Dreadnought",
+    "level": 80,
+    "durationSeconds": 60,
+    "repetitionsPerRaceStageAndLane": 30,
+    "lanes": ["FIXED_AUTOATTACK", "BEST_COMPATIBLE"],
+    "opponent": {"id": 900202, "name": "Atlas"},
+    "positionControl": "Todos los anclajes se colocaron temporalmente en las mismas coordenadas y altura respecto de Atlas; luego recuperaron su posición original.",
+    "weapon": {"id": 6370, "name": "Saint Spear +0"},
+    "equipment": "Set heavy S y joyería S común",
+    "shots": "Soulshots S",
+    "externalBuffs": false,
+    "subclassOrder": ["Titan", "Fortune Seeker", "Maestro"]
+  },
+  "audit": {
+    "runs": 1200,
+    "expectedRuns": 1200,
+    "races": 5,
+    "runsPerRace": 240,
+    "runsPerRaceStageAndLane": 30,
+    "invalidRows": 0,
+    "missingOrDuplicateGroups": 0,
+    "diagnosticRows": 5,
+    "zeroDamageRowsFromTwoConsecutiveEarthquakeMisses": 37,
+    "phase4dRunsPreserved": 285,
+    "nyxCalibrationRunsPreserved": 360,
+    "magicProgressionRunsPreserved": 12,
+    "magicComparisonRunsPreserved": 240,
+    "onlineCharactersAfterRun": 0,
+    "testedAnchorsRestoredToLevelOne": 5,
+    "testedAnchorsWithSubclassesAfterRun": 0,
+    "testedAnchorsWithItemsAfterRun": 0,
+    "testedAnchorsWithZeroHpAfterRun": 0
+  },
+  "constantStatsAcrossAllRacesAndStages": {
+    "physicalAttack": 877.9797885,
+    "attackSpeed": 351,
+    "physicalCritical": 86,
+    "accuracy": 123,
+    "maxHp": 6542,
+    "maxCp": 4718,
+    "maxMp": 1794,
+    "str": 42,
+    "dex": 28,
+    "con": 43
+  },
+  "stages": [
+    {"index": 0, "label": "Dreadnought", "skillCount": 59, "passiveSkillCount": 21},
+    {"index": 1, "label": "+ Titan", "skillCount": 75, "passiveSkillCount": 24},
+    {"index": 2, "label": "+ Fortune Seeker", "skillCount": 86, "passiveSkillCount": 28},
+    {"index": 3, "label": "+ Maestro", "skillCount": 92, "passiveSkillCount": 29}
+  ],
+  "pooledResults": {
+    "FIXED_AUTOATTACK": {"runs": 600, "averageDps": 44.329556, "dpsStandardDeviation": 4.666459, "averageHits": 31.068333, "averageMisses": 10.931667},
+    "BEST_COMPATIBLE": {"runs": 600, "skillId": 347, "skillName": "Earthquake", "averageDps": 7.338838, "dpsStandardDeviation": 3.416461, "averageHits": 1.508333, "averageMisses": 0.491667}
+  },
+  "resultsByRace": [
+    {"race": "HUMAN", "fixedAutoattack": {"averageDps": 44.397710, "dpsStandardDeviation": 4.629721}, "bestCompatible": {"averageDps": 7.140888, "dpsStandardDeviation": 3.129960}},
+    {"race": "ELF", "fixedAutoattack": {"averageDps": 44.237199, "dpsStandardDeviation": 4.697454}, "bestCompatible": {"averageDps": 7.115201, "dpsStandardDeviation": 3.602993}},
+    {"race": "DARK_ELF", "fixedAutoattack": {"averageDps": 44.714423, "dpsStandardDeviation": 4.666104}, "bestCompatible": {"averageDps": 7.923386, "dpsStandardDeviation": 2.957831}},
+    {"race": "ORC", "fixedAutoattack": {"averageDps": 44.507226, "dpsStandardDeviation": 4.620298}, "bestCompatible": {"averageDps": 7.199149, "dpsStandardDeviation": 3.852594}},
+    {"race": "DWARF", "fixedAutoattack": {"averageDps": 43.791222, "dpsStandardDeviation": 4.743878}, "bestCompatible": {"averageDps": 7.315566, "dpsStandardDeviation": 3.453864}}
+  ],
+  "diagnostics": {
+    "polearmMastery": {"skillId": 216, "level": 45, "presentInAllRaces": true},
+    "physicalAttackWithMastery": 877.9797885,
+    "physicalAttackWithoutMastery": 748.6797885,
+    "masteryContribution": 129.3,
+    "skillCatalogIdenticalAcrossRaces": true,
+    "passiveEffectsIdenticalAcrossRaces": true
+  },
+  "supersededMeasurements": {
+    "phase5a4HumanBaseline": "Histórica y no válida como referencia numérica: Arden se cargó muerto y Final Frenzy elevó P.Atk a 1007.2798.",
+    "firstFiveRaceAttempt": "Descartada: las coordenadas de las aldeas iniciales activaban bonificaciones distintas de altura/lado en la fórmula de acierto. Se conserva sólo en el respaldo local before-position-normalization.sql."
+  },
+  "findings": {
+    "racePersistence": "Cada anclaje conservó su raza de nacimiento durante Dreadnought y las tres Subs.",
+    "numericArchitecture": "En la implementación actual la raza persistida controla identidad y apariencia, mientras la plantilla de la clase activa determina estos atributos numéricos. Con Dreadnought activa, las cinco razas producen exactamente los mismos stats.",
+    "damageInterpretation": "Las diferencias pequeñas de DPS aparecen con stats, catálogo, posición y protocolo idénticos y son menores que la desviación de las muestras; no demuestran un coeficiente racial de daño.",
+    "masteryStacking": "El catálogo crece de 59 a 92 skills, pero P.Atk y demás atributos permanecen constantes. Polearm Mastery aporta 129.3 P.Atk por igual a las cinco razas.",
+    "designBoundary": "Añadir bonificaciones raciales numéricas sería una nueva política de balance del servidor, no una corrección de la telemetría ni un comportamiento presente en esta arquitectura."
+  }
+}

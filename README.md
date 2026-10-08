@@ -30,8 +30,8 @@ Al 7 de octubre de 2026:
 - Fase 5A: L2Nyx documentado, 360/360 pasadas de calibración de Nyx y
   progresión mágica Storm Screamer 12/12.
 - Fase 5A.3: Hurricane fija frente a mejor skill, 240/240 pasadas.
-- Fase 5A.4: primera base racial física Humana, 240/240 pasadas; la raza se
-  conservó al sumar Dreadnought, Titan, Fortune Seeker y Maestro.
+- Fase 5A.6: comparación física de Humano, Elfo, Elfo oscuro, Orco y Enano,
+  1.200/1.200 pasadas con posición, clase, equipo y rival controlados.
 
 La primera ronda 5A demostró que las escalas 100%, 75%, 60% y 50% siguen siendo
 demasiado severas para el objetivo de 10–20 segundos. El NPC original no fue
@@ -41,10 +41,13 @@ Soultaker. Nyx se conserva como rival élite independiente.
 La comparación aislada mostró que Mystic Muse y Archmage no aumentan M.Atk:
 la ventaja práctica aparece porque Aura Flare puede lanzarse 37 veces frente a
 15 Hurricanes, aunque consume proporcionalmente más MP.
-La primera base física dejó P.Atk, velocidad, crítico y STR/DEX/CON sin cambios
-al añadir tres Subs. El catálogo pasó de 59 a 92 skills, pero no se observó
-acumulación de masteries físicas. Este registro humano será el control para las
-repeticiones raciales siguientes.
+La comparación física final dejó P.Atk, velocidad, crítico, recursos y
+STR/DEX/CON exactamente iguales en las cinco razas porque la clase activa
+Dreadnought aporta la plantilla numérica. El catálogo pasó de 59 a 92 skills al
+sumar tres Subs, sin acumulación de masteries físicas. La antigua base 5A.4 se
+conserva sólo como antecedente: Arden se había cargado muerto y Final Frenzy
+contaminó su P.Atk. La repetición 5A.6 también normaliza la posición frente a
+Atlas para que altura y orientación no alteren la probabilidad de acierto.
 
 ## Base técnica
 

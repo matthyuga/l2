@@ -780,3 +780,43 @@ conserva el SQL y resumen JSON en `data/telemetry/`.
 Esta etapa es el control Humano, no una comparación racial terminada. El próximo
 paso correcto es replicar exactamente el protocolo en otro ancla de nacimiento y
 comparar contra esta base sin cambiar clase activa, Subs, equipo ni rival.
+
+## 24. Fase 5A.6: comparación física completa de cinco razas
+
+Se amplió la base Dreadnought + Titan + Fortune Seeker + Maestro a Arden
+(Humano), Eryndor (Elfo), Vaelkor (Elfo oscuro), Gorvak (Orco) y Brunna (Enano).
+La raza pasó a ser un dato persistente del personaje: cambiar principal o Sub ya
+no la reemplaza; `//buildlab` conserva una acción administrativa separada para
+cambiarla.
+
+La primera ampliación reveló dos falsos positivos. Arden estaba guardado con 0
+HP y Final Frenzy #290 nivel 14 añadía exactamente 129,3 P.Atk. Después, los
+anclajes atacaban a Atlas desde las coordenadas de sus aldeas de nacimiento; la
+fórmula de acierto de Interlude incorpora altura y orientación, por lo que los
+promedios parecían distintos pese a tener los mismos stats. Se corrigió la
+limpieza para revivir antes de restaurar HP y eliminar funciones huérfanas, y se
+normalizó temporalmente posición/altura durante el benchmark.
+
+La corrida válida cerró **1.200/1.200 pasadas**, 240 por raza. Las cinco
+compartieron exactamente 877,9798 P.Atk, 351 de velocidad, 86 de crítico, 123 de
+precisión, 6.542 HP, 4.718 CP, 1.794 MP y 42/28/43 STR/DEX/CON. Polearm Mastery
+aportó 129,3 P.Atk a todos. El catálogo creció igual de 59 a 92 skills al sumar
+Subs y no produjo acumulación adicional de masteries físicas.
+
+El autoataque quedó entre 43,7912 y 44,7144 DPS según raza, frente a desviaciones
+de 4,62–4,74; Earthquake quedó entre 7,1152 y 7,9234 con sólo dos acciones por
+minuto. Con stats, skills, equipo, posición y rival idénticos, esas variaciones se
+interpretan como ruido de aciertos/críticos, no como una ventaja racial.
+
+La conclusión técnica es precisa: la raza persistida conserva cuerpo, apariencia
+e identidad; la clase activa Dreadnought aporta la plantilla numérica. Introducir
+stats raciales persistentes sería una decisión futura de diseño/balance. No se
+aplicó ningún buff o nerf.
+
+Auditoría final: cero filas inválidas, cero grupos incompletos, cinco diagnósticos
+idénticos y ningún jugador conectado. Los cinco anclajes volvieron nivel 1, con
+HP completo, clase raíz, cero Subs, cero objetos y coordenadas originales. Se
+preservaron 285 pasadas 4D, 360 calibraciones de Nyx, 12 progresiones mágicas y
+240 comparaciones mágicas. El volcado final y el resumen JSON quedaron en
+`data/telemetry/`; el respaldo local está en
+`backups/telemetry-phase5a6-five-races-2026-10-07`.

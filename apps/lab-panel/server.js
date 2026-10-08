@@ -870,7 +870,7 @@ async function telemetryPhysicalRaceBaseline() {
       'FROM lab_physical_race_runs GROUP BY anchor_root_class_id,race_id,stage_index,protocol ORDER BY anchor_root_class_id,stage_index,protocol'
     );
   } catch (error) {
-    if (error && error.code === 'ER_NO_SUCH_TABLE') return { expectedRuns: 240, totalRuns: 0, baselines: [] };
+    if (error && error.code === 'ER_NO_SUCH_TABLE') return { expectedRuns: 1200, totalRuns: 0, baselines: [] };
     throw error;
   }
   function percent(value, base) {
@@ -926,7 +926,23 @@ async function telemetryPhysicalRaceBaseline() {
     });
     return { rootClassId: root.rootId, raceId: root.raceId, race: root.race, racePreserved: new Set(rows.filter(function(row){return Number(row.anchor_root_class_id)===root.rootId;}).map(function(row){return row.race_name;})).size === 1, stages: stages };
   });
-  return { expectedRuns: 240, totalRuns: rows.reduce(function(sum,row){return sum+Number(row.runs);},0), baselines: baselines };
+  const human = baselines.find(function(base){return base.rootClassId === 0;});
+  baselines.forEach(function(base) {
+    base.stages.forEach(function(stage) {
+      const humanStage = human && human.stages.find(function(candidate){return candidate.index === stage.index;});
+      stage.fixedVsHuman = stage.fixed && humanStage && humanStage.fixed ? {
+        pAtk: percent(stage.fixed.pAtk, humanStage.fixed.pAtk),
+        pAtkSpeed: percent(stage.fixed.pAtkSpeed, humanStage.fixed.pAtkSpeed),
+        pCritical: percent(stage.fixed.pCritical, humanStage.fixed.pCritical),
+        maxHp: percent(stage.fixed.maxHp, humanStage.fixed.maxHp),
+        maxCp: percent(stage.fixed.maxCp, humanStage.fixed.maxCp),
+        maxMp: percent(stage.fixed.maxMp, humanStage.fixed.maxMp),
+        dps: percent(stage.fixed.dps, humanStage.fixed.dps)
+      } : null;
+      stage.skillVsHumanDps = stage.best && humanStage && humanStage.best ? percent(stage.best.dps, humanStage.best.dps) : null;
+    });
+  });
+  return { expectedRuns: 1200, totalRuns: rows.reduce(function(sum,row){return sum+Number(row.runs);},0), referenceRace: 'HUMAN', baselines: baselines };
 }
 
 async function api(req, res, url) {

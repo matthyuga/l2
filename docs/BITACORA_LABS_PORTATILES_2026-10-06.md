@@ -843,3 +843,27 @@ Server cargó 128 scripts y el panel quedó listo; la próxima entrada con
 
 Respaldo previo a la migración:
 `backups/elven-pvp-telemetry-2026-10-07/lab-combat-events-before-npc-vs-npc.sql`.
+
+## 26. Coliseo secuencial: nueve duelos 1vs1
+
+El Coliseo global dejó de generar automáticamente a Ares y Nyx. Sus plantillas
+`900200` y `900201` no fueron eliminadas y quedan disponibles para comparaciones
+especiales mediante spawn manual. Atlas, Thiago y Mirellas permanecen en sus
+lugares porque siguen siendo el blanco telemétrico, el buffer y la tienda.
+
+Arden, Selene, Eryndor, Lethiel, Vaelkor, Myrentha, Gorvak, Zhurak y Brunna
+esperan en formación junto a la entrada sur, opuesta al punto seguro del jugador.
+Fuera de un duelo permanecen inmóviles, con IA detenida e invulnerabilidad. El
+comando de macro `.arena iniciar` pone en marcha la serie: el rival activo corre
+primero al centro y luego fija exclusivamente al participante como objetivo.
+
+Al morir un rival se abre una preparación real de diez segundos con avisos de
+cuenta regresiva. La serie termina después de la novena victoria y muestra el
+mensaje de felicitación; `.arena repetir` vuelve a comenzar desde Arden. También
+existen `.arena estado` y `.arena cancelar`. Si muere el jugador, la ejecución se
+marca como fallida, el roster vuelve a la entrada y se puede repetir tras revivir.
+
+Se agregaron `lab_arena_gauntlet_runs` y `lab_arena_gauntlet_duels` para guardar
+los límites exactos de cada serie y duelo, resultado y HP/CP/MP finales. Los
+eventos detallados de combate permanecen en `lab_combat_events`. Respaldo previo:
+`backups/solo-arena-gauntlet-2026-10-08`.

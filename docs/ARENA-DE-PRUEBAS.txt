@@ -10,13 +10,13 @@ PERSONAJE
 PRIMER COMBATE
   1. Entra con solo / solo123 y selecciona Hellkevin.
   2. Abre el inventario y equipa las duales, armadura y joyas nuevas.
-  3. Estaras en el Coliseo, a distancia segura del rival.
+  3. Estaras en el Coliseo, en la entrada norte y a distancia segura.
   4. Thiago, el Scheme Buffer gratuito, esta junto al punto seguro.
-  5. Ares esta en 149500 46100 -3400 y ataca al acercarte a menos de 450.
-     Ahora es un FakePlayer humano Duelist, no un modelo de monstruo.
-  6. Usa Imperial Crusader +10, duales S-grade +10, Soulshots y habilidades
-     de Duelist. Sus joyas se representan mediante defensa magica y drops.
-  7. Reaparece 60 segundos despues de morir.
+  5. Los nueve rivales esperan protegidos en la entrada sur, frente a la tuya.
+  6. Preparate y ejecuta una macro con: .arena iniciar
+  7. Cada rival corre primero al centro y despues te busca para iniciar el 1vs1.
+  8. Al derrotarlo tienes 10 segundos antes de la salida del siguiente.
+  9. El experimento termina al vencer a los nueve. Para repetir: .arena repetir
 
 BUILD LAB: PRINCIPAL + 3 SUBCLASES ACUMULATIVAS
   Escribe //buildlab dentro del juego. Se abre un panel con cuatro ranuras:
@@ -62,10 +62,13 @@ GM SHOP
   joyas, consumibles, libros y objetos de todos los grados. El boton
   "Recibir 1.000M Adena" de //buildlab aporta dinero sin agregar peso.
 
-RIVAL MAGO: NYX
-  Nyx esta al oeste del punto seguro, en 148300 46100 -3400. Es una FakePlayer
-  Dark Elf femenina, Storm Screamer nivel 80, con Major Arcana +10, Arcana Mace
-  +10 y Blessed Spiritshots S. Ares permanece al este.
+REFERENCIAS ESPECIALES: ARES Y NYX
+  Ares y Nyx ya no aparecen automaticamente en el Coliseo. Sus plantillas se
+  conservan intactas como referencias especiales para comparaciones futuras y
+  todavia pueden crearse manualmente con //spawn 900200 y //spawn 900201.
+
+  Nyx es una FakePlayer Dark Elf femenina, Storm Screamer nivel 80, con Major
+  Arcana +10, Arcana Mace +10 y Blessed Spiritshots S.
 
   Nyx no lanza skills al azar. Su estrategia es:
   1. Activa Arcane Power.
@@ -75,7 +78,7 @@ RIVAL MAGO: NYX
   5. Ataca con Hurricane y usa Demon Wind como golpe fuerte.
   6. Con poca vida aprovecha Curse Death Link como remate.
 
-  Acercate solo al lado del rival que quieras probar para no activar ambos a la vez.
+  Esta rotacion se conserva como referencia; no forma parte de la serie automatica.
 
 BLANCO NEUTRAL: ATLAS
   Atlas esta al sur del punto seguro, en 148900 45500 -3400. Es el blanco fijo
@@ -85,46 +88,26 @@ BLANCO NEUTRAL: ATLAS
   - 1.000 P. Def y 1.000 M. Def exactas.
   - No camina, no contraataca y no inicia agresion.
   - Es inmortal: el daño se registra, pero no interrumpe una pasada por muerte.
-  - Ares y Nyx se conservan para los ensayos de supervivencia física y mágica.
+  - Ares y Nyx se conservan fuera del spawn normal para ensayos especiales.
 
   La cola 4D contiene 95 casos y tres repeticiones por caso: 285 pasadas. El
   primer contexto usa equipo S a +0, arma compatible con la clase activa,
   joyeria Tateossian y ningun buff externo. El manifiesto exacto esta en:
   E:\l2-local\lab-panel\phase4d-kits.json
 
-CONTROL TACTICO DE ARES Y NYX (MACROS)
-  Son comandos de chat pensados para colocarlos dentro de macros del cliente.
-  El prefijo elige a quien obedece: .ares, .nyx o .squad (los dos).
+EXPERIMENTO SECUENCIAL (MACROS)
+  .arena iniciar     Prepara el roster y lanza el primer rival.
+  .arena estado      Muestra rival y fase actuales.
+  .arena cancelar    Detiene la serie y devuelve el roster a la entrada sur.
+  .arena repetir     Reinicia la serie completa desde Arden.
 
-  ATAQUE
-  1. Selecciona con el mouse al personaje o criatura que sera el objetivo.
-  2. Ejecuta una macro que contenga: .ares attack
-  3. Ares perseguira y atacara al objetivo seleccionado.
+  Orden: Arden, Selene, Eryndor, Lethiel, Vaelkor, Myrentha, Gorvak, Zhurak
+  y Brunna. Si el jugador muere, la serie queda fallida y todos regresan a
+  espera; despues de revivir se puede usar .arena repetir.
 
-  Ejemplos:
-  .ares attack       Ares ataca a tu objetivo actual.
-  .nyx attack        Nyx ataca a tu objetivo actual.
-  .squad attack      Ares y Nyx atacan juntos a tu objetivo actual.
-
-  MOVIMIENTO Y FORMACION
-  .ares move         Ares va al lugar donde tu personaje esta parado.
-  .nyx follow        Nyx te sigue.
-  .squad move        Los dos van a tu posicion, separados en formacion.
-  .squad hold        Se detienen y mantienen posicion sin autoagredir.
-  .squad free        Recuperan su IA autonoma normal.
-
-  PATRULLA ENTRE DOS PUNTOS
-  1. Parate en el primer extremo y ejecuta .squad patrol1
-  2. Parate en el segundo extremo y ejecuta .squad patrol2
-  3. Ares y Nyx patrullaran continuamente entre ambos puntos.
-
-  UTILIDAD
-  .ares status       Muestra la orden actual y si Ares esta presente.
-  .squad help        Muestra la ayuda breve dentro del juego.
-
-  Tambien se aceptan las ordenes en espanol: atacar, mover, seguir,
-  mantener, parar, libre, patrulla1, patrulla2, estado y ayuda.
-  Solo un personaje GM puede usar estos controles.
+  Cada ejecucion crea una fila en lab_arena_gauntlet_runs y cada 1vs1 terminado
+  se guarda en lab_arena_gauntlet_duels. Los golpes detallados siguen entrando
+  en lab_combat_events, por lo que se pueden reconstruir dano, skills y recursos.
 
 HUD GRAFICO DE ARES
   Al seleccionar a Ares aparece debajo del objetivo el panel nativo de combate

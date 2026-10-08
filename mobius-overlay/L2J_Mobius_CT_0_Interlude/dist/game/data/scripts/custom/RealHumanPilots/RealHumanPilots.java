@@ -23,7 +23,7 @@ import org.l2jmobius.gameserver.mechanics.script.Script;
 import org.l2jmobius.gameserver.mechanics.skill.Skill;
 import custom.LabTelemetry.LabTelemetry;
 
-/** Persistent, real Player pilots. This script prepares data; it is not a combat AI. */
+/** Persistent, real Player pilots of explicit races. This is not a combat AI. */
 public class RealHumanPilots extends Script
 {
     private static final Logger LOGGER = Logger.getLogger(RealHumanPilots.class.getName());
@@ -47,9 +47,13 @@ public class RealHumanPilots extends Script
             {
                 st.executeUpdate("CREATE TABLE IF NOT EXISTS lab_real_human_pilots (char_id INT UNSIGNED NOT NULL PRIMARY KEY, char_name VARCHAR(35) NOT NULL UNIQUE, recipe_version VARCHAR(40) NOT NULL, prepared_ms BIGINT UNSIGNED NOT NULL, verified_ms BIGINT UNSIGNED NOT NULL DEFAULT 0, role_name VARCHAR(20) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
             }
-            prepareOne("Caelan", "telemetryf", false, 92,
+            prepareOne("Caelan", "telemetryf", false, 92, Race.HUMAN, "ARCHER", 343,
                 new int[]{6379,6380,6381,6382,858,858,889,889,920,7577}, new int[]{169,174}, ARCHER_BUFFS);
-            prepareOne("Ignara", "telemetrym", true, 94,
+            prepareOne("Ignara", "telemetrym", true, 94, Race.HUMAN, "FIRE_MAGE", 1230,
+                new int[]{6383,6384,6385,6386,858,858,889,889,920,6608,6377}, new int[]{175,180}, MAGE_BUFFS);
+            prepareOne("Korvash", "telemetrym", false, 115, Race.ORC, "DOMINATOR", 1245,
+                new int[]{6383,6384,6385,6386,858,858,889,889,920,6608,6377}, new int[]{180}, MAGE_BUFFS);
+            prepareOne("Aelira", "telemetrym", true, 103, Race.ELF, "MYSTIC_MUSE", 1235,
                 new int[]{6383,6384,6385,6386,858,858,889,889,920,6608,6377}, new int[]{175,180}, MAGE_BUFFS);
         }
         catch (Exception e)
@@ -58,7 +62,7 @@ public class RealHumanPilots extends Script
         }
     }
 
-    private void prepareOne(String name, String account, boolean female, int mainClass, int[] gear, int[] dyes, int[][] buffs) throws Exception
+    private void prepareOne(String name, String account, boolean female, int mainClass, Race race, String role, int primarySkill, int[] gear, int[] dyes, int[][] buffs) throws Exception
     {
         int id = 0;
         boolean prepared = false;
@@ -94,7 +98,7 @@ public class RealHumanPilots extends Script
             player.setDead(false);
             if (!prepared)
             {
-                player.setRace(Race.HUMAN);
+                player.setRace(race);
                 player.setTitle("Piloto real +4");
                 maximize(player);
                 for (int itemId : gear)
@@ -112,12 +116,12 @@ public class RealHumanPilots extends Script
                 // Supplies do not grant stats. Reserved for manual tests / a later combat controller.
                 supply(player,57,1000000);
                 supply(player,5592,200);
-                supply(player,female ? 3952 : 1467,2000);
-                if (!female) supply(player,1345,2000);
+                supply(player,mainClass == 92 ? 1467 : 3952,2000);
+                if (mainClass == 92) supply(player,1345,2000);
                 player.setXYZ(147450,female ? 46550 : 46350,-3400);
                 player.storeMe();
             }
-            validate(player,mainClass,gear,dyes);
+            validate(player,mainClass,race,primarySkill,gear,dyes);
             applyBuffs(player,buffs);
             player.setCurrentHpMp(player.getMaxHp(),player.getMaxMp());
             player.setCurrentCp(player.getMaxCp());
@@ -131,10 +135,10 @@ public class RealHumanPilots extends Script
                     "INSERT INTO lab_real_human_pilots (char_id,char_name,recipe_version,prepared_ms,role_name) VALUES (?,?,?,?,?)"))
                 {
                     ps.setInt(1,player.getObjectId());ps.setString(2,name);ps.setString(3,VERSION);
-                    ps.setLong(4,System.currentTimeMillis());ps.setString(5,female ? "FIRE_MAGE" : "ARCHER");ps.executeUpdate();
+                    ps.setLong(4,System.currentTimeMillis());ps.setString(5,role);ps.executeUpdate();
                 }
             }
-            LOGGER.info("Piloto real preparado: " + name + " HUMAN nivel " + player.getLevel() + " PAtk=" + player.getPAtk(null) + " MAtk=" + player.getMAtk(null,null));
+            LOGGER.info("Piloto real preparado: " + name + " " + race + " nivel " + player.getLevel() + " PAtk=" + player.getPAtk(null) + " MAtk=" + player.getMAtk(null,null));
         }
         finally
         {
@@ -147,7 +151,7 @@ public class RealHumanPilots extends Script
         if (restored == null) throw new IllegalStateException("No se pudo verificar persistencia de " + name);
         try
         {
-            validate(restored,mainClass,gear,dyes);
+            validate(restored,mainClass,race,primarySkill,gear,dyes);
             applyBuffs(restored,buffs);
             restored.setCurrentHpMp(restored.getMaxHp(),restored.getMaxMp());
             restored.setCurrentCp(restored.getMaxCp());
@@ -209,9 +213,9 @@ public class RealHumanPilots extends Script
         }
     }
 
-    private static void validate(Player player, int mainClass, int[] gear, int[] dyes)
+    private static void validate(Player player, int mainClass, Race race, int primarySkill, int[] gear, int[] dyes)
     {
-        if (player.getRace() != Race.HUMAN || player.getClassIndex() != 0 || player.getPlayerClass().getId() != mainClass
+        if (player.getRace() != race || player.getClassIndex() != 0 || player.getPlayerClass().getId() != mainClass
             || player.getLevel() != ExperienceData.getInstance().getMaxLevel()-1) throw new IllegalStateException("Identidad/nivel incorrectos: " + player.getName());
         if (!player.getSubClasses().isEmpty()) throw new IllegalStateException("El piloto debe estar sin subclases: " + player.getName());
         for (int itemId : gear)
@@ -227,7 +231,7 @@ public class RealHumanPilots extends Script
             for (int slot=1;slot<=3;slot++) if (player.getHenna(slot)!=null && player.getHenna(slot).getDyeId()==dyeId) found=true;
             if (!found) throw new IllegalStateException("Falta dye real: " + dyeId);
         }
-        if (player.getKnownSkill(mainClass==94 ? 1230 : 343)==null) throw new IllegalStateException("Falta habilidad principal: " + player.getName());
+        if (player.getKnownSkill(primarySkill)==null) throw new IllegalStateException("Falta habilidad principal: " + player.getName());
     }
 
     public static void main(String[] args)

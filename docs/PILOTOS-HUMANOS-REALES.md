@@ -77,3 +77,42 @@ Ignara tiene 74 skills y 20 efectos. Las dos cuentas permanecen desconectadas.
 
 Son capturas del motor con los efectos de esta receta, sin activables propios,
 boss jewels ni skills de subclases. No equivalen a una medición de DPS en combate.
+
+## Ampliación: Dominator orco y Mystic Muse elfa
+
+Se añaden Korvash (orco, masculino, Dominator 115: tercera de Overlord) y
+Aelira (elfa, femenino, Mystic Muse 103: tercera de Spellsinger). Ambos al
+máximo 80, sin subclases, en la cuenta del laboratorio `telemetrym`.
+
+Usan el mismo equipo y buffs mágicos que Ignara: Arcana Mace Acumen +4,
+Arcana Robe completa +4, Imperial Crusader Shield +4, Tateossian completa +4,
+buffs comunes y el bloque mágico de la receta, con duración normal. No se
+activan Arcane Power, Soul Cry ni otras habilidades propias de forma automática.
+
+Aelira usa dyes +4 INT/-4 MEN y +4 WIT/-4 MEN. Korvash usa sólo +4 WIT/-4 MEN:
+el dye +INT 175 no admite Dominator en `hennaList.xml`; no se fuerza su uso.
+El código separa sexo, raza, rol, skill principal y shots. Los consumibles
+dependen de si el perfil es arquero o mágico, no del sexo del personaje.
+El nombre histórico del script y de la tabla se mantiene para preservar los
+dos pilotos existentes; la validación usa ahora la raza explícita de cada uno.
+
+Creación y recarga verificadas: Korvash `268473977`, 79 skills; Aelira
+`268473992`, 75 skills. Ambos nivel 80, cero subclases, 20 efectos y stats
+idénticas antes/después de recarga. Capturas visibles en Personajes del panel.
+
+| Lectura buffeada | Korvash (Dominator) | Aelira (Mystic Muse) |
+|---|---:|---:|
+| P.Atk | 582,24 | 483,00 |
+| M.Atk | 2.372,73 | 3.572,15 |
+| P.Def | 993,75 | 929,35 |
+| M.Def | 1.602,43 | 1.518,83 |
+| Atk. Speed | 426 | 426 |
+| Casting Speed | 922 | 1.365 |
+| HP | 7.366 | 5.322 |
+| CP | 3.198 | 1.516 |
+| MP | 5.386 | 5.096 |
+| STR / DEX / CON | 27 / 24 / 31 | 21 / 24 / 25 |
+| INT / WIT / MEN | 32 / 20 / 36 | 42 / 28 / 30 |
+
+Son clases distintas de razas distintas y con dyes legales distintos; no es
+una comparación aislada del efecto de la raza. No se midió combate ni DPS.

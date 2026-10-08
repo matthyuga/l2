@@ -925,3 +925,16 @@ Corrección solicitada: medir primero la principal sola, sin combinaciones.
 Las masteries se pisan y no se deben usar clases redundantes para inflar stats.
 Cuando se incorporen subclases, sólo la principal tendrá tercera profesión;
 las subs conservarán segunda profesión y se incorporarán de a una.
+
+### 8 de octubre: Dominator orco y Mystic Muse elfa reales
+
+Se amplió el preparador con Korvash `268473977` (ORC, Dominator 115) y Aelira
+`268473992` (ELF, Mystic Muse 103), tercera profesión, nivel 80 y cero subs.
+Mismo equipo mágico +4 y buffs que Ignara. Aelira usa dyes +INT y +WIT; Korvash
+sólo +WIT porque el dye +INT no admite Dominator, y no se forzó esa restricción.
+Ambos verificados por recarga, stats y skills idénticas, 20 efectos. M.Atk:
+Korvash 2372.73, Aelira 3572.15; casteo 922 y 1365 respectivamente. Stats
+completas en `PILOTOS-HUMANOS-REALES.md` y Personajes del laboratorio.
+No se modificó Hellkevin, no se añadieron subs ni activables automáticos y no
+se reemplazaron los nueve NPC. Reinicio sin clientes conectados. Respaldo:
+`backups/orc-elf-real-pilots-2026-10-08`.

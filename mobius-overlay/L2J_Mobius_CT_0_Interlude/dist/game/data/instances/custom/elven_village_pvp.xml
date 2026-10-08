@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<instance id="3051" allowRandomWalk="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/instance.xsd">
+	<allowSummon val="true" />
+	<PvPInstance val="true" />
+	<spawnPoints startPosType="FIXED">
+		<Location x="45150" y="52100" z="-2792" />
+	</spawnPoints>
+	<exitPoint x="46890" y="51531" z="-2976" />
+	<spawnlist>
+		<group name="general">
+			<!-- The nine actors are combat copies. The physical telemetry characters remain untouched. -->
+			<npc id="901100" x="44947" y="50556" z="-3056" heading="0" respawn="20" allowRandomWalk="false" />
+			<npc id="901101" x="46475" y="50495" z="-3056" heading="32768" respawn="20" allowRandomWalk="false" />
+			<npc id="901102" x="47868" y="50167" z="-2983" heading="32768" respawn="20" allowRandomWalk="false" />
+			<npc id="901103" x="45443" y="48357" z="-3056" heading="16384" respawn="20" allowRandomWalk="false" />
+			<npc id="901104" x="43673" y="49683" z="-3048" heading="0" respawn="20" allowRandomWalk="false" />
+			<npc id="901105" x="42971" y="51372" z="-2992" heading="0" respawn="20" allowRandomWalk="false" />
+			<npc id="901106" x="47401" y="51764" z="-2992" heading="32768" respawn="20" allowRandomWalk="false" />
+			<npc id="901107" x="45859" y="50827" z="-3056" heading="16384" respawn="20" allowRandomWalk="false" />
+			<npc id="901108" x="44652" y="50972" z="-3056" heading="49152" respawn="20" allowRandomWalk="false" />
+		</group>
+	</spawnlist>
+</instance>

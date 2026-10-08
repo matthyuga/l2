@@ -40,3 +40,23 @@ El núcleo completo compiló y el Game Server cargó 128 scripts y 86 buffs del
 buffer. La validación visual y de jugabilidad sigue siendo una prueba manual:
 entrar con un cliente, revisar selección de blancos, pathfinding, daño y tiempos
 de supervivencia antes de convertir las copias en builds finales.
+
+## Telemetría NPC contra NPC
+
+El capturador de `LabTelemetry` reconoce los IDs `901100–901108` dentro de la
+instancia Elven PvP y registra ataques entre ellos mientras exista al menos un
+jugador real conectado dentro de la sala. Al quedar sin observadores deja de
+guardar estos eventos, evitando que el FFA automático haga crecer la base de
+datos indefinidamente.
+
+Cada evento conserva ID de instancia, cantidad de observadores, atacante,
+defensor, skill, daño, crítico, fallo, recursos y muerte. Las estadísticas de los
+nueve NPC también se guardan en `lab_creature_stats`, incluyendo HP, P.Atk,
+M.Atk, P.Def, M.Def y velocidades.
+
+El panel incorpora `/api/telemetry/elven-pvp` y el bloque **Elven PvP · combate
+vivo**, con daño infligido y recibido, impactos, críticos, fallos, bajas, muertes,
+daño absorbido por muerte, equivalentes de barra de HP y skill de mayor daño.
+Los datos anteriores al cambio siguen intactos, pero no poseen `instance_id` ni
+`observer_count`; la comparación NPC contra NPC comienza con la siguiente entrada
+a `.elvenpvp`.

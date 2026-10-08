@@ -31,6 +31,7 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.config.custom.ClassBalanceConfig;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
+import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.entity.WorldObject;
 import org.l2jmobius.gameserver.entity.actor.Creature;
 import org.l2jmobius.gameserver.entity.actor.Npc;
@@ -38,10 +39,12 @@ import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.actor.Summon;
 import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.entity.actor.holders.player.SubClassHolder;
+import org.l2jmobius.gameserver.entity.instancezone.Instance;
 import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.entity.item.enums.ShotType;
 import org.l2jmobius.gameserver.entity.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.entity.item.instance.Item;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.mechanics.events.Containers;
 import org.l2jmobius.gameserver.mechanics.events.EventType;
 import org.l2jmobius.gameserver.mechanics.events.holders.actor.creature.OnCreatureAttackAvoid;
@@ -74,6 +77,9 @@ public class LabTelemetry extends Script
 	private static LabTelemetry INSTANCE;
 	private static final int LAB_NPC_ID_MIN = 900200;
 	private static final int LAB_NPC_ID_MAX = 900299;
+	private static final int ELVEN_PVP_TEMPLATE_ID = 3051;
+	private static final int ELVEN_PVP_FIGHTER_ID_MIN = 901100;
+	private static final int ELVEN_PVP_FIGHTER_ID_MAX = 901108;
 	private static final int CLEAN_PROFILE_LEVEL = 80;
 	private static final Set<Integer> CONTROLLED_CAPTURE_IDS = ConcurrentHashMap.newKeySet();
 	private static final int EXPECTED_PAIR_COUNT = 465;
@@ -133,6 +139,8 @@ public class LabTelemetry extends Script
 		"event_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT," +
 		"occurred_ms BIGINT UNSIGNED NOT NULL," +
 		"event_type VARCHAR(16) NOT NULL," +
+		"instance_id INT NOT NULL DEFAULT 0," +
+		"observer_count SMALLINT NOT NULL DEFAULT 0," +
 		"attacker_object_id INT NOT NULL DEFAULT 0," +
 		"attacker_name VARCHAR(45) NOT NULL DEFAULT ''," +
 		"attacker_kind VARCHAR(12) NOT NULL DEFAULT ''," +
@@ -171,7 +179,8 @@ public class LabTelemetry extends Script
 		"KEY idx_lab_events_time (occurred_ms)," +
 		"KEY idx_lab_events_attacker (attacker_object_id, occurred_ms)," +
 		"KEY idx_lab_events_target (target_object_id, occurred_ms)," +
-		"KEY idx_lab_events_type (event_type, occurred_ms)" +
+		"KEY idx_lab_events_type (event_type, occurred_ms)," +
+		"KEY idx_lab_events_instance (instance_id, occurred_ms)" +
 		") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
 	private static final String CREATE_STATS_TABLE =
@@ -439,13 +448,13 @@ public class LabTelemetry extends Script
 		") ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
 
 	private static final String INSERT_EVENT =
-		"INSERT INTO lab_combat_events (occurred_ms,event_type," +
+		"INSERT INTO lab_combat_events (occurred_ms,event_type,instance_id,observer_count," +
 		"attacker_object_id,attacker_name,attacker_kind,attacker_template_id,attacker_class_id,attacker_level," +
 		"attacker_cp,attacker_max_cp,attacker_hp,attacker_max_hp,attacker_mp,attacker_max_mp," +
 		"target_object_id,target_name,target_kind,target_template_id,target_class_id,target_level," +
 		"target_cp,target_max_cp,target_hp,target_max_hp,target_mp,target_max_mp," +
 		"skill_id,skill_level,skill_name,damage,critical,damage_over_time,target_dead,world_x,world_y,world_z) " +
-		"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 	private static final String UPSERT_STATS =
 		"INSERT INTO lab_creature_stats (template_id,object_id,name,observed_ms,level," +
@@ -3353,6 +3362,9 @@ public class LabTelemetry extends Script
 		try (Connection con = DatabaseFactory.getConnection(); Statement st = con.createStatement())
 		{
 			st.executeUpdate(CREATE_TABLE);
+			st.executeUpdate("ALTER TABLE lab_combat_events ADD COLUMN IF NOT EXISTS instance_id INT NOT NULL DEFAULT 0 AFTER event_type");
+			st.executeUpdate("ALTER TABLE lab_combat_events ADD COLUMN IF NOT EXISTS observer_count SMALLINT NOT NULL DEFAULT 0 AFTER instance_id");
+			st.executeUpdate("ALTER TABLE lab_combat_events ADD INDEX IF NOT EXISTS idx_lab_events_instance (instance_id, occurred_ms)");
 			st.executeUpdate(CREATE_STATS_TABLE);
 			st.executeUpdate(CREATE_PLAYER_STATS_TABLE);
 			st.executeUpdate(CREATE_PLAYER_PROFILE_TABLE);
@@ -3428,13 +3440,43 @@ public class LabTelemetry extends Script
 
 	private void record(String type, Creature attacker, Creature target, Skill skill, double damage, boolean critical, boolean damageOverTime)
 	{
-		if (!isInteresting(attacker, target))
+		final ArenaObservation arena = getObservedElvenArena(attacker, target);
+		if (!isInteresting(attacker, target) && (arena == null))
 		{
 			return;
 		}
 
-		final CombatSnapshot snapshot = new CombatSnapshot(type, attacker, target, skill, damage, critical, damageOverTime);
+		final CombatSnapshot snapshot = new CombatSnapshot(type, attacker, target, skill, damage, critical, damageOverTime, arena);
 		ThreadPool.execute(() -> insert(snapshot));
+	}
+
+	private static ArenaObservation getObservedElvenArena(Creature attacker, Creature target)
+	{
+		final Creature arenaActor = isElvenPvpFighter(attacker) ? attacker : (isElvenPvpFighter(target) ? target : null);
+		if (arenaActor == null)
+		{
+			return null;
+		}
+		final int instanceId = arenaActor.getInstanceId();
+		if ((instanceId <= 0) || ((attacker != null) && (attacker.getInstanceId() != instanceId)) || ((target != null) && (target.getInstanceId() != instanceId)))
+		{
+			return null;
+		}
+		final Instance room = InstanceManager.getInstance().getInstance(instanceId);
+		if ((room == null) || (room.getTemplateId() != ELVEN_PVP_TEMPLATE_ID))
+		{
+			return null;
+		}
+		int observers = 0;
+		for (Integer objectId : room.getPlayers())
+		{
+			final Player player = World.getPlayer(objectId);
+			if ((player != null) && player.isOnline() && (player.getInstanceId() == instanceId))
+			{
+				observers++;
+			}
+		}
+		return observers > 0 ? new ArenaObservation(instanceId, observers) : null;
 	}
 
 	private boolean isInteresting(Creature attacker, Creature target)
@@ -3465,6 +3507,16 @@ public class LabTelemetry extends Script
 		return (id >= LAB_NPC_ID_MIN) && (id <= LAB_NPC_ID_MAX);
 	}
 
+	private static boolean isElvenPvpFighter(Creature creature)
+	{
+		return (creature instanceof Npc) && isElvenPvpFighterTemplate(((Npc) creature).getId());
+	}
+
+	private static boolean isElvenPvpFighterTemplate(int templateId)
+	{
+		return (templateId >= ELVEN_PVP_FIGHTER_ID_MIN) && (templateId <= ELVEN_PVP_FIGHTER_ID_MAX);
+	}
+
 	private void insert(CombatSnapshot e)
 	{
 		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement(INSERT_EVENT))
@@ -3472,6 +3524,8 @@ public class LabTelemetry extends Script
 			int i = 1;
 			ps.setLong(i++, e.time);
 			ps.setString(i++, e.type);
+			ps.setInt(i++, e.instanceId);
+			ps.setInt(i++, e.observerCount);
 			i = bindCreature(ps, i, e.attacker);
 			i = bindCreature(ps, i, e.target);
 			ps.setInt(i++, e.skillId);
@@ -3523,7 +3577,7 @@ public class LabTelemetry extends Script
 
 	private void upsertStats(Connection con, CreatureSnapshot c) throws SQLException
 	{
-		if ((c.templateId < LAB_NPC_ID_MIN) || (c.templateId > LAB_NPC_ID_MAX))
+		if (((c.templateId < LAB_NPC_ID_MIN) || (c.templateId > LAB_NPC_ID_MAX)) && !isElvenPvpFighterTemplate(c.templateId))
 		{
 			return;
 		}
@@ -3578,10 +3632,24 @@ public class LabTelemetry extends Script
 		return index;
 	}
 
+	private static final class ArenaObservation
+	{
+		private final int instanceId;
+		private final int observerCount;
+
+		private ArenaObservation(int roomId, int observers)
+		{
+			instanceId = roomId;
+			observerCount = observers;
+		}
+	}
+
 	private static final class CombatSnapshot
 	{
 		private final long time = System.currentTimeMillis();
 		private final String type;
+		private final int instanceId;
+		private final int observerCount;
 		private final CreatureSnapshot attacker;
 		private final CreatureSnapshot target;
 		private final int skillId;
@@ -3595,9 +3663,11 @@ public class LabTelemetry extends Script
 		private final int y;
 		private final int z;
 
-		private CombatSnapshot(String eventType, Creature source, Creature victim, Skill skill, double amount, boolean crit, boolean dot)
+		private CombatSnapshot(String eventType, Creature source, Creature victim, Skill skill, double amount, boolean crit, boolean dot, ArenaObservation arena)
 		{
 			type = eventType;
+			instanceId = arena != null ? arena.instanceId : (source != null ? source.getInstanceId() : (victim != null ? victim.getInstanceId() : 0));
+			observerCount = arena != null ? arena.observerCount : 0;
 			attacker = new CreatureSnapshot(source);
 			target = new CreatureSnapshot(victim);
 			skillId = skill != null ? skill.getId() : 0;

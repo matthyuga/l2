@@ -820,3 +820,26 @@ preservaron 285 pasadas 4D, 360 calibraciones de Nyx, 12 progresiones mágicas y
 240 comparaciones mágicas. El volcado final y el resumen JSON quedaron en
 `data/telemetry/`; el respaldo local está en
 `backups/telemetry-phase5a6-five-races-2026-10-07`.
+
+## 25. Telemetría observada de la sala Elven PvP
+
+La primera batalla real de Hellkevin contra las copias confirmó 2.765 eventos
+entre las 22:21 y las 22:59. La telemetría anterior podía medir jugador contra
+NPC, pero ignoraba NPC contra NPC; por eso Eryndor y Gorvak aparecían sin
+actividad aunque estuvieran presentes en la instancia.
+
+Se amplió `lab_combat_events` con `instance_id` y `observer_count`. Los nueve IDs
+`901100–901108` ahora se consideran objetivos telemétricos dentro de la plantilla
+3051. La captura de NPC contra NPC sólo se habilita cuando hay al menos un jugador
+real dentro de esa misma instancia y se detiene automáticamente al quedar vacía.
+Esto permite observar el FFA sin generar datos infinitos en segundo plano.
+
+También se incorporaron sus snapshots a `lab_creature_stats` y un endpoint/panel
+específico que agrega daño saliente, daño recibido, impactos, fallos, críticos,
+bajas, muertes, daño por muerte, barras de HP absorbidas, defensas y skill
+principal. El esquema migró sin pérdida de las 5.233 filas históricas. El Game
+Server cargó 128 scripts y el panel quedó listo; la próxima entrada con
+`.elvenpvp` será la primera sesión completa con NPC contra NPC.
+
+Respaldo previo a la migración:
+`backups/elven-pvp-telemetry-2026-10-07/lab-combat-events-before-npc-vs-npc.sql`.

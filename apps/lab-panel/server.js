@@ -945,6 +945,77 @@ async function telemetryPhysicalRaceBaseline() {
   return { expectedRuns: 1200, totalRuns: rows.reduce(function(sum,row){return sum+Number(row.runs);},0), referenceRace: 'HUMAN', baselines: baselines };
 }
 
+async function telemetryElvenPvp() {
+  const roster = [
+    { id: 901100, name: 'Arden' }, { id: 901101, name: 'Selene' }, { id: 901102, name: 'Eryndor' },
+    { id: 901103, name: 'Lethiel' }, { id: 901104, name: 'Vaelkor' }, { id: 901105, name: 'Myrentha' },
+    { id: 901106, name: 'Gorvak' }, { id: 901107, name: 'Zhurak' }, { id: 901108, name: 'Brunna' }
+  ];
+  let latest;
+  try {
+    latest = await database.query(
+      "SELECT MAX(instance_id) AS instance_id FROM lab_combat_events WHERE observer_count>0 AND ((attacker_template_id BETWEEN 901100 AND 901108) OR (target_template_id BETWEEN 901100 AND 901108))"
+    );
+  } catch (error) {
+    if (error && (error.code === 'ER_NO_SUCH_TABLE' || error.code === 'ER_BAD_FIELD_ERROR')) return { enabled: false, instanceId: 0, events: 0, fighters: [] };
+    throw error;
+  }
+  const instanceId = Number(latest[0] && latest[0].instance_id || 0);
+  if (!instanceId) return { enabled: true, instanceId: 0, events: 0, fighters: roster.map(function(item){return Object.assign({}, item, {damageDealt:0,damageReceived:0,hits:0,misses:0,criticals:0,kills:0,deaths:0});}) };
+  const results = await Promise.all([
+    database.query(
+      "SELECT COUNT(*) AS events,MIN(occurred_ms) AS started_ms,MAX(occurred_ms) AS ended_ms,MAX(observer_count) AS max_observers," +
+      "SUM(CASE WHEN event_type='DAMAGE' THEN 1 ELSE 0 END) AS hits," +
+      "SUM(CASE WHEN event_type='DAMAGE' THEN damage ELSE 0 END) AS damage," +
+      "SUM(CASE WHEN attacker_template_id BETWEEN 901100 AND 901108 AND target_template_id BETWEEN 901100 AND 901108 THEN 1 ELSE 0 END) AS npc_vs_npc_events " +
+      "FROM lab_combat_events WHERE instance_id=? AND observer_count>0",
+      [instanceId]
+    ),
+    database.query(
+      "SELECT attacker_template_id AS id,MAX(attacker_name) AS name," +
+      "SUM(CASE WHEN event_type='DAMAGE' THEN damage ELSE 0 END) AS damage_dealt," +
+      "SUM(CASE WHEN event_type='DAMAGE' THEN 1 ELSE 0 END) AS hits," +
+      "SUM(CASE WHEN event_type='MISS' THEN 1 ELSE 0 END) AS misses," +
+      "SUM(CASE WHEN event_type='DAMAGE' AND critical=1 THEN 1 ELSE 0 END) AS criticals," +
+      "SUM(CASE WHEN event_type='DEATH' THEN 1 ELSE 0 END) AS kills " +
+      "FROM lab_combat_events WHERE instance_id=? AND observer_count>0 AND attacker_template_id BETWEEN 901100 AND 901108 GROUP BY attacker_template_id",
+      [instanceId]
+    ),
+    database.query(
+      "SELECT target_template_id AS id,MAX(target_name) AS name," +
+      "SUM(CASE WHEN event_type='DAMAGE' THEN damage ELSE 0 END) AS damage_received," +
+      "SUM(CASE WHEN event_type='DEATH' THEN 1 ELSE 0 END) AS deaths " +
+      "FROM lab_combat_events WHERE instance_id=? AND observer_count>0 AND target_template_id BETWEEN 901100 AND 901108 GROUP BY target_template_id",
+      [instanceId]
+    ),
+    database.query("SELECT template_id AS id,max_hp,p_atk,m_atk,p_def,m_def,p_atk_speed,m_atk_speed FROM lab_creature_stats WHERE template_id BETWEEN 901100 AND 901108"),
+    database.query(
+      "SELECT attacker_template_id AS id,skill_id,skill_name,COUNT(*) AS hits,SUM(damage) AS damage,AVG(damage) AS average_damage,MAX(damage) AS max_damage " +
+      "FROM lab_combat_events WHERE instance_id=? AND observer_count>0 AND event_type='DAMAGE' AND attacker_template_id BETWEEN 901100 AND 901108 " +
+      "GROUP BY attacker_template_id,skill_id,skill_name ORDER BY damage DESC",
+      [instanceId]
+    )
+  ]);
+  const summary = results[0][0] || {};
+  const outgoing = new Map(results[1].map(function(row){return [Number(row.id), row];}));
+  const incoming = new Map(results[2].map(function(row){return [Number(row.id), row];}));
+  const stats = new Map(results[3].map(function(row){return [Number(row.id), row];}));
+  const topSkills = new Map();
+  results[4].forEach(function(row){const id=Number(row.id);if(!topSkills.has(id))topSkills.set(id,row);});
+  const fighters = roster.map(function(item) {
+    const dealt=outgoing.get(item.id)||{},received=incoming.get(item.id)||{},stat=stats.get(item.id)||{},skill=topSkills.get(item.id)||null;
+    const damageReceived=Number(received.damage_received||0),deaths=Number(received.deaths||0),maxHp=Number(stat.max_hp||0);
+    return {
+      id:item.id,name:item.name,damageDealt:Number(dealt.damage_dealt||0),damageReceived:damageReceived,
+      hits:Number(dealt.hits||0),misses:Number(dealt.misses||0),criticals:Number(dealt.criticals||0),kills:Number(dealt.kills||0),deaths:deaths,
+      damagePerDeath:deaths?damageReceived/deaths:damageReceived,hpBarsAbsorbed:maxHp?damageReceived/maxHp:0,
+      stats:{maxHp:maxHp,pAtk:Number(stat.p_atk||0),mAtk:Number(stat.m_atk||0),pDef:Number(stat.p_def||0),mDef:Number(stat.m_def||0),pAtkSpeed:Number(stat.p_atk_speed||0),mAtkSpeed:Number(stat.m_atk_speed||0)},
+      topSkill:skill?{id:Number(skill.skill_id),name:skill.skill_name,hits:Number(skill.hits),damage:Number(skill.damage),averageDamage:Number(skill.average_damage),maxDamage:Number(skill.max_damage)}:null
+    };
+  });
+  return { enabled:true,instanceId:instanceId,events:Number(summary.events||0),startedMs:Number(summary.started_ms||0),endedMs:Number(summary.ended_ms||0),maxObservers:Number(summary.max_observers||0),hits:Number(summary.hits||0),damage:Number(summary.damage||0),npcVsNpcEvents:Number(summary.npc_vs_npc_events||0),fighters:fighters };
+}
+
 async function api(req, res, url) {
   const route = url.pathname;
   if (req.method === 'GET' && route === '/api/status') {
@@ -1011,6 +1082,7 @@ async function api(req, res, url) {
 	if (req.method === 'GET' && route === '/api/telemetry/magic-progression') return json(res, 200, await telemetryMagicProgression());
 	if (req.method === 'GET' && route === '/api/telemetry/magic-comparison') return json(res, 200, await telemetryMagicComparison());
 	if (req.method === 'GET' && route === '/api/telemetry/physical-race-baseline') return json(res, 200, await telemetryPhysicalRaceBaseline());
+	if (req.method === 'GET' && route === '/api/telemetry/elven-pvp') return json(res, 200, await telemetryElvenPvp());
 	if (req.method === 'GET' && route === '/api/telemetry/external-references') return json(res, 200, externalReferences());
   match = route.match(/^\/api\/telemetry\/fights\/(\d+)$/);
   if (match && req.method === 'GET') {

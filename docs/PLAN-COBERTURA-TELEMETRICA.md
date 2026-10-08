@@ -584,3 +584,18 @@ La Fase 5A.4 se conserva únicamente como antecedente del error de estado. Si se
 desea que la raza modifique atributos aun usando una profesión ajena, eso debe
 definirse como una política de balance explícita y medirse en una fase nueva; no
 es un efecto presente que la telemetría haya ocultado.
+
+## Extensión Elven PvP — daño y resistencia en FFA
+
+La sala Elven complementa los benchmarks acelerados con combate vivo entre nueve
+perfiles. El capturador registra ahora jugador contra NPC y NPC contra NPC dentro
+de la instancia 3051, pero sólo mientras un jugador real permanezca observando.
+Esto crea muestras de daño y resistencia sin mantener escritura indefinida con la
+sala vacía.
+
+Por combatiente se medirán daño infligido/recibido, impactos, críticos, fallos,
+bajas, muertes, daño absorbido por muerte, equivalentes de HP y skill dominante.
+Los snapshots aportan HP, P.Def, M.Def, P.Atk, M.Atk y velocidades. La siguiente
+sesión debe durar al menos diez minutos y dejar que los nueve se enfrenten antes
+de decidir buffs o nerfs; también servirá para detectar pathfinding deficiente o
+personajes que no logran adquirir blancos.

@@ -38,7 +38,56 @@
     if (view === 'balance' && $('#race-filter').options.length <= 1) loadClasses();
     if (view === 'skills' && !state.skills.length) searchSkills('');
     if (view === 'telemetry') loadTelemetry();
+    if (view === 'arena') loadArenaRoster();
   }
+
+  var arenaFighters = [];
+  titles.arena = 'Rivales del Coliseo';
+
+  async function loadArenaRoster() {
+    $('#arena-roster-table').innerHTML = '<div class="loading">Leyendo los nueve rivales…</div>';
+    try {
+      var result = await Promise.all([api('/api/arena-roster'), api('/api/characters')]);
+      arenaFighters = result[0];
+      var selected = $('#arena-fighter').value;
+      $('#arena-fighter').innerHTML = arenaFighters.map(function(f) { return '<option value="'+f.id+'">'+f.order+'. '+escapeHtml(f.name)+' · '+escapeHtml(f.className)+'</option>'; }).join('');
+      if (arenaFighters.some(function(f){return String(f.id)===selected;})) $('#arena-fighter').value = selected;
+      var playerSelected = $('#arena-player').value;
+      $('#arena-player').innerHTML = '<option value="">Sin personaje de referencia</option>'+result[1].map(function(p){return '<option value="'+p.charId+'">'+escapeHtml(p.char_name)+' · nivel '+p.level+'</option>';}).join('');
+      $('#arena-player').value = playerSelected;
+      var columns = [{label:'HP',key:'max_hp'},{label:'CP',key:'max_cp'},{label:'MP',key:'max_mp'},
+        {label:'P.Atk',key:'p_atk'},{label:'M.Atk',key:'m_atk'},{label:'P.Def',key:'p_def'},{label:'M.Def',key:'m_def'},
+        {label:'Atk. Speed',key:'p_atk_speed'},{label:'Casteo',key:'m_atk_speed'}];
+      $('#arena-roster-table').innerHTML = '<table><thead><tr><th>Rival / clase</th>'+columns.map(function(c){return '<th>'+c.label+'</th>';}).join('')+'</tr></thead><tbody>'+arenaFighters.map(function(f){
+        return '<tr><td><button class="button ghost" data-arena-fighter="'+f.id+'">'+f.order+'. '+escapeHtml(f.name)+'</button><span class="build-mini">'+escapeHtml(f.className)+' · '+escapeHtml(f.race)+'</span></td>'+columns.map(function(c){return '<td>'+(!f.liveStats?'—':number(f.liveStats[c.key],2))+'</td>';}).join('')+'</tr>';
+      }).join('')+'</tbody></table>';
+      $$('[data-arena-fighter]').forEach(function(button){button.onclick=function(){$('#arena-fighter').value=button.dataset.arenaFighter;renderArenaFighter();};});
+      renderArenaFighter();
+      await renderArenaComparison();
+    } catch(error) { $('#arena-roster-table').innerHTML='<div class="loading">'+escapeHtml(error.message)+'</div>'; }
+  }
+
+  function renderArenaFighter() {
+    var f = arenaFighters.find(function(item){return String(item.id)===$('#arena-fighter').value;});
+    if (!f) return;
+    $('#arena-fighter-detail').innerHTML = '<h3>'+escapeHtml(f.name)+' · '+escapeHtml(f.className)+'</h3>'+(f.liveStats ?
+      '<p class="muted">Última captura: '+escapeHtml(date(f.liveStats.observed_ms))+' · NPC #'+f.id+'</p><div class="final-stats-grid live">'+liveStatTiles(f.liveStats)+statTile('Rango',f.liveStats.attack_range)+statTile('Velocidad al caminar',f.liveStats.walk_speed)+'</div>' :
+      '<div class="notice">Todavía no hay una lectura del servidor para este rival. Los valores faltantes no se representan como cero.</div>');
+  }
+
+  async function renderArenaComparison() {
+    var id = $('#arena-player').value;
+    if(!id){$('#arena-player-comparison').innerHTML='';return;}
+    try {
+      var p = await api('/api/characters/'+id);
+      if ($('#arena-player').value!==id) return;
+      $('#arena-player-comparison').innerHTML = '<div class="notice">Diferencias respecto de '+escapeHtml(p.char_name)+'. '+(p.liveStats?'Lectura del personaje: '+escapeHtml(date(p.liveStats.observed_ms))+'.':'Falta una lectura final del personaje; sus diferencias se muestran sin dato.')+'</div>'+comparisonTable(p,arenaFighters,'live');
+    } catch(error){$('#arena-player-comparison').innerHTML='<div class="notice">'+escapeHtml(error.message)+'</div>';}
+  }
+
+  $('#refresh-arena').onclick = loadArenaRoster;
+  $('#arena-fighter').onchange = renderArenaFighter;
+  $('#arena-player').onchange = renderArenaComparison;
 
   async function loadStatus() {
     try {

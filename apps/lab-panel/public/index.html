@@ -16,6 +16,7 @@
       <nav id="nav">
         <button class="nav-item active" data-view="overview"><span>◈</span>Resumen</button>
         <button class="nav-item" data-view="characters"><span>♙</span>Personajes</button>
+        <button class="nav-item" data-view="arena"><span>⚔</span>Rivales del Coliseo</button>
         <button class="nav-item" data-view="creator"><span>✚</span>Crear rival</button>
         <button class="nav-item" data-view="balance"><span>⚖</span>Razas y clases</button>
         <button class="nav-item" data-view="skills"><span>✦</span>Skills</button>
@@ -83,6 +84,19 @@
             <div class="empty-state"><span>♙</span><h3>Selecciona un personaje</h3><p>Podrás revisar su build, recursos, inventario y valores seguros.</p></div>
           </article>
         </div>
+      </section>
+
+      <section id="view-arena" class="view">
+        <article class="panel">
+          <div class="panel-heading"><div><p class="eyebrow">PREPARACIÓN · NUEVE DUELOS</p><h3>Rivales del Coliseo</h3></div><button id="refresh-arena" class="button ghost">Actualizar stats</button></div>
+          <div class="detail-body"><div class="notice">Copias de combate nivel 80, en orden de salida. Estos valores son la última lectura del servidor, con sus pasivos y efectos al capturarse. Permanecen disponibles con el juego cerrado. Los anclajes de nivel 1 en Personajes tienen otros stats.</div></div>
+          <div id="arena-roster-table" class="table-wrap"></div>
+        </article>
+        <article class="panel" style="margin-top:18px">
+          <div class="detail-body"><div class="form-grid"><div class="field"><label for="arena-fighter">Ver todos los stats de</label><select id="arena-fighter"></select></div><div class="field"><label for="arena-player">Comparar los nueve contra</label><select id="arena-player"><option value="">Sin personaje de referencia</option></select></div></div></div>
+          <div id="arena-fighter-detail" class="detail-body"></div>
+          <div id="arena-player-comparison" class="table-wrap"></div>
+        </article>
       </section>
 
       <section id="view-creator" class="view">

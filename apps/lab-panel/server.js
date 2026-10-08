@@ -945,6 +945,35 @@ async function telemetryPhysicalRaceBaseline() {
   return { expectedRuns: 1200, totalRuns: rows.reduce(function(sum,row){return sum+Number(row.runs);},0), referenceRace: 'HUMAN', baselines: baselines };
 }
 
+async function arenaRoster() {
+  const xml = fs.readFileSync(path.join(config.paths.serverData, 'stats', 'npcs', 'custom', 'elven_village_pvp.xml'), 'utf8');
+  let rows = [];
+  try {
+    rows = await database.query('SELECT * FROM lab_creature_stats WHERE template_id BETWEEN 901100 AND 901108');
+  } catch (error) {
+    if (!error || error.code !== 'ER_NO_SUCH_TABLE') throw error;
+  }
+  const snapshots = new Map(rows.map(function(row) { return [Number(row.template_id), row]; }));
+  const fighters = [];
+  xml.replace(/<npc\s+([^>]+)>([\s\S]*?)<\/npc>/g, function(_, raw, block) {
+    function attribute(source, key) {
+      const found = source.match(new RegExp('\\b' + key + '="([^"]*)"'));
+      return found ? found[1] : null;
+    }
+    const id = Number(attribute(raw, 'id'));
+    if (id < 901100 || id > 901108) return _;
+    const appearance = block.match(/<fakePlayer\b([^>]*)>/);
+    const classId = Number(appearance && attribute(appearance[1], 'classId'));
+    const classInfo = data.classById(classId);
+    const race = block.match(/<race>([^<]*)<\/race>/);
+    fighters.push({id:id, order:id-901099, name:attribute(raw,'name'), level:Number(attribute(raw,'level')),
+      race:race ? race[1] : '', className:classInfo ? classInfo.name : String(classId),
+      liveStats:snapshots.get(id) || null});
+    return _;
+  });
+  return fighters.sort(function(a,b) { return a.order-b.order; });
+}
+
 async function telemetryElvenPvp() {
   const roster = [
     { id: 901100, name: 'Arden' }, { id: 901101, name: 'Selene' }, { id: 901102, name: 'Eryndor' },
@@ -1054,6 +1083,7 @@ async function api(req, res, url) {
     return json(res, 200, await characterDetail(match[1]));
   }
   if (req.method === 'GET' && route === '/api/opponents') return json(res, 200, data.opponents());
+  if (req.method === 'GET' && route === '/api/arena-roster') return json(res, 200, await arenaRoster());
   if (req.method === 'POST' && route === '/api/opponents') {
     const result = data.createOpponent(await body(req));
     writeState({ requiresRestart: true, lastChange: Date.now(), lastBackup: result.backup });

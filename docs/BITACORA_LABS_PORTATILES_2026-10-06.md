@@ -881,3 +881,22 @@ es colocado primero en `148900,45800,-3400`, corre un tramo corto y visible hast
 atasca durante seis segundos, se lo traslada al centro antes de habilitar el
 combate; ya no existe ninguna ruta que permita atacar desde detrás de una pared.
 Respaldo: `backups/solo-arena-gauntlet-geodata-fix-2026-10-08`.
+
+### 8 de octubre: stats de los nueve rivales en el laboratorio
+
+El panel incorpora **Rivales del Coliseo**, accesible también con
+`http://127.0.0.1:3210/?view=arena`. Muestra las copias de combate
+901100–901108, no los personajes de telemetría de nivel 1. La tabla reúne HP,
+CP, MP, P.Atk, M.Atk, P.Def, M.Def y velocidades de ataque/casteo de los nueve.
+Al seleccionar un rival aparecen también atributos, críticos, precisión,
+evasión, rango y movimiento. Se puede seleccionar Hellkevin u otro personaje
+para comparar los nueve y ver diferencias absolutas y porcentuales.
+
+Los valores proceden de `lab_creature_stats`: son la última lectura real del
+Game Server, con los efectos activos al capturarla, y no una predicción de
+stats desnudos. Se conserva la fecha de captura y se pueden consultar antes
+de pelear o con el juego cerrado. Actualmente los nueve tienen datos.
+El endpoint de lectura es `/api/arena-roster`; no cambia stats ni balance.
+Verificados sintaxis, API, render de las nueve filas, selección de Myrentha y
+comparación con Hellkevin. No se pudo realizar revisión visual automática
+porque el controlador de navegador no tenía un navegador disponible.

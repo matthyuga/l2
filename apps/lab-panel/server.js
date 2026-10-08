@@ -135,8 +135,9 @@ async function characterDetail(charId) {
   try {
     const statsRows = await database.query('SELECT * FROM lab_player_stats WHERE char_id=?', [charId]);
     character.liveStats = statsRows.length ? statsRows[0] : null;
-    character.liveStatsRacialCompatible = !character.liveStats || character.liveStats.rules_version === 'fixed-racial-v1';
-    if (!character.liveStatsRacialCompatible) {
+    character.liveStatsRacialCompatible = !character.liveStats || character.liveStats.rules_version === 'fixed-racial-active-slot-v1';
+    character.liveStatsClassCompatible = !character.liveStats || Number(character.liveStats.class_id) === Number(character.classid);
+    if (!character.liveStatsRacialCompatible || !character.liveStatsClassCompatible) {
       character.historicalLiveStats = character.liveStats;
       character.liveStats = null;
     }

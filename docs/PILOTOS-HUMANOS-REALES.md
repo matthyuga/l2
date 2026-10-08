@@ -1,5 +1,10 @@
 # Pilotos humanos reales — 8 de octubre de 2026
 
+Actualización posterior: los siete pilotos ya tienen tres subs de tercera
+profesión nivel 80. Se usan skills por slot activo, con raza fija; la preparación
+y validación actuales están en [CLASE-ACTIVA-Y-TRES-SUBS.md](CLASE-ACTIVA-Y-TRES-SUBS.md).
+Las recetas sin subs descritas a continuación son la referencia histórica.
+
 Estos pilotos son personajes persistentes `Player`, no `Monster` con aspecto
 de jugador. Se preparan con las APIs del servidor; no se escriben manualmente
 P.Atk, M.Atk, defensas, velocidades, críticos ni recursos máximos.

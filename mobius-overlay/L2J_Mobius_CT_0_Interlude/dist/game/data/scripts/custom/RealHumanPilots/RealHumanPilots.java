@@ -4,11 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.data.xml.HennaData;
 import org.l2jmobius.gameserver.data.xml.PlayerTemplateData;
@@ -27,7 +31,8 @@ import custom.LabTelemetry.LabTelemetry;
 public class RealHumanPilots extends Script
 {
     private static final Logger LOGGER = Logger.getLogger(RealHumanPilots.class.getName());
-    private static final String VERSION = "human-pilots-v1-main-only";
+    private static final String VERSION = "human-pilots-v2-active-slot";
+    private static final String LEGACY_VERSION = "human-pilots-v1-main-only";
     private static final int[][] COMMON_BUFFS = {{1204,2},{1040,3},{1036,2},{1045,6},{1048,6},{1035,4},{1062,2}};
     private static final int[][] ARCHER_BUFFS = {{1068,3},{1086,2},{1240,3},{1242,3},{1077,3},{1087,3},{1357,1},
         {271,1},{272,1},{274,1},{275,1},{269,1},{266,1},{264,1},{267,1},{268,1},{304,1}};
@@ -43,6 +48,8 @@ public class RealHumanPilots extends Script
     {
         try
         {
+            if (PlayerConfig.CUMULATIVE_SUBCLASS_SKILLS)
+                throw new IllegalStateException("Los pilotos requieren CumulativeSubclassSkills=False");
             try (Connection con = DatabaseFactory.getConnection(); Statement st = con.createStatement())
             {
                 st.executeUpdate("CREATE TABLE IF NOT EXISTS lab_real_human_pilots (char_id INT UNSIGNED NOT NULL PRIMARY KEY, char_name VARCHAR(35) NOT NULL UNIQUE, recipe_version VARCHAR(40) NOT NULL, prepared_ms BIGINT UNSIGNED NOT NULL, verified_ms BIGINT UNSIGNED NOT NULL DEFAULT 0, role_name VARCHAR(20) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
@@ -83,7 +90,7 @@ public class RealHumanPilots extends Script
                 {
                     if (!account.equals(rs.getString("account_name"))) throw new IllegalStateException("Nombre ocupado: " + name);
                     id = rs.getInt("charId");
-                    prepared = VERSION.equals(rs.getString("recipe_version"));
+                    prepared = VERSION.equals(rs.getString("recipe_version")) || LEGACY_VERSION.equals(rs.getString("recipe_version"));
                     if (!prepared) throw new IllegalStateException("Existe un personaje sin receta verificada: " + name + "; no se sobrescribe.");
                     if ((rs.getInt("online") != 0) || (World.getPlayer(id) != null))
                     {
@@ -103,6 +110,11 @@ public class RealHumanPilots extends Script
         try
         {
             player.setDead(false);
+            if (prepared && player.getClassIndex() != 0)
+            {
+                LOGGER.info("Piloto guardado en sub activa; se conserva su seleccion sin refrescar receta: " + name);
+                return;
+            }
             if (!prepared)
             {
                 player.setRace(race);
@@ -128,6 +140,8 @@ public class RealHumanPilots extends Script
                 player.setXYZ(147450,female ? 46550 : 46350,-3400);
                 player.storeMe();
             }
+            prepareSubclasses(player,mainClass);
+            verifyAllSlots(player,mainClass,race);
             validate(player,mainClass,race,primarySkill,gear,dyes);
             applyBuffs(player,buffs);
             player.setCurrentHpMp(player.getMaxHp(),player.getMaxMp());
@@ -146,6 +160,9 @@ public class RealHumanPilots extends Script
                 }
             }
             LOGGER.info("Piloto real preparado: " + name + " " + race + " nivel " + player.getLevel() + " PAtk=" + player.getPAtk(null) + " MAtk=" + player.getMAtk(null,null));
+            // Persist a different active slot to test skill isolation on a fresh Player.load.
+            player.setActiveClass(3);
+            player.storeMe();
         }
         finally
         {
@@ -153,11 +170,17 @@ public class RealHumanPilots extends Script
             player.deleteMe();
             player.setOnlineStatus(false,true);
         }
-        // A fresh Player.load verifies persistence, equipment functions, main-only skills and racial stability.
+        // Verify reload with a third-profession subclass active, then restore the main reference.
         Player restored = Player.load(player.getObjectId());
         if (restored == null) throw new IllegalStateException("No se pudo verificar persistencia de " + name);
         try
         {
+            if (restored.getClassIndex() != 3 || restored.getPlayerClass().getId() != subclassRecipe(mainClass)[2])
+                throw new IllegalStateException("La sub activa no persiste tras recarga: " + name);
+            verifyActiveSkills(restored);
+            if (restored.getRace() != race || restored.isRacialMage() != (mainClass != 92))
+                throw new IllegalStateException("El origen racial cambio tras recarga: " + name);
+            restored.setActiveClass(0);
             validate(restored,mainClass,race,primarySkill,gear,dyes);
             applyBuffs(restored,buffs);
             restored.setCurrentHpMp(restored.getMaxHp(),restored.getMaxMp());
@@ -170,9 +193,9 @@ public class RealHumanPilots extends Script
             restored.storeMe();
             if (!LabTelemetry.capturePilotStatsNow(restored)) throw new IllegalStateException("Fallo captura tras recarga de " + name);
             try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement(
-                "UPDATE lab_real_human_pilots SET verified_ms=? WHERE char_id=?"))
+                "UPDATE lab_real_human_pilots SET verified_ms=?,recipe_version=? WHERE char_id=?"))
             {
-                ps.setLong(1,System.currentTimeMillis());ps.setInt(2,restored.getObjectId());ps.executeUpdate();
+                ps.setLong(1,System.currentTimeMillis());ps.setString(2,VERSION);ps.setInt(3,restored.getObjectId());ps.executeUpdate();
             }
             LOGGER.info("Piloto real verificado tras recarga: " + name + " skills=" + restored.getAllSkills().size() + " efectos=" + restored.getEffectList().getEffects().size());
         }
@@ -182,6 +205,91 @@ public class RealHumanPilots extends Script
             restored.deleteMe();
             restored.setOnlineStatus(false,true);
         }
+    }
+
+    private static int[] subclassRecipe(int mainClass)
+    {
+        return switch (mainClass)
+        {
+            case 92 -> new int[]{93,113,88}; // Adventurer, Titan, Duelist.
+            case 94 -> new int[]{103,110,115};
+            case 103 -> new int[]{94,95,115};
+            case 95 -> new int[]{110,103,115};
+            case 115 -> new int[]{94,103,95};
+            case 110 -> new int[]{94,103,115}; // Same slots for Sylira and Velith.
+            default -> throw new IllegalArgumentException("No hay receta de sub para clase " + mainClass);
+        };
+    }
+
+    private static void prepareSubclasses(Player player,int mainClass)
+    {
+        int[] recipe=subclassRecipe(mainClass);
+        for(int slot=1;slot<=3;slot++)
+        {
+            var existing=player.getSubClasses().get(slot);
+            if(existing!=null && existing.getId()!=recipe[slot-1])
+                throw new IllegalStateException("La Sub " + slot + " fue editada; no se sobrescribe: " + player.getName());
+            if(existing==null)
+            {
+                if(!player.addSubClass(recipe[slot-1],slot)) throw new IllegalStateException("No se pudo agregar Sub " + slot);
+                player.setActiveClass(slot);
+                maximize(player);
+                int[] dyes=mainClass==92?new int[]{169,174}:recipe[slot-1]==115?new int[]{180}:new int[]{175,180};
+                for(int dye:dyes)
+                    if(!player.addHenna(HennaData.getInstance().getHenna(dye)))
+                        throw new IllegalStateException("Dye no permitido " + dye + " para Sub " + slot);
+                player.storeMe();
+                player.setActiveClass(0);
+            }
+        }
+    }
+
+    private static void verifyAllSlots(Player player,int mainClass,Race race) throws Exception
+    {
+        int[] recipe=subclassRecipe(mainClass);
+        var origin=player.getRacialBaseTemplate();
+        for(int slot=0;slot<=3;slot++)
+        {
+            player.setActiveClass(slot);
+            int expected=slot==0?mainClass:recipe[slot-1];
+            if(player.getPlayerClass().getId()!=expected || player.getPlayerClass().level()!=3
+                || player.getLevel()!=ExperienceData.getInstance().getMaxLevel()-1
+                || player.getRace()!=race || player.isRacialMage()!=(mainClass!=92)
+                || player.getRacialBaseTemplate()!=origin)
+                throw new IllegalStateException("Clase/nivel/origen incorrectos: " + player.getName() + " slot=" + slot);
+            verifyActiveSkills(player);
+        }
+        player.setActiveClass(0);
+    }
+
+    private static void verifyActiveSkills(Player player) throws Exception
+    {
+        Map<Integer,Integer> own=new HashMap<>();
+        Map<Integer,Integer> others=new HashMap<>();
+        try(var con=DatabaseFactory.getConnection();var ps=con.prepareStatement("SELECT skill_id,skill_level,class_index FROM character_skills WHERE charId=?"))
+        {
+            ps.setInt(1,player.getObjectId());
+            try(var rs=ps.executeQuery())
+            {
+                while(rs.next())
+                    (rs.getInt("class_index")==player.getClassIndex()?own:others).put(rs.getInt("skill_id"),rs.getInt("skill_level"));
+            }
+        }
+        for(var entry:own.entrySet())
+        {
+            Skill skill=player.getKnownSkill(entry.getKey());
+            if(skill==null || skill.getLevel()!=entry.getValue())
+                throw new IllegalStateException("Skill del slot ausente o nivel ajeno: " + player.getName() + " id=" + entry.getKey());
+        }
+        int excluded=0;
+        for(int id:others.keySet())
+            if(!own.containsKey(id))
+            {
+                excluded++;
+                if(player.getKnownSkill(id)!=null) throw new IllegalStateException("Skill filtrado desde otra clase: " + player.getName() + " id=" + id);
+            }
+        LOGGER.info("ActiveSlot PASS " + player.getName() + " slot=" + player.getClassIndex() + " class=" + player.getPlayerClass().getId()
+            + " ownSkills=" + own.size() + " inactiveSkillsExcluded=" + excluded + " race=" + player.getRace());
     }
 
     private static void maximize(Player player)
@@ -224,7 +332,11 @@ public class RealHumanPilots extends Script
     {
         if (player.getRace() != race || player.getClassIndex() != 0 || player.getPlayerClass().getId() != mainClass
             || player.getLevel() != ExperienceData.getInstance().getMaxLevel()-1) throw new IllegalStateException("Identidad/nivel incorrectos: " + player.getName());
-        if (!player.getSubClasses().isEmpty()) throw new IllegalStateException("El piloto debe estar sin subclases: " + player.getName());
+        int[] expected=subclassRecipe(mainClass);
+        if(player.getSubClasses().size()!=3) throw new IllegalStateException("Se requieren tres subclases: " + player.getName());
+        for(int slot=1;slot<=3;slot++)
+            if(player.getSubClasses().get(slot)==null || player.getSubClasses().get(slot).getId()!=expected[slot-1])
+                throw new IllegalStateException("Receta de sub incorrecta: " + player.getName() + " " + Arrays.toString(expected));
         for (int itemId : gear)
         {
             boolean found=false;

@@ -1,4 +1,4 @@
-/* Local solo laboratory: three cumulative subclasses; main class is immutable. */
+/* Local solo laboratory: three independent subclass slots; race remains fixed. */
 package handlers.chat.commands.admin;
 
 import java.sql.Connection;
@@ -454,7 +454,7 @@ public class AdminBuildLab implements IAdminCommandHandler
 	private static void showMain(Player admin, Player player)
 	{
 		final StringBuilder html = new StringBuilder(6000);
-		html.append("<html><body><center><font color=LEVEL>Build Lab - 4 clases acumulativas</font><br>");
+		html.append("<html><body><center><font color=LEVEL>Build Lab - 4 clases / 1 activa</font><br>");
 		html.append("Editando: <font color=FFFFFF>").append(player.getName()).append("</font><br>");
 		html.append("Raza fija: ").append(player.getRace()).append(" / ").append(player.isRacialMage() ? "MYSTIC" : "FIGHTER").append("<br>Las clases no cambian los seis atributos raciales.<br><br>");
 		addMainSection(html, player);
@@ -468,7 +468,7 @@ public class AdminBuildLab implements IAdminCommandHandler
 		html.append(button("VACIAR LAS 3 SUB", "admin_buildlab_clear_all", 250)).append("<br>");
 		html.append(button("REINICIAR TODAS LAS CLASES", "admin_buildlab_reset_all", 250)).append("<br>");
 		html.append("<font color=AAAAAA>Principal: 20 / 40 / 76 / 80. Sub: 2da 76, 3ra 80.</font><br>");
-		html.append("<font color=AAAAAA>Los skills de las cuatro clases se acumulan.</font>");
+		html.append("<font color=AAAAAA>Skills y pasivos: solo la clase activa. 3ra permitida en cada slot.</font>");
 		html.append("</center></body></html>");
 		sendHtml(admin, html.toString());
 	}

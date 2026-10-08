@@ -475,7 +475,7 @@ public class LabTelemetry extends Script
 		"INSERT INTO lab_player_stats (char_id,object_id,class_id,name,observed_ms,level," +
 		"current_cp,max_cp,current_hp,max_hp,current_mp,max_mp,p_atk,m_atk,p_def,m_def,accuracy,evasion," +
 		"p_critical,m_critical,critical_multiplier,critical_add,p_atk_speed,m_atk_speed,run_speed,walk_speed,attack_range," +
-		"stat_str,stat_dex,stat_con,stat_int,stat_wit,stat_men,rules_version) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'fixed-racial-v1') " +
+		"stat_str,stat_dex,stat_con,stat_int,stat_wit,stat_men,rules_version) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'fixed-racial-active-slot-v1') " +
 		"ON DUPLICATE KEY UPDATE object_id=VALUES(object_id),class_id=VALUES(class_id),name=VALUES(name)," +
 		"observed_ms=VALUES(observed_ms),level=VALUES(level),current_cp=VALUES(current_cp),max_cp=VALUES(max_cp)," +
 		"current_hp=VALUES(current_hp),max_hp=VALUES(max_hp),current_mp=VALUES(current_mp),max_mp=VALUES(max_mp)," +

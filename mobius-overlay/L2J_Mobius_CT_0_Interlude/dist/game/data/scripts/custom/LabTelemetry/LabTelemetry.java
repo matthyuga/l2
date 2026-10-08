@@ -585,6 +585,24 @@ public class LabTelemetry extends Script
 		}
 	}
 
+	/** Capture a real laboratory pilot without fabricating a combat event. */
+	public static boolean capturePilotStatsNow(Player player)
+	{
+		if ((INSTANCE == null) || (player == null)) return false;
+		final CreatureSnapshot snapshot = new CreatureSnapshot(player);
+		try (Connection con = DatabaseFactory.getConnection())
+		{
+			INSTANCE.upsertPlayerProfile(con, snapshot);
+			INSTANCE.upsertPlayerStats(con, snapshot);
+			return true;
+		}
+		catch (SQLException ex)
+		{
+			LOGGER.log(Level.WARNING, "No se pudieron guardar stats del piloto real.", ex);
+			return false;
+		}
+	}
+
 	/**
 	 * Phase 2: loads each physical anchor, walks every class in its racial
 	 * branch at level 80, and captures the calculated values from the real

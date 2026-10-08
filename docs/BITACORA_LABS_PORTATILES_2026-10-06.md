@@ -900,3 +900,28 @@ El endpoint de lectura es `/api/arena-roster`; no cambia stats ni balance.
 Verificados sintaxis, API, render de las nueve filas, selección de Myrentha y
 comparación con Hellkevin. No se pudo realizar revisión visual automática
 porque el controlador de navegador no tenía un navegador disponible.
+
+### 8 de octubre: dos pilotos Player humanos, sólo principal
+
+Se preparó `RealHumanPilots.java` para crear Caelan (Sagittarius) e Ignara
+(Archmage), ambos sin subclases, humanos al máximo 80, con equipo, SA, enchant +4,
+dyes y buffs reales. Receta completa: `PILOTOS-HUMANOS-REALES.md`.
+No se escriben stats manuales. La recarga comprueba identidad, raza, ausencia de subclases,
+inventario, dyes, cantidad de skills y quince stats calculadas. El laboratorio
+puede capturar sus stats sin inventar un combate mediante
+`LabTelemetry.capturePilotStatsNow`.
+
+Compilación Java local correcta. Tras comprobar que ya no había cliente ni
+jugadores conectados, se cargó el script sin expulsar a nadie. Caelan
+`268473939` e Ignara `268473955` ya fueron creados, verificados por recarga y
+capturados en `lab_player_stats`. Ambos humanos, nivel 80, cero subclases y
+todo el equipo +4; stats y cantidad de skills coinciden antes/después de recarga.
+Caelan: P.Atk 3392.22, velocidad 729, HP 6073. Ignara: M.Atk 4221.08,
+casteo 1180, HP 5356. No hay todavía IA de combate para estos pilotos y no se
+reemplazaron los nueve NPC artificiales.
+Respaldo previo: `backups/real-human-pilots-2026-10-08`.
+
+Corrección solicitada: medir primero la principal sola, sin combinaciones.
+Las masteries se pisan y no se deben usar clases redundantes para inflar stats.
+Cuando se incorporen subclases, sólo la principal tendrá tercera profesión;
+las subs conservarán segunda profesión y se incorporarán de a una.

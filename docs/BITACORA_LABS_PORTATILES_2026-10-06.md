@@ -867,3 +867,17 @@ Se agregaron `lab_arena_gauntlet_runs` y `lab_arena_gauntlet_duels` para guardar
 los límites exactos de cada serie y duelo, resultado y HP/CP/MP finales. Los
 eventos detallados de combate permanecen en `lab_combat_events`. Respaldo previo:
 `backups/solo-arena-gauntlet-2026-10-08`.
+
+La primera prueba manual reveló geodata defectuosa en la entrada sur exterior.
+Arden completó el recorrido, pero Selene agotó el tiempo de entrada detrás de la
+pared y el controlador permitió que comenzara a lanzar magia desde allí. La
+ejecución quedó correctamente registrada como una victoria ante Arden y derrota
+ante Selene, pero su geometría no era válida.
+
+El roster fue trasladado a una línea sur completamente interior comprendida entre
+las antiguas posiciones comprobadas de Ares, Nyx y Atlas. Cada rival activo ahora
+es colocado primero en `148900,45800,-3400`, corre un tramo corto y visible hasta
+`148900,46100,-3400` y sólo allí pierde la invulnerabilidad. Si el movimiento se
+atasca durante seis segundos, se lo traslada al centro antes de habilitar el
+combate; ya no existe ninguna ruta que permita atacar desde detrás de una pared.
+Respaldo: `backups/solo-arena-gauntlet-geodata-fix-2026-10-08`.

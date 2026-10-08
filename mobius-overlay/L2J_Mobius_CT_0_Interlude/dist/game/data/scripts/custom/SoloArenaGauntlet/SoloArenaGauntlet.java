@@ -50,22 +50,23 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 	};
 	private static final Location[] WAIT_POSITIONS =
 	{
-		new Location(148500, 44350, -3400, 16384),
-		new Location(148600, 44270, -3400, 16384),
-		new Location(148700, 44350, -3400, 16384),
-		new Location(148800, 44270, -3400, 16384),
-		new Location(148900, 44350, -3400, 16384),
-		new Location(149000, 44270, -3400, 16384),
-		new Location(149100, 44350, -3400, 16384),
-		new Location(149200, 44270, -3400, 16384),
-		new Location(149300, 44350, -3400, 16384)
+		new Location(148300, 45600, -3400, 16384),
+		new Location(148450, 45550, -3400, 16384),
+		new Location(148600, 45600, -3400, 16384),
+		new Location(148750, 45550, -3400, 16384),
+		new Location(148900, 45600, -3400, 16384),
+		new Location(149050, 45550, -3400, 16384),
+		new Location(149200, 45600, -3400, 16384),
+		new Location(149350, 45550, -3400, 16384),
+		new Location(149500, 45600, -3400, 16384)
 	};
-	private static final Location ARENA_CENTER = new Location(148900, 45500, -3400);
+	private static final Location ARENA_CENTER = new Location(148900, 46100, -3400);
+	private static final Location SAFE_DUEL_ENTRY = new Location(148900, 45800, -3400, 16384);
 	private static final int ARENA_RADIUS = 3200;
 	private static final int CENTER_ARRIVAL_DISTANCE = 140;
 	private static final int WAIT_POSITION_TOLERANCE = 120;
 	private static final long PREPARATION_MILLIS = 10000;
-	private static final long MAX_ENTRANCE_RUN_MILLIS = 10000;
+	private static final long MAX_ENTRANCE_RUN_MILLIS = 6000;
 
 	private Phase _phase = Phase.IDLE;
 	private int _controllerObjectId;
@@ -279,8 +280,16 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 			abortRun(player, "El rival activo dejo de estar disponible antes del duelo.");
 			return;
 		}
-		if ((npc.calculateDistance2D(ARENA_CENTER) <= CENTER_ARRIVAL_DISTANCE) || ((System.currentTimeMillis() - _phaseStartedMs) >= MAX_ENTRANCE_RUN_MILLIS))
+		if (npc.calculateDistance2D(ARENA_CENTER) <= CENTER_ARRIVAL_DISTANCE)
 		{
+			beginFight(player, npc);
+			return;
+		}
+		if ((System.currentTimeMillis() - _phaseStartedMs) >= MAX_ENTRANCE_RUN_MILLIS)
+		{
+			// Never start a duel from behind a wall. If movement stalls, relocate to
+			// the already proven Ares/Nyx floor and begin from the visible center.
+			npc.teleToLocation(ARENA_CENTER.getX(), ARENA_CENTER.getY(), ARENA_CENTER.getZ(), 16384, 0, false);
 			beginFight(player, npc);
 			return;
 		}
@@ -316,13 +325,14 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 		prepareWaitingFighter(npc, _roundIndex, true);
 		npc.setInvul(true);
 		npc.disableCoreAI(true);
+		npc.teleToLocation(SAFE_DUEL_ENTRY.getX(), SAFE_DUEL_ENTRY.getY(), SAFE_DUEL_ENTRY.getZ(), SAFE_DUEL_ENTRY.getHeading(), 0, false);
 		npc.getAI().setIntentionMoveTo(ARENA_CENTER);
 		_activeNpcObjectId = npc.getObjectId();
 		_phase = Phase.RUNNING_TO_CENTER;
 		_phaseStartedMs = System.currentTimeMillis();
 		_lastCountdown = -1;
 		updateRunProgress(_roundIndex + 1, _roundIndex);
-		player.sendMessage("Rival " + (_roundIndex + 1) + "/9: " + FIGHTER_NAMES[_roundIndex] + " sale de la entrada sur y corre al centro.");
+		player.sendMessage("Rival " + (_roundIndex + 1) + "/9: " + FIGHTER_NAMES[_roundIndex] + " entra desde el sector sur interior y corre al centro.");
 	}
 
 	private void beginFight(Player player, Npc npc)

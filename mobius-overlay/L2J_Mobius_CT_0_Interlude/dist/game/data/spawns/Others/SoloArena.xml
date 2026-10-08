@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/spawns.xsd">
 	<spawn name="SoloArenaAres">
-		<!-- Sequential gauntlet roster. They wait at the south gate until .arena iniciar activates them one by one. -->
-		<npc id="901100" x="148500" y="44350" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
-		<npc id="901101" x="148600" y="44270" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
-		<npc id="901102" x="148700" y="44350" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
-		<npc id="901103" x="148800" y="44270" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
-		<npc id="901104" x="148900" y="44350" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
-		<npc id="901105" x="149000" y="44270" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
-		<npc id="901106" x="149100" y="44350" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
-		<npc id="901107" x="149200" y="44270" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
-		<npc id="901108" x="149300" y="44350" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
+		<!-- Sequential gauntlet roster. The inner south line avoids the broken outer-gate geodata. -->
+		<npc id="901100" x="148300" y="45600" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
+		<npc id="901101" x="148450" y="45550" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
+		<npc id="901102" x="148600" y="45600" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
+		<npc id="901103" x="148750" y="45550" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
+		<npc id="901104" x="148900" y="45600" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
+		<npc id="901105" x="149050" y="45550" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
+		<npc id="901106" x="149200" y="45600" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
+		<npc id="901107" x="149350" y="45550" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
+		<npc id="901108" x="149500" y="45600" z="-3400" heading="16384" respawnDelay="10" chaseRange="3000" />
 		<npc id="900202" x="148900" y="45500" z="-3400" heading="0" respawnDelay="5" chaseRange="0" />
 		<npc id="50008" x="148900" y="46700" z="-3400" heading="0" respawnDelay="60" /> <!-- Thiago, free Scheme Buffer -->
 		<npc id="50010" x="149020" y="46700" z="-3400" heading="0" respawnDelay="60" /> <!-- Mirellas, full GM Shop -->

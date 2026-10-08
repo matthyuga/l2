@@ -12,7 +12,7 @@ PRIMER COMBATE
   2. Abre el inventario y equipa las duales, armadura y joyas nuevas.
   3. Estaras en el Coliseo, en la entrada norte y a distancia segura.
   4. Thiago, el Scheme Buffer gratuito, esta junto al punto seguro.
-  5. Los nueve rivales esperan protegidos en la entrada sur, frente a la tuya.
+  5. Los nueve rivales esperan protegidos en el sector sur interior, frente a ti.
   6. Preparate y ejecuta una macro con: .arena iniciar
   7. Cada rival corre primero al centro y despues te busca para iniciar el 1vs1.
   8. Al derrotarlo tienes 10 segundos antes de la salida del siguiente.
@@ -98,7 +98,7 @@ BLANCO NEUTRAL: ATLAS
 EXPERIMENTO SECUENCIAL (MACROS)
   .arena iniciar     Prepara el roster y lanza el primer rival.
   .arena estado      Muestra rival y fase actuales.
-  .arena cancelar    Detiene la serie y devuelve el roster a la entrada sur.
+  .arena cancelar    Detiene la serie y devuelve el roster al sector sur interior.
   .arena repetir     Reinicia la serie completa desde Arden.
 
   Orden: Arden, Selene, Eryndor, Lethiel, Vaelkor, Myrentha, Gorvak, Zhurak

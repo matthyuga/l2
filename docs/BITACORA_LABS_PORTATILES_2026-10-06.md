@@ -967,3 +967,24 @@ en ambas. La raza guardada/apariencia no gobierna los atributos base actuales;
 ambas usan stats de plantilla Storm Screamer. No se corrigió el core ni se
 retocaron stats para fabricar diferencias. Resultado completo en la receta.
 Respaldo: `backups/storm-race-comparison-2026-10-08`. Reinicio sin clientes.
+
+## 2026-10-08 — Raza + perfil inicial fijos, implementación autorizada
+
+Core compilado y desplegado: Player persiste `RACIAL_PROFILE`; PlayerStat
+obtiene los seis atributos de raza + fighter/mystic, no de clase activa.
+Migrados 17 personajes, según principal guardada, preservando perfiles
+existentes. Hellkevin humano fighter/main5/activa103; fila characters sin
+cambios frente al respaldo. Sus lecturas anteriores quedan históricas.
+
+Build Lab separa Cambiar SOLO raza (GM, conserva build/perfil) de RESET origen
+y principal. Sin cobro VIP aún. Panel muestra origen racial y filtra stats
+anteriores mediante rules_version; conserva historial. Siete pilotos sin subs
+verificados tras recarga y ocho checks reales aislados con RacialProbe OK.
+Se detectó/corrigió inicialización de variables usando getVariables; posiciones
+de pilotos recuperadas del backup. Último arranque sin errores de carga.
+
+Velith vs Sylira, misma clase110/equipo+4/dyes/buffs: M.Atk 4727.93 vs 3572.15,
+casteo1125 vs1365, INT/WIT/MEN49/24/27 vs42/28/30. No se tocaron los nueve NPC.
+HP/MP/CP por nivel y velocidad base siguen con curva de clase, afectados por
+atributos nuevos pero no separados totalmente. Detalle en RAZA-Y-PERFIL-FIJO.md.
+Respaldo completo previo en backups/fixed-racial-profile-2026-10-08.

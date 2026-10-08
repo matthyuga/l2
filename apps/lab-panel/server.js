@@ -117,6 +117,14 @@ async function characterDetail(charId) {
   character.classInfo = classInfo(character.classid);
   character.baseClassInfo = classInfo(character.base_class);
   character.configuredStats = data.playerBaseStats(character.classid, character.level);
+  const profileRows = await database.query('SELECT val FROM character_variables WHERE charId=? AND var=?', [charId, 'RACIAL_PROFILE']);
+  character.racialProfile = profileRows.length ? profileRows[0].val : ([10,25,38,49].includes(character.baseClassInfo.rootId) ? 'MYSTIC' : 'FIGHTER');
+  const racialRoots = { 0: [0,10], 1: [18,25], 2: [31,38], 3: [44,49], 4: [53,53] };
+  if (!racialRoots[character.race] || !['FIGHTER','MYSTIC'].includes(character.racialProfile)) throw httpError(409, 'Origen racial invalido.');
+  character.racialRootId = racialRoots[character.race][character.racialProfile === 'MYSTIC' ? 1 : 0];
+  character.racialClassInfo = classInfo(character.racialRootId);
+  const racialStats = data.playerBaseStats(character.racialRootId, character.level);
+  ['str','dex','con','int','wit','men'].forEach(function (key) { character.configuredStats[key] = racialStats[key]; });
   character.subclasses = results[0].map(function (sub) {
     sub.classInfo = classInfo(sub.class_id);
     return sub;
@@ -127,6 +135,11 @@ async function characterDetail(charId) {
   try {
     const statsRows = await database.query('SELECT * FROM lab_player_stats WHERE char_id=?', [charId]);
     character.liveStats = statsRows.length ? statsRows[0] : null;
+    character.liveStatsRacialCompatible = !character.liveStats || character.liveStats.rules_version === 'fixed-racial-v1';
+    if (!character.liveStatsRacialCompatible) {
+      character.historicalLiveStats = character.liveStats;
+      character.liveStats = null;
+    }
   } catch (error) {
     if (error && error.code === 'ER_NO_SUCH_TABLE') character.liveStats = null;
     else throw error;
@@ -188,21 +201,7 @@ async function updateCharacter(charId, payload) {
 }
 
 async function updateCharacterBaseStats(charId, payload) {
-  const rows = await database.query('SELECT online,classid FROM characters WHERE charId=?', [charId]);
-  if (!rows.length) throw httpError(404, 'Personaje no encontrado.');
-  if (rows[0].online) throw httpError(409, 'Cierra el personaje en el juego antes de editar sus atributos.');
-  const fieldMap = {
-    str: 'baseSTR', dex: 'baseDEX', con: 'baseCON',
-    int: 'baseINT', wit: 'baseWIT', men: 'baseMEN'
-  };
-  const staticStats = {};
-  Object.keys(fieldMap).forEach(function (field) {
-    if (payload[field] !== undefined) staticStats[fieldMap[field]] = payload[field];
-  });
-  if (!Object.keys(staticStats).length) throw httpError(400, 'No se recibieron atributos para guardar.');
-  const result = data.updateTemplate(rows[0].classid, { staticStats: staticStats });
-  result.classId = Number(rows[0].classid);
-  return result;
+  throw httpError(409, 'Los atributos raciales son compartidos por raza y perfil. No se editan desde un personaje: usa el catalogo de plantillas para un cambio global deliberado.');
 }
 
 async function opponentDetail(id) {

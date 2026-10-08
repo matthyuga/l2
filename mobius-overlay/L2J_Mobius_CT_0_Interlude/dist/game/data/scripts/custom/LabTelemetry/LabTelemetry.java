@@ -475,7 +475,7 @@ public class LabTelemetry extends Script
 		"INSERT INTO lab_player_stats (char_id,object_id,class_id,name,observed_ms,level," +
 		"current_cp,max_cp,current_hp,max_hp,current_mp,max_mp,p_atk,m_atk,p_def,m_def,accuracy,evasion," +
 		"p_critical,m_critical,critical_multiplier,critical_add,p_atk_speed,m_atk_speed,run_speed,walk_speed,attack_range," +
-		"stat_str,stat_dex,stat_con,stat_int,stat_wit,stat_men) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) " +
+		"stat_str,stat_dex,stat_con,stat_int,stat_wit,stat_men,rules_version) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'fixed-racial-v1') " +
 		"ON DUPLICATE KEY UPDATE object_id=VALUES(object_id),class_id=VALUES(class_id),name=VALUES(name)," +
 		"observed_ms=VALUES(observed_ms),level=VALUES(level),current_cp=VALUES(current_cp),max_cp=VALUES(max_cp)," +
 		"current_hp=VALUES(current_hp),max_hp=VALUES(max_hp),current_mp=VALUES(current_mp),max_mp=VALUES(max_mp)," +
@@ -485,7 +485,7 @@ public class LabTelemetry extends Script
 		"p_atk_speed=VALUES(p_atk_speed),m_atk_speed=VALUES(m_atk_speed),run_speed=VALUES(run_speed)," +
 		"walk_speed=VALUES(walk_speed),attack_range=VALUES(attack_range),stat_str=VALUES(stat_str)," +
 		"stat_dex=VALUES(stat_dex),stat_con=VALUES(stat_con),stat_int=VALUES(stat_int)," +
-		"stat_wit=VALUES(stat_wit),stat_men=VALUES(stat_men)";
+		"stat_wit=VALUES(stat_wit),stat_men=VALUES(stat_men),rules_version=VALUES(rules_version)";
 
 	private static final String UPSERT_PLAYER_PROFILE =
 		"INSERT INTO lab_player_stat_profiles (char_id,name,observed_ms,race_id,race_name,base_class_id,class_index,class_id," +
@@ -3385,6 +3385,7 @@ public class LabTelemetry extends Script
 			st.executeUpdate("ALTER TABLE lab_combat_events ADD INDEX IF NOT EXISTS idx_lab_events_instance (instance_id, occurred_ms)");
 			st.executeUpdate(CREATE_STATS_TABLE);
 			st.executeUpdate(CREATE_PLAYER_STATS_TABLE);
+			st.executeUpdate("ALTER TABLE lab_player_stats ADD COLUMN IF NOT EXISTS rules_version VARCHAR(40) NOT NULL DEFAULT 'legacy-class-template'");
 			st.executeUpdate(CREATE_PLAYER_PROFILE_TABLE);
 			st.executeUpdate(CREATE_PAIR_PROFILE_TABLE);
 			st.executeUpdate(CREATE_FOUR_CLASS_PROFILE_TABLE);

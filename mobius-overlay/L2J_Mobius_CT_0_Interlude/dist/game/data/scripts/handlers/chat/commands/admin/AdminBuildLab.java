@@ -9,6 +9,7 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.entity.WorldObject;
 import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.entity.actor.holders.player.SubClassHolder;
 import org.l2jmobius.gameserver.entity.item.enums.ItemProcessType;
@@ -24,7 +25,7 @@ public class AdminBuildLab implements IAdminCommandHandler
 		"admin_buildlab", "admin_buildlab_main_roots", "admin_buildlab_main_set", "admin_buildlab_main_evolve",
 		"admin_buildlab_main_reset", "admin_buildlab_reset_all", "admin_buildlab_choose", "admin_buildlab_set", "admin_buildlab_third",
 		"admin_buildlab_switch", "admin_buildlab_clear", "admin_buildlab_clear_all",
-		"admin_buildlab_stage", "admin_buildlab_adena"
+		"admin_buildlab_stage", "admin_buildlab_adena", "admin_buildlab_race"
 	};
 
 	@Override
@@ -35,7 +36,30 @@ public class AdminBuildLab implements IAdminCommandHandler
 		{
 			final StringTokenizer tokens = new StringTokenizer(command);
 			final String action = tokens.nextToken();
-			if (action.equals("admin_buildlab_main_roots"))
+			if (action.equals("admin_buildlab_race"))
+			{
+				if (tokens.hasMoreTokens())
+				{
+					final int raceId = Integer.parseInt(tokens.nextToken());
+					if ((raceId < 0) || (raceId > 4) || player.isInCombat() || player.isDead())
+						throw new IllegalArgumentException("raza invalida o personaje en combate/muerto");
+					player.setRace(Race.values()[raceId]);
+					player.setCurrentHp(Math.min(player.getCurrentHp(), player.getMaxHp()));
+					player.setCurrentMp(Math.min(player.getCurrentMp(), player.getMaxMp()));
+					player.setCurrentCp(Math.min(player.getCurrentCp(), player.getMaxCp()));
+					player.storeMe();
+					player.broadcastUserInfo();
+					showMain(activeChar, player);
+				}
+				else
+				{
+					final StringBuilder html = new StringBuilder("<html><body><center>Cambiar SOLO raza (GM laboratorio)<br>Conserva clases, nivel y perfil fighter/mystic.<br>");
+					for (int i = 0; i <= 4; i++) html.append(button(Race.values()[i].name(), "admin_buildlab_race " + i, 250)).append("<br>");
+					html.append(button("Volver", "admin_buildlab", 250)).append("</center></body></html>");
+					sendHtml(activeChar, html.toString());
+				}
+			}
+			else if (action.equals("admin_buildlab_main_roots"))
 			{
 				showMainOriginChooser(activeChar, player);
 			}
@@ -143,7 +167,7 @@ public class AdminBuildLab implements IAdminCommandHandler
 		{
 			throw new IllegalArgumentException("elige una raza y clase inicial validas");
 		}
-		player.setRace(root.getRace());
+		player.setRacialOrigin(root.getRace(), root.isMage());
 		replaceMainClass(player, root, true);
 		admin.sendSysMessage("Build Lab: principal reiniciada como " + originName(root) + ".");
 	}
@@ -432,7 +456,7 @@ public class AdminBuildLab implements IAdminCommandHandler
 		final StringBuilder html = new StringBuilder(6000);
 		html.append("<html><body><center><font color=LEVEL>Build Lab - 4 clases acumulativas</font><br>");
 		html.append("Editando: <font color=FFFFFF>").append(player.getName()).append("</font><br>");
-		html.append("Solo la principal define raza y apariencia. Las Sub son profesiones.<br><br>");
+		html.append("Raza fija: ").append(player.getRace()).append(" / ").append(player.isRacialMage() ? "MYSTIC" : "FIGHTER").append("<br>Las clases no cambian los seis atributos raciales.<br><br>");
 		addMainSection(html, player);
 		for (int slot = 1; slot <= 3; slot++)
 		{
@@ -454,7 +478,7 @@ public class AdminBuildLab implements IAdminCommandHandler
 		final PlayerClass main = PlayerClass.getPlayerClass(player.getBaseClass());
 		html.append("<table width=280 bgcolor=111111><tr><td width=280>");
 		html.append(player.getClassIndex() == 0 ? "<font color=00FF00>PRINCIPAL</font>" : "<font color=LEVEL>PRINCIPAL</font>");
-		html.append("</td></tr><tr><td><font color=FFFFFF>Raza: ").append(raceName(main)).append("</font></td></tr>");
+		html.append("</td></tr><tr><td><font color=FFFFFF>Raza: ").append(player.getRace()).append("</font></td></tr>");
 		html.append("<tr><td><font color=FFFFFF>Clase: ").append(nameOf(main)).append("</font></td></tr>");
 		html.append("<tr><td><font color=AAAAAA>").append(pathOf(main)).append("</font></td></tr>");
 		html.append("<tr><td>");
@@ -462,7 +486,8 @@ public class AdminBuildLab implements IAdminCommandHandler
 		{
 			html.append(button("Evolucionar", "admin_buildlab_main_evolve", 105));
 		}
-		html.append(button("Cambiar raza", "admin_buildlab_main_roots", 120));
+		html.append(button("Cambiar SOLO raza", "admin_buildlab_race", 150));
+		html.append("</td></tr><tr><td>").append(button("RESET origen + principal (GM)", "admin_buildlab_main_roots", 250));
 		html.append("</td></tr><tr><td>");
 		html.append(button("Reiniciar", "admin_buildlab_main_reset", 95));
 		html.append(button("Usar", "admin_buildlab_switch 0", 75)).append("</td></tr></table><br>");

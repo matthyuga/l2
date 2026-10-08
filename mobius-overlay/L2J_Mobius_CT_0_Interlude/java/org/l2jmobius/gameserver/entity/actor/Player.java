@@ -428,6 +428,9 @@ public class Player extends Playable
 	private boolean _subclassLock = false;
 	/** Permanent playable race. Class and subclass changes must not rewrite it. */
 	private Race _race;
+	/** Creation archetype, independent of the current profession or subclass. */
+	private boolean _racialMage;
+	public static final String RACIAL_PROFILE_VARIABLE = "RACIAL_PROFILE";
 	protected int _baseClass;
 	protected int _activeClass;
 	protected int _classIndex = 0;
@@ -832,6 +835,7 @@ public class Player extends Playable
 	{
 		super(objectId, template);
 		_race = template.getRace();
+		_racialMage = template.getPlayerClass().isMage();
 		setInstanceType(InstanceType.Player);
 		initCharStatusUpdateValues();
 		initPcStatusUpdateValues();
@@ -972,7 +976,9 @@ public class Player extends Playable
 		player.setNewbie(PlayerConfig.ALT_GAME_NEW_CHAR_ALWAYS_IS_NEWBIE || (CharInfoTable.getInstance().accountCharNumber(accountName) == 0));
 		
 		// Add the player in the characters table of the database.
-		return player.createDb() ? player : null;
+		if (!player.createDb()) return null;
+		player.persistRacialProfile();
+		return player;
 	}
 	
 	public String getAccountName()
@@ -2788,6 +2794,60 @@ public class Player extends Playable
 			throw new IllegalArgumentException("Invalid playable race: " + race);
 		}
 		_race = race;
+	}
+
+	public boolean isRacialMage()
+	{
+		return _racialMage;
+	}
+
+	/** Explicit GM origin reset only; profession changes must never call this. */
+	public void setRacialOrigin(Race race, boolean mage)
+	{
+		setRace(race);
+		_racialMage = mage;
+		persistRacialProfile();
+	}
+
+	/** The six base attributes belong to race + creation archetype, not class. */
+	public PlayerTemplate getRacialBaseTemplate()
+	{
+		final int rootId = switch (getRace())
+		{
+			case HUMAN -> _racialMage ? 10 : 0;
+			case ELF -> _racialMage ? 25 : 18;
+			case DARK_ELF -> _racialMage ? 38 : 31;
+			case ORC -> _racialMage ? 49 : 44;
+			case DWARF -> 53; // Interlude has no dwarf mystic creation template.
+			default -> throw new IllegalStateException("Unsupported playable race: " + getRace());
+		};
+		return PlayerTemplateData.getInstance().getTemplate(rootId);
+	}
+
+	private void persistRacialProfile()
+	{
+		final PlayerVariables variables = getVariables();
+		variables.set(RACIAL_PROFILE_VARIABLE, _racialMage ? "MYSTIC" : "FIGHTER");
+		variables.saveNow();
+	}
+
+	private void restoreRacialProfile()
+	{
+		final String stored = getVariables().getString(RACIAL_PROFILE_VARIABLE, null);
+		if ((stored != null) && !stored.equals("MYSTIC") && !stored.equals("FIGHTER"))
+		{
+			throw new IllegalStateException("Invalid racial profile for " + getObjectId() + ": " + stored);
+		}
+		if (stored != null)
+		{
+			_racialMage = stored.equals("MYSTIC");
+		}
+		else
+		{
+			// Legacy migration uses the saved MAIN class, never the active subclass.
+			_racialMage = PlayerClass.getPlayerClass(_baseClass).isMage();
+			persistRacialProfile();
+		}
 	}
 	
 	public Radar getRadar()
@@ -6941,6 +7001,7 @@ public class Player extends Playable
 					}
 					
 					// Restore Subclass Data (cannot be done earlier in function).
+					player.restoreRacialProfile();
 					if (restoreSubClassData(player) && (activeClassId != player.getBaseClass()))
 					{
 						for (SubClassHolder subClass : player.getSubClasses().values())

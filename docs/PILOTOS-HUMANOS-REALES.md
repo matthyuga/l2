@@ -173,3 +173,11 @@ no gobierna los atributos base del motor actual. No concluir que elfo claro
 y oscuro son equivalentes; el cruce ELF/Storm Screamer está recibiendo la
 plantilla de stats de esa clase. Corregir una separación real raza/clase
 sería un cambio de core y de reglas globales, no un ajuste manual de estos NPC.
+# Actualización: regla racial fija (8 de octubre de 2026)
+
+El core ya usa raza + perfil inicial para STR/DEX/CON/INT/WIT/MEN.
+Las lecturas anteriores que muestran a Sylira y Velith iguales son históricas.
+Ahora Sylira registra M.Atk 3572.15 y casteo 1365; Velith M.Atk 4727.93 y
+casteo 1125, con equipo/dyes/buffs iguales. Ver `RAZA-Y-PERFIL-FIJO.md` para
+la regla, métricas completas, pruebas y límites del cambio. Las curvas base
+de HP/MP/CP por clase todavía no se independizaron.

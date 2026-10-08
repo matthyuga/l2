@@ -18,6 +18,12 @@ perfiles locales del navegador.
 
 ## Estado registrado
 
+Actualización del 8 de octubre: [raza y perfil inicial fijos](docs/RAZA-Y-PERFIL-FIJO.md)
+implementados para los seis atributos. Las métricas anteriores a esa regla
+son históricas y no deben mezclarse con las nuevas capturas. Build Lab tiene
+cambio de SOLO raza GM; el cobro VIP y las curvas raciales completas quedan
+pendientes.
+
 Al 7 de octubre de 2026:
 
 - 9 personajes ancla físicos;

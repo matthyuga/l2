@@ -1,4 +1,4 @@
-/* Local solo laboratory: three independent subclass slots; race remains fixed. */
+/* Local solo laboratory: second-job skills cumulative, third-job skills active-slot only. */
 package handlers.chat.commands.admin;
 
 import java.sql.Connection;
@@ -468,7 +468,7 @@ public class AdminBuildLab implements IAdminCommandHandler
 		html.append(button("VACIAR LAS 3 SUB", "admin_buildlab_clear_all", 250)).append("<br>");
 		html.append(button("REINICIAR TODAS LAS CLASES", "admin_buildlab_reset_all", 250)).append("<br>");
 		html.append("<font color=AAAAAA>Principal: 20 / 40 / 76 / 80. Sub: 2da 76, 3ra 80.</font><br>");
-		html.append("<font color=AAAAAA>Skills y pasivos: solo la clase activa. 3ra permitida en cada slot.</font>");
+		html.append("<font color=AAAAAA>Hasta 2da: acumulados. Skills/mejoras de 3ra: solo clase activa.</font>");
 		html.append("</center></body></html>");
 		sendHtml(admin, html.toString());
 	}

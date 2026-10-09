@@ -1,5 +1,10 @@
 # Cuatro slots con skills independientes
 
+**Histórico, corregido:** el usuario aclaró que sólo tercera debe depender
+de la clase activa. La regla vigente acumula segunda y mantiene tercera
+activa; ver [SUBACU-SEGUNDA-Y-TERCERA-ACTIVA.md](SUBACU-SEGUNDA-Y-TERCERA-ACTIVA.md).
+La exclusividad completa descrita debajo ya no es la configuración vigente.
+
 2026-10-08. Configuración: `CumulativeSubclassSkills = False`.
 
 Principal y tres subclases pueden alcanzar tercera profesión y nivel 80.

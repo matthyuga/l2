@@ -346,7 +346,7 @@ public class Player extends Playable
 {
 	// Character Skill SQL String Definitions:
 	private static final String RESTORE_SKILLS_FOR_CHAR = "SELECT skill_id,skill_level FROM character_skills WHERE charId=? AND class_index=?";
-	private static final String RESTORE_CUMULATIVE_SKILLS_FOR_CHAR = "SELECT skill_id,skill_level FROM character_skills WHERE charId=?";
+	private static final String RESTORE_CUMULATIVE_SKILLS_FOR_CHAR = "SELECT skill_id,skill_level,class_index FROM character_skills WHERE charId=?";
 	private static final String UPDATE_CHARACTER_SKILL_LEVEL = "UPDATE character_skills SET skill_level=? WHERE skill_id=? AND charId=? AND class_index=?";
 	private static final String ADD_NEW_SKILLS = "REPLACE INTO character_skills (charId,skill_id,skill_level,class_index) VALUES (?,?,?,?)";
 	private static final String DELETE_SKILL_FROM_CHAR = "DELETE FROM character_skills WHERE skill_id=? AND charId=? AND class_index=?";
@@ -7918,6 +7918,31 @@ public class Player extends Playable
 	 */
 	private void restoreSkills()
 	{
+		final Map<Integer, Map<Integer, Integer>> inactiveSkillCaps = new HashMap<>();
+		if (PlayerConfig.CUMULATIVE_SUBCLASS_SKILLS && PlayerConfig.CUMULATIVE_SUBCLASS_THIRD_SKILLS_ACTIVE_ONLY)
+		{
+			for (int slot = 0; slot <= PlayerConfig.MAX_SUBCLASS; slot++)
+			{
+				if ((slot == _classIndex) || ((slot > 0) && !getSubClasses().containsKey(slot)))
+				{
+					continue;
+				}
+				PlayerClass inheritedClass = PlayerClass.getPlayerClass(slot == 0 ? _baseClass : getSubClasses().get(slot).getId());
+				while ((inheritedClass != null) && (inheritedClass.level() > 2))
+				{
+					inheritedClass = inheritedClass.getParent();
+				}
+				final Map<Integer, Integer> caps = new HashMap<>();
+				if (inheritedClass != null)
+				{
+					for (SkillLearn learn : SkillTreeData.getInstance().getCompleteClassSkillTree(inheritedClass).values())
+					{
+						caps.merge(learn.getSkillId(), learn.getSkillLevel(), Math::max);
+					}
+				}
+				inactiveSkillCaps.put(slot, caps);
+			}
+		}
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement ps = con.prepareStatement(PlayerConfig.CUMULATIVE_SUBCLASS_SKILLS ? RESTORE_CUMULATIVE_SKILLS_FOR_CHAR : RESTORE_SKILLS_FOR_CHAR))
 		{
@@ -7934,7 +7959,20 @@ public class Player extends Playable
 				while (rs.next())
 				{
 					final int id = rs.getInt("skill_id");
-					final int level = rs.getInt("skill_level");
+					int level = rs.getInt("skill_level");
+					if (PlayerConfig.CUMULATIVE_SUBCLASS_SKILLS && PlayerConfig.CUMULATIVE_SUBCLASS_THIRD_SKILLS_ACTIVE_ONLY)
+					{
+						final int sourceSlot = rs.getInt("class_index");
+						if (sourceSlot != _classIndex)
+						{
+							final int cap = inactiveSkillCaps.getOrDefault(sourceSlot, Map.of()).getOrDefault(id, 0);
+							if (cap == 0)
+							{
+								continue; // Third-only skills of inactive slots stay learned, but are not active.
+							}
+							level = Math.min(level, cap); // Also cap third-profession upgrades of a shared skill.
+						}
+					}
 					
 					// Create a Skill object for each record.
 					final Skill skill = SkillData.getInstance().getSkill(id, level);

@@ -24,13 +24,14 @@ son históricas y no deben mezclarse con las nuevas capturas. Build Lab tiene
 cambio de SOLO raza GM; el cobro VIP y las curvas raciales completas quedan
 pendientes.
 
-La regla actual de [cuatro slots con una clase activa](docs/CLASE-ACTIVA-Y-TRES-SUBS.md)
-permite tercera profesión en principal y tres subs. Sus skills y pasivos se
-cargan por slot; ya no se acumulan entre clases. Los siete pilotos reales
-reciben tres subs nivel 80 y conservan su origen racial. Las capturas nuevas
-usan `fixed-racial-active-slot-v1`; las fases acumulativas anteriores son
-históricas. Los [nueve NPC del Coliseo](docs/NUEVE-NPC-PVP-NORMAL.md) siguen
-usando sus perfiles de referencia separados.
+La regla actual es [segunda acumulada y tercera activa](docs/SUBACU-SEGUNDA-Y-TERCERA-ACTIVA.md):
+principal y tres subs pueden tener tercera, pero se acumulan sólo sus skills
+y pasivos hasta segunda; skills y mejoras de tercera requieren esa clase activa.
+Las masteries repetidas no se suman. Los siete pilotos conservan su raza y
+sus tres subs nivel 80. Capturas nuevas: `fixed-racial-hybrid-third-v1`.
+La exclusividad completa por slot anterior fue una interpretación demasiado
+amplia y queda corregida. Los [nueve NPC del Coliseo](docs/NUEVE-NPC-PVP-NORMAL.md)
+siguen usando perfiles separados sin nuevas subs.
 
 Al 7 de octubre de 2026:
 

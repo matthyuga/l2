@@ -17,6 +17,8 @@ import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.data.xml.HennaData;
 import org.l2jmobius.gameserver.data.xml.PlayerTemplateData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.data.xml.SkillTreeData;
+import org.l2jmobius.gameserver.entity.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.entity.actor.Player;
 import org.l2jmobius.gameserver.entity.actor.appearance.PlayerAppearance;
@@ -31,7 +33,8 @@ import custom.LabTelemetry.LabTelemetry;
 public class RealHumanPilots extends Script
 {
     private static final Logger LOGGER = Logger.getLogger(RealHumanPilots.class.getName());
-    private static final String VERSION = "human-pilots-v2-active-slot";
+    private static final String VERSION = "human-pilots-v3-hybrid-third";
+    private static final String SLOT_VERSION = "human-pilots-v2-active-slot";
     private static final String LEGACY_VERSION = "human-pilots-v1-main-only";
     private static final int[][] COMMON_BUFFS = {{1204,2},{1040,3},{1036,2},{1045,6},{1048,6},{1035,4},{1062,2}};
     private static final int[][] ARCHER_BUFFS = {{1068,3},{1086,2},{1240,3},{1242,3},{1077,3},{1087,3},{1357,1},
@@ -48,8 +51,8 @@ public class RealHumanPilots extends Script
     {
         try
         {
-            if (PlayerConfig.CUMULATIVE_SUBCLASS_SKILLS)
-                throw new IllegalStateException("Los pilotos requieren CumulativeSubclassSkills=False");
+            if (!PlayerConfig.CUMULATIVE_SUBCLASS_SKILLS || !PlayerConfig.CUMULATIVE_SUBCLASS_THIRD_SKILLS_ACTIVE_ONLY)
+                throw new IllegalStateException("Los pilotos requieren acumulacion hasta segunda y tercera solo activa");
             try (Connection con = DatabaseFactory.getConnection(); Statement st = con.createStatement())
             {
                 st.executeUpdate("CREATE TABLE IF NOT EXISTS lab_real_human_pilots (char_id INT UNSIGNED NOT NULL PRIMARY KEY, char_name VARCHAR(35) NOT NULL UNIQUE, recipe_version VARCHAR(40) NOT NULL, prepared_ms BIGINT UNSIGNED NOT NULL, verified_ms BIGINT UNSIGNED NOT NULL DEFAULT 0, role_name VARCHAR(20) NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
@@ -90,7 +93,7 @@ public class RealHumanPilots extends Script
                 {
                     if (!account.equals(rs.getString("account_name"))) throw new IllegalStateException("Nombre ocupado: " + name);
                     id = rs.getInt("charId");
-                    prepared = VERSION.equals(rs.getString("recipe_version")) || LEGACY_VERSION.equals(rs.getString("recipe_version"));
+                    prepared = VERSION.equals(rs.getString("recipe_version")) || SLOT_VERSION.equals(rs.getString("recipe_version")) || LEGACY_VERSION.equals(rs.getString("recipe_version"));
                     if (!prepared) throw new IllegalStateException("Existe un personaje sin receta verificada: " + name + "; no se sobrescribe.");
                     if ((rs.getInt("online") != 0) || (World.getPlayer(id) != null))
                     {
@@ -264,32 +267,63 @@ public class RealHumanPilots extends Script
 
     private static void verifyActiveSkills(Player player) throws Exception
     {
-        Map<Integer,Integer> own=new HashMap<>();
+        Map<Integer,Integer> expected=new HashMap<>();
         Map<Integer,Integer> others=new HashMap<>();
+        Map<Integer,Map<Integer,Integer>> secondTrees=new HashMap<>();
+        for(int slot=0;slot<=3;slot++)
+        {
+            PlayerClass pc=PlayerClass.getPlayerClass(slot==0?player.getBaseClass():player.getSubClasses().get(slot).getId());
+            if(pc.level()==3) pc=pc.getParent();
+            Map<Integer,Integer> tree=new HashMap<>();
+            for(var learn:SkillTreeData.getInstance().getCompleteClassSkillTree(pc).values())
+                tree.merge(learn.getSkillId(),learn.getSkillLevel(),Math::max);
+            secondTrees.put(slot,tree);
+        }
         try(var con=DatabaseFactory.getConnection();var ps=con.prepareStatement("SELECT skill_id,skill_level,class_index FROM character_skills WHERE charId=?"))
         {
             ps.setInt(1,player.getObjectId());
             try(var rs=ps.executeQuery())
             {
                 while(rs.next())
-                    (rs.getInt("class_index")==player.getClassIndex()?own:others).put(rs.getInt("skill_id"),rs.getInt("skill_level"));
+                {
+                    int slot=rs.getInt("class_index"),id=rs.getInt("skill_id"),level=rs.getInt("skill_level");
+                    if(slot!=player.getClassIndex())
+                    {
+                        others.merge(id,level,Math::max);
+                        level=Math.min(level,secondTrees.get(slot).getOrDefault(id,0));
+                    }
+                    if(level>0) expected.merge(id,level,Math::max);
+                }
             }
         }
-        for(var entry:own.entrySet())
+        Map<String,Skill> masteryWinners=new HashMap<>();
+        for(var entry:expected.entrySet())
+        {
+            Skill skill=SkillData.getInstance().getSkill(entry.getKey(),entry.getValue());
+            if(skill.isPassive() && skill.getName().endsWith(" Mastery"))
+                masteryWinners.merge(skill.getName().toLowerCase(),skill,(a,b)->
+                    a.getLevel()>b.getLevel() || (a.getLevel()==b.getLevel() && a.getId()<b.getId())?a:b);
+        }
+        expected.entrySet().removeIf(entry->{
+            Skill skill=SkillData.getInstance().getSkill(entry.getKey(),entry.getValue());
+            return skill.isPassive() && skill.getName().endsWith(" Mastery")
+                && masteryWinners.get(skill.getName().toLowerCase()).getId()!=skill.getId();
+        });
+        for(var entry:expected.entrySet())
         {
             Skill skill=player.getKnownSkill(entry.getKey());
             if(skill==null || skill.getLevel()!=entry.getValue())
-                throw new IllegalStateException("Skill del slot ausente o nivel ajeno: " + player.getName() + " id=" + entry.getKey());
+                throw new IllegalStateException("Skill acumulado ausente o nivel de tercera ajena: " + player.getName() + " id=" + entry.getKey());
         }
         int excluded=0;
         for(int id:others.keySet())
-            if(!own.containsKey(id))
+            if(!expected.containsKey(id))
             {
                 excluded++;
-                if(player.getKnownSkill(id)!=null) throw new IllegalStateException("Skill filtrado desde otra clase: " + player.getName() + " id=" + id);
+                if(player.getKnownSkill(id)!=null) throw new IllegalStateException("Tercera ajena o mastery duplicada: " + player.getName() + " id=" + id);
             }
-        LOGGER.info("ActiveSlot PASS " + player.getName() + " slot=" + player.getClassIndex() + " class=" + player.getPlayerClass().getId()
-            + " ownSkills=" + own.size() + " inactiveSkillsExcluded=" + excluded + " race=" + player.getRace());
+        LOGGER.info("HybridSlot PASS " + player.getName() + " slot=" + player.getClassIndex() + " class=" + player.getPlayerClass().getId()
+            + " cumulativeSkills=" + expected.size() + " thirdOrDuplicateExcluded=" + excluded + " race=" + player.getRace());
     }
 
     private static void maximize(Player player)

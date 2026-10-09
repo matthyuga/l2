@@ -92,6 +92,7 @@ public class PlayerConfig
 	public static boolean ALT_GAME_SUBCLASS_WITHOUT_QUESTS;
 	public static boolean ALT_GAME_SUBCLASS_EVERYWHERE;
 	public static boolean CUMULATIVE_SUBCLASS_SKILLS;
+	public static boolean CUMULATIVE_SUBCLASS_THIRD_SKILLS_ACTIVE_ONLY;
 	public static boolean RESTORE_SERVITOR_ON_RECONNECT;
 	public static boolean RESTORE_PET_ON_RECONNECT;
 	public static int FEE_DELETE_TRANSFER_SKILLS;
@@ -334,6 +335,7 @@ public class PlayerConfig
 		ALT_GAME_SUBCLASS_WITHOUT_QUESTS = config.getBoolean("AltSubClassWithoutQuests", false);
 		ALT_GAME_SUBCLASS_EVERYWHERE = config.getBoolean("AltSubclassEverywhere", false);
 		CUMULATIVE_SUBCLASS_SKILLS = config.getBoolean("CumulativeSubclassSkills", false);
+		CUMULATIVE_SUBCLASS_THIRD_SKILLS_ACTIVE_ONLY = config.getBoolean("CumulativeSubclassThirdSkillsActiveOnly", true);
 		RESTORE_SERVITOR_ON_RECONNECT = config.getBoolean("RestoreServitorOnReconnect", true);
 		RESTORE_PET_ON_RECONNECT = config.getBoolean("RestorePetOnReconnect", true);
 		FEE_DELETE_TRANSFER_SKILLS = config.getInt("FeeDeleteTransferSkills", 10000000);

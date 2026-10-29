@@ -1,0 +1,1 @@
+package l2jorion.util.random; public class Rnd {public static int get(int min,int max){if(max<min)throw new IllegalArgumentException("empty range");return min;}}

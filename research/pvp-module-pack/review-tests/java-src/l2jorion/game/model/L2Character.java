@@ -1,0 +1,1 @@
+package l2jorion.game.model; public class L2Character {}

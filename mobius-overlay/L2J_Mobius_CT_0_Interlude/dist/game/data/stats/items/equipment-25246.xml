@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
+	<item id="25246" type="Armor" name="×àñòü Ïàíäîðèóì Ñåòà">
+		<set name="icon" val="icon.armor_helmet_i00" />
+		<set name="default_action" val="EQUIP" />
+		<set name="bodypart" val="head" />
+		<set name="immediate_effect" val="true" />
+		<set name="crystal_count" val="268" />
+		<set name="crystal_type" val="S" />
+		<set name="material" val="BONE" />
+		<set name="weight" val="550" />
+		<set name="price" val="1000000" />
+		<set name="element_enabled" val="true" />
+		<set name="enchant_enabled" val="true" />
+		<stats>
+			<stat type="pDef">83</stat>
+		</stats>
+	</item>
+</list>

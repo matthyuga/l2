@@ -74,37 +74,37 @@ public class PlayerStat extends PlayableStat
 	@Override
 	public int getSTR()
 	{
-		return (int) calcStat(Stat.STAT_STR, getActiveChar().getRacialBaseTemplate().getBaseSTR());
+		return (int) calcStat(Stat.STAT_STR, org.l2jmobius.gameserver.custom.ModularAppearance.base(getActiveChar(), 0));
 	}
 
 	@Override
 	public int getDEX()
 	{
-		return (int) calcStat(Stat.STAT_DEX, getActiveChar().getRacialBaseTemplate().getBaseDEX());
+		return (int) calcStat(Stat.STAT_DEX, org.l2jmobius.gameserver.custom.ModularAppearance.base(getActiveChar(), 1));
 	}
 
 	@Override
 	public int getCON()
 	{
-		return (int) calcStat(Stat.STAT_CON, getActiveChar().getRacialBaseTemplate().getBaseCON());
+		return (int) calcStat(Stat.STAT_CON, org.l2jmobius.gameserver.custom.ModularAppearance.base(getActiveChar(), 2));
 	}
 
 	@Override
 	public int getINT()
 	{
-		return (int) calcStat(Stat.STAT_INT, getActiveChar().getRacialBaseTemplate().getBaseINT());
+		return (int) calcStat(Stat.STAT_INT, org.l2jmobius.gameserver.custom.ModularAppearance.base(getActiveChar(), 3));
 	}
 
 	@Override
 	public int getWIT()
 	{
-		return (int) calcStat(Stat.STAT_WIT, getActiveChar().getRacialBaseTemplate().getBaseWIT());
+		return (int) calcStat(Stat.STAT_WIT, org.l2jmobius.gameserver.custom.ModularAppearance.base(getActiveChar(), 4));
 	}
 
 	@Override
 	public int getMEN()
 	{
-		return (int) calcStat(Stat.STAT_MEN, getActiveChar().getRacialBaseTemplate().getBaseMEN());
+		return (int) calcStat(Stat.STAT_MEN, org.l2jmobius.gameserver.custom.ModularAppearance.base(getActiveChar(), 5));
 	}
 	
 	@Override
@@ -449,6 +449,7 @@ public class PlayerStat extends PlayableStat
 		// Get the Max CP (base+modifier) of the Player.
 		final Player player = getActiveChar();
 		final int val = (player == null) ? 1 : (int) calcStat(Stat.MAX_CP, player.getTemplate().getBaseCpMax(player.getLevel()));
+		if ((player != null) && player.isRacialStatsPreview()) return val;
 		if (val != _oldMaxCp)
 		{
 			_oldMaxCp = val;
@@ -473,6 +474,7 @@ public class PlayerStat extends PlayableStat
 		// Get the Max HP (base+modifier) of the Player.
 		final Player player = getActiveChar();
 		final int val = (player == null) ? 1 : (int) calcStat(Stat.MAX_HP, player.getTemplate().getBaseHpMax(player.getLevel()));
+		if ((player != null) && player.isRacialStatsPreview()) return val;
 		if (val != _oldMaxHp)
 		{
 			_oldMaxHp = val;
@@ -497,6 +499,7 @@ public class PlayerStat extends PlayableStat
 		// Get the Max MP (base+modifier) of the Player.
 		final Player player = getActiveChar();
 		final int val = (player == null) ? 1 : (int) calcStat(Stat.MAX_MP, player.getTemplate().getBaseMpMax(player.getLevel()));
+		if ((player != null) && player.isRacialStatsPreview()) return val;
 		if (val != _oldMaxMp)
 		{
 			_oldMaxMp = val;

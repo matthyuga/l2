@@ -596,4 +596,7 @@
 	<admin command="removefence" description="Removes the selected fence." accessLevel="100" />
 	<admin command="listfence" description="List of all fances." accessLevel="100" />
 	<admin command="gofence" description="Teleports you to the selected fence's location." accessLevel="100" />
+    <!-- Native aliases for laboratory macros; keep existing GM checks. -->
+    <admin command="amenaza" description="Select last direct aggressor without ordinary chat." accessLevel="100" />
+    <admin command="ia" description="Manual laboratory combat pilots." accessLevel="100" />
 </list>

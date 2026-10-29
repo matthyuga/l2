@@ -1,0 +1,1 @@
+package net.sf.l2j.gameserver.model.actor.instance;public class L2PcInstance extends net.sf.l2j.gameserver.model.L2Character {public void updatePvPFlag(int x){}public void sendMessage(String x){}public void broadcastUserInfo(){}}

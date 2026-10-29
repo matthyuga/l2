@@ -2,6 +2,13 @@
 
 Implementado y verificado el 8 de octubre de 2026.
 
+Actualización del 9 de octubre: `.raza` separa apariencia y origen de los seis
+atributos, en prototipo GM gratuito. `characters.race` es apariencia;
+`RACIAL_STAT_RACE` + `RACIAL_PROFILE` es el origen estadístico. Sin la variable
+nueva se conserva la raza vigente como origen. Ver PROBAR-PERSONALIZACION-RACIAL.md.
+Las secciones siguientes documentan la regla original cuando ambos coincidían;
+el comando nuevo permite separarlos sin alterar principal ni subclases.
+
 ## Regla del servidor
 
 - La raza guardada del personaje gobierna STR, DEX, CON, INT, WIT y MEN base.

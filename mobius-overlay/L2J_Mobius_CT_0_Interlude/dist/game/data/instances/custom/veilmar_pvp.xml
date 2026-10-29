@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<instance id="3052" allowRandomWalk="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/instance.xsd">
+ <activityTime val="1440" />
+ <allowSummon val="true" />
+ <emptyDestroyTime val="5" />
+ <PvPInstance val="true" />
+ <spawnPoints startPosType="FIXED"><Location x="-78552" y="212264" z="-2584" /></spawnPoints>
+ <exitPoint x="83425" y="148585" z="-3406" />
+ <doorlist>
+  <door id="17240003" />
+  <door id="17240023" />
+  <door id="17240026" />
+  <door id="17240006" />
+  <door id="17240009" />
+  <door id="17240002" />
+  <door id="17240025" />
+  <door id="17240011" />
+  <door id="17240022" />
+  <door id="17240021" />
+  <door id="17240101" />
+  <door id="17240008" />
+  <door id="17240024" />
+  <door id="17240001" />
+  <door id="17240010" />
+  <door id="17240007" />
+  <door id="17240013" />
+  <door id="17240012" />
+  <door id="17240102" />
+  <door id="17240027" />
+  <door id="17240005" />
+  <door id="17240030" />
+  <door id="17240029" />
+  <door id="17240031" />
+  <door id="17240028" />
+  <door id="17240004" />
+ </doorlist>
+</instance>

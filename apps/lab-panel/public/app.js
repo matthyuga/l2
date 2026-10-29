@@ -45,7 +45,7 @@
   titles.arena = 'Rivales del Coliseo';
 
   async function loadArenaRoster() {
-    $('#arena-roster-table').innerHTML = '<div class="loading">Leyendo los nueve rivales…</div>';
+    $('#arena-roster-table').innerHTML = '<div class="loading">Leyendo los 39 rivales…</div>';
     try {
       var result = await Promise.all([api('/api/arena-roster'), api('/api/characters')]);
       arenaFighters = result[0];
@@ -59,7 +59,7 @@
         {label:'P.Atk',key:'p_atk'},{label:'M.Atk',key:'m_atk'},{label:'P.Def',key:'p_def'},{label:'M.Def',key:'m_def'},
         {label:'Atk. Speed',key:'p_atk_speed'},{label:'Casteo',key:'m_atk_speed'}];
       $('#arena-roster-table').innerHTML = '<table><thead><tr><th>Rival / clase</th>'+columns.map(function(c){return '<th>'+c.label+'</th>';}).join('')+'</tr></thead><tbody>'+arenaFighters.map(function(f){
-        return '<tr><td><button class="button ghost" data-arena-fighter="'+f.id+'">'+f.order+'. '+escapeHtml(f.name)+'</button><span class="build-mini">'+escapeHtml(f.className)+' · '+escapeHtml(f.race)+'</span></td>'+columns.map(function(c){return '<td>'+(!f.liveStats?'—':number(f.liveStats[c.key],2))+'</td>';}).join('')+'</tr>';
+        return '<tr><td><button class="button ghost" data-arena-fighter="'+f.id+'">'+f.order+'. '+escapeHtml(f.name)+'</button><span class="build-mini">'+escapeHtml(f.className)+' · '+escapeHtml(f.race)+'</span><span class="build-mini">Subs: '+escapeHtml((f.subclasses || []).map(function(s){return s.name;}).join(' / ') || 'Sin subs')+'</span></td>'+columns.map(function(c){return '<td>'+(!f.liveStats?'—':number(f.liveStats[c.key],2))+'</td>';}).join('')+'</tr>';
       }).join('')+'</tbody></table>';
       $$('[data-arena-fighter]').forEach(function(button){button.onclick=function(){$('#arena-fighter').value=button.dataset.arenaFighter;renderArenaFighter();};});
       renderArenaFighter();
@@ -70,7 +70,7 @@
   function renderArenaFighter() {
     var f = arenaFighters.find(function(item){return String(item.id)===$('#arena-fighter').value;});
     if (!f) return;
-    $('#arena-fighter-detail').innerHTML = '<h3>'+escapeHtml(f.name)+' · '+escapeHtml(f.className)+'</h3>'+(f.liveStats ?
+    $('#arena-fighter-detail').innerHTML = '<h3>'+escapeHtml(f.name)+' · '+escapeHtml(f.className)+'</h3><p class="muted">Subs: '+escapeHtml((f.subclasses || []).map(function(s){return s.name;}).join(' / ') || 'Sin subs')+'</p>'+(f.liveStats ?
       '<p class="muted">Última captura: '+escapeHtml(date(f.liveStats.observed_ms))+' · NPC #'+f.id+'</p><div class="final-stats-grid live">'+liveStatTiles(f.liveStats)+statTile('Rango',f.liveStats.attack_range)+statTile('Velocidad al caminar',f.liveStats.walk_speed)+'</div>' :
       '<div class="notice">Todavía no hay una lectura del servidor para este rival. Los valores faltantes no se representan como cero.</div>');
   }
@@ -266,7 +266,7 @@
       '<div class="detail-body">'+statsHtml+comparisonPanel(character,opponents)+'<div class="metric-row">'+resourceMetric('CP',character.curCp,character.maxCp)+resourceMetric('HP',character.curHp,character.maxHp)+resourceMetric('MP',character.curMp,character.maxMp)+'<div class="metric"><small>Skills guardados</small><strong>'+number(character.skillCounts.reduce(function(s,x){return s+Number(x.total);},0))+'</strong></div></div>' +
       '<h4 class="section-title">Build acumulativa · tercera activa</h4><div class="notice">Se acumulan skills y pasivos hasta segunda profesión. Las habilidades y mejoras de tercera corresponden al slot en uso: '+escapeHtml(character.classInfo.name)+'. Masteries repetidas: una sola efectiva.</div><div class="build-slots"><div class="build-slot"><span>Principal</span><strong>'+escapeHtml(character.baseClassInfo.path)+'</strong><small>Nivel '+character.level+'</small></div>' +
       subs.map(function (sub,index) { return '<div class="build-slot"><span>Sub '+(index+1)+'</span><strong>'+(sub?escapeHtml(sub.classInfo.path):'Ranura vacía')+'</strong><small>'+(sub?'Nivel '+sub.level:'')+'</small></div>'; }).join('')+'</div>' +
-      '<h4 class="section-title">Origen racial fijo</h4><div class="notice">STR, DEX, CON, INT, WIT y MEN proceden de <strong>'+escapeHtml(character.racialClassInfo.name)+'</strong>. Cambiar clase o subclase conserva este origen. Cambiar SOLO raza se gestiona con el botón especial del Build Lab (GM). Los dyes y efectos modifican los valores finales normalmente.</div>'+
+      '<h4 class="section-title">Origen de atributos</h4><div class="notice">STR, DEX, CON, INT, WIT y MEN proceden de <strong>'+escapeHtml(character.racialClassInfo.name)+'</strong>. Cambiar clase o subclase conserva este origen. El menú .raza (GM) permite cambiar apariencia y atributos por separado. Los dyes y efectos modifican los valores finales normalmente.</div>'+
       '<h4 class="section-title">Edición segura</h4><div class="notice">Estos valores se guardan directamente en la base local. El personaje debe estar desconectado. Gestiona las clases con Build Lab para que Mobius guarde y cargue los skills de cada slot.</div>' +
       '<form id="character-form"><div class="form-grid"><div class="field"><label>Título</label><input name="title" maxlength="21" value="'+escapeHtml(character.title || '')+'"></div><div class="field"><label>Nivel</label><input name="level" type="number" min="1" max="80" value="'+character.level+'"></div><div class="field"><label>SP</label><input name="sp" type="number" min="0" value="'+character.sp+'"></div><div class="field"><label>Adena</label><input name="adena" type="number" min="0" value="'+character.adena+'"></div><div class="field"><label>Access level</label><input name="accesslevel" type="number" min="0" max="100" value="'+character.accesslevel+'"></div></div>' +
       '<div class="form-actions"><p>'+(character.online?'Cierra sesión para habilitar el guardado.':'Los cambios se aplican al próximo ingreso.')+'</p><button class="button primary" '+(character.online?'disabled':'')+'>Guardar personaje</button></div></form>' +

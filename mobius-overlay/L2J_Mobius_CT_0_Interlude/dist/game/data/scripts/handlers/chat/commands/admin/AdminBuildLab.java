@@ -456,7 +456,8 @@ public class AdminBuildLab implements IAdminCommandHandler
 		final StringBuilder html = new StringBuilder(6000);
 		html.append("<html><body><center><font color=LEVEL>Build Lab - 4 clases / 1 activa</font><br>");
 		html.append("Editando: <font color=FFFFFF>").append(player.getName()).append("</font><br>");
-		html.append("Raza fija: ").append(player.getRace()).append(" / ").append(player.isRacialMage() ? "MYSTIC" : "FIGHTER").append("<br>Las clases no cambian los seis atributos raciales.<br><br>");
+		html.append("Aspecto: ").append(player.getRace()).append(" / Stats: ").append(player.getRacialStatRace()).append(" / ").append(player.isRacialMage() ? "MYSTIC" : "FIGHTER").append("<br>Las clases no cambian los seis atributos raciales.<br>");
+		html.append("<button value=\"Apariencia y atributos (.raza)\" action=\"bypass -h voice .raza\" width=250 height=22 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"><br>El menu .raza edita tu propio personaje.<br><br>");
 		addMainSection(html, player);
 		for (int slot = 1; slot <= 3; slot++)
 		{

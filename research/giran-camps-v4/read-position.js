@@ -1,0 +1,2 @@
+const fs=require('fs');const {createDatabase}=require('../../lab-panel/lib/database');const db=createDatabase(JSON.parse(fs.readFileSync('lab-panel/config.json','utf8')).database);
+(async()=>{console.log(JSON.stringify(await db.query("SELECT char_name,x,y,z,online FROM characters WHERE char_name='Hellkevin'")));})().catch(e=>{console.error(e.message);process.exitCode=1}).finally(()=>db.pool.end());

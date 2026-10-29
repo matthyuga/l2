@@ -1,0 +1,21 @@
+const fs=require('fs'),path=require('path'),{pathToFileURL}=require('url');
+const root=path.resolve(__dirname,'../..'),editor=path.join(root,'research/scene-editor'),cat=path.join(root,'research/model-catalog'),id='custom_vigilia_retablo_popa';
+const read=f=>JSON.parse(fs.readFileSync(f,'utf8')),write=(f,v)=>fs.writeFileSync(f,JSON.stringify(v,null,2));
+(async()=>{const T=await import(pathToFileURL(path.join(cat,'vendor/three.module.js')).href),g=read(path.join(cat,'exports/vigilia-popa-heraldica/retablo.gltf'));
+ const backup=path.join(root,'backups/vigilia-retablo-20261020');for(const file of [path.join(editor,'data.json'),path.join(editor,'custom-assets.json'),path.join(cat,'gallery.json')]){const target=path.join(backup,path.relative(root,file));fs.mkdirSync(path.dirname(target),{recursive:true});if(!fs.existsSync(target))fs.copyFileSync(file,target);}
+ const asset={id,title:'Vigilia - popa heraldica',path:'exports/vigilia-popa-heraldica/retablo.gltf',thumbnail:null,mesh:'Vigilia.Turbinas',category:'Escenarios',native:false,batch:'Proyectos personales - Vigilia'};
+ for(const file of [path.join(editor,'data.json'),path.join(editor,'custom-assets.json')]){const v=read(file),list=Array.isArray(v)?v:v.assets,index=list.findIndex(a=>a.id===id);if(index>=0)list[index]=asset;else list.push(asset);write(file,v);}
+ const galleryFile=path.join(cat,'gallery.json'),gallery=read(galleryFile);gallery.models=gallery.models.filter(a=>a.key!==id);gallery.models.push({key:id,title:asset.title,gltf:asset.path,thumbnail:null,mesh:asset.mesh,category:asset.category,batch:asset.batch,native:false,status:'ready',names:[],types:['StaticMesh']});write(galleryFile,gallery);
+ function bounds(index,parent=new T.Matrix4()){const n=g.nodes[index],local=n.matrix?new T.Matrix4().fromArray(n.matrix):new T.Matrix4().compose(new T.Vector3(...n.translation||[0,0,0]),new T.Quaternion(...n.rotation||[0,0,0,1]),new T.Vector3(...n.scale||[1,1,1])),world=parent.clone().multiply(local),box=new T.Box3();if(n.mesh!==undefined)for(const p of g.meshes[n.mesh].primitives){const a=g.accessors[p.attributes.POSITION];box.union(new T.Box3(new T.Vector3(...a.min),new T.Vector3(...a.max)).applyMatrix4(world));}for(const child of n.children||[])box.union(bounds(child,world));return box;}
+ const p=read(path.join(editor,'projects/vigiliaturbinas5.json'));p.name='vigiliaturbinas6';p.reference={...p.reference,statue:'Integrated external stern carving replacing the visible hull tip; no statue on deck',source:'research/vigilia-popa-heraldica/Vigilia-retablo.blend'};const hull=p.objects.find(o=>o.node==='VIG_00_Casco');
+ hull.asset=id;hull.position=bounds(g.nodes.findIndex(n=>n.name==='VIG_00_Casco')).getCenter(new T.Vector3()).toArray();
+ const node='VIG_22_Retablo_Popa';const ornament=p.objects.find(o=>o.node==='VIG_22_Ornamento_Popa');Object.assign(ornament,{name:'Retablo naval - nogal, bronce y emblema solar',asset:id,node,position:bounds(g.nodes.findIndex(n=>n.name===node)).getCenter(new T.Vector3()).toArray()});
+ p.cameras[8]={position:[-20,3.6,0],target:[-15.3,3.0,0],fov:35};
+ p.cameras[1]={position:[-20,4.9,3.5],target:[-15.3,3.1,0],fov:38};
+ for(const [name,project] of [['vigiliaturbinas6',p],['vigiliaturbinas6-escala',{...structuredClone(p),name:'vigiliaturbinas6-escala'}]]){
+  if(name.endsWith('escala')){for(const o of project.objects)if(o.node==='VIG_01_Globo')o.visible=false;else if(['VIG_13_Escala','VIG_21_Referencia_Mirador'].includes(o.node))o.visible=true;}
+  const folder=path.join(root,'mapas editados',name);fs.mkdirSync(folder,{recursive:true});const file=path.join(editor,'projects',name+'.json');
+  if(fs.existsSync(file)&&!process.argv.includes('--rebuild'))throw Error('New project already exists. Preserve user edits.');write(file,project);write(path.join(folder,name+'.json'),project);
+ }
+ write(path.join(__dirname,'project-registration.json'),{name:p.name,objects:p.objects.length,hullCenter:hull.position,headCenter:p.objects.at(-1).position,asset});console.log({name:p.name,objects:p.objects.length,headCenter:p.objects.at(-1).position});
+})().catch(e=>{console.error(e);process.exitCode=1;});

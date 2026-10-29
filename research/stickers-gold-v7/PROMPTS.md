@@ -1,0 +1,16 @@
+# Recursos ornamentales — ImageGen
+
+Skill imagegen, herramienta image_gen integrada. Dos llamadas independientes: aro exterior y hoja de tres estados del medallón. Ambas usan la propuesta aprobada sticker-gold-concept-v1/propuesta-rueda-oro.png y la hoja D Oro de botones como referencias de estilo. Se pidió transparencia real. Originales copiados a sources/ring.png y sources/medallions.png.
+
+## ring
+
+Use case: ui-mockup. Asset type: ONE production decorative circular outer ring for the approved fantasy RPG sticker wheel. Reference image 1 is the APPROVED UI CONCEPT; reference image 2 is the actual D Oro material sheet. Both are style references only.
+Generate a single perfectly circular thin sculpted antique-gold outer ring, front-facing 2D game UI ornament, centered in a square transparent PNG with generous clear margin. Match the warm gold foliage and restrained highlights of the approved wheel. The ring is delicate, about 2% of its outer diameter thick. Add eight SMALL integrated pairs of gold leaves at evenly spaced compass points, fully attached to the ring, not large wings. No medallions, no characters, no stickers, no text, no header, no inner circles, no buttons, no radial dividers. Both the entire interior and exterior of the ring must be genuinely TRANSPARENT so an existing dark patterned background can be placed behind it. Keep all artwork within the canvas and rotationally symmetrical overall. This will be rendered about 384 pixels across, so focus on crisp silhouette and readable gold metal edges rather than tiny noisy detail. No background, checkerboard, glow cloud or shadow rectangle.
+
+## medallions
+
+Use case: ui-mockup. Asset type: ONE production sheet of three circular medallion button frames for the approved fantasy RPG sticker wheel. Reference image 1 is the APPROVED wheel concept, image 2 the actual D Oro material sheet. Both are style references only.
+Generate exactly THREE separate perfectly round gold frame ornaments in one wide horizontal row on a genuine TRANSPARENT PNG, equal size and aligned with large transparent gutters. Left is NORMAL idle: warm antique-gold thin sculpted ring with four small attached gold leaves at cardinal points. Middle is HOVER: same shape and proportions with brighter polished highlights, no large halo. Right is PRESSED: same shape with slightly deeper gold/inset material highlights. Match the central round CERRAR frame of the concept, but all three must be completely BLANK frames, with no text, X, emblems, characters or illustration. Interior and exterior of each ring fully transparent, to place the existing sticker art and dark background underneath. No plaques or labels, those are separate assets. Subtle metal depth, crisp front-facing 2D fantasy game UI art. Small attached ornaments; keep a large empty interior to accommodate a sticker or CERRAR text. No disconnected particles, no background, checkerboard, shadow rectangle, wings or extra rings. The native medallion is only 74px wide and center button 98px, so prioritize readable material and clear contour.
+
+
+El fondo reutiliza la textura floral V4. Las placas reutilizan el arte D Oro V5. Los ocho dibujos se reutilizan desde sus PNG originales, sin regenerar personajes. Recortes, ajuste de tamaño, composición alfa y etiquetas nítidas son parte del empaquetado para el motor.

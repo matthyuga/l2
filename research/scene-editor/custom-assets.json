@@ -1,0 +1,713 @@
+[
+  {
+    "id": "l2lab_behemoth_two_riders",
+    "title": "Behemoth - arnes y plataforma para dos",
+    "path": "exports/l2lab-behemoth-two-riders/behemoth-two-riders.gltf",
+    "thumbnail": "thumbs/l2lab_behemoth_two_riders.png",
+    "mesh": "L2Lab.BehemothTwoRiders",
+    "category": "Monturas",
+    "native": false,
+    "batch": "Prototipos L2 Lab"
+  },
+  {
+    "id": "l2lab_behemoth_animated",
+    "title": "Behemoth animado - montura de combate",
+    "path": "exports/l2lab-behemoth-two-riders-animated/behemoth-animated.glb",
+    "thumbnail": "thumbs/l2lab_behemoth_two_riders.png",
+    "mesh": "L2Lab.BehemothWeightedV2",
+    "category": "Monturas",
+    "native": false,
+    "batch": "Prototipos L2 Lab"
+  },
+  {
+    "id": "l2lab_behemoth_two_riders_preview",
+    "title": "Behemoth - conductor y atacante de referencia",
+    "path": "exports/l2lab-behemoth-two-riders-animated/behemoth-riders-preview.glb",
+    "thumbnail": "thumbs/l2lab_behemoth_two_riders.png",
+    "mesh": "L2Lab.BehemothWeightedV2",
+    "category": "Monturas",
+    "native": false,
+    "batch": "Prototipos L2 Lab"
+  },
+  {
+    "id": "custom_gludio_cosmos_lavender",
+    "title": "Cosmos lavanda · pétalos finos",
+    "path": "exports/gludio-botanical/lavender.gltf",
+    "thumbnail": "thumbs/custom_gludio_cosmos_lavender.png",
+    "mesh": "Cosmos lavender",
+    "category": "Vegetación",
+    "native": false,
+    "batch": "Gludio · Flores botánicas"
+  },
+  {
+    "id": "custom_gludio_cosmos_ivory",
+    "title": "Cosmos crema · centro dorado",
+    "path": "exports/gludio-botanical/ivory.gltf",
+    "thumbnail": "thumbs/custom_gludio_cosmos_ivory.png",
+    "mesh": "Cosmos ivory",
+    "category": "Vegetación",
+    "native": false,
+    "batch": "Gludio · Flores botánicas"
+  },
+  {
+    "id": "custom_gludio_brisas_carved_bench",
+    "title": "Banco de las Brisas · nogal tallado y turquesas",
+    "path": "exports/gludio-carved-bench/bench.gltf",
+    "thumbnail": null,
+    "mesh": "Banco",
+    "category": "Objetos",
+    "native": false,
+    "batch": "Gludio · Mobiliario tallado"
+  },
+  {
+    "id": "custom_gludio_flower_shrub_0",
+    "title": "Mata floral mixta 1 · margaritas, rosetas y espigas",
+    "path": "exports/gludio-floral-beds/mixed-0.gltf",
+    "thumbnail": null,
+    "mesh": "Mata floral mixta 1",
+    "category": "Vegetación",
+    "native": false,
+    "batch": "Gludio · Arriates florales",
+    "bedObjectIds": [
+      "7181738f-56bc-4635-ae41-d92822160363",
+      "305dd7f5-c957-4559-b365-97eabc6afba1",
+      "17ee712d-cc03-4001-b9c7-c83998af101e",
+      "e2f2c34f-edbe-408e-8274-47b8b8fa8db1"
+    ]
+  },
+  {
+    "id": "custom_gludio_flower_shrub_1",
+    "title": "Mata floral mixta 2 · margaritas, rosetas y espigas",
+    "path": "exports/gludio-floral-beds/mixed-1.gltf",
+    "thumbnail": null,
+    "mesh": "Mata floral mixta 2",
+    "category": "Vegetación",
+    "native": false,
+    "batch": "Gludio · Arriates florales",
+    "bedObjectIds": [
+      "5b5e0dac-4a77-4403-99a8-f625f8fc0fd7",
+      "283fba52-ac7a-46de-8943-dfa01db906d5",
+      "77e122d1-22d9-45a0-b8d7-92a28f6d2f44",
+      "8e7c96e2-dfa4-4e4e-9953-103d4b06588d"
+    ]
+  },
+  {
+    "id": "custom_gludio_flower_shrub_2",
+    "title": "Mata floral mixta 3 · margaritas, rosetas y espigas",
+    "path": "exports/gludio-floral-beds/mixed-2.gltf",
+    "thumbnail": null,
+    "mesh": "Mata floral mixta 3",
+    "category": "Vegetación",
+    "native": false,
+    "batch": "Gludio · Arriates florales",
+    "bedObjectIds": [
+      "5a019508-203b-424a-8e0f-bd71048d12bb",
+      "4ca2e61e-72a4-4937-897a-ebe545ddb8ef",
+      "60528b09-7396-45ff-8038-d23b6dcab92a",
+      "3677812a-441d-4cec-9f11-b14b374381de"
+    ]
+  },
+  {
+    "id": "custom_gludio_flower_shrub_3",
+    "title": "Mata floral mixta 4 · margaritas, rosetas y espigas",
+    "path": "exports/gludio-floral-beds/mixed-3.gltf",
+    "thumbnail": null,
+    "mesh": "Mata floral mixta 4",
+    "category": "Vegetación",
+    "native": false,
+    "batch": "Gludio · Arriates florales",
+    "bedObjectIds": [
+      "e5f1937e-dcd0-437a-b9c5-bc21812abd0f",
+      "c95db98d-419f-49dc-98f8-bdd93f83896e",
+      "5cde4b1e-9059-4267-8b87-91c2430d8b8a",
+      "c03f2727-860a-495c-8aa7-14e8af623d7e"
+    ]
+  },
+  {
+    "id": "custom_vigilia_dragon_sculpt",
+    "title": "Vigilia · dragón de proa recreado",
+    "path": "exports/vigilia-dragon-sculpt/dragon.gltf",
+    "thumbnail": null,
+    "mesh": "Vigilia.DragonRecreado",
+    "category": "Escenarios",
+    "native": false,
+    "batch": "Proyectos personales · Vigilia"
+  },
+  {
+    "id": "custom_vigilia_red_dragon",
+    "title": "Vigilia · cabeza original Red Dragon",
+    "path": "exports/vigilia-red-dragon/red-dragon-head.gltf",
+    "thumbnail": null,
+    "mesh": "Vigilia.RedDragon",
+    "category": "Escenarios",
+    "native": false,
+    "batch": "Proyectos personales · Vigilia",
+    "attribution": "Red Dragon by GadgetHamster; character design Alexander Ostrowski. CC BY 4.0. Head/neck adapted for Vigilia.",
+    "sourceURL": "https://sketchfab.com/3d-models/red-dragon-77e89ab9b88a444cb51339c2ed3959a3"
+  },
+  {
+    "id": "custom_vigilia_mascaron",
+    "title": "Vigilia · mascarón de roble y bronce",
+    "path": "exports/vigilia-mascaron/mascaron.gltf",
+    "thumbnail": null,
+    "mesh": "Vigilia.Mascaron",
+    "category": "Escenarios",
+    "native": false,
+    "batch": "Proyectos personales · Vigilia"
+  },
+  {
+    "id": "custom_vigilia_turbinas",
+    "title": "Vigilia - turbinas navales",
+    "path": "exports/vigilia-turbinas/turbinas.gltf",
+    "thumbnail": null,
+    "mesh": "Vigilia.Turbinas",
+    "category": "Escenarios",
+    "native": false,
+    "batch": "Proyectos personales - Vigilia"
+  },
+  {
+    "id": "custom_vigilia_estructura",
+    "title": "Vigilia - casco y techo corregidos",
+    "path": "exports/vigilia-estructura/estructura.gltf",
+    "thumbnail": null,
+    "mesh": "Vigilia.Turbinas",
+    "category": "Escenarios",
+    "native": false,
+    "batch": "Proyectos personales - Vigilia"
+  },
+  {
+    "id": "custom_vigilia_pasaje",
+    "title": "Vigilia - pasaje y mirador del dragon",
+    "path": "exports/vigilia-pasaje-dragon/pasaje.gltf",
+    "thumbnail": null,
+    "mesh": "Vigilia.Turbinas",
+    "category": "Escenarios",
+    "native": false,
+    "batch": "Proyectos personales - Vigilia"
+  },
+  {
+    "id": "custom_vigilia_estatua",
+    "title": "Vigilia - estatua de popa",
+    "path": "exports/vigilia-estatua/estatua.gltf",
+    "thumbnail": null,
+    "mesh": "Vigilia.Turbinas",
+    "category": "Escenarios",
+    "native": false,
+    "batch": "Proyectos personales - Vigilia"
+  },
+  {
+    "id": "custom_vigilia_ornamento_popa",
+    "title": "Vigilia - remate exterior de popa",
+    "path": "exports/vigilia-ornamento-popa/ornamento.gltf",
+    "thumbnail": null,
+    "mesh": "Vigilia.Turbinas",
+    "category": "Escenarios",
+    "native": false,
+    "batch": "Proyectos personales - Vigilia"
+  },
+  {
+    "id": "custom_vigilia_retablo_popa",
+    "title": "Vigilia - popa heraldica",
+    "path": "exports/vigilia-popa-heraldica/retablo.gltf",
+    "thumbnail": null,
+    "mesh": "Vigilia.Turbinas",
+    "category": "Escenarios",
+    "native": false,
+    "batch": "Proyectos personales - Vigilia"
+  },
+  {
+    "id": "custom_dion_hecatombe_v1",
+    "title": "Dion · Hecatombe V1",
+    "path": "exports/dion-hecatombe-v1/scene.gltf",
+    "thumbnail": null,
+    "mesh": "Dion Classic IL · devastated",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "custom_dion_collapse_demo_v1",
+    "title": "Dion · Prueba de derrumbe físico",
+    "path": "exports/dion-collapse-demo-v1/collapse.glb",
+    "thumbnail": null,
+    "mesh": "Dion_NV_H01 + Dion_NV_H01_Top",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "custom_dion_ruins_house1_v1",
+    "title": "Dion · Casa destruida 1 · bloques",
+    "path": "exports/dion-ruins-blocks-v1/house1.glb",
+    "thumbnail": null,
+    "mesh": "Dion ruina tipo 1",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "custom_dion_ruins_house2_v1",
+    "title": "Dion · Casa destruida 2 · bloques",
+    "path": "exports/dion-ruins-blocks-v1/house2.glb",
+    "thumbnail": null,
+    "mesh": "Dion ruina tipo 2",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "custom_dion_ruins_house3_v1",
+    "title": "Dion · Casa destruida 3 · bloques",
+    "path": "exports/dion-ruins-blocks-v1/house3.glb",
+    "thumbnail": null,
+    "mesh": "Dion ruina tipo 3",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "custom_dion_ruins_floor_v1",
+    "title": "Dion · suelo de exposición",
+    "path": "exports/dion-ruins-blocks-v1/floor.glb",
+    "thumbnail": null,
+    "mesh": "Suelo",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "custom_dion_rubble_house1_v2",
+    "title": "Dion · Escombros irregulares · casa 1",
+    "path": "exports/dion-rubble-v2/house1.glb",
+    "thumbnail": null,
+    "mesh": "Dion casa 1 · bordes rotos y escombros",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "custom_dion_rubble_house2_v2",
+    "title": "Dion · Escombros irregulares · casa 2",
+    "path": "exports/dion-rubble-v2/house2.glb",
+    "thumbnail": null,
+    "mesh": "Dion casa 2 · bordes rotos y escombros",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "custom_dion_rubble_house3_v2",
+    "title": "Dion · Escombros irregulares · casa 3",
+    "path": "exports/dion-rubble-v2/house3.glb",
+    "thumbnail": null,
+    "mesh": "Dion casa 3 · bordes rotos y escombros",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "custom_dion_hecatombe_v2_core",
+    "title": "Dion devastado V2 · terreno y entorno",
+    "path": "exports/dion-hecatombe-v2/core.gltf",
+    "thumbnail": null,
+    "mesh": "Dion entorno",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor214",
+    "title": "Dion V2 · dion_nv_h03_b · StaticMeshActor214",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor214.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h03_b",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor89",
+    "title": "Dion V2 · dion_nv_h03_a · StaticMeshActor89",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor89.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h03_a",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor495",
+    "title": "Dion V2 · dion_nv_agit01 · StaticMeshActor495",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor495.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_agit01",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor314",
+    "title": "Dion V2 · dion_nv_agit01 · StaticMeshActor314",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor314.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_agit01",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor341",
+    "title": "Dion V2 · dion_nv_agit01 · StaticMeshActor341",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor341.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_agit01",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor683",
+    "title": "Dion V2 · dion_nv_agit01 · StaticMeshActor683",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor683.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_agit01",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor403",
+    "title": "Dion V2 · dion_nv_bs · StaticMeshActor403",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor403.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_bs",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor332",
+    "title": "Dion V2 · dion_nv_agit01 · StaticMeshActor332",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor332.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_agit01",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor1352",
+    "title": "Dion V2 · dion_nv_agit01 · StaticMeshActor1352",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor1352.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_agit01",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor527",
+    "title": "Dion V2 · dion_nv_sh01 · StaticMeshActor527",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor527.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_sh01",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor10",
+    "title": "Dion V2 · dion_nv_wh · StaticMeshActor10",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor10.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_wh",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor671",
+    "title": "Dion V2 · dion_nv_wg · StaticMeshActor671",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor671.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_wg",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor803",
+    "title": "Dion V2 · dion_nv_sh01 · StaticMeshActor803",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor803.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_sh01",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor138",
+    "title": "Dion V2 · dion_nv_agit01 · StaticMeshActor138",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor138.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_agit01",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor310",
+    "title": "Dion V2 · dion_nv_h01 · StaticMeshActor310",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor310.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h01",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor492",
+    "title": "Dion V2 · dion_nv_h03_b · StaticMeshActor492",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor492.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h03_b",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor222",
+    "title": "Dion V2 · dion_nv_h03_b · StaticMeshActor222",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor222.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h03_b",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor1226",
+    "title": "Dion V2 · dion_nv_h03_b · StaticMeshActor1226",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor1226.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h03_b",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor126",
+    "title": "Dion V2 · dion_nv_h04 · StaticMeshActor126",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor126.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h04",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor491",
+    "title": "Dion V2 · dion_nv_h04 · StaticMeshActor491",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor491.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h04",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor322",
+    "title": "Dion V2 · dion_nv_h02 · StaticMeshActor322",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor322.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h02",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor804",
+    "title": "Dion V2 · dion_nv_h02 · StaticMeshActor804",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor804.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h02",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor34",
+    "title": "Dion V2 · dion_nv_h01 · StaticMeshActor34",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor34.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h01",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor809",
+    "title": "Dion V2 · dion_nv_h01 · StaticMeshActor809",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor809.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h01",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor199",
+    "title": "Dion V2 · dion_nv_h04 · StaticMeshActor199",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor199.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h04",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor178",
+    "title": "Dion V2 · dion_nv_h02 · StaticMeshActor178",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor178.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h02",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_staticmeshactor130",
+    "title": "Dion V2 · dion_nv_h01 · StaticMeshActor130",
+    "path": "exports/dion-hecatombe-v2/StaticMeshActor130.gltf",
+    "thumbnail": null,
+    "mesh": "dion_nv_h01",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_source_type4",
+    "title": "Dion ? Escombros editables ? tipo 4",
+    "path": "exports/dion-city-rubble-v2/house4.glb",
+    "thumbnail": null,
+    "mesh": "Dion tipo 4",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_source_type5",
+    "title": "Dion ? Escombros editables ? tipo 5",
+    "path": "exports/dion-city-rubble-v2/house5.glb",
+    "thumbnail": null,
+    "mesh": "Dion tipo 5",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_source_type6",
+    "title": "Dion ? Escombros editables ? tipo 6",
+    "path": "exports/dion-city-rubble-v2/house6.glb",
+    "thumbnail": null,
+    "mesh": "Dion tipo 6",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_source_type7",
+    "title": "Dion ? Escombros editables ? tipo 7",
+    "path": "exports/dion-city-rubble-v2/house7.glb",
+    "thumbnail": null,
+    "mesh": "Dion tipo 7",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_source_type8",
+    "title": "Dion ? Escombros editables ? tipo 8",
+    "path": "exports/dion-city-rubble-v2/house8.glb",
+    "thumbnail": null,
+    "mesh": "Dion tipo 8",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_source_type9",
+    "title": "Dion ? Escombros editables ? tipo 9",
+    "path": "exports/dion-city-rubble-v2/house9.glb",
+    "thumbnail": null,
+    "mesh": "Dion tipo 9",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "dion_v2_source_type10",
+    "title": "Dion ? Escombros editables ? tipo 10",
+    "path": "exports/dion-city-rubble-v2/house10.glb",
+    "thumbnail": null,
+    "mesh": "Dion tipo 10",
+    "category": "Escenarios",
+    "native": false
+  },
+  {
+    "id": "custom_dion_v3_core",
+    "title": "Dion V3 · entorno",
+    "path": "exports/dion-hecatombe-v3/core.gltf",
+    "mesh": "Dion entorno V3",
+    "category": "Escenarios",
+    "thumbnail": null,
+    "native": false
+  },
+  {
+    "id": "custom_dion_v3_walls",
+    "title": "Dion V3 · muros con daños variados",
+    "path": "exports/dion-hecatombe-v3/damaged-walls.glb",
+    "mesh": "Muros nativos destruidos",
+    "category": "Escenarios",
+    "thumbnail": null,
+    "native": false
+  },
+  {
+    "id": "custom_dion_v3_de",
+    "title": "Dion V3 · edificio DE derrumbado",
+    "path": "exports/dion-hecatombe-v3/house11.glb",
+    "mesh": "Dion_NV_DE destruido",
+    "category": "Escenarios",
+    "thumbnail": null,
+    "native": false
+  },
+  {
+    "id": "custom_dion_plague_v4_core",
+    "title": "Dion V4 · suelo enfermo",
+    "path": "exports/dion-plague-v4/core.gltf",
+    "mesh": "Dion terreno plagado V4",
+    "category": "Escenarios",
+    "thumbnail": null,
+    "native": false
+  },
+  {
+    "id": "custom_dion_living_v5",
+    "title": "Dion · tejido vivo y espinas",
+    "path": "exports/dion-living-v5/colonies.glb",
+    "mesh": "Colonias orgánicas originales",
+    "category": "Escenarios",
+    "thumbnail": null,
+    "native": false
+  },
+  {
+    "id": "custom_dion_spine_v6_single",
+    "title": "Plaga · Espina arqueada individual",
+    "path": "exports/dion-spines-v6/single.glb",
+    "mesh": "Espina arqueada individual",
+    "category": "Escenarios",
+    "thumbnail": null,
+    "native": false
+  },
+  {
+    "id": "custom_dion_spine_v6_giant",
+    "title": "Plaga · Espina gigante solitaria",
+    "path": "exports/dion-spines-v6/giant.glb",
+    "mesh": "Espina gigante solitaria",
+    "category": "Escenarios",
+    "thumbnail": null,
+    "native": false
+  },
+  {
+    "id": "custom_dion_spine_v6_interlaced",
+    "title": "Plaga · Arcos orgánicos entrelazados",
+    "path": "exports/dion-spines-v6/interlaced.glb",
+    "mesh": "Arcos orgánicos entrelazados",
+    "category": "Escenarios",
+    "thumbnail": null,
+    "native": false
+  },
+  {
+    "id": "custom_dion_spine_v6_branched",
+    "title": "Plaga · Espina ramificada",
+    "path": "exports/dion-spines-v6/branched.glb",
+    "mesh": "Espina ramificada",
+    "category": "Escenarios",
+    "thumbnail": null,
+    "native": false
+  },
+  {
+    "id": "custom_dion_infestation_v7_core",
+    "title": "Dion · suelo infestado granate",
+    "path": "exports/dion-plague-v4/core.gltf",
+    "mesh": "Suelo de expansión orgánica",
+    "category": "Escenarios",
+    "thumbnail": null,
+    "native": false
+  },
+  {
+    "id": "custom_dion_roots_v7",
+    "title": "Dion · raíces ramificadas de espinas",
+    "path": "exports/dion-infestation-v7/roots.glb",
+    "mesh": "Raíces y ramificaciones sobre el terreno",
+    "category": "Escenarios",
+    "thumbnail": null,
+    "native": false
+  }
+]

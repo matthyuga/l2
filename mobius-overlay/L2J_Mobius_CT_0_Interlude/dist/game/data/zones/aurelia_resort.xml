@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/zones.xsd">
+ <zone name="Aurelia Resort Peace" type="PeaceZone" shape="Cuboid" minZ="9500" maxZ="16383">
+  <node X="149800" Y="51000" /><node X="163200" Y="59000" />
+ </zone>
+ <zone name="Aurelia Resort Respawn" type="RespawnZone" shape="Cuboid" minZ="9500" maxZ="16383">
+  <node X="149800" Y="51000" /><node X="163200" Y="59000" />
+  <race name="HUMAN" point="gludio_sky" /><race name="ELF" point="gludio_sky" />
+  <race name="DARK_ELF" point="gludio_sky" /><race name="ORC" point="gludio_sky" /><race name="DWARF" point="gludio_sky" />
+ </zone>
+</list>

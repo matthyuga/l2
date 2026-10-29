@@ -1,0 +1,18 @@
+{
+  "version": "Amber VFX V4",
+  "installed": true,
+  "package_checks": 455,
+  "java_compilation": "PASS",
+  "catalog_roundtrip": "PASS",
+  "unrelated_catalog_rows": "PRESERVED",
+  "compiled_texture_pixels": "PASS 6",
+  "ground_mesh_radius_and_plane": "PASS",
+  "installed_client_hashes": "PASS 5",
+  "installed_script_copies": "PASS 6",
+  "native_game_visibility": "PENDING user test; computer-use native pipe unavailable",
+  "soulshot": "user confirmed V3 works; unchanged",
+  "combat_logic_64_checks": "previous V3 run; not repeated for V4",
+  "client_texture_wrapper": "Lineage2Ver121 installed; full filename-key roundtrip PASS",
+  "installed_texture_export": "UModel AreaGold exported; pixels identical",
+  "user_v4_test": "Files are corrupted on raw palette; encoded palette installed afterwards; visual retest pending"
+}

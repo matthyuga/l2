@@ -1,0 +1,15 @@
+# Pantalla curva de Giran — 17/10/2026
+
+Kevin autorizó una curva horizontal suave para pantalla y marco. Modelo construido, validado y preparado para instalación automática al próximo inicio del espectador. **No afirmar visible todavía:** el cliente `E:\l2\system-screen-lab\L2.exe` estaba abierto; su paquete se conserva intacto. No se cerró, abrió ni reinició ningún cliente ni el servidor.
+
+Diseño: tamaño exterior proyectado648×498, imagen600×450, mismo origen y ubicación. Frente+X, radio961,5, arco36,36°, extremos de imagen48unidades hacia el espectador.48segmentos;1392triángulos frente a52 del plano anterior. Marco curvado con la misma función y textura distribuida por longitud del arco. Pose root original conservada, importNexusTVMotion4.Dust2Motion. No hay cambios de reproducción, calidad, resolución, transporte o sonido. No se midió todavía el costo dentro de L2.
+
+Fuentes: `build_panel.py`, `link_pose.py`; geometría y UV en `geometry.json`; resultado `assets/NexusTVPanel4-linked.ukx`. `preview.png` muestra solo la geometría, no una captura del juego. La animación generada es idéntica a la instalada; no necesita reemplazo.
+
+Verificado: compilación UCC; recarga/exportación de textura de paquete sin vínculo L2 usando UCC; marcador exacto; vértices finitos, caras no degeneradas, UV0..1, dimensiones y avance correctos. Paquete final con pose exportado con UModel `-export -game=l2`, incluyendo Screen.psk, textura y animación. Roundtrip604puntos/1392caras, límitesX−14..60,234/Y±324/Z0..498. Las pruebas de UCC del paquete vinculado y UModel sin `-game=l2` no son válidas para la animación específica de Lineage; se utilizó el lector con el juego indicado.
+
+Instalación preparada: `../quality-v3/install/NexusTVPanel4.u` y hash añadido a su manifest.json. `E:\l2-local\nexus-tv\Apply-HDClient.ps1` ahora verifica e instala también el modelo en `E:\l2\nexus-tv`, con respaldo y rollback; rechaza cambios si el espectador está abierto. El acceso15-PANTALLA-GIRAN.cmd ya lo invoca antes de abrir L2. Instalación aislada en `quality-v3/client-install-test` PASS; segunda ejecución sin cambios PASS; guardia del cliente real abierto PASS. No se sustituyeron DLLs/INI/npcgrp ni el paquete cargado durante esta sesión.
+
+Para usar: cerrar solamente la ventana Pantalla Giran y abrir otra vez el acceso **L2 - Pantalla Giran**. Entrar y usar `.pantalla ir`. El acceso instala antes de iniciar el cliente. Confirmar visualmente curvatura, orientación y ajuste al mural con Kevin. No cerrar clientes automáticamente para completar esa comprobación.
+
+Respaldo previo: `E:\l2-local\backups\nexus-tv-curved-20261017` contiene paquete plano, instalador anterior y manifiesto anterior. Para revertir después de instalar: con espectador cerrado, restaurar los tres destinos correspondientes y quitar el modelo curvo del staging (o sustituirlo por el plano y actualizar su hash); de lo contrario el acceso volvería a instalar la curva. El paquete plano también permanece en `quality-v3/panel-v4/assets/NexusTVPanel4-linked.ukx`. Sin commit/push.

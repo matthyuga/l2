@@ -1,0 +1,57 @@
+/* Load after style.css. Width includes the permanent section rail. */
+/* workspace.css owns the three-column layout (tools, viewport, scene tree). */
+#studio.compact-studio{display:flex;flex-direction:row;min-width:0;box-shadow:7px 0 20px #0004}
+.studio-rail{flex:0 0 44px;width:44px;border-right:1px solid var(--line);background:#0003;padding-top:7px}
+.compact-studio .studio-icon-tabs{display:flex;flex-direction:column;gap:5px;padding:0 3px;border:0}
+.compact-studio .studio-icon-tabs button{width:36px;min-height:47px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:5px 0;border:1px solid transparent!important;border-radius:4px;font-size:8px}
+.compact-studio .studio-icon-tabs button.active{border-color:#c6aa7360!important;background:#c6aa7314!important}
+.compact-studio svg{width:21px;height:21px;display:block;flex-shrink:0}
+.studio-content{display:flex;flex:1;min-width:0;flex-direction:column;overflow:hidden}
+.compact-heading{font-size:11px;letter-spacing:.7px;font-weight:600;color:#d4c3a3;padding:13px 8px 11px}
+.compact-studio .tools{gap:4px;padding:0 7px}
+.compact-studio .tools button{display:grid;place-items:center;padding:7px 0}
+.compact-studio .tools svg{width:17px;height:17px}
+.compact-studio .view-actions{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:7px}
+.compact-studio .view-actions button{padding:6px 2px;font-size:9px}
+.compact-studio .view-actions label{grid-column:1/-1;margin:2px 0 0;font-size:10px}
+.compact-studio .panel{padding:12px 7px 18px}
+.compact-studio .section-title{flex-wrap:wrap;gap:5px;font-size:9px;letter-spacing:.7px}
+.compact-studio .section-title small{font-size:9px}
+.compact-studio input:not([type=checkbox]):not([type=range]),.compact-studio select{padding:7px 5px;font-size:11px}
+.compact-studio .hint{font-size:10px;line-height:1.5}
+.compact-studio .asset{gap:6px;padding:5px;margin-bottom:5px}
+.compact-studio .asset img{width:34px;height:34px}
+.compact-studio .asset span{font-size:10px;overflow-wrap:anywhere}
+.compact-studio .asset small{font-size:9px;margin-top:2px}
+.compact-studio .object{font-size:10px;padding:7px 4px;gap:4px}
+.compact-studio #objects{max-height:220px}
+.compact-studio .toggles{flex-wrap:wrap;gap:7px;font-size:10px}
+.compact-studio .vector>div{gap:3px}
+.compact-studio .vector input{font-size:10px;padding:6px 2px!important}
+.compact-studio .axes{font-size:8px}
+.compact-studio .actions{flex-direction:column;gap:5px;margin:12px 0 7px}
+.compact-studio .actions button,.compact-studio #reset-transform,.compact-studio #more{font-size:10px;padding:7px 4px;white-space:normal}
+.compact-studio .setting{font-size:10px;gap:4px;flex-wrap:wrap}
+.compact-studio dl{font-size:10px}
+.studio-panel-toggle{position:absolute;right:12px;top:12px;z-index:4;display:flex;align-items:center;gap:6px;padding:7px 9px;background:rgba(10,13,18,var(--glass));border:1px solid var(--line);border-radius:4px;backdrop-filter:blur(12px);font-size:11px;cursor:pointer;user-select:none}
+.studio-panel-toggle input{margin:0}
+@media(max-width:700px){.studio-panel-toggle{top:8px;right:8px;font-size:10px}}
+
+main.compact-layout{grid-template-rows:minmax(0,1fr)}
+main.compact-layout>#studio{grid-column:1;grid-row:1}
+main.compact-layout>#viewport{grid-column:2;grid-row:1;min-height:0}
+main.compact-layout>#scene-workspace{grid-column:3;grid-row:1;min-width:0}
+.viewport-window-bar{position:absolute;inset:0 0 auto;z-index:6;display:flex;align-items:center;gap:5px;height:34px;padding:4px 9px;background:#11161ee8;border-bottom:1px solid var(--line);user-select:none}
+.viewport-window-bar strong{font-size:10px;color:#c9b784;margin-right:auto}
+.viewport-window-bar button{font-size:10px;padding:3px 7px;height:25px}
+#viewport .viewport-label{top:46px}
+#viewport .selection-toolbar{top:65px}
+#viewport .pick-caption{top:112px}
+#viewport .studio-panel-toggle{top:43px}
+#viewport #placement{top:145px}
+#viewport.viewport-floating{position:fixed;left:var(--view-x,15vw);top:var(--view-y,15vh);width:var(--view-width,70vw);height:var(--view-height,70vh);min-width:360px;min-height:250px;max-width:100vw;max-height:100dvh;z-index:100;border:1px solid #c6aa7380;border-radius:7px;box-shadow:0 15px 70px #000c;resize:both;overflow:hidden}
+#viewport.viewport-floating .viewport-window-bar{cursor:move;touch-action:none}
+#viewport.viewport-maximized,#viewport:fullscreen{position:fixed;inset:0;width:100vw!important;height:100dvh!important;z-index:200;border:0;border-radius:0;resize:none}
+#viewport.viewport-floating:after{content:'';position:absolute;right:0;bottom:0;width:15px;height:15px;pointer-events:none;background:linear-gradient(135deg,transparent 40%,#c6aa73 44%,transparent 50%,transparent 60%,#c6aa73 65%,transparent 70%)}
+#viewport.viewport-maximized:after{display:none}
+@media(max-width:700px){.viewport-window-bar{gap:3px;padding:4px}.viewport-window-bar button{font-size:9px;padding:3px 4px}.viewport-window-bar strong{font-size:9px}}

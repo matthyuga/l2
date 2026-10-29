@@ -117,11 +117,13 @@ async function characterDetail(charId) {
   character.classInfo = classInfo(character.classid);
   character.baseClassInfo = classInfo(character.base_class);
   character.configuredStats = data.playerBaseStats(character.classid, character.level);
-  const profileRows = await database.query('SELECT val FROM character_variables WHERE charId=? AND var=?', [charId, 'RACIAL_PROFILE']);
-  character.racialProfile = profileRows.length ? profileRows[0].val : ([10,25,38,49].includes(character.baseClassInfo.rootId) ? 'MYSTIC' : 'FIGHTER');
+  const profileRows = await database.query("SELECT var,val FROM character_variables WHERE charId=? AND var IN ('RACIAL_PROFILE','RACIAL_STAT_RACE')", [charId]);
+  const racialVariables = Object.fromEntries(profileRows.map(row => [row.var, row.val]));
+  character.racialProfile = racialVariables.RACIAL_PROFILE || ([10,25,38,49].includes(character.baseClassInfo.rootId) ? 'MYSTIC' : 'FIGHTER');
+  character.statRace = racialVariables.RACIAL_STAT_RACE === undefined ? Number(character.race) : Number(racialVariables.RACIAL_STAT_RACE);
   const racialRoots = { 0: [0,10], 1: [18,25], 2: [31,38], 3: [44,49], 4: [53,53] };
-  if (!racialRoots[character.race] || !['FIGHTER','MYSTIC'].includes(character.racialProfile)) throw httpError(409, 'Origen racial invalido.');
-  character.racialRootId = racialRoots[character.race][character.racialProfile === 'MYSTIC' ? 1 : 0];
+  if (!racialRoots[character.statRace] || !['FIGHTER','MYSTIC'].includes(character.racialProfile)) throw httpError(409, 'Origen racial invalido.');
+  character.racialRootId = racialRoots[character.statRace][character.racialProfile === 'MYSTIC' ? 1 : 0];
   character.racialClassInfo = classInfo(character.racialRootId);
   const racialStats = data.playerBaseStats(character.racialRootId, character.level);
   ['str','dex','con','int','wit','men'].forEach(function (key) { character.configuredStats[key] = racialStats[key]; });
@@ -136,6 +138,11 @@ async function characterDetail(charId) {
     const statsRows = await database.query('SELECT * FROM lab_player_stats WHERE char_id=?', [charId]);
     character.liveStats = statsRows.length ? statsRows[0] : null;
     character.liveStatsRacialCompatible = !character.liveStats || character.liveStats.rules_version === 'fixed-racial-hybrid-third-v1';
+    if (character.liveStats && character.liveStats.stat_race_id != null) {
+      character.liveStatsRacialCompatible = character.liveStatsRacialCompatible && Number(character.liveStats.stat_race_id) === character.statRace && character.liveStats.racial_profile === character.racialProfile && Number(character.liveStats.appearance_race_id) === Number(character.race);
+    } else if (character.liveStats && character.statRace !== Number(character.race)) {
+      character.liveStatsRacialCompatible = false;
+    }
     character.liveStatsClassCompatible = !character.liveStats || Number(character.liveStats.class_id) === Number(character.classid);
     if (!character.liveStatsRacialCompatible || !character.liveStatsClassCompatible) {
       character.historicalLiveStats = character.liveStats;
@@ -949,7 +956,13 @@ async function arenaRoster() {
   const xml = fs.readFileSync(path.join(config.paths.serverData, 'stats', 'npcs', 'custom', 'elven_village_pvp.xml'), 'utf8');
   let rows = [];
   try {
-    rows = await database.query('SELECT * FROM lab_creature_stats WHERE template_id BETWEEN 901100 AND 901108');
+    rows = await database.query('SELECT * FROM lab_creature_stats WHERE template_id BETWEEN 901100 AND 901138');
+  } catch (error) {
+    if (!error || error.code !== 'ER_NO_SUCH_TABLE') throw error;
+  }
+  let subRows = [];
+  try {
+    subRows = await database.query('SELECT p.npc_template_id,s.class_id,s.class_index FROM lab_normal_npc_profiles p JOIN character_subclasses s ON s.charId=p.char_id ORDER BY p.npc_template_id,s.class_index');
   } catch (error) {
     if (!error || error.code !== 'ER_NO_SUCH_TABLE') throw error;
   }
@@ -961,13 +974,14 @@ async function arenaRoster() {
       return found ? found[1] : null;
     }
     const id = Number(attribute(raw, 'id'));
-    if (id < 901100 || id > 901108) return _;
+    if (id < 901100 || id > 901138) return _;
     const appearance = block.match(/<fakePlayer\b([^>]*)>/);
     const classId = Number(appearance && attribute(appearance[1], 'classId'));
     const classInfo = data.classById(classId);
     const race = block.match(/<race>([^<]*)<\/race>/);
     fighters.push({id:id, order:id-901099, name:attribute(raw,'name'), level:Number(attribute(raw,'level')),
       race:race ? race[1] : '', className:classInfo ? classInfo.name : String(classId),
+      subclasses:subRows.filter(function(s){return Number(s.npc_template_id)===id;}).map(function(s){return {slot:Number(s.class_index),classId:Number(s.class_id),name:(data.classById(Number(s.class_id)) || {}).name || String(s.class_id)};}),
       liveStats:snapshots.get(id) || null});
     return _;
   });
@@ -978,12 +992,15 @@ async function telemetryElvenPvp() {
   const roster = [
     { id: 901100, name: 'Arden' }, { id: 901101, name: 'Selene' }, { id: 901102, name: 'Eryndor' },
     { id: 901103, name: 'Lethiel' }, { id: 901104, name: 'Vaelkor' }, { id: 901105, name: 'Myrentha' },
-    { id: 901106, name: 'Gorvak' }, { id: 901107, name: 'Zhurak' }, { id: 901108, name: 'Brunna' }
+    { id: 901106, name: 'Gorvak' }, { id: 901107, name: 'Zhurak' }, { id: 901108, name: 'Brunna' },
+    { id: 901109, name: 'Kaelis' }, { id: 901110, name: 'Riven' }, { id: 901111, name: 'Noctis' },
+    { id: 901112, name: 'Caelan' }, { id: 901113, name: 'Ignara' }, { id: 901114, name: 'Aelira' },
+    { id: 901115, name: 'Korvash' }, { id: 901116, name: 'Morvain' }, { id: 901117, name: 'Sylira' }, { id: 901118, name: 'Velith' }
   ];
   let latest;
   try {
     latest = await database.query(
-      "SELECT MAX(instance_id) AS instance_id FROM lab_combat_events WHERE observer_count>0 AND ((attacker_template_id BETWEEN 901100 AND 901108) OR (target_template_id BETWEEN 901100 AND 901108))"
+      "SELECT MAX(instance_id) AS instance_id FROM lab_combat_events WHERE observer_count>0 AND ((attacker_template_id BETWEEN 901100 AND 901138) OR (target_template_id BETWEEN 901100 AND 901138))"
     );
   } catch (error) {
     if (error && (error.code === 'ER_NO_SUCH_TABLE' || error.code === 'ER_BAD_FIELD_ERROR')) return { enabled: false, instanceId: 0, events: 0, fighters: [] };
@@ -996,7 +1013,7 @@ async function telemetryElvenPvp() {
       "SELECT COUNT(*) AS events,MIN(occurred_ms) AS started_ms,MAX(occurred_ms) AS ended_ms,MAX(observer_count) AS max_observers," +
       "SUM(CASE WHEN event_type='DAMAGE' THEN 1 ELSE 0 END) AS hits," +
       "SUM(CASE WHEN event_type='DAMAGE' THEN damage ELSE 0 END) AS damage," +
-      "SUM(CASE WHEN attacker_template_id BETWEEN 901100 AND 901108 AND target_template_id BETWEEN 901100 AND 901108 THEN 1 ELSE 0 END) AS npc_vs_npc_events " +
+      "SUM(CASE WHEN attacker_template_id BETWEEN 901100 AND 901138 AND target_template_id BETWEEN 901100 AND 901138 THEN 1 ELSE 0 END) AS npc_vs_npc_events " +
       "FROM lab_combat_events WHERE instance_id=? AND observer_count>0",
       [instanceId]
     ),
@@ -1007,20 +1024,20 @@ async function telemetryElvenPvp() {
       "SUM(CASE WHEN event_type='MISS' THEN 1 ELSE 0 END) AS misses," +
       "SUM(CASE WHEN event_type='DAMAGE' AND critical=1 THEN 1 ELSE 0 END) AS criticals," +
       "SUM(CASE WHEN event_type='DEATH' THEN 1 ELSE 0 END) AS kills " +
-      "FROM lab_combat_events WHERE instance_id=? AND observer_count>0 AND attacker_template_id BETWEEN 901100 AND 901108 GROUP BY attacker_template_id",
+      "FROM lab_combat_events WHERE instance_id=? AND observer_count>0 AND attacker_template_id BETWEEN 901100 AND 901138 GROUP BY attacker_template_id",
       [instanceId]
     ),
     database.query(
       "SELECT target_template_id AS id,MAX(target_name) AS name," +
       "SUM(CASE WHEN event_type='DAMAGE' THEN damage ELSE 0 END) AS damage_received," +
       "SUM(CASE WHEN event_type='DEATH' THEN 1 ELSE 0 END) AS deaths " +
-      "FROM lab_combat_events WHERE instance_id=? AND observer_count>0 AND target_template_id BETWEEN 901100 AND 901108 GROUP BY target_template_id",
+      "FROM lab_combat_events WHERE instance_id=? AND observer_count>0 AND target_template_id BETWEEN 901100 AND 901138 GROUP BY target_template_id",
       [instanceId]
     ),
-    database.query("SELECT template_id AS id,max_hp,p_atk,m_atk,p_def,m_def,p_atk_speed,m_atk_speed FROM lab_creature_stats WHERE template_id BETWEEN 901100 AND 901108"),
+    database.query("SELECT template_id AS id,max_hp,p_atk,m_atk,p_def,m_def,p_atk_speed,m_atk_speed FROM lab_creature_stats WHERE template_id BETWEEN 901100 AND 901138"),
     database.query(
       "SELECT attacker_template_id AS id,skill_id,skill_name,COUNT(*) AS hits,SUM(damage) AS damage,AVG(damage) AS average_damage,MAX(damage) AS max_damage " +
-      "FROM lab_combat_events WHERE instance_id=? AND observer_count>0 AND event_type='DAMAGE' AND attacker_template_id BETWEEN 901100 AND 901108 " +
+      "FROM lab_combat_events WHERE instance_id=? AND observer_count>0 AND event_type='DAMAGE' AND attacker_template_id BETWEEN 901100 AND 901138 " +
       "GROUP BY attacker_template_id,skill_id,skill_name ORDER BY damage DESC",
       [instanceId]
     )

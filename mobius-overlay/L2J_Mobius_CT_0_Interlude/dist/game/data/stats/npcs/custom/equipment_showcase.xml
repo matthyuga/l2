@@ -1,0 +1,3143 @@
+<?xml version='1.0' encoding='utf-8'?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../xsd/npcs.xsd">
+	<npc id="62000" level="80" type="Folk" name="E001 Leviathan Pesada 1" title="SETS | Leviathan">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25067" equipChest="25070" equipLegs="25073" equipGloves="25076" equipFeet="25079" equipRHand="25000" equipLHand="25046" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62001" level="80" type="Folk" name="E002 Leviathan Ligera 2" title="SETS | Leviathan">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25068" equipChest="25071" equipLegs="25074" equipGloves="25077" equipFeet="25080" equipRHand="25001" equipLHand="25122" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62002" level="80" type="Folk" name="E003 Leviathan Tunica 3" title="SETS | Leviathan">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25069" equipChest="25072" equipLegs="25075" equipGloves="25078" equipFeet="25081" equipRHand="25002" equipLHand="25201" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62003" level="80" type="Folk" name="E004 Gold Dragon Uniform Tunica 1" title="SETS | Gold Dragon Uniform">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25082" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25003" equipLHand="0" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62004" level="80" type="Folk" name="E005 Elegia Pesada 1" title="SETS | Elegia">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25083" equipChest="25095" equipLegs="25086" equipGloves="25089" equipFeet="25092" equipRHand="25004" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62005" level="80" type="Folk" name="E006 Elegia Ligera 2" title="SETS | Elegia">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25084" equipChest="25096" equipLegs="25087" equipGloves="25090" equipFeet="25093" equipRHand="25005" equipLHand="25334" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62006" level="80" type="Folk" name="E007 Elegia Tunica 3" title="SETS | Elegia">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25085" equipChest="25097" equipLegs="25088" equipGloves="25091" equipFeet="25094" equipRHand="25006" equipLHand="0" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62007" level="80" type="Folk" name="E008 Water Core Pesada 1" title="SETS | Water Core">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25113" equipChest="25101" equipLegs="25102" equipGloves="25103" equipFeet="25104" equipRHand="25007" equipLHand="25335" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62008" level="80" type="Folk" name="E009 Water Core Ligera 2" title="SETS | Water Core">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25114" equipChest="25105" equipLegs="25106" equipGloves="25107" equipFeet="25108" equipRHand="25008" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62009" level="80" type="Folk" name="E010 Water Core Tunica 3" title="SETS | Water Core">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25115" equipChest="25109" equipLegs="25110" equipGloves="25111" equipFeet="25112" equipRHand="25009" equipLHand="0" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62010" level="80" type="Folk" name="E011 Blaze Pesada 1" title="SETS | Blaze">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25204" equipChest="25205" equipLegs="25206" equipGloves="25207" equipFeet="25208" equipRHand="25220" equipLHand="25224" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62011" level="80" type="Folk" name="E012 Blaze Ligera 2" title="SETS | Blaze">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25209" equipChest="25210" equipLegs="25211" equipGloves="25212" equipFeet="25213" equipRHand="25221" equipLHand="25225" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62012" level="80" type="Folk" name="E013 Blaze Tunica 3" title="SETS | Blaze">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25214" equipChest="25215" equipLegs="25216" equipGloves="25217" equipFeet="25218" equipRHand="25222" equipLHand="25336" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62013" level="80" type="Folk" name="E014 Vesper Red Pesada 1" title="SETS | Vesper Red">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25246" equipChest="25247" equipLegs="25248" equipGloves="25249" equipFeet="25250" equipRHand="25233" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62014" level="80" type="Folk" name="E015 Vesper Red Ligera 2" title="SETS | Vesper Red">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25246" equipChest="25251" equipLegs="25252" equipGloves="25253" equipFeet="25254" equipRHand="25234" equipLHand="25242" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62015" level="80" type="Folk" name="E016 Vesper Red Tunica 3" title="SETS | Vesper Red">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25246" equipChest="25255" equipLegs="25256" equipGloves="25257" equipFeet="25258" equipRHand="25235" equipLHand="0" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62016" level="80" type="Folk" name="E017 Pandorium Pesada 1" title="SETS | Pandorium">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25259" equipChest="25260" equipLegs="25261" equipGloves="25262" equipFeet="25263" equipRHand="25037" equipLHand="25337" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62017" level="80" type="Folk" name="E018 Pandorium Ligera 2" title="SETS | Pandorium">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25259" equipChest="25264" equipLegs="25265" equipGloves="25266" equipFeet="25267" equipRHand="25038" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62018" level="80" type="Folk" name="E019 Pandorium Tunica 3" title="SETS | Pandorium">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25272" equipChest="25268" equipLegs="25269" equipGloves="25270" equipFeet="25271" equipRHand="25039" equipLHand="25538" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62019" level="80" type="Folk" name="E020 Pandorium Pesada 4" title="SETS | Pandorium">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25272" equipChest="25273" equipLegs="25274" equipGloves="25275" equipFeet="25276" equipRHand="25040" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62020" level="80" type="Folk" name="E021 Pandorium Ligera 5" title="SETS | Pandorium">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25272" equipChest="25277" equipLegs="25278" equipGloves="25279" equipFeet="25280" equipRHand="25041" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62021" level="80" type="Folk" name="E022 Pandorium Tunica 6" title="SETS | Pandorium">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25285" equipChest="25281" equipLegs="25282" equipGloves="25283" equipFeet="25284" equipRHand="25042" equipLHand="25539" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62022" level="80" type="Folk" name="E023 Pandorium Pesada 7" title="SETS | Pandorium">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25287" equipChest="25288" equipLegs="25289" equipGloves="25290" equipFeet="25291" equipRHand="25043" equipLHand="25540" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62023" level="80" type="Folk" name="E024 Pandorium Ligera 8" title="SETS | Pandorium">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25287" equipChest="25292" equipLegs="25293" equipGloves="25294" equipFeet="25295" equipRHand="25044" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62024" level="80" type="Folk" name="E025 Pandorium Tunica 9" title="SETS | Pandorium">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25300" equipChest="25296" equipLegs="25297" equipGloves="25298" equipFeet="25299" equipRHand="25045" equipLHand="0" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62025" level="80" type="Folk" name="E026 Epic Dark Knight Armor Pesada 1" title="SETS | Epic Dark Knight Armor">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25308" equipChest="25305" equipLegs="0" equipGloves="25306" equipFeet="25307" equipRHand="25047" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62026" level="80" type="Folk" name="E027 Epic Dark Knight Armor Ligera 2" title="SETS | Epic Dark Knight Armor">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25312" equipChest="25309" equipLegs="0" equipGloves="25310" equipFeet="25311" equipRHand="25048" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62027" level="80" type="Folk" name="E028 Epic Dark Knight Armor Tunica 3" title="SETS | Epic Dark Knight Armor">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25317" equipChest="25313" equipLegs="25314" equipGloves="25315" equipFeet="25316" equipRHand="25049" equipLHand="0" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62028" level="80" type="Folk" name="E029 Moirai Armor Pesada 1" title="SETS | Moirai Armor">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25437" equipChest="25440" equipLegs="25441" equipGloves="25442" equipFeet="25443" equipRHand="25050" equipLHand="25452" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62029" level="80" type="Folk" name="E030 Moirai Armor Ligera 2" title="SETS | Moirai Armor">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25438" equipChest="25444" equipLegs="25445" equipGloves="25446" equipFeet="25447" equipRHand="25051" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62030" level="80" type="Folk" name="E031 Moirai Armor Tunica 3" title="SETS | Moirai Armor">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25439" equipChest="25448" equipLegs="25449" equipGloves="25450" equipFeet="25451" equipRHand="25052" equipLHand="0" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62031" level="80" type="Folk" name="E032 Ixion Titanium Pesada 1" title="SETS | Ixion Titanium">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25465" equipChest="25453" equipLegs="25454" equipGloves="25455" equipFeet="25456" equipRHand="25468" equipLHand="25470" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62032" level="80" type="Folk" name="E033 Ixion Titanium Ligera 2" title="SETS | Ixion Titanium">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25466" equipChest="25457" equipLegs="25458" equipGloves="25459" equipFeet="25460" equipRHand="25469" equipLHand="25471" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62033" level="80" type="Folk" name="E034 Ixion Titanium Tunica 3" title="SETS | Ixion Titanium">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25467" equipChest="25461" equipLegs="25462" equipGloves="25463" equipFeet="25464" equipRHand="25472" equipLHand="0" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62034" level="80" type="Folk" name="E035 Iron Hell Armor + Jewels Pesada 1" title="SETS | Iron Hell Armor + Jewels">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25478" equipChest="25479" equipLegs="25480" equipGloves="25481" equipFeet="25482" equipRHand="25053" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62035" level="80" type="Folk" name="E036 Iron Hell Armor + Jewels Ligera 2" title="SETS | Iron Hell Armor + Jewels">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25483" equipChest="25484" equipLegs="25485" equipGloves="25486" equipFeet="25487" equipRHand="25054" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62036" level="80" type="Folk" name="E037 Iron Hell Armor + Jewels Pesada 3" title="SETS | Iron Hell Armor + Jewels">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25488" equipChest="25489" equipLegs="25490" equipGloves="25491" equipFeet="25492" equipRHand="25055" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62037" level="80" type="Folk" name="E038 Saint Seiya Aquarius" title="SETS | Saint Seiya">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25498" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25056" equipLHand="0" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62038" level="80" type="Folk" name="E039 Saint Seiya Aries" title="SETS | Saint Seiya">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25499" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25057" equipLHand="0" equipHair="25510" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62039" level="80" type="Folk" name="E040 Saint Seiya Cancer" title="SETS | Saint Seiya">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25500" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25058" equipLHand="0" equipHair="25511" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62040" level="80" type="Folk" name="E041 Saint Seiya Capricorn" title="SETS | Saint Seiya">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25501" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25059" equipLHand="0" equipHair="25512" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62041" level="80" type="Folk" name="E042 Saint Seiya Gemini" title="SETS | Saint Seiya">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25502" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25060" equipLHand="0" equipHair="25513" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62042" level="80" type="Folk" name="E043 Saint Seiya Leo" title="SETS | Saint Seiya">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25503" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25061" equipLHand="0" equipHair="25514" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62043" level="80" type="Folk" name="E044 Saint Seiya Libra" title="SETS | Saint Seiya">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25504" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25062" equipLHand="0" equipHair="25515" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62044" level="80" type="Folk" name="E045 Saint Seiya Pisces" title="SETS | Saint Seiya">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25505" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25063" equipLHand="0" equipHair="25516" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62045" level="80" type="Folk" name="E046 Saint Seiya Sagittarus" title="SETS | Saint Seiya">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25506" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25064" equipLHand="0" equipHair="25517" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62046" level="80" type="Folk" name="E047 Saint Seiya Scorpio" title="SETS | Saint Seiya">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25507" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25065" equipLHand="0" equipHair="25518" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62047" level="80" type="Folk" name="E048 Saint Seiya Taurus" title="SETS | Saint Seiya">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25508" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25066" equipLHand="0" equipHair="25519" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62048" level="80" type="Folk" name="E049 Saint Seiya Virgo" title="SETS | Saint Seiya">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25509" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25125" equipLHand="0" equipHair="25520" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62049" level="80" type="Folk" name="E050 School Uniform Tunica 1" title="SETS | School Uniform">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25541" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25126" equipLHand="0" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62050" level="80" type="Folk" name="E051 School Uniform Tunica 2" title="SETS | School Uniform">
+		<race>HUMAN</race>
+		<sex>FEMALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="25542" equipLegs="0" equipGloves="6375" equipFeet="6376" equipRHand="25127" equipLHand="0" equipHair="0" equipHair2="0" classId="10" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="8978380" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62051" level="80" type="Folk" name="E052 Vorpal Casco 25098" title="ARMAS | Black Antharas Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25098" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25128" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62052" level="80" type="Folk" name="E053 Vorpal Casco 25099" title="ARMAS | Black Antharas Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25099" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25129" equipLHand="25133" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62053" level="80" type="Folk" name="E054 Vorpal Casco 25100" title="ARMAS | Black Antharas Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25100" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25130" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62054" level="80" type="Folk" name="E055 Angry Wings Accesorio 25123" title="ARMAS | Black Antharas Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25131" equipLHand="0" equipHair="25123" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62055" level="80" type="Folk" name="E056 Astral Helmet Accesorio 25124" title="ARMAS | Black Antharas Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25132" equipLHand="0" equipHair="25124" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62056" level="80" type="Folk" name="E057 Blaze Accesorio 25219" title="ARMAS | Black Antharas Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25134" equipLHand="0" equipHair="25219" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62057" level="80" type="Folk" name="E058 Blaze Accesorio 25232" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25135" equipLHand="0" equipHair="25232" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62058" level="80" type="Folk" name="E059 Vesper Red Accesorio 25243" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25136" equipLHand="0" equipHair="25243" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62059" level="80" type="Folk" name="E060 Vesper Red Accesorio 25244" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25137" equipLHand="0" equipHair="25244" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62060" level="80" type="Folk" name="E061 Vesper Red Accesorio 25245" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25138" equipLHand="0" equipHair="25245" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62061" level="80" type="Folk" name="E062 Pandorium Casco 25286" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25286" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25139" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62062" level="80" type="Folk" name="E063 Pandorium Casco 25301" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25301" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25140" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62063" level="80" type="Folk" name="E064 Dynasty shoulders Casco 25302" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25302" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25141" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62064" level="80" type="Folk" name="E065 Dynasty shoulders Casco 25303" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25303" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25142" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62065" level="80" type="Folk" name="E066 Dynasty shoulders Casco 25304" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="25304" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25143" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62066" level="80" type="Folk" name="E067 Helmet collection Accesorio 25318" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25144" equipLHand="0" equipHair="25318" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62067" level="80" type="Folk" name="E068 Helmet collection Accesorio 25319" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25145" equipLHand="0" equipHair="25319" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62068" level="80" type="Folk" name="E069 Helmet collection Accesorio 25320" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25146" equipLHand="0" equipHair="25320" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62069" level="80" type="Folk" name="E070 Helmet collection Accesorio 25321" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25147" equipLHand="0" equipHair="25321" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62070" level="80" type="Folk" name="E071 Helmet collection Accesorio 25322" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25148" equipLHand="0" equipHair="25322" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62071" level="80" type="Folk" name="E072 Helmet collection Accesorio 25323" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25149" equipLHand="0" equipHair="25323" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62072" level="80" type="Folk" name="E073 Helmet collection Accesorio 25324" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25150" equipLHand="0" equipHair="25324" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62073" level="80" type="Folk" name="E074 Helmet collection Accesorio 25325" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25151" equipLHand="0" equipHair="25325" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62074" level="80" type="Folk" name="E075 Helmet collection Accesorio 25326" title="ARMAS | Dragon Weapon Fire &amp; Wat">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25152" equipLHand="0" equipHair="25326" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62075" level="80" type="Folk" name="E076 Helmet collection Accesorio 25327" title="ARMAS | Dynasty Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25153" equipLHand="0" equipHair="25327" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62076" level="80" type="Folk" name="E077 Helmet collection Accesorio 25328" title="ARMAS | Dynasty Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25157" equipLHand="0" equipHair="25328" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62077" level="80" type="Folk" name="E078 Helmet collection Accesorio 25329" title="ARMAS | Dynasty Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25161" equipLHand="0" equipHair="25329" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62078" level="80" type="Folk" name="E079 Helmet collection Accesorio 25330" title="ARMAS | Dynasty Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25165" equipLHand="0" equipHair="25330" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62079" level="80" type="Folk" name="E080 Helmet collection Accesorio 25331" title="ARMAS | Dynasty Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25169" equipLHand="0" equipHair="25331" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62080" level="80" type="Folk" name="E081 Helmet collection Accesorio 25332" title="ARMAS | Dynasty Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25173" equipLHand="0" equipHair="25332" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62081" level="80" type="Folk" name="E082 Helmet collection Accesorio 25333" title="ARMAS | Dynasty Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="0" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25177" equipLHand="0" equipHair="25333" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62082" level="80" type="Folk" name="E083 Dynasty Dagger" title="ARMAS | Dynasty Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25181" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62083" level="80" type="Folk" name="E084 Dynasty Spear" title="ARMAS | Dynasty Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25185" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62084" level="80" type="Folk" name="E085 Dynasty Hammer" title="ARMAS | Dynasty Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25189" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62085" level="80" type="Folk" name="E086 Dynasty Staff" title="ARMAS | Dynasty Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25193" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62086" level="80" type="Folk" name="E087 Dynasty Fist" title="ARMAS | Dynasty Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25197" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62087" level="80" type="Folk" name="E088 Dual Dynasty Sword" title="ARMAS | Dynasty Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25203" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62088" level="80" type="Folk" name="E089 Blaze Leather Gloves" title="ARMAS | Blaze">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25223" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62089" level="80" type="Folk" name="E090 Blaze Tunic" title="ARMAS | Blaze">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25226" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62090" level="80" type="Folk" name="E091 Blaze Stockings" title="ARMAS | Blaze">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25227" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62091" level="80" type="Folk" name="E092 Blaze Gloves" title="ARMAS | Blaze">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25228" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62092" level="80" type="Folk" name="E093 Blaze Shoes" title="ARMAS | Blaze">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25229" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62093" level="80" type="Folk" name="E094 Blaze Warrior Sword" title="ARMAS | Blaze">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25230" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62094" level="80" type="Folk" name="E095 Blaze Wizard Bow" title="ARMAS | Blaze">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25231" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62095" level="80" type="Folk" name="E096 Aaaa Iaiaieoia" title="ARMAS | Vesper Red">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25236" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62096" level="80" type="Folk" name="E097 Eanoaou Iaiaieoia" title="ARMAS | Vesper Red">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25237" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62097" level="80" type="Folk" name="E098 Iaa Ioea Iaiaieoia" title="ARMAS | Vesper Red">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25238" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62098" level="80" type="Folk" name="E099 Iieio Iaiaieoia" title="ARMAS | Vesper Red">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25239" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62099" level="80" type="Folk" name="E100 Aaooe Iaiaieoia" title="ARMAS | Vesper Red">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25240" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62100" level="80" type="Folk" name="E101 Aaieiua Iae Iaiaieoia" title="ARMAS | Vesper Red">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25241" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62101" level="80" type="Folk" name="E102 Lindvior Weapons Sword" title="ARMAS | Lindvior Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25338" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62102" level="80" type="Folk" name="E103 Lindvior Weapons Bow" title="ARMAS | Lindvior Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25339" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62103" level="80" type="Folk" name="E104 Lindvior Weapons Sword" title="ARMAS | Lindvior Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25340" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62104" level="80" type="Folk" name="E105 Lindvior Weapons Dagger" title="ARMAS | Lindvior Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25341" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62105" level="80" type="Folk" name="E106 Lindvior Weapons Sword" title="ARMAS | Lindvior Weapons">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25342" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62106" level="80" type="Folk" name="E107 Iaaeaneee" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25343" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62107" level="80" type="Folk" name="E108 Valakas Sword" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25344" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62108" level="80" type="Folk" name="E109 Aaaa" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25345" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62109" level="80" type="Folk" name="E110 Aaooiee" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25346" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62110" level="80" type="Folk" name="E111 Valakas Bow" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25347" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62111" level="80" type="Folk" name="E112 Aoaeu" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25348" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62112" level="80" type="Folk" name="E113 Valakas Staff" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25349" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62113" level="80" type="Folk" name="E114 Ieea" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25350" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62114" level="80" type="Folk" name="E115 Eanoaou" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25351" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62115" level="80" type="Folk" name="E116 Iieio" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25352" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62116" level="80" type="Folk" name="E117 Valakas Sword" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25354" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62117" level="80" type="Folk" name="E118 Aaaa" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25355" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62118" level="80" type="Folk" name="E119 Aaooiee" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25356" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62119" level="80" type="Folk" name="E120 Valakas Bow" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25357" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62120" level="80" type="Folk" name="E121 Aoaeu" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25358" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62121" level="80" type="Folk" name="E122 Iaaeaneee" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25359" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62122" level="80" type="Folk" name="E123 Ieea" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25360" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62123" level="80" type="Folk" name="E124 Eanoaou" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25361" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62124" level="80" type="Folk" name="E125 Iieio" title="ARMAS | Valakas">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25362" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62125" level="80" type="Folk" name="E126 R110 Krishna Sword" title="ARMAS | R110 Krishna">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25363" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62126" level="80" type="Folk" name="E127 R110 Krishna Blunt" title="ARMAS | R110 Krishna">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25367" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62127" level="80" type="Folk" name="E128 R110 Krishna Fist" title="ARMAS | R110 Krishna">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25371" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62128" level="80" type="Folk" name="E129 R110 Krishna Bow" title="ARMAS | R110 Krishna">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25375" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62129" level="80" type="Folk" name="E130 R110 Krishna Fist" title="ARMAS | R110 Krishna">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25379" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62130" level="80" type="Folk" name="E131 R110 Krishna Sword" title="ARMAS | R110 Krishna">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25383" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62131" level="80" type="Folk" name="E132 R110 Krishna Spear" title="ARMAS | R110 Krishna">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25387" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62132" level="80" type="Folk" name="E133 R110 Krishna Staff" title="ARMAS | R110 Krishna">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25391" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62133" level="80" type="Folk" name="E134 R110 Krishna Sword" title="ARMAS | R110 Krishna">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25395" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62134" level="80" type="Folk" name="E135 R110 Krishna Dual" title="ARMAS | R110 Krishna">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25399" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62135" level="80" type="Folk" name="E136 Vesper Cutter" title="ARMAS | Vesper Weapons Retail">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25400" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62136" level="80" type="Folk" name="E137 Vesper Slasher" title="ARMAS | Vesper Weapons Retail">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25401" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62137" level="80" type="Folk" name="E138 Vesper Buster" title="ARMAS | Vesper Weapons Retail">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25402" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62138" level="80" type="Folk" name="E139 Vesper Shaper" title="ARMAS | Vesper Weapons Retail">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25403" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62139" level="80" type="Folk" name="E140 Vesper Fighter" title="ARMAS | Vesper Weapons Retail">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25404" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62140" level="80" type="Folk" name="E141 Vesper Stormer" title="ARMAS | Vesper Weapons Retail">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25405" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62141" level="80" type="Folk" name="E142 Vesper Avenger" title="ARMAS | Vesper Weapons Retail">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25406" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62142" level="80" type="Folk" name="E143 Vesper Caster" title="ARMAS | Vesper Weapons Retail">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25407" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62143" level="80" type="Folk" name="E144 Vesper Thrower" title="ARMAS | Vesper Weapons Retail">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25408" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62144" level="80" type="Folk" name="E145 Vesper Dual Sword" title="ARMAS | Vesper Weapons Retail">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25409" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62145" level="80" type="Folk" name="E146 Ixion Wizard Blunt" title="ARMAS | Ixion Titanium">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25473" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62146" level="80" type="Folk" name="E147 Ixion Ranger Bow" title="ARMAS | Ixion Titanium">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25474" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62147" level="80" type="Folk" name="E148 Ixion Warrior Dual" title="ARMAS | Ixion Titanium">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25475" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62148" level="80" type="Folk" name="E149 Ixion Warrior Sword" title="ARMAS | Ixion Titanium">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25476" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62149" level="80" type="Folk" name="E150 Ixion Wizard Bow" title="ARMAS | Ixion Titanium">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25477" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62150" level="80" type="Folk" name="E151 Halloween Armor &amp; Weapon Blunt" title="ARMAS | Halloween Armor &amp; Weapon">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25521" equipLHand="25527" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62151" level="80" type="Folk" name="E152 Halloween Armor &amp; Weapon Sword" title="ARMAS | Halloween Armor &amp; Weapon">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25522" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62152" level="80" type="Folk" name="E153 Halloween Armor &amp; Weapon Staff" title="ARMAS | Halloween Armor &amp; Weapon">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25523" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62153" level="80" type="Folk" name="E154 Halloween Armor &amp; Weapon Sword" title="ARMAS | Halloween Armor &amp; Weapon">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25524" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62154" level="80" type="Folk" name="E155 Halloween Armor &amp; Weapon Staff" title="ARMAS | Halloween Armor &amp; Weapon">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25525" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62155" level="80" type="Folk" name="E156 Halloween Armor &amp; Weapon Dagger" title="ARMAS | Halloween Armor &amp; Weapon">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25526" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+	<npc id="62156" level="80" type="Folk" name="E157 Halloween Armor &amp; Weapon Sword" title="ARMAS | Halloween Armor &amp; Weapon">
+		<race>HUMAN</race>
+		<sex>MALE</sex>
+		<stats str="82" int="40" dex="53" wit="37" con="84" men="39">
+			<vitals hp="18857" hpRegen="10.8" mp="3863" mpRegen="3.0" />
+			<attack physical="10198" magical="1305" random="30" critical="132" accuracy="177" attackSpeed="588" type="FIST" range="40" distance="80" width="120" />
+			<defence physical="3388" magical="2450" />
+			<speed>
+				<walk ground="85" />
+				<run ground="139" />
+			</speed>
+		</stats>
+		<status talkable="false" undying="true" attackable="false" targetable="true" showName="true" randomWalk="false" randomAnimation="false" canMove="false" />
+		<fakePlayer equipHead="6378" equipChest="6373" equipLegs="6374" equipGloves="6375" equipFeet="6376" equipRHand="25528" equipLHand="0" equipHair="0" equipHair2="0" classId="0" hair="0" hairColor="0" face="0" nameColor="16777215" titleColor="16768392" fakePlayerTalkable="false" weaponEnchantLevel="0" armorEnchantLevel="0" />
+		<collision>
+			<radius normal="7.5" />
+			<height normal="24" />
+		</collision>
+		<acquire exp="0" sp="0" />
+	</npc>
+</list>

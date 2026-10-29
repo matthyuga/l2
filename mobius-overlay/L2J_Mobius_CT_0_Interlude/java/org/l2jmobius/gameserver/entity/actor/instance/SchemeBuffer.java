@@ -403,7 +403,8 @@ public class SchemeBuffer extends Npc
 		else if (currentCommand.startsWith("autobuff"))
 		{
 			final String targetType = tokenizer.hasMoreTokens() ? tokenizer.nextToken() : "me";
-			applyAutoBuff(player, targetType);
+			final String profile = tokenizer.hasMoreTokens() ? tokenizer.nextToken() : "auto";
+			applyAutoBuff(player, targetType, profile);
 			return;
 		}
 		
@@ -609,11 +610,35 @@ public class SchemeBuffer extends Npc
 	}
 	
 	/**
-	 * Applies auto-buff preset based on player class to player or pet.
+	 * Classifies the recipient independently of its owner and current buffs.
+	 * Magic damage against living targets identifies casters; base stats identify support summons.
+	 * @param target buff recipient
+	 * @return configured mage or fighter preset
+	 */
+	public static String autoBuffCategory(Creature target)
+	{
+		if (target instanceof Player player)
+		{
+			return player.isMageClass() ? AUTO_BUFF_MAGE_GROUP : AUTO_BUFF_FIGHTER_GROUP;
+		}
+		if (target instanceof Summon summon)
+		{
+			final boolean castsDamage = summon.getTemplate().getSkills().values().stream()
+				.anyMatch(skill -> !skill.isPassive() && skill.isMagic() && skill.isDamage()
+					&& !skill.getTargetType().name().contains("CORPSE"));
+			final boolean magicSupport = summon.getTemplate().getBaseMAtk() > summon.getTemplate().getBasePAtk();
+			return castsDamage || magicSupport ? AUTO_BUFF_MAGE_GROUP : AUTO_BUFF_FIGHTER_GROUP;
+		}
+		return AUTO_BUFF_FIGHTER_GROUP;
+	}
+	
+	/**
+	 * Applies the preset for the recipient, with an optional explicit profile.
 	 * @param player
 	 * @param targetType
+	 * @param profile auto, fighter or mage
 	 */
-	private void applyAutoBuff(Player player, String targetType)
+	private void applyAutoBuff(Player player, String targetType, String profile)
 	{
 		final SchemeBufferTable schemeBufferTable = SchemeBufferTable.getInstance();
 		final SkillData skillData = SkillData.getInstance();
@@ -621,12 +646,28 @@ public class SchemeBuffer extends Npc
 		final Creature target = "pet".equalsIgnoreCase(targetType) ? player.getSummon() : player;
 		if (target == null)
 		{
-			player.sendMessage("You don't have a pet.");
+			player.sendMessage("Invoca tu summon o mascota antes de buffearlo.");
+			showMainMenu(player);
+			return;
+		}
+		if (target instanceof Summon && target.isDead())
+		{
+			player.sendMessage("Tu summon o mascota debe estar vivo para recibir buffs.");
 			showMainMenu(player);
 			return;
 		}
 		
-		final String category = player.isMageClass() ? AUTO_BUFF_MAGE_GROUP : AUTO_BUFF_FIGHTER_GROUP;
+		final String category;
+		switch (profile.toLowerCase(Locale.ROOT))
+		{
+			case "auto": category = autoBuffCategory(target); break;
+			case "fighter": category = AUTO_BUFF_FIGHTER_GROUP; break;
+			case "mage": category = AUTO_BUFF_MAGE_GROUP; break;
+			default:
+				player.sendMessage("Perfil de buffs no disponible.");
+				showMainMenu(player);
+				return;
+		}
 		final List<Integer> skillIds = schemeBufferTable.getSkillsIdsByType(category);
 		
 		if (skillIds.isEmpty())
@@ -651,7 +692,15 @@ public class SchemeBuffer extends Npc
 			}
 		}
 		
-		player.sendMessage("Auto buff applied successfully!");
+		if (target instanceof Summon summon)
+		{
+			summon.updateAndBroadcastStatus(0);
+			player.sendMessage("Buffs de summon aplicados: " + (AUTO_BUFF_MAGE_GROUP.equals(category) ? "magico" : "fisico") + ".");
+		}
+		else
+		{
+			player.sendMessage("Auto buff applied successfully!");
+		}
 		showMainMenu(player);
 	}
 	

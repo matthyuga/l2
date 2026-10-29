@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/zones.xsd">
+ <zone name="Dust2 Exploration Peace" type="PeaceZone" shape="Cuboid" minZ="7644" maxZ="8580">
+  <node X="138376" Y="53160" /><node X="142984" Y="58600" />
+ </zone>
+ <zone name="Dust2 Exploration Respawn" type="RespawnZone" shape="Cuboid" minZ="7644" maxZ="8580">
+  <node X="138376" Y="53160" /><node X="142984" Y="58600" />
+  <race name="HUMAN" point="gludio_sky" />
+  <race name="ELF" point="gludio_sky" />
+  <race name="DARK_ELF" point="gludio_sky" />
+  <race name="ORC" point="gludio_sky" />
+  <race name="DWARF" point="gludio_sky" />
+ </zone>
+</list>

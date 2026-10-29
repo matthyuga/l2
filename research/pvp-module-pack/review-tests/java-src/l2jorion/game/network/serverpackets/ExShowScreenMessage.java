@@ -1,0 +1,1 @@
+package l2jorion.game.network.serverpackets;public class ExShowScreenMessage {public ExShowScreenMessage(String s,int t,int p,boolean b){}}

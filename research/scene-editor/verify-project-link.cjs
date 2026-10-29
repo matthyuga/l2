@@ -1,0 +1,10 @@
+const fs=require('fs'),path=require('path'),assert=require('assert'),{chromium}=require('../../tools/rea-runtime/node_modules/playwright-core');
+(async()=>{const b=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});try{const page=await b.newPage({viewport:{width:1600,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));const original=fs.readFileSync(path.join(__dirname,'projects/giranmodificado1.json'),'utf8'),project=JSON.parse(fs.readFileSync(path.join(__dirname,'projects/giranrenovada1.json')));
+await page.addInitScript(value=>localStorage.setItem('l2-scene-editor-draft',value),original);
+await page.goto('http://127.0.0.1:32290/?project=giranrenovada1.json');await page.waitForFunction(n=>window.editorState?.().objects.length===n&&document.body.dataset.state==='ready',project.objects.length,{timeout:180000});
+assert((await page.title()).startsWith('giranrenovada1'));assert.equal(await page.evaluate(()=>localStorage.getItem('l2-scene-editor-draft')),original);assert(await page.evaluate(()=>localStorage.getItem('l2-scene-editor-draft:giranrenovada1.json')));
+await page.locator('.camera-load').nth(3).click();await page.locator('#viewport-maximize').click();await page.waitForTimeout(700);await page.screenshot({path:path.resolve(__dirname,'../../mapas editados/giranrenovada1/catedral.png')});
+await page.reload();await page.waitForFunction(n=>window.editorState?.().objects.length===n&&document.body.dataset.state==='ready',project.objects.length,{timeout:180000});assert.equal(await page.evaluate(()=>localStorage.getItem('l2-scene-editor-draft')),original);
+const invalid=await page.request.get('http://127.0.0.1:32290/api/projects/bad%2Ffile.json');assert.equal(invalid.status(),400);assert.deepEqual(errors,[]);
+const report={passed:true,objects:project.objects.length,directLink:true,separateDraft:true,reload:true,invalidPathRejected:true,errors};fs.writeFileSync(path.join(__dirname,'project-link-verification.json'),JSON.stringify(report,null,2));console.log(report);
+}finally{await b.close();}})().catch(e=>{console.error(e);process.exitCode=1});

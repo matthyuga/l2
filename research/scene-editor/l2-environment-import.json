@@ -1,0 +1,57 @@
+{
+  "assets": 172,
+  "packages": [
+    {
+      "package": "Aden_tree_S.usx",
+      "selected": 25,
+      "category": "Árboles y vegetación"
+    },
+    {
+      "package": "dion_tree_s.usx",
+      "selected": 18,
+      "category": "Árboles y vegetación"
+    },
+    {
+      "package": "gludio_tree_s.usx",
+      "selected": 18,
+      "category": "Árboles y vegetación"
+    },
+    {
+      "package": "oren_tree_s.usx",
+      "selected": 18,
+      "category": "Árboles y vegetación"
+    },
+    {
+      "package": "innadrill_tree_s.usx",
+      "selected": 18,
+      "category": "Árboles y vegetación"
+    },
+    {
+      "package": "field_deco_S.usx",
+      "selected": 24,
+      "category": "Naturaleza y rocas"
+    },
+    {
+      "package": "statues_s.usx",
+      "selected": 1,
+      "category": "Estatuas y monumentos"
+    },
+    {
+      "package": "world_statue_s.usx",
+      "selected": 10,
+      "category": "Estatuas y monumentos"
+    },
+    {
+      "package": "ruins_renewal_s.usx",
+      "selected": 24,
+      "category": "Ruinas y estructuras"
+    },
+    {
+      "package": "deco01.usx",
+      "selected": 16,
+      "category": "Decoración y estructuras"
+    }
+  ],
+  "client": "D:/l2-hellgames/client/Lineage II",
+  "clientModified": false
+}

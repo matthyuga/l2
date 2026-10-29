@@ -1,0 +1,5 @@
+class strider extends LineagePawn;
+
+
+
+	

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/spawns.xsd">
+ <spawn name="ProjectColiseumServices">
+  <npc id="900202" x="148900" y="45500" z="-3400" heading="0" respawnDelay="5" chaseRange="0" />
+  <npc id="50008" x="148900" y="46700" z="-3400" heading="0" respawnDelay="60" />
+  <npc id="50010" x="149020" y="46700" z="-3400" heading="0" respawnDelay="60" />
+  <npc id="902500" x="149354" y="46611" z="-3438" heading="14222" respawnDelay="60" />
+ </spawn>
+ <!-- Ares/Nyx and Giran services are spawned by our GiranSiegeLab script.
+      The 39 opponents remain available on demand through our arena/siege tools. -->
+</list>

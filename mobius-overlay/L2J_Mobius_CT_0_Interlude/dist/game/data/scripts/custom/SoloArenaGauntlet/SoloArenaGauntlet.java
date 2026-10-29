@@ -25,46 +25,43 @@ import org.l2jmobius.gameserver.entity.World;
 import org.l2jmobius.gameserver.entity.WorldObject;
 import org.l2jmobius.gameserver.entity.actor.Npc;
 import org.l2jmobius.gameserver.entity.actor.Player;
+import org.l2jmobius.gameserver.entity.spawns.Spawn;
+import org.l2jmobius.gameserver.data.xml.PlayerTemplateData;
+import org.l2jmobius.gameserver.entity.actor.appearance.PlayerAppearance;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.handler.VoicedCommandHandler;
+import custom.NormalNpcRoster.NormalNpcRoster;
 
 /**
- * Runs the nine anchor fighters as a sequential one-versus-one Coliseum gauntlet.
+ * Runs thirty-nine rivals in sequential or individually selected Coliseum duels.
  * @author Codex
  */
 public class SoloArenaGauntlet implements IVoicedCommandHandler
 {
 	private static final Logger LOGGER = Logger.getLogger(SoloArenaGauntlet.class.getName());
 	private static final Object STATE_LOCK = new Object();
+	private static SoloArenaGauntlet INSTANCE;
+	private static boolean PILOT_ACTIVE;
 	private static final String[] COMMANDS =
 	{
 		"arena"
 	};
 	private static final int[] FIGHTER_IDS =
 	{
-		901100, 901101, 901102, 901103, 901104, 901105, 901106, 901107, 901108
+		901100, 901101, 901102, 901103, 901104, 901105, 901106, 901107, 901108, 901109, 901110, 901111,
+		901112, 901113, 901114, 901115, 901116, 901117, 901118,
+		901119, 901120, 901121, 901122, 901123, 901124, 901125, 901126, 901127, 901128, 901129, 901130, 901131, 901132, 901133, 901134, 901135, 901136, 901137, 901138
 	};
 	private static final String[] FIGHTER_NAMES =
 	{
-		"Arden", "Selene", "Eryndor", "Lethiel", "Vaelkor", "Myrentha", "Gorvak", "Zhurak", "Brunna"
-	};
-	private static final Location[] WAIT_POSITIONS =
-	{
-		new Location(148300, 45600, -3400, 16384),
-		new Location(148450, 45550, -3400, 16384),
-		new Location(148600, 45600, -3400, 16384),
-		new Location(148750, 45550, -3400, 16384),
-		new Location(148900, 45600, -3400, 16384),
-		new Location(149050, 45550, -3400, 16384),
-		new Location(149200, 45600, -3400, 16384),
-		new Location(149350, 45550, -3400, 16384),
-		new Location(149500, 45600, -3400, 16384)
+		"Arden", "Selene", "Eryndor", "Lethiel", "Vaelkor", "Myrentha", "Gorvak", "Zhurak", "Brunna", "Kaelis", "Riven", "Noctis",
+		"Caelan", "Ignara", "Aelira", "Korvash", "Morvain", "Sylira", "Velith",
+		"Darion", "Valerian", "Malrik", "Lucien", "Seraphine", "Darius", "Thalion", "Elowen", "Faelith", "Nerys", "Draven", "Nysera", "Veyron", "Zareth", "Saevra", "Rhogar", "Mazhura", "Urkan", "Dagna", "Borin"
 	};
 	private static final Location ARENA_CENTER = new Location(148900, 46100, -3400);
 	private static final Location SAFE_DUEL_ENTRY = new Location(148900, 45800, -3400, 16384);
 	private static final int ARENA_RADIUS = 3200;
 	private static final int CENTER_ARRIVAL_DISTANCE = 140;
-	private static final int WAIT_POSITION_TOLERANCE = 120;
 	private static final long PREPARATION_MILLIS = 10000;
 	private static final long MAX_ENTRANCE_RUN_MILLIS = 6000;
 
@@ -72,18 +69,23 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 	private int _controllerObjectId;
 	private int _roundIndex;
 	private int _activeNpcObjectId;
+	private Spawn _activeSpawn;
 	private long _phaseStartedMs;
 	private long _nextLaunchMs;
 	private int _lastCountdown = -1;
 	private long _runId;
 	private long _duelStartedMs;
+	private boolean _singleDuel;
+	private int _defeatedCount;
 
 	private SoloArenaGauntlet()
 	{
+		INSTANCE=this;
 		createTables();
 		VoicedCommandHandler.getInstance().registerHandler(this);
 		ThreadPool.scheduleAtFixedRate(this::tick, 1500, 500);
-		LOGGER.info("Coliseo secuencial activo: comando .arena, nueve rivales y telemetria por duelo.");
+		LOGGER.info("Coliseo secuencial activo: comando .arena, " + FIGHTER_IDS.length + " rivales y telemetria por duelo.");
+		if (Boolean.getBoolean("lab.arena.spawn.verify")) ThreadPool.schedule(this::verifyOnDemandSpawns, 60000);
 	}
 
 	@Override
@@ -92,6 +94,22 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 		final String action = normalize(params);
 		switch (action)
 		{
+			case "lista":
+			case "list":
+			{
+				for (int index=0;index<FIGHTER_NAMES.length;index++) player.sendMessage((index+1)+". "+FIGHTER_NAMES[index]);
+				player.sendMessage("Elige un rival: .arena probar nombre o numero");
+				break;
+			}
+			case "probar":
+			case "test":
+			{
+				String[] parts=params.trim().split("\\s+",2);
+				int index=parts.length==2?resolveFighter(parts[1]):-1;
+				if(index<0) player.sendMessage("Rival desconocido. Usa .arena lista y luego .arena probar nombre o numero.");
+				else startExperiment(player,index,true);
+				break;
+			}
 			case "start":
 			case "iniciar":
 			case "comenzar":
@@ -124,6 +142,16 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 
 	private void startExperiment(Player player)
 	{
+		startExperiment(player,0,false);
+	}
+
+	private void startExperiment(Player player,int firstIndex,boolean singleDuel)
+	{
+		if (!NormalNpcRoster.isReady())
+		{
+			player.sendMessage("Los perfiles normales aun se estan preparando o fallaron. Espera y revisa el laboratorio.");
+			return;
+		}
 		if (!isInsideColiseum(player))
 		{
 			player.sendMessage("Debes estar dentro del Coliseo para iniciar el experimento.");
@@ -142,6 +170,11 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 
 		synchronized (STATE_LOCK)
 		{
+			if(PILOT_ACTIVE)
+			{
+				player.sendMessage("Hay una prueba de IA Player activa. Termina o cancela con .ia cancelar.");
+				return;
+			}
 			if (isActivePhase(_phase))
 			{
 				final Player controller = World.getPlayer(_controllerObjectId);
@@ -149,18 +182,15 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 				return;
 			}
 
-			if (!prepareAllFighters())
-			{
-				player.sendMessage("Aun no estan disponibles los nueve rivales. Espera unos segundos y vuelve a usar .arena iniciar.");
-				return;
-			}
-
 			_controllerObjectId = player.getObjectId();
-			_roundIndex = 0;
+			_roundIndex = firstIndex;
+			_singleDuel = singleDuel;
+			_defeatedCount = 0;
 			_activeNpcObjectId = 0;
 			_runId = createRun(player);
 			_duelStartedMs = 0;
-			player.sendMessage("Experimento iniciado: nueve duelos 1 contra 1. Entre victorias tendras 10 segundos de preparacion.");
+			updateRunProgress(_roundIndex+1,0);
+			player.sendMessage(singleDuel?"Prueba individual contra "+FIGHTER_NAMES[_roundIndex]+". No saldra otro rival al finalizar.":"Experimento iniciado: " + FIGHTER_IDS.length + " duelos 1 contra 1. Entre victorias tendras 10 segundos de preparacion.");
 			launchCurrentFighter(player);
 		}
 	}
@@ -179,9 +209,8 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 				player.sendMessage("Solo el participante o un GM puede cancelar el experimento.");
 				return;
 			}
-			finishRun("CANCELLED", _roundIndex);
+			finishRun("CANCELLED", _defeatedCount);
 			resetState(Phase.CANCELLED);
-			prepareAllFighters();
 			player.sendMessage("Experimento cancelado. Usa .arena repetir cuando quieras comenzar de nuevo.");
 		}
 	}
@@ -195,7 +224,7 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 				player.sendMessage("Arena secuencial: " + _phase.label + ". Usa .arena iniciar.");
 				return;
 			}
-			player.sendMessage("Arena secuencial: " + _phase.label + ", rival " + (_roundIndex + 1) + "/9 " + FIGHTER_NAMES[_roundIndex] + ".");
+			player.sendMessage("Arena secuencial: " + _phase.label + ", rival " + (_roundIndex + 1) + "/" + FIGHTER_IDS.length + " " + FIGHTER_NAMES[_roundIndex] + ".");
 		}
 	}
 
@@ -208,15 +237,13 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 				final Player player = World.getPlayer(_controllerObjectId);
 				if (!isActivePhase(_phase))
 				{
-					holdWaitingFighters(0);
 					return;
 				}
 
 				if ((player == null) || !player.isOnline() || !isInsideColiseum(player))
 				{
-					finishRun("CANCELLED", _roundIndex);
+					finishRun("CANCELLED", _defeatedCount);
 					resetState(Phase.CANCELLED);
-					prepareAllFighters();
 					return;
 				}
 				if (player.isDead())
@@ -225,7 +252,6 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 					return;
 				}
 
-				holdWaitingFighters(_activeNpcObjectId);
 				switch (_phase)
 				{
 					case PREPARATION:
@@ -316,23 +342,32 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 
 	private void launchCurrentFighter(Player player)
 	{
-		final Npc npc = findArenaFighter(FIGHTER_IDS[_roundIndex]);
-		if (npc == null)
+		Npc npc = null;
+		try
 		{
-			abortRun(player, "No se encontro a " + FIGHTER_NAMES[_roundIndex] + " en la entrada sur.");
+			_activeSpawn = new Spawn(FIGHTER_IDS[_roundIndex]);
+			_activeSpawn.setLocation(SAFE_DUEL_ENTRY);
+			npc = _activeSpawn.doSpawn();
+			_activeSpawn.stopRespawn();
+			if (npc == null) throw new IllegalStateException("No se pudo crear el rival");
+			_activeNpcObjectId = npc.getObjectId();
+			npc.setInvul(true);
+			npc.disableCoreAI(true);
+			npc.setRandomWalking(false);
+			NormalNpcRoster.applyPreparedStats(npc);
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.WARNING, "No se pudo preparar el rival bajo demanda.", e);
+			abortRun(player, "No se pudo preparar a " + FIGHTER_NAMES[_roundIndex] + ".");
 			return;
 		}
-		prepareWaitingFighter(npc, _roundIndex, true);
-		npc.setInvul(true);
-		npc.disableCoreAI(true);
-		npc.teleToLocation(SAFE_DUEL_ENTRY.getX(), SAFE_DUEL_ENTRY.getY(), SAFE_DUEL_ENTRY.getZ(), SAFE_DUEL_ENTRY.getHeading(), 0, false);
 		npc.getAI().setIntentionMoveTo(ARENA_CENTER);
-		_activeNpcObjectId = npc.getObjectId();
 		_phase = Phase.RUNNING_TO_CENTER;
 		_phaseStartedMs = System.currentTimeMillis();
 		_lastCountdown = -1;
 		updateRunProgress(_roundIndex + 1, _roundIndex);
-		player.sendMessage("Rival " + (_roundIndex + 1) + "/9: " + FIGHTER_NAMES[_roundIndex] + " entra desde el sector sur interior y corre al centro.");
+		player.sendMessage("Rival " + (_roundIndex + 1) + "/" + FIGHTER_IDS.length + ": " + FIGHTER_NAMES[_roundIndex] + " entra desde el sector sur interior y corre al centro.");
 	}
 
 	private void beginFight(Player player, Npc npc)
@@ -344,13 +379,22 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 		_phase = Phase.FIGHTING;
 		_phaseStartedMs = System.currentTimeMillis();
 		_duelStartedMs = _phaseStartedMs;
-		player.sendMessage("Duelo " + (_roundIndex + 1) + "/9: " + FIGHTER_NAMES[_roundIndex] + " te ha encontrado. Combate.");
+		player.sendMessage("Duelo " + (_roundIndex + 1) + "/" + FIGHTER_IDS.length + ": " + FIGHTER_NAMES[_roundIndex] + " te ha encontrado. Combate.");
 	}
 
 	private void onFighterDefeated(Player player, Npc npc)
 	{
 		storeDuel("WIN", player, npc);
+		despawnCurrentFighter();
 		final String defeatedName = FIGHTER_NAMES[_roundIndex];
+		_defeatedCount++;
+		if(_singleDuel)
+		{
+			finishRun("COMPLETED",_defeatedCount);
+			resetState(Phase.COMPLETED);
+			player.sendMessage("Prueba individual terminada: derrotaste a "+defeatedName+". Recuperate y elige el siguiente con .arena probar nombre.");
+			return;
+		}
 		_roundIndex++;
 		_activeNpcObjectId = 0;
 		_duelStartedMs = 0;
@@ -358,7 +402,7 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 		{
 			finishRun("COMPLETED", FIGHTER_IDS.length);
 			_phase = Phase.COMPLETED;
-			player.sendMessage("Experimento terminado. Felicitaciones: derrotaste a los 9 rivales.");
+			player.sendMessage("Experimento terminado. Felicitaciones: derrotaste a los " + FIGHTER_IDS.length + " rivales.");
 			player.sendMessage("Para repetirlo usa el macro .arena repetir.");
 			return;
 		}
@@ -378,75 +422,18 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 		{
 			storeDuel("LOSS", player, npc);
 		}
-		finishRun("FAILED", _roundIndex);
+		finishRun("FAILED", _defeatedCount);
+		final boolean singleDuel = _singleDuel;
 		final String rival = (_roundIndex < FIGHTER_NAMES.length) ? FIGHTER_NAMES[_roundIndex] : "el rival";
 		resetState(Phase.FAILED);
-		prepareAllFighters();
-		player.sendMessage("Experimento interrumpido: " + rival + " te derroto. Revive y usa .arena repetir.");
+		player.sendMessage("Experimento interrumpido: " + rival + " te derroto. Revive y usa " + (singleDuel ? ".arena probar " + rival : ".arena repetir") + ".");
 	}
 
 	private void abortRun(Player player, String reason)
 	{
-		finishRun("CANCELLED", _roundIndex);
+		finishRun("CANCELLED", _defeatedCount);
 		resetState(Phase.CANCELLED);
-		prepareAllFighters();
 		player.sendMessage(reason + " El experimento fue cancelado; usa .arena repetir.");
-	}
-
-	private boolean prepareAllFighters()
-	{
-		boolean allReady = true;
-		for (int index = 0; index < FIGHTER_IDS.length; index++)
-		{
-			final Npc npc = findArenaFighter(FIGHTER_IDS[index]);
-			if (npc == null)
-			{
-				allReady = false;
-				continue;
-			}
-			prepareWaitingFighter(npc, index, true);
-		}
-		return allReady;
-	}
-
-	private void holdWaitingFighters(int excludedObjectId)
-	{
-		for (int index = 0; index < FIGHTER_IDS.length; index++)
-		{
-			final Npc npc = findArenaFighter(FIGHTER_IDS[index]);
-			if ((npc != null) && (npc.getObjectId() != excludedObjectId) && !npc.isDead())
-			{
-				prepareWaitingFighter(npc, index, false);
-			}
-		}
-	}
-
-	private static void prepareWaitingFighter(Npc npc, int index, boolean restore)
-	{
-		if (npc.isDead())
-		{
-			npc.doRevive();
-		}
-		if (restore)
-		{
-			npc.fullRestore();
-		}
-		npc.setInvul(true);
-		npc.disableCoreAI(true);
-		npc.setRandomWalking(false);
-		npc.abortAttack();
-		npc.abortCast();
-		if (npc.isAttackable())
-		{
-			npc.asAttackable().clearAggroList();
-		}
-		npc.setTarget(null);
-		npc.getAI().setIntentionActive();
-		final Location wait = WAIT_POSITIONS[index];
-		if (npc.calculateDistance2D(wait) > WAIT_POSITION_TOLERANCE)
-		{
-			npc.teleToLocation(wait.getX(), wait.getY(), wait.getZ(), wait.getHeading(), 0, false);
-		}
 	}
 
 	private static void attackPlayer(Npc npc, Player player)
@@ -462,27 +449,6 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 		npc.getAI().setIntentionAttack(player);
 	}
 
-	private static Npc findArenaFighter(int npcId)
-	{
-		Npc closest = null;
-		double closestDistance = Double.MAX_VALUE;
-		for (WorldObject object : World.getVisibleObjects())
-		{
-			if (!object.isNpc() || (object.getId() != npcId) || (object.getInstanceId() != 0))
-			{
-				continue;
-			}
-			final Npc npc = object.asNpc();
-			final double distance = npc.calculateDistance2D(ARENA_CENTER);
-			if ((distance <= ARENA_RADIUS) && (distance < closestDistance))
-			{
-				closest = npc;
-				closestDistance = distance;
-			}
-		}
-		return closest;
-	}
-
 	private static Npc findByObjectId(int objectId)
 	{
 		final WorldObject object = World.findObject(objectId);
@@ -496,6 +462,7 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 
 	private void resetState(Phase finalPhase)
 	{
+		despawnCurrentFighter();
 		_phase = finalPhase;
 		_controllerObjectId = 0;
 		_activeNpcObjectId = 0;
@@ -505,6 +472,100 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 		_lastCountdown = -1;
 		_duelStartedMs = 0;
 		_runId = 0;
+		_singleDuel = false;
+		_defeatedCount = 0;
+	}
+
+	private void despawnCurrentFighter()
+	{
+		if (_activeSpawn != null) _activeSpawn.stopRespawn();
+		final Npc npc = findByObjectId(_activeNpcObjectId);
+		if (npc != null)
+		{
+			npc.abortAttack();
+			npc.abortCast();
+			npc.deleteMe();
+		}
+		_activeSpawn = null;
+		_activeNpcObjectId = 0;
+	}
+
+	/** Explicit, headless lifecycle verification; never enabled by the normal launcher. */
+	private void verifyOnDemandSpawns()
+	{
+		if (!NormalNpcRoster.isReady())
+		{
+			ThreadPool.schedule(this::verifyOnDemandSpawns, 5000);
+			return;
+		}
+		Player probe = null;
+		try
+		{
+			synchronized (STATE_LOCK)
+			{
+				for (WorldObject obj : World.getVisibleObjects())
+					if (obj.isPlayer() && obj.asPlayer().getClient() != null) throw new IllegalStateException("Verification needs no connected clients");
+				if (PILOT_ACTIVE || isActivePhase(_phase)) throw new IllegalStateException("Arena already occupied");
+				int probeId = 0;
+				try (Connection c = DatabaseFactory.getConnection(); PreparedStatement q = c.prepareStatement("SELECT charId,account_name,online FROM characters WHERE char_name='ArenaSpawnProbe'"))
+				{
+					try (ResultSet r = q.executeQuery())
+					{
+						if (r.next())
+						{
+							if (!"arenaspawntest".equals(r.getString(2)) || r.getInt(3) != 0 || World.getPlayer(r.getInt(1)) != null) throw new IllegalStateException("Reserved spawn probe unavailable");
+							probeId = r.getInt(1);
+						}
+					}
+				}
+				probe = probeId == 0 ? Player.create(PlayerTemplateData.getInstance().getTemplate(0), "arenaspawntest", "ArenaSpawnProbe", new PlayerAppearance((byte)0,(byte)0,(byte)0,false)) : Player.load(probeId);
+				if (probe == null) throw new IllegalStateException("Could not load spawn probe");
+				probe.setLabControlled(true); probe.setDead(false); probe.setOnlineStatus(true,true); probe.setEnteredWorld();
+				probe.spawnMe(148900,46100,-3408); probe.revalidateZone(true); probe.setInvul(true);
+				int checks = 0;
+				verifyRivalCount(0); checks++;
+				for (int i=0; i<FIGHTER_IDS.length; i++)
+				{
+					onCommand("arena",probe,"probar " + (i+1));
+					verifyRivalCount(1); checks++;
+					Npc npc = findByObjectId(_activeNpcObjectId);
+					if (npc == null || npc.getId() != FIGHTER_IDS[i] || npc.getMaxCp() <= 0 || npc.getMaxHp() <= 0 || _activeSpawn.isRespawnEnabled()) throw new IllegalStateException("Wrong opponent, stats or respawn policy");
+					checks++;
+					onCommand("arena",probe,"cancelar");
+					verifyRivalCount(0); checks++;
+				}
+				startExperiment(probe,0,false);
+				Npc first = findByObjectId(_activeNpcObjectId); beginFight(probe,first);
+				first.doDie(probe); tick(); verifyRivalCount(0); checks++;
+				if (_phase != Phase.PREPARATION || _roundIndex != 1) throw new IllegalStateException("Next round not queued"); checks++;
+				_nextLaunchMs = 0; tick(); verifyRivalCount(1); checks++;
+				probe.setDead(true); tick(); verifyRivalCount(0); checks++; probe.setDead(false);
+				startExperiment(probe,0,true);
+				probe.setOnlineStatus(false,true); tick(); verifyRivalCount(0); checks++;
+				probe.setOnlineStatus(true,false); // deleteMe expects a world-resident probe to remain online until cleanup.
+				LOGGER.info("ArenaSpawnVerification SUCCESS: " + checks + " checks; 39 on-demand opponents, cancellation, victory, next round, defeat and disconnect cleanup.");
+			}
+		}
+		catch (Exception e) { LOGGER.log(Level.SEVERE,"ArenaSpawnVerification FAILED",e); }
+		finally
+		{
+			synchronized (STATE_LOCK)
+			{
+				if (probe != null)
+				{
+					if (_controllerObjectId == probe.getObjectId()) { finishRun("VERIFY_CLEANUP",_defeatedCount); resetState(Phase.CANCELLED); }
+					probe.setDead(false); probe.storeMe(); probe.deleteMe(); probe.setLabControlled(false); probe.setOnlineStatus(false,true);
+				}
+			}
+		}
+	}
+
+	private static void verifyRivalCount(int expected)
+	{
+		int count=0;
+		for (WorldObject obj : World.getVisibleObjects())
+			if (obj.isNpc() && obj.getId()>=901100 && obj.getId()<=901138 && obj.getInstanceId()==0) count++;
+		if (count != expected) throw new IllegalStateException("Expected " + expected + " public rivals, got " + count);
 	}
 
 	private static boolean isActivePhase(Phase phase)
@@ -524,7 +585,31 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 	private static void showHelp(Player player)
 	{
 		player.sendMessage("Arena secuencial: .arena iniciar | estado | cancelar | repetir");
-		player.sendMessage("Macro recomendado: .arena iniciar");
+		player.sendMessage("Pruebas individuales: .arena lista | .arena probar nombre o numero");
+	}
+
+	public static int resolveFighter(String value)
+	{
+		if(value==null) return -1;
+		String selected=value.trim();
+		for(int index=0;index<FIGHTER_NAMES.length;index++)
+			if(selected.equalsIgnoreCase(FIGHTER_NAMES[index]) || selected.equals(String.valueOf(index+1))) return index;
+		return -1;
+	}
+
+	public static boolean tryClaimPilot()
+	{
+		synchronized(STATE_LOCK)
+		{
+			if(INSTANCE==null || PILOT_ACTIVE || isActivePhase(INSTANCE._phase)) return false;
+			PILOT_ACTIVE=true;
+			return true;
+		}
+	}
+
+	public static void releasePilot()
+	{
+		synchronized(STATE_LOCK) {PILOT_ACTIVE=false;}
 	}
 
 	private void createTables()
@@ -532,6 +617,7 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 		try (Connection con = DatabaseFactory.getConnection(); Statement st = con.createStatement())
 		{
 			st.executeUpdate("CREATE TABLE IF NOT EXISTS lab_arena_gauntlet_runs (run_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT, player_object_id INT NOT NULL, player_name VARCHAR(45) NOT NULL, player_class_id INT NOT NULL, player_level SMALLINT NOT NULL, started_ms BIGINT UNSIGNED NOT NULL, ended_ms BIGINT UNSIGNED NOT NULL DEFAULT 0, status VARCHAR(16) NOT NULL, current_round SMALLINT NOT NULL DEFAULT 0, defeated_count SMALLINT NOT NULL DEFAULT 0, PRIMARY KEY (run_id), KEY idx_gauntlet_player_time (player_object_id, started_ms)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
+			st.executeUpdate("ALTER TABLE lab_arena_gauntlet_runs ADD COLUMN IF NOT EXISTS test_mode VARCHAR(16) NOT NULL DEFAULT 'SEQUENCE', ADD COLUMN IF NOT EXISTS selected_npc_id INT NOT NULL DEFAULT 0");
 			st.executeUpdate("CREATE TABLE IF NOT EXISTS lab_arena_gauntlet_duels (duel_id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT, run_id BIGINT UNSIGNED NOT NULL, round_number SMALLINT NOT NULL, npc_template_id INT NOT NULL, npc_name VARCHAR(45) NOT NULL, started_ms BIGINT UNSIGNED NOT NULL, ended_ms BIGINT UNSIGNED NOT NULL, outcome VARCHAR(12) NOT NULL, player_hp DOUBLE NOT NULL, player_cp DOUBLE NOT NULL, player_mp DOUBLE NOT NULL, npc_hp DOUBLE NOT NULL, npc_cp DOUBLE NOT NULL, npc_mp DOUBLE NOT NULL, PRIMARY KEY (duel_id), KEY idx_gauntlet_run_round (run_id, round_number)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4");
 		}
 		catch (SQLException e)
@@ -542,7 +628,7 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 
 	private long createRun(Player player)
 	{
-		final String sql = "INSERT INTO lab_arena_gauntlet_runs (player_object_id,player_name,player_class_id,player_level,started_ms,status,current_round,defeated_count) VALUES (?,?,?,?,?,'RUNNING',1,0)";
+		final String sql = "INSERT INTO lab_arena_gauntlet_runs (player_object_id,player_name,player_class_id,player_level,started_ms,test_mode,selected_npc_id,status,current_round,defeated_count) VALUES (?,?,?,?,?,?,?,'RUNNING',1,0)";
 		try (Connection con = DatabaseFactory.getConnection(); PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS))
 		{
 			ps.setInt(1, player.getObjectId());
@@ -550,6 +636,8 @@ public class SoloArenaGauntlet implements IVoicedCommandHandler
 			ps.setInt(3, player.getActiveClass());
 			ps.setInt(4, player.getLevel());
 			ps.setLong(5, System.currentTimeMillis());
+			ps.setString(6,Boolean.getBoolean("lab.arena.spawn.verify") && "ArenaSpawnProbe".equals(player.getName()) ? "SPAWN_VERIFY" : (_singleDuel ? "INDIVIDUAL" : "SEQUENCE"));
+			ps.setInt(7,_singleDuel ? FIGHTER_IDS[_roundIndex] : 0);
 			ps.executeUpdate();
 			try (ResultSet rs = ps.getGeneratedKeys())
 			{

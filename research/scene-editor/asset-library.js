@@ -1,0 +1,34 @@
+const exact={
+ 'Flag of Winner':'Bandera del vencedor','Red Flag':'Bandera roja','Headquarters':'Cuartel general','Crest of Dawn':'Emblema del amanecer','Christmas Tree':'Árbol de Navidad','Guardian Angel':'Ángel guardián','Ant Larva':'Larva de hormiga','Ant':'Hormiga','Ant Recruit':'Hormiga recluta','drop_leaf_m00':'Hoja caída',
+};
+const words={tree:'árbol',trees:'árboles',plant:'planta',plants:'plantas',bush:'arbusto',rock:'roca',stone:'piedra',wall:'muro',floor:'suelo',door:'puerta',window:'ventana',bridge:'puente',stairs:'escaleras',stair:'escalera',statue:'estatua',tower:'torre',gate:'portón',port:'muelle',ship:'nave',airship:'aeronave',boat:'barco',body:'casco',steering:'timón',cannon:'cañón',flag:'bandera',chair:'silla',table:'mesa',bench:'banco',box:'caja',barrel:'barril',lamp:'lámpara',light:'luz',fountain:'fuente',pillar:'pilar',column:'columna',roof:'techo',castle:'castillo',village:'aldea',water:'agua',fire:'fuego',snow:'nieve',wood:'madera',wooden:'de madera',small:'pequeño',large:'grande',big:'grande',red:'rojo',blue:'azul',green:'verde',white:'blanco',black:'negro',gold:'oro',golden:'dorado',archer:'arquero',warrior:'guerrero',shaman:'chamán',guard:'guardia',merchant:'mercader',hunter:'cazador',dragon:'dragón',wolf:'lobo',spider:'araña',skeleton:'esqueleto',orc:'orco',elf:'elfo',dark:'oscuro',knight:'caballero',soldier:'soldado',captain:'capitán',golem:'gólem',garden:'jardín',flower:'flor',flowers:'flores',forest:'bosque',cave:'cueva',crystal:'cristal',wing:'ala',wings:'alas',tail:'cola',sail:'vela'};
+export function spanishAsset(a){if(exact[a.title])return {title:exact[a.title],status:'Nombre traducido'};
+ const ship=a.id?.match(/^airship_(?:animated_)?fly_boat_(body|steering|cannon)(\d+)$/);if(ship)return {title:'Gracia · '+({body:'Pieza de aeronave',steering:'Timón',cannon:'Cañón'}[ship[1]])+' '+ship[2],status:'Nombre descriptivo en español'};
+ if(/[áéíóúñ]|muelle|aeronave|escenario|ensamblada/i.test(a.title))return {title:a.title,status:'Nombre disponible en español'};
+ const tokens=a.title.replace(/([a-z])([A-Z])/g,'$1 $2').split(/[\s_.·-]+/).filter(Boolean);let changed=0;
+ const translated=tokens.map(t=>{const match=t.match(/^([a-zA-Z]+)(\d*)$/);const word=match&&words[match[1].toLowerCase()];if(word){changed++;return word+(match[2]?' '+match[2]:'');}return t;});
+ if(!changed)return {title:a.title,status:'Nombre original · traducción pendiente'};const title=translated.join(' ');return {title:title.charAt(0).toUpperCase()+title.slice(1),status:'Traducción orientativa por términos'};
+}
+
+export function initAssetLibrary({panel,onLanguageChange}){
+ const win=document.createElement('section');win.id='asset-window';win.className='asset-window';win.hidden=true;win.setAttribute('role','dialog');win.setAttribute('aria-label','Biblioteca de recursos');
+ const bar=document.createElement('div');bar.className='asset-titlebar';bar.innerHTML='<strong>Biblioteca de recursos</strong><span>Arrastrá para mover</span>';
+ const maximize=document.createElement('button');maximize.id='asset-maximize';maximize.textContent='⛶';maximize.title='Expandir / restaurar biblioteca';maximize.setAttribute('aria-label',maximize.title);
+ const close=document.createElement('button');close.id='asset-close';close.textContent='×';close.title='Cerrar biblioteca';close.setAttribute('aria-label',close.title);bar.append(maximize,close);
+ const controls=document.createElement('div');controls.className='asset-window-controls';
+ const language=document.createElement('select');language.id='asset-language';language.setAttribute('aria-label','Idioma de nombres');language.innerHTML='<option value="es">Nombres en español</option><option value="original">Nombres originales</option>';
+ const category=document.createElement('select');category.id='asset-category';category.setAttribute('aria-label','Categoría de recursos');category.innerHTML='<option value="">Todas las categorías</option>';
+ const note=document.createElement('p');note.className='asset-language-note';note.textContent='Los nombres originales se conservan debajo. Las traducciones por términos son orientativas; los nombres propios pueden permanecer sin traducir.';
+ controls.append(language,category);panel.querySelector('#filter').after(controls,note);win.append(bar,panel);document.body.append(win);
+ const launcher=document.createElement('button');launcher.id='asset-launcher';launcher.textContent='Abrir biblioteca de recursos';launcher.className='asset-launcher';
+ const placeholder=document.createElement('section');placeholder.id='library-panel';placeholder.className='panel';placeholder.setAttribute('role','tabpanel');placeholder.setAttribute('aria-labelledby','tab-library');const help=document.createElement('p');help.className='hint';help.textContent='Navegá el catálogo en una ventana ampliable, con filtros y miniaturas.';placeholder.append(launcher,help);
+ panel.id='asset-library-content';panel.classList.add('gallery-library');panel.hidden=false;document.querySelector('.studio-content').append(placeholder);
+ let priorFocus=null;function open(){priorFocus=document.activeElement;win.hidden=false;panel.hidden=false;document.getElementById('search').focus();}function hide(){win.hidden=true;priorFocus?.focus?.();}
+ launcher.onclick=open;close.onclick=hide;maximize.onclick=()=>{win.classList.toggle('maximized');win.style.removeProperty('left');win.style.removeProperty('top');};
+ document.getElementById('tab-library').addEventListener('click',open);
+ language.onchange=onLanguageChange;category.onchange=onLanguageChange;
+ let drag=null;bar.addEventListener('pointerdown',e=>{if(e.target.closest('button')||win.classList.contains('maximized'))return;const r=win.getBoundingClientRect();drag={x:e.clientX-r.left,y:e.clientY-r.top};bar.setPointerCapture(e.pointerId);});
+ bar.addEventListener('pointermove',e=>{if(!drag)return;win.style.left=Math.max(0,Math.min(innerWidth-win.offsetWidth,e.clientX-drag.x))+'px';win.style.top=Math.max(0,Math.min(innerHeight-45,e.clientY-drag.y))+'px';win.style.transform='none';});bar.addEventListener('pointerup',()=>drag=null);bar.addEventListener('pointercancel',()=>drag=null);
+ win.addEventListener('keydown',e=>{if(e.key==='Escape'){e.stopPropagation();hide();}if(e.key==='Tab'){const focusable=[...win.querySelectorAll('button,input,select')].filter(n=>!n.disabled&&n.getClientRects().length);if(!focusable.length)return;const first=focusable[0],last=focusable.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});
+ return {open,hide,get language(){return language.value;},get category(){return category.value;},setCategories(values){for(const c of [...new Set(values)].sort()){const o=document.createElement('option');o.value=c;o.textContent=c;category.append(o);}}};
+}

@@ -1,0 +1,1 @@
+package l2jorion.game.model.zone; public enum ZoneId {ZONE_RANDOM}

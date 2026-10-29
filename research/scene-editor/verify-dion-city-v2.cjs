@@ -1,0 +1,14 @@
+const {chromium}=require('../../tools/rea-runtime/node_modules/playwright-core');
+const fs=require('fs'),path=require('path'),assert=require('assert');
+(async()=>{const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});const page=await browser.newPage({viewport:{width:1600,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error'&&/shader|GLTF|WebGLProgram/i.test(m.text()))errors.push(m.text());});try{
+ await page.goto('http://127.0.0.1:32290/?project=dion-hecatombe-v2.json');await page.waitForFunction(()=>window.editorState?.().scene==='dion_hecatombe_v2'&&document.body.dataset.state==='ready',null,{timeout:180000});await page.waitForTimeout(800);
+ const state=await page.evaluate(()=>window.editorState());assert.equal(state.objects.length,56);assert.equal(state.effects.emitters.length,28);assert.equal(state.objects.filter(o=>o.asset.startsWith('dion_v2_staticmeshactor')).length,27);
+ await page.screenshot({path:path.join(__dirname,'preview-dion-hecatombe-v2-general.png')});
+ const stats=await page.evaluate(()=>new Promise(resolve=>{let count=0,first=performance.now();function tick(now){count++;if(now-first<1500)return requestAnimationFrame(tick);const s=window.editorState();resolve({fps:Math.round(count*1000/(now-first)),calls:s.drawCalls,triangles:s.triangles});}requestAnimationFrame(tick);}));
+ // Recall the third saved camera through the actual UI.
+ const third=page.locator('#header-cameras button').filter({hasText:/^3$/});await third.click();await page.waitForTimeout(300);await page.screenshot({path:path.join(__dirname,'preview-dion-hecatombe-v2-calle.png')});
+ const draft=await page.evaluate(()=>JSON.parse(localStorage.getItem('l2-scene-editor-draft:dion-hecatombe-v2.json')));const res=await page.request.post('http://127.0.0.1:32290/api/projects',{headers:{Origin:'http://127.0.0.1:32290'},data:draft});assert(res.ok(),await res.text());const saved=await res.json();
+ await page.goto('http://127.0.0.1:32290/?project='+saved.saved);await page.waitForFunction(()=>window.editorState?.().scene==='dion_hecatombe_v2'&&document.body.dataset.state==='ready',null,{timeout:180000});assert.equal((await page.evaluate(()=>window.editorState())).objects.length,56);
+ const placement=JSON.parse(fs.readFileSync(path.join(__dirname,'../model-catalog/exports/dion-hecatombe-v2/placement-audit.json')));assert.equal(placement.replaced,27);assert.equal(placement.types,10);assert(placement.v1SourceUnchanged);assert.deepEqual(errors,[]);
+ const result={passed:true,buildings:27,types:10,objects:56,effects:28,...stats,errors};fs.writeFileSync(path.join(__dirname,'dion-city-v2-verification.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result));
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

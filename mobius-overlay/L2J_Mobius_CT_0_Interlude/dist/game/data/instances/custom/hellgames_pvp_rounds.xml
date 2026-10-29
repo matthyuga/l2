@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<instance id="3060" allowRandomWalk="false" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/instance.xsd">
+ <allowSummon val="true" />
+ <PvPInstance val="true" />
+ <spawnPoints startPosType="FIXED"><Location x="45150" y="52100" z="-2792" /></spawnPoints>
+ <exitPoint x="83425" y="148585" z="-3406" />
+</instance>

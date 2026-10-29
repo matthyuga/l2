@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
+	<item id="25440" type="Armor" name="Moirai Cuirass">
+		<set name="icon" val="EB30_Avengers_Team_MoiraiTex.Thumbs.armor_t100_u_i00" />
+		<set name="default_action" val="EQUIP" />
+		<set name="armor_type" val="HEAVY" />
+		<set name="bodypart" val="chest" />
+		<set name="immediate_effect" val="true" />
+		<set name="crystal_count" val="715" />
+		<set name="crystal_type" val="S" />
+		<set name="material" val="SCALE_OF_DRAGON" />
+		<set name="weight" val="7620" />
+		<set name="price" val="1000000" />
+		<set name="element_enabled" val="true" />
+		<set name="enchant_enabled" val="true" />
+		<stats>
+			<stat type="pDef">205</stat>
+		</stats>
+	</item>
+</list>

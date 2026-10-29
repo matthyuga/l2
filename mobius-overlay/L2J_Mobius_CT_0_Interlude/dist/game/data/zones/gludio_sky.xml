@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/zones.xsd">
+ <zone name="Gludio Sky Arrival Peace" type="PeaceZone" shape="Cuboid" minZ="9500" maxZ="16383">
+  <node X="145000" Y="44000" /><node X="154000" Y="50000" />
+ </zone>
+ <zone name="Gludio Sky Arrival Respawn" type="RespawnZone" shape="Cuboid" minZ="9500" maxZ="16383">
+  <node X="145000" Y="44000" /><node X="154000" Y="50000" />
+  <race name="HUMAN" point="gludio_sky" />
+  <race name="ELF" point="gludio_sky" />
+  <race name="DARK_ELF" point="gludio_sky" />
+  <race name="ORC" point="gludio_sky" />
+  <race name="DWARF" point="gludio_sky" />
+ </zone>
+</list>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/spawns.xsd">
+    <spawn name="HellgamesLabelTest">
+        <npc id="902530" x="149140" y="46700" z="-3400" heading="32768" respawnDelay="60" chaseRange="0" />
+    </spawn>
+</list>

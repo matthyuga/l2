@@ -1,0 +1,24 @@
+const {chromium}=require('../../tools/rea-runtime/node_modules/playwright-core');
+const fs=require('fs'),path=require('path'),assert=require('assert');
+(async()=>{const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});const page=await browser.newPage({viewport:{width:1440,height:900}}),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});try{
+ await page.goto('http://127.0.0.1:32290/assets/exports/dion-collapse-demo-v1/demo.html');await page.waitForFunction(()=>window.collapseDemoState?.().ready,null,{timeout:60000});
+ await page.waitForTimeout(600);const initial=await page.evaluate(()=>collapseDemoState());
+ await page.screenshot({path:path.join(__dirname,'preview-dion-collapse-before.png')});
+ await page.locator('#play').click();await page.waitForFunction(()=>collapseDemoState().time>2.5);
+ const middle=await page.evaluate(()=>collapseDemoState());assert(middle.playing);assert(middle.time>2.5);
+ await page.screenshot({path:path.join(__dirname,'preview-dion-collapse-falling.png')});
+ await page.locator('#end').click();await page.waitForTimeout(250);const end=await page.evaluate(()=>collapseDemoState());
+ const distance=(a,b)=>Math.hypot(...a.map((v,i)=>v-b[i]));const moved=Object.keys(initial.positions).filter(k=>distance(initial.positions[k],end.positions[k])>.3);
+ assert(moved.length>30,'Most fragments must actually move');assert(Object.keys(initial.positions).length===47,'47 individually animated fragments');
+ await page.screenshot({path:path.join(__dirname,'preview-dion-collapse-after.png')});
+ await page.locator('#reset').click();await page.waitForTimeout(150);const reset=await page.evaluate(()=>collapseDemoState());
+ assert.equal(reset.time,0);for(const k in initial.positions)assert(distance(initial.positions[k],reset.positions[k])<1e-4,'reset must restore every piece');
+ await page.locator('#timeline').fill('4');await page.locator('#timeline').dispatchEvent('input');assert(Math.abs((await page.evaluate(()=>collapseDemoState())).time-4)<.01);
+ await page.locator('#end').click();await page.locator('#play').click();await page.waitForFunction(()=>collapseDemoState().time>1.8&&collapseDemoState().time<5);assert((await page.evaluate(()=>collapseDemoState())).playing,'Replay after clamped ending');
+ const editor=await browser.newPage({viewport:{width:1440,height:900}});editor.on('pageerror',e=>errors.push(e.message));
+ await editor.goto('http://127.0.0.1:32290/?project=dion-collapse-demo-v1.json');await editor.waitForFunction(()=>window.editorState?.().ready&&window.editorState().scene==='dion_collapse_demo',null,{timeout:60000});
+ const id=await editor.evaluate(()=>window.editorState().objects[0].id);await editor.locator('.object[data-id="'+id+'"]').click();
+ await editor.waitForFunction(()=>window.editorState().modelMotion?.clip==='Derrumbe físico de Dion');await editor.locator('#model-motion-play').click();
+ await editor.waitForFunction(()=>window.editorState().modelMotion.time>1.5);await editor.screenshot({path:path.join(__dirname,'preview-dion-collapse-editor.png')});await editor.close();
+ assert.deepEqual(errors,[]);const proof={passed:true,fragments:Object.keys(initial.positions).length,moved:moved.length,drawCalls:end.drawCalls,fps:middle.fps,errors,checks:['initial house','playback','47 fragment transforms','collapsed result','reset every fragment','scrubbing']};fs.writeFileSync(path.join(__dirname,'dion-collapse-verification.json'),JSON.stringify(proof,null,2));console.log(JSON.stringify(proof));
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

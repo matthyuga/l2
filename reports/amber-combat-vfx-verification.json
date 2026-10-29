@@ -1,0 +1,47 @@
+{
+  "status": "installed; 61 live server checks passed",
+  "installed": true,
+  "date": "2026-10-10",
+  "checks": 61,
+  "compilePassed": true,
+  "installedCatalogsAndPackageLinksVerified": true,
+  "clientVisualReview": "Attack animations confirmed by user before this correction; new shot charge, fire traces and rain playback await in-game observation",
+  "fire": {
+    "durationSeconds": 15,
+    "reuseSeconds": 30,
+    "pAtkMultiplier": 1.25,
+    "nativeElement": "fire",
+    "power": 20,
+    "resistanceVerified": true,
+    "ownerIndicatorSkill": 19011,
+    "ownerIndicatorChangesStats": false
+  },
+  "rain": {
+    "chargeMs": 3500,
+    "waves": 3,
+    "waveIntervalMs": 500,
+    "fallBeforeDamageMs": 650,
+    "radius": 200,
+    "reuseSeconds": 45,
+    "fireProbeDamage": 2221.4876835936557,
+    "normalProbeDamage": 1713.105933606388,
+    "evadedImpacts": 0,
+    "chatReportsImpactsAndDamage": true
+  },
+  "cooldownDisplay": "Native skill icons from Alt+K dragged to shortcut bar; summon Action icons have no native skill cooldown overlay",
+  "probesOffline": true,
+  "verificationLog": "backups/amber-combat-vfx-2026-10-10/verify-61-checks.log",
+  "clientVerificationLog": "reports/amber-combat-vfx-client-check.log",
+  "backup": "backups/amber-combat-vfx-2026-10-10",
+  "coreUnchangedByThisCorrection": true,
+  "coreSha256": "2e35d88f6050eb22619adf00ee0070494126ae0ed535dc33b0e4c1e18bc99349",
+  "clientHashes": {
+    "system-hud/npcgrp.dat": "ab1f8f1c8f1c0ae2f674a6a33ea1041aef9ddd6b19a343afb81208592b730d3e",
+    "system-hud/skillgrp.dat": "2a27de225bbd035ca3dc0f97513b46c1bf90207081215cbf919aab1fe1f7b789",
+    "system-hud/skillname-e.dat": "1f44f2db870caaa788131047089a31fe61a4130ec021f3a5ad5d91cb50413743",
+    "system-hud/AmberAnchorsV1.u": "b944d52ce671830476488b879fab0a6040782850b788ec5c74d3dae1a28964e0",
+    "system-hud/AmberParticlesV2.u": "2060b086c75a6f09e67bb1d0cd1999fe4f2c4383e1c8dd2984e75cc626f63ec2",
+    "animations/AmberEffectsV2.usk": "2d4be89acaa4fbe20d940a06662be9eac1afc8f4a677fc2ffcf141ebad24fe68"
+  },
+  "productionVerificationDefault": false
+}

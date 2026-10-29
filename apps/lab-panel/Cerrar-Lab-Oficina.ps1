@@ -18,13 +18,11 @@ if (Test-Path -LiteralPath $databasePidFile) {
     $process = Get-Process -Id $databaseProcessId -ErrorAction SilentlyContinue
     if ($process) {
         $admin = Join-Path $root 'tools\mariadb-11.8.9-winx64\bin\mariadb-admin.exe'
-        $databaseRootPassword = $env:L2_DB_ROOT_PASSWORD
-        if ($databaseRootPassword) {
-            & $admin --host=127.0.0.1 --port=3307 --user=root "--password=$databaseRootPassword" shutdown 2>$null
-        }
+        & $admin --host=127.0.0.1 --port=3307 --user=root --password=l2localroot shutdown 2>$null
         Start-Sleep -Milliseconds 700
         $process = Get-Process -Id $databaseProcessId -ErrorAction SilentlyContinue
         if ($process) { Stop-Process -Id $databaseProcessId }
     }
     Remove-Item -LiteralPath $databasePidFile -ErrorAction SilentlyContinue
 }
+

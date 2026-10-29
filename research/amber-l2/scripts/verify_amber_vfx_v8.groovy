@@ -1,0 +1,61 @@
+import acmi.l2.clientmod.io.UnrealPackage
+import acmi.l2.clientmod.unreal.Environment
+import acmi.l2.clientmod.unreal.UnrealSerializerFactory
+def root=new File(args[0]),project=root.parentFile.parentFile,stage=new File(root,'exports/contract/combat-vfx-v8')
+def factory=new UnrealSerializerFactory(new Environment(project,['research/amber-l2/exports/contract/combat-vfx-v8/*.u','research/amber-l2/exports/contract/combat-vfx-v8/*.usk','../l2/system-hud/*.u','../l2/system/*.u','../l2/animations/*.usk','../l2/systextures/*.utx']))
+def value={o,n->o.@properties.find{it.name==n}?.getAt(0)}
+def axis={o,n,a,b->value(o,n).find{it.name==a}.getAt(0).find{it.name==b}.getAt(0)}
+def range={o,n,b->value(o,n).find{it.name==b}.getAt(0)}
+int checks=0
+def check={ok,label->assert ok:label;checks++}
+new UnrealPackage(new File(stage,'AmberParticlesV8.u'),true).withCloseable{up->
+ def obj={n->factory.getOrCreateObject(up.exportTable.find{it.objectInnerFullName==n})}
+ check(value(obj('SkyVolley'),'Emitters').size()==100,'exactly 50 rising meshes and tips')
+ for(int i=0;i<50;i++){
+  def o=obj('SkyVolley.P'+i*2)
+  check(axis(o,'StartVelocityRange','Z','Min')==650,'rising arrow direction')
+  check(i==0||Math.abs(range(o,'InitialDelayRange','Min')-i*0.04)<0.0001,'rising arrow timing')
+ }
+ for(String prefix:['Rain','FireRain'])for(int wave=1;wave<=3;wave++){
+  String n=prefix+wave;int count=wave==3?16:17
+  check(value(obj(n),'Emitters').size()==count*(prefix=='FireRain'?3:2),n+' exact mesh count')
+  for(int i=0;i<count;i++){
+   def o=obj(n+'.P'+i*(prefix=='FireRain'?3:2))
+   check(Math.hypot(axis(o,'StartLocationRange','X','Min'),axis(o,'StartLocationRange','Y','Min'))<=200,'falling arrow inside actual damage circle')
+   check(axis(o,'StartVelocityRange','Z','Min')==-600&&Math.abs(range(o,'LifetimeRange','Min')-0.650)<0.0001,'fall time matches server damage')
+  }
+ }
+ for(String n:['ArrowUp','ArrowDown','ArrowForward']){
+  int ref=value(obj(n),'Materials')[0].find{it.name=='Material'}.getAt(0)
+  check(up.objectReference(ref).objectFullName.startsWith('AmberMaterialsV8.'),'mesh references encoded installed palette')
+ }
+ check(value(obj('Mark'),'Emitters').size()==1,'area uses smooth radial texture with halo and fill')
+ check(value(obj('Mark.P0'),'UseDirectionAs')==4,'ground texture uses plane normal');check(value(obj('Mark.P0'),'UseSizeScale')==true,'ground area grows during charge');
+ for(int i=0;i<1;i++)check(Math.abs(range(obj('Mark.P'+i),'LifetimeRange','Min')-5.8)<0.0001,'area covers charge and final impact')
+ up.exportTable.findAll{it.fullClassName in ['Engine.MeshEmitter','Engine.SpriteEmitter']}.each{e->
+  def o=factory.getOrCreateObject(e)
+  check(value(o,'ForcedMaxParticles')==true,'client detail setting cannot reduce one arrow to zero');check(value(o,'CoordinateSystem')==1,'explicit native relative coordinate system')
+  if(e.fullClassName=='Engine.MeshEmitter')check(value(o,'RenderTwoSided')==true,'mesh renders from either side')
+ }
+}
+new UnrealPackage(new File(stage,'AmberEffectsV8.usk'),true).withCloseable{up->
+ def obj={n->factory.getOrCreateObject(up.exportTable.find{it.objectInnerFullName==n})}
+ for(String n:['Mark','SkyVolley']+(1..3).collectMany{w->['Rain'+w,'FireRain'+w]}+(1..16).collect{'FireShot'+it}){
+  def o=obj(n);check(o.@properties.size()==1&&o.@properties[0].name=='CastingActions',n+' native instant casting path')
+ }
+ for(String n:['Mark']+(1..3).collectMany{w->['Rain'+w,'FireRain'+w]}){
+  def o=obj(n+'Action');check(value(o,'bSpawnOnTarget')==true&&value(o,'bRelativeToCylinder')==true&&value(o,'bSizeScale')==false,'fixed ground location and literal radius')
+ }
+ up.exportTable.findAll{it.objectInnerFullName.startsWith('Dmg_')&&it.objectInnerFullName.endsWith('Action')}.each{e->
+  def o=factory.getOrCreateObject(e);check(value(o,'AttachOn')==0&&value(o,'bRelativeToCylinder')==true&&!value(o,'offset'),'glyph has no trail socket or extra scaled height')
+ }
+ for(int w=1;w<=3;w++)for(String prefix:['Rain','FireRain'])check(Math.abs(value(obj(prefix+w+'ImpactAction'),'SpawnDelay')-0.650)<0.0001,'impact at actual arrival')
+}
+def schemas=new File(root,'tools/L2ClientDat/dist/data/structure/dats')
+def cat=new AmberCatalog(new File(stage,'skillgrp.raw'),schemas,'skillgrp.xml','ScionsOfDestiny')
+def nativeItem=cat.rows.find{it.skill_id==2033&&it.skill_level==1}
+cat.rows.findAll{it.skill_id in [19007,19008,19009,19010,19012,19600]||it.skill_id>=19200&&it.skill_id<=19599}.each{r->
+ for(String field:['operate_type','mp_consume','cast_range','cast_style','hit_time','is_magic','animation','extra_eff','rumble_self','rumble_target'])check(r[field]==nativeItem[field],'visual uses native instant item activation fields')
+ check(r.description.startsWith('AmberEffectsV8.'),'all visuals resolve to new package')
+}
+println 'PASS: '+checks+' package/catalog checks; client visual confirmation remains required.'

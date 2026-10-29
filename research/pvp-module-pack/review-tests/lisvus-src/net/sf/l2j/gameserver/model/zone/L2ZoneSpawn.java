@@ -1,0 +1,1 @@
+package net.sf.l2j.gameserver.model.zone;import net.sf.l2j.gameserver.model.L2Character;public abstract class L2ZoneSpawn {public L2ZoneSpawn(int x){}protected abstract void onEnter(L2Character c);protected abstract void onExit(L2Character c);}

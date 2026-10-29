@@ -1,5 +1,17 @@
 # Laboratorio Lineage II Interlude
 
+## Sincronización del portátil — 29/10/2026
+
+Se incorporaron las fuentes pendientes del portátil, el overlay de Mobius, los
+scripts custom instalados, paneles, herramientas, editores y documentación de
+investigación. La entrega documental `30d6839` queda integrada como antecedente.
+Alcance, validaciones, diferencias entre copias y exclusiones:
+[registro de sincronización](docs/SINCRONIZACION-PORTATIL-20261029.md).
+
+Esta es una captura de fuentes y documentación. Para ejecutar se necesitan la
+base compatible de Mobius, dependencias y recursos locales que no se distribuyen
+en este repositorio. Las notas históricas siguientes conservan sus fechas.
+
 > **Continuidad documental actualizada al 29/10/2026:** [memoria Nexus y pendientes de sincronización](docs/nexus/README.md). El código posterior al 8/10 sigue pendiente de publicar desde el disco portátil.
 
 Repositorio de continuidad del servidor local basado en L2J Mobius Interlude.

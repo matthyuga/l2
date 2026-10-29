@@ -10,6 +10,13 @@ if errorlevel 1 (
   pause
   exit /b 1
 )
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%ROOT%Wait-L2LabReady.ps1"
+if errorlevel 1 (
+  echo.
+  echo El mundo personalizado no termino de prepararse. Revisa "%ROOT%logs".
+  pause
+  exit /b 1
+)
 if not exist "%CLIENT_ROOT%\L2.exe" (
   echo No se encontro el cliente en "%CLIENT_ROOT%\L2.exe".
   pause

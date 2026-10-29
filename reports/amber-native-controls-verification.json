@@ -1,0 +1,33 @@
+{
+  "status": "installed; 53 live server checks passed",
+  "installed": true,
+  "clientVisualReview": "animation bindings and textures verified; visual playback and native window appearance await in-game observation",
+  "actionIds": {
+    "attack": 22,
+    "fire": 19021,
+    "rain": 19022
+  },
+  "displayId": 59002,
+  "templateId": 902501,
+  "originalActionRecords": 102,
+  "preparedActionRecords": 104,
+  "coreEntryChanged": "org/l2jmobius/gameserver/network/clientpackets/RequestActionUse.class",
+  "unchangedCoreEntries": 2096,
+  "compilePassed": true,
+  "stagedHashes": {
+    "core": "2e35d88f6050eb22619adf00ee0070494126ae0ed535dc33b0e4c1e18bc99349",
+    "actions": "e788748696ca0032203de4929879ee208c44589c6a3deebc9b2c1f6d2e41db81",
+    "animationConfig": "9bf8d4515c36fd7afa7b339c39fdc9742b1a2176b6387572b32763646958f40a"
+  },
+  "backup": "backups/amber-native-controls-2026-10-10",
+  "checks": 53,
+  "nativeAttackDamageVerified": true,
+  "nativeFireBuffAndMpVerified": true,
+  "nativeRainChargeResourcesAndDamageVerified": true,
+  "rainFireDamage": 1997.9751153043176,
+  "rainNormalDamage": 1610.4849384353038,
+  "probesOffline": true,
+  "verificationLog": "backups/amber-native-controls-2026-10-10/verify-53-checks.log",
+  "testTiming": "native skill waits out bow reload; channel timed from charge; damage observed after a hit allowing misses",
+  "productionVerificationDefault": false
+}

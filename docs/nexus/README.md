@@ -2,6 +2,12 @@
 
 Sincronización documental: 29/10/2026, Argentina. Fuentes locales en K:\_CodexNexus; notas disponibles hasta el 28/10/2026.
 
+**Actualización posterior del 29/10:** se retomó el portátil en Windows 11 y se
+preparó la sincronización de fuentes y documentación. Véase
+[el registro de sincronización](../SINCRONIZACION-PORTATIL-20261029.md).
+El alcance de la publicación documental original se conserva debajo como
+antecedente; ya no describe por sí solo el contenido actual del repositorio.
+
 ## Alcance de esta publicación
 
 Se conservan 311 archivos de memoria de L2: el resumen de sessions/lineage2-local.md y 310 notas de inbox/. Son registros históricos: una nota posterior puede corregir otra anterior. "Activo" o un PID describe el momento de la nota, no el estado actual.
@@ -26,6 +32,6 @@ Localizar la raíz real (la letra de unidad puede cambiar) y leer CONTINUAR-EN-W
 
 La nota del 28/10 registra 23 archivos modificados y 1.384 sin seguimiento en cloud-repo, además de 86 modificados y 2.766 sin seguimiento en Mobius source. Es un inventario histórico, todavía no verificado contra el disco en esta sesión.
 
-Publicar únicamente fuentes y documentación adecuadas para este repositorio público, conservando sus exclusiones de credenciales, bases activas, binarios y assets. Validar los cambios y enviar commits. Esta tarea sigue pendiente.
+La tarea solicitaba publicar únicamente fuentes y documentación adecuadas para este repositorio público, conservando sus exclusiones de credenciales, bases activas, binarios y assets, validar los cambios y enviar commits. Su ejecución posterior se documenta en el registro enlazado al inicio.
 
 Nexus sigue siendo memoria e índice. Esta publicación es una copia manual fechada: no instala una sincronización automática.

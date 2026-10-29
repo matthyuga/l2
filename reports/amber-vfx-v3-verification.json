@@ -1,0 +1,47 @@
+﻿{
+    "date":  "2026-10-10",
+    "timeZone":  "America/Buenos_Aires",
+    "status":  "installed; 64 isolated server checks passed; normal startup complete",
+    "serverChecks":  64,
+    "clientVerification":  "PASS; packages, attachments, phases, trajectory timing and unrelated DAT records verified",
+    "clientCheckCounter":  60127,
+    "counterIncludesPreservedCatalogRows":  true,
+    "clientVisualReview":  "Pending actual L2 playback; no in-game observation claimed",
+    "fireActivationFlashSeconds":  0.85,
+    "soulshotChargeFlashSeconds":  0.55,
+    "attachment":  "EAM_LH, AmberArcher.LeftHandBone=Weapon_L_Bone",
+    "rain":  {
+                 "radius":  200,
+                 "arrowsPerWave":  30,
+                 "waves":  3,
+                 "waveIntervalMs":  500,
+                 "chargeMs":  3500,
+                 "fallMs":  650,
+                 "circleBoundary199":  "3 hits",
+                 "circleBoundary201":  "0 hits",
+                 "individualArrowCollision":  false
+             },
+    "fireTracer":  {
+                       "cosmetic":  true,
+                       "distanceStep":  50,
+                       "levels":  16,
+                       "speed":  1400,
+                       "releaseTiming":  "full native bow attack time minus visual flight",
+                       "continuouslyHomes":  false
+                   },
+    "balanceChanged":  false,
+    "coreSha256":  "2e35d88f6050eb22619adf00ee0070494126ae0ed535dc33b0e4c1e18bc99349",
+    "normalStartup":  true,
+    "rosterProfiles":  19,
+    "probesOffline":  true,
+    "verificationLog":  "backups/amber-vfx-v3-2026-10-10/verify-64-checks.log",
+    "clientVerificationLog":  "reports/amber-vfx-v3-client-check.log",
+    "backup":  "backups/amber-vfx-v3-2026-10-10",
+    "clientHashes":  {
+                         "system-hud/skillgrp.dat":  "7465f7d20af5b8fccff7c05defbbea4fb84e935b417feeee74fd9e9dd5fcd61a",
+                         "system-hud/skillname-e.dat":  "e8f7de66f6612de452d364cc5b3e1a2c601152b05fb645a6854c1c8f592b147a",
+                         "system-hud/AmberParticlesV3.u":  "f978943315b186b172bfb4e42289cfad3763ad85c4541c77a96e04713e852c71",
+                         "system/AmberParticlesV3.u":  "f978943315b186b172bfb4e42289cfad3763ad85c4541c77a96e04713e852c71",
+                         "animations/AmberEffectsV3.usk":  "7d6ce515738825448b4e045158269b0624f2510e8429af81db4aab3b11f45ea5"
+                     }
+}

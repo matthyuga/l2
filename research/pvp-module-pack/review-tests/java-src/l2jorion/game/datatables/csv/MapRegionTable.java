@@ -1,0 +1,1 @@
+package l2jorion.game.datatables.csv; public class MapRegionTable {public enum TeleportWhereType{Town}}

@@ -1,0 +1,1 @@
+package l2jorion; public class Config {public static int PVP_ZONE_INSTANCE_ID=3051;public static boolean PROHIBIT_HEALER_CLASS=true;}

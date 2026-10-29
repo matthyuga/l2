@@ -1,13 +1,15 @@
 # Coliseo: nueve rivales con perfiles normales
 
+Estado histórico sin subs. El roster actual tiene doce rivales con tres subs;
+ver `DOCE-RIVALES-SUBACUMULATIVOS.md`. Las cifras siguientes no son la lectura actual.
+
 Actualizado: 2026-10-08. Implementación `normal-pvp-level80-s4-v1`.
 
-Los NPC 901100–901108 conservan sus nombres, raza, tercera profesión, posición y
-orden del gauntlet. Ya no dependen de sus cifras de combate artificiales al
-arrancar el servidor: `NormalNpcRoster` prepara un `Player` de referencia por
-rival, calcula sus stats con el motor normal, y aplica esos valores al NPC.
-Los nueve perfiles son nivel 80, sin subclases, con equipo de grado S +4,
-joyería +4, dyes y buffs de clase. La raza queda fija a la del personaje ancla.
+Los NPC 901100–901108 conservan nombres, raza, tercera profesión, posición y
+orden del gauntlet. Al arrancar, `NormalNpcRoster` prepara un `Player` técnico
+por rival, calcula sus valores con el motor normal y los aplica al NPC. Los
+nueve perfiles son nivel 80, sin subclases, con equipo S +4, joyería +4, dyes y
+buffs. La raza queda fija a la del personaje ancla.
 
 | Rival / clase activa | Raza | P.Atk | M.Atk | P.Def | M.Def | Vel. ataque | Casteo | HP | CP | MP |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -23,22 +25,17 @@ joyería +4, dyes y buffs de clase. La raza queda fija a la del personaje ancla.
 
 ## Alcance y límites
 
-- Los atributos y derivados listados se capturan de personajes `Player` reales
-  creados sólo como perfiles técnicos (`ArenaArden`…`ArenaBrunna`). Los nueve
-  personajes ancla originales y su telemetría de fases anteriores no se alteran.
-- Las armas de los perfiles son espada (Arden), maza mágica Acumen y escudo
-  (magos), arco Focus (Eryndor), daga (Vaelkor), hacha (Gorvak) y martillo
-  (Brunna); el antiguo aspecto de lanza y el bastón Imperial del mago orco se
-  retiraron.
-- Los NPC siguen siendo `Monster` con la IA actual del Coliseo: no son jugadores
-  controlados por IA. Esta fase normaliza la hoja de stats/equipo/buffs; no añade
-  todavía uso estratégico de skills, potas, CP/HP/MP, cubics, summons, UD,
-  target cancel ni cambio de objetivo.
+- Las cifras salen de perfiles técnicos `ArenaArden`…`ArenaBrunna`; los nueve
+  personajes ancla originales y su telemetría no se alteran.
+- Se retiró la lanza de Arden y el Imperial Staff del mago orco: ahora usan
+  espada y Arcana Mace +4. Los otros arquetipos usan arco Focus, daga, hacha,
+  martillo o equipo de mago según corresponda.
+- Los NPC siguen siendo `Monster` con la IA actual del Coliseo. Esta fase
+  normaliza estadísticas, equipo, dyes y buffs; no añade uso estratégico de
+  skills, potas, cubics, summons, UD, gestión de CP/HP/MP ni cambio de target.
 - Los valores se recalculan al arrancar el GameServer y los buffs se reaplican.
-  Al cambiar recetas, revisar también la versión en `NormalNpcRoster`.
-- Si falta un perfil, el script lo informa y ese rival conserva la plantilla
-  anterior; comprobar el log `Roster Coliseo` antes de iniciar una pelea.
+  Si falla un perfil, el script lo registra y ese NPC mantiene su plantilla;
+  revisar `NormalNpcRoster` en el log antes de iniciar la pelea.
 
-Validación realizada: compilación del script Java, preparación de 9/9 perfiles,
-captura de stats en `lab_player_stats` y arranque del servidor sin errores del
-roster. La validación de daño/supervivencia requiere una nueva pelea manual.
+Validación: compilación del script, preparación 9/9 y arranque sin errores del
+roster. Daño y supervivencia quedan por comprobar en una pelea manual.

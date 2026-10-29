@@ -988,3 +988,50 @@ casteo1125 vs1365, INT/WIT/MEN49/24/27 vs42/28/30. No se tocaron los nueve NPC.
 HP/MP/CP por nivel y velocidad base siguen con curva de clase, afectados por
 atributos nuevos pero no separados totalmente. Detalle en RAZA-Y-PERFIL-FIJO.md.
 Respaldo completo previo en backups/fixed-racial-profile-2026-10-08.
+
+## 2026-10-10 — Cierre en Windows 11 para volver a Windows 10
+
+Bitácora vigente: `CONTINUIDAD-W10/LEER-PRIMERO.md`. Inventario de rutas,
+tamaños y SHA256: `CONTINUIDAD-W10/inventario-2026-10-10.json`.
+Respaldo: `backups/retorno-w10-2026-10-10/`, con SQL single-transaction de
+27.863.963 bytes y 54 copias verificadas de archivos clave de servidor y cliente.
+El SQL refleja la base con Hellkevin conectado; no sustituye el guardado al salir.
+La base operativa del disco después del cierre limpio es la vigente para W10.
+
+Amber: animaciones de ataque confirmadas por el usuario; última corrección
+instalada con 61 comprobaciones PASS. Fuego 15s, +25% PAtk y +20 de poder de
+fuego nativo, indicador informativo en el dueño, recarga nativa (30s) en iconos
+Alt+K. Lluvia: tres oleadas, daño después de la caída, evasión e interrupción
+verificadas, resumen de impactos/daño en chat. Falta observar los NUEVOS efectos
+de arco, fuego y lluvia en el cliente. Informe amber-combat-vfx-verification.json.
+
+Coliseo: 19 perfiles guardados, rivales aparecen por pelea, no permanentemente.
+GroupAgite v1.1 smoke previo PASS; ensayo manual todavía pendiente. Consulta
+de cierre: ningún clan creado. Prepararlos mediante `.agite preparar`.
+El log contiene preparación completa 19/19 y un fallo previo 18/19 en arranques
+superpuestos; comprobar la preparación completa tras arrancar en W10.
+
+Se corrigió el agotamiento de conexiones cerrando dos GameServers duplicados
+sin puertos de escucha. Se conservó el servidor que atendía al cliente y no
+se reinició ni cerró L2. Los verificadores optativos estaban desactivados.
+Antes de desconectar: salir del personaje, cerrar L2, usar 5-DETENER-SERVIDOR,
+cerrar paneles y expulsar el disco. Mantener l2-local y l2 juntos; revisar
+MySqlBinLocation si cambia la letra. Abrir 2-JUGAR una sola vez y esperar.
+Cambios locales sincronizados en cloud-repo sin commit ni push; el SQL queda
+fuera del repo y no se copiaron archivos activos de MariaDB como respaldo.
+
+Confirmación final: el usuario cerró L2. Se ejecutó Stop-L2Local.ps1 y se
+verificó la salida de GameServer, LoginServer y MariaDB, sin listeners en
+7777/2106/3307. El inventario, las 54 copias y el SQL conservaron sus hashes.
+Preparado para expulsar el Seagate desde Windows y trasladarlo a W10.
+
+## Amber VFX V3 en W10 — 10/10/2026
+
+Instalada corrección de encendido de fuego y carga de soulshot en mano/arco,
+lluvia circular de 30 flechas por oleada, destellos de impacto sincronizados a
+650ms y trazas de fuego por distancia con origen vertical corregido. Recursos:
+AmberEffectsV3.usk y AmberParticlesV3.u. Prueba aislada 64 checks PASS, incluidos
+radio199 dentro/radio201 fuera; probes offline y arranque normal con 19 perfiles.
+No cambian core ni balance. Ver CONTINUIDAD-W10/14_AMBER_VFX_V3_2026-10-10.md
+ y reports/amber-vfx-v3-verification.json. La reproducción dentro de L2 todavía
+requiere revisión visual. Respaldo backups/amber-vfx-v3-2026-10-10. Sin commit/push.

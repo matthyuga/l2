@@ -1,0 +1,1165 @@
+{
+  "version": 1,
+  "base": "lucien-fitting",
+  "categories": [
+    "Cascos",
+    "Hombreras",
+    "Guantes y brazales",
+    "Pecheras",
+    "Cintura",
+    "Botas",
+    "Pantalón y faldones",
+    "Cuello",
+    "Adornos",
+    "Escudos"
+  ],
+  "parts": [
+    {
+      "id": "v2-helmet",
+      "name": "Casco gótico V2",
+      "category": "Cascos",
+      "url": "exports/armor-editor/v2-helmet.glb",
+      "position": [
+        -7.450580596923828e-08,
+        0.271603524684906,
+        -0.0034250225871801376
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien Carmesí V2",
+      "provisional": false,
+      "triangles": 10688,
+      "thumbnail": "exports/armor-editor/v2-helmet.png"
+    },
+    {
+      "id": "v2-chest",
+      "name": "Pechera grabada V2",
+      "category": "Pecheras",
+      "url": "exports/armor-editor/v2-chest.glb",
+      "position": [
+        -1.4901161193847656e-08,
+        0.15514987707138062,
+        0.0015991460531949997
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien Carmesí V2",
+      "provisional": false,
+      "triangles": 8299,
+      "thumbnail": "exports/armor-editor/v2-chest.png"
+    },
+    {
+      "id": "v2-shield",
+      "name": "Escudo de la huella V2",
+      "category": "Escudos",
+      "url": "exports/armor-editor/v2-shield.glb",
+      "position": [
+        0.10100004076957703,
+        0.11900001764297485,
+        0.04069995880126953
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien Carmesí V2",
+      "provisional": false,
+      "triangles": 4556,
+      "thumbnail": "exports/armor-editor/v2-shield.png"
+    },
+    {
+      "id": "v2-plume",
+      "name": "Penacho carmesí V2",
+      "category": "Adornos",
+      "url": "exports/armor-editor/v2-plume.glb",
+      "position": [
+        0.000680980272591114,
+        0.3096640408039093,
+        -0.04793825000524521
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien Carmesí V2",
+      "provisional": false,
+      "triangles": 4028,
+      "thumbnail": "exports/armor-editor/v2-plume.png"
+    },
+    {
+      "id": "v2-gorget",
+      "name": "Gorjal articulado V2",
+      "category": "Cuello",
+      "url": "exports/armor-editor/v2-gorget.glb",
+      "position": [
+        -4.842877388000488e-08,
+        0.1975998878479004,
+        -1.3355165719985962e-06
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien Carmesí V2",
+      "provisional": false,
+      "triangles": 2160,
+      "thumbnail": "exports/armor-editor/v2-gorget.png"
+    },
+    {
+      "id": "v2-shoulder-right",
+      "name": "Hombrera V2 derecha",
+      "category": "Hombreras",
+      "url": "exports/armor-editor/v2-shoulder-right.glb",
+      "position": [
+        -0.050000064074993134,
+        0.18000634014606476,
+        -0.006002344191074371
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien Carmesí V2",
+      "provisional": false,
+      "triangles": 9608,
+      "thumbnail": "exports/armor-editor/v2-shoulder-right.png"
+    },
+    {
+      "id": "v2-bracer-R",
+      "name": "Brazal V2 derecho",
+      "category": "Guantes y brazales",
+      "url": "exports/armor-editor/v2-bracer-R.glb",
+      "position": [
+        -0.05600006878376007,
+        0.14699991047382355,
+        -0.005999909248203039
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien Carmesí V2",
+      "provisional": false,
+      "triangles": 720,
+      "thumbnail": "exports/armor-editor/v2-bracer-R.png"
+    },
+    {
+      "id": "v2-shoulder-left",
+      "name": "Hombrera V2 izquierda",
+      "category": "Hombreras",
+      "url": "exports/armor-editor/v2-shoulder-left.glb",
+      "position": [
+        0.049999967217445374,
+        0.18000635504722595,
+        -0.0060024140402674675
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien Carmesí V2",
+      "provisional": false,
+      "triangles": 9608,
+      "thumbnail": "exports/armor-editor/v2-shoulder-left.png"
+    },
+    {
+      "id": "v2-bracer-L",
+      "name": "Brazal V2 izquierdo",
+      "category": "Guantes y brazales",
+      "url": "exports/armor-editor/v2-bracer-L.glb",
+      "position": [
+        0.0559999980032444,
+        0.14699991047382355,
+        -0.00599998002871871
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien Carmesí V2",
+      "provisional": false,
+      "triangles": 720,
+      "thumbnail": "exports/armor-editor/v2-bracer-L.png"
+    },
+    {
+      "id": "v2-skirt",
+      "name": "Faldón gótico V2",
+      "category": "Pantalón y faldones",
+      "url": "exports/armor-editor/v2-skirt.glb",
+      "position": [
+        3.725290298461914e-08,
+        0.08321738988161087,
+        3.725290298461914e-09
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien Carmesí V2",
+      "provisional": false,
+      "triangles": 48224,
+      "thumbnail": "exports/armor-editor/v2-skirt.png"
+    },
+    {
+      "id": "v2-belt",
+      "name": "Cinturón y hebilla V2",
+      "category": "Cintura",
+      "url": "exports/armor-editor/v2-belt.glb",
+      "position": [
+        -1.1175870895385742e-08,
+        0.12597039341926575,
+        0.0019499976187944412
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien Carmesí V2",
+      "provisional": false,
+      "triangles": 2872,
+      "thumbnail": "exports/armor-editor/v2-belt.png"
+    },
+    {
+      "id": "v2-bow",
+      "name": "Lazo de seda V2",
+      "category": "Adornos",
+      "url": "exports/armor-editor/v2-bow.glb",
+      "position": [
+        0.00011936575174331665,
+        0.19398494064807892,
+        0.03680592030286789
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien Carmesí V2",
+      "provisional": false,
+      "triangles": 1698,
+      "thumbnail": "exports/armor-editor/v2-bow.png"
+    },
+    {
+      "id": "donor-armor-cat-bootR",
+      "name": "Bota Armor Cat derecha · corte inicial",
+      "category": "Botas",
+      "url": "exports/armor-editor/donor-armor-cat-bootR.glb",
+      "position": [
+        -0.026,
+        0.025,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armor Cat · STL fusionado",
+      "provisional": true,
+      "triangles": 78060,
+      "thumbnail": "exports/armor-editor/donor-armor-cat-bootR.png"
+    },
+    {
+      "id": "donor-armor-cat-legs",
+      "name": "Faldón Armor Cat · corte inicial",
+      "category": "Pantalón y faldones",
+      "url": "exports/armor-editor/donor-armor-cat-legs.glb",
+      "position": [
+        0,
+        0.085,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armor Cat · STL fusionado",
+      "provisional": true,
+      "triangles": 164545,
+      "thumbnail": "exports/armor-editor/donor-armor-cat-legs.png"
+    },
+    {
+      "id": "donor-armor-cat-chest",
+      "name": "Pechera Armor Cat · corte inicial",
+      "category": "Pecheras",
+      "url": "exports/armor-editor/donor-armor-cat-chest.glb",
+      "position": [
+        0,
+        0.16,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armor Cat · STL fusionado",
+      "provisional": true,
+      "triangles": 100281,
+      "thumbnail": "exports/armor-editor/donor-armor-cat-chest.png"
+    },
+    {
+      "id": "donor-armor-cat-waist",
+      "name": "Cintura Armor Cat · corte inicial",
+      "category": "Cintura",
+      "url": "exports/armor-editor/donor-armor-cat-waist.glb",
+      "position": [
+        0,
+        0.12,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armor Cat · STL fusionado",
+      "provisional": true,
+      "triangles": 91330,
+      "thumbnail": "exports/armor-editor/donor-armor-cat-waist.png"
+    },
+    {
+      "id": "donor-armor-cat-bootL",
+      "name": "Bota Armor Cat izquierda · corte inicial",
+      "category": "Botas",
+      "url": "exports/armor-editor/donor-armor-cat-bootL.glb",
+      "position": [
+        0.026,
+        0.025,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armor Cat · STL fusionado",
+      "provisional": true,
+      "triangles": 62658,
+      "thumbnail": "exports/armor-editor/donor-armor-cat-bootL.png"
+    },
+    {
+      "id": "donor-armor-cat-gloveR",
+      "name": "Guante Armor Cat derecho · corte inicial",
+      "category": "Guantes y brazales",
+      "url": "exports/armor-editor/donor-armor-cat-gloveR.glb",
+      "position": [
+        -0.082,
+        0.11,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armor Cat · STL fusionado",
+      "provisional": true,
+      "triangles": 28634,
+      "thumbnail": "exports/armor-editor/donor-armor-cat-gloveR.png"
+    },
+    {
+      "id": "donor-armor-cat-helmet",
+      "name": "Casco Armor Cat · corte inicial",
+      "category": "Cascos",
+      "url": "exports/armor-editor/donor-armor-cat-helmet.glb",
+      "position": [
+        0,
+        0.265,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armor Cat · STL fusionado",
+      "provisional": true,
+      "triangles": 171304,
+      "thumbnail": "exports/armor-editor/donor-armor-cat-helmet.png"
+    },
+    {
+      "id": "donor-armor-cat-shoulderR",
+      "name": "Hombrera Armor Cat derecha · corte inicial",
+      "category": "Hombreras",
+      "url": "exports/armor-editor/donor-armor-cat-shoulderR.glb",
+      "position": [
+        -0.052,
+        0.18,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armor Cat · STL fusionado",
+      "provisional": true,
+      "triangles": 33694,
+      "thumbnail": "exports/armor-editor/donor-armor-cat-shoulderR.png"
+    },
+    {
+      "id": "donor-armor-cat-shoulderL",
+      "name": "Hombrera Armor Cat izquierda · corte inicial",
+      "category": "Hombreras",
+      "url": "exports/armor-editor/donor-armor-cat-shoulderL.glb",
+      "position": [
+        0.052,
+        0.18,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armor Cat · STL fusionado",
+      "provisional": true,
+      "triangles": 32824,
+      "thumbnail": "exports/armor-editor/donor-armor-cat-shoulderL.png"
+    },
+    {
+      "id": "donor-armor-cat-gloveL",
+      "name": "Guante Armor Cat izquierdo · corte inicial",
+      "category": "Guantes y brazales",
+      "url": "exports/armor-editor/donor-armor-cat-gloveL.glb",
+      "position": [
+        0.082,
+        0.11,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armor Cat · STL fusionado",
+      "provisional": true,
+      "triangles": 41414,
+      "thumbnail": "exports/armor-editor/donor-armor-cat-gloveL.png"
+    },
+    {
+      "id": "fitv1-helmet",
+      "name": "Casco felino ajustado a Lucien",
+      "category": "Cascos",
+      "url": "exports/armor-editor/fitv1-helmet.glb",
+      "position": [
+        0.0,
+        0.2718217372894287,
+        -0.004200000315904617
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien v1 · ajuste personalizado",
+      "provisional": false,
+      "triangles": 6820,
+      "thumbnail": "exports/armor-editor/fitv1-helmet.png"
+    },
+    {
+      "id": "fitv1-shoulder-L",
+      "name": "Hombrera felina izquierda",
+      "category": "Hombreras",
+      "url": "exports/armor-editor/fitv1-shoulder-L.glb",
+      "position": [
+        0.04800000041723251,
+        0.18199999630451202,
+        -0.006001541391015053
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien v1 · ajuste personalizado",
+      "provisional": false,
+      "triangles": 7392,
+      "thumbnail": "exports/armor-editor/fitv1-shoulder-L.png"
+    },
+    {
+      "id": "fitv1-shoulder-R",
+      "name": "Hombrera felina derecha",
+      "category": "Hombreras",
+      "url": "exports/armor-editor/fitv1-shoulder-R.glb",
+      "position": [
+        -0.04800000041723251,
+        0.18199999630451202,
+        -0.006001541391015053
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien v1 · ajuste personalizado",
+      "provisional": false,
+      "triangles": 7392,
+      "thumbnail": "exports/armor-editor/fitv1-shoulder-R.png"
+    },
+    {
+      "id": "fitv1-waist",
+      "name": "Cintura articulada ajustada",
+      "category": "Cintura",
+      "url": "exports/armor-editor/fitv1-waist.glb",
+      "position": [
+        0.0,
+        0.12003357708454132,
+        0.0008500013500452042
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien v1 · ajuste personalizado",
+      "provisional": false,
+      "triangles": 5872,
+      "thumbnail": "exports/armor-editor/fitv1-waist.png"
+    },
+    {
+      "id": "fitv1-skirt",
+      "name": "Faldón corto adaptado a Lucien",
+      "category": "Pantalón y faldones",
+      "url": "exports/armor-editor/fitv1-skirt.glb",
+      "position": [
+        0.0,
+        0.08252395689487457,
+        -0.0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien v1 · ajuste personalizado",
+      "provisional": false,
+      "triangles": 10440,
+      "thumbnail": "exports/armor-editor/fitv1-skirt.png"
+    },
+    {
+      "id": "fitv1-boot-L",
+      "name": "Bota ajustada izquierda",
+      "category": "Botas",
+      "url": "exports/armor-editor/fitv1-boot-L.glb",
+      "position": [
+        0.026000000536441803,
+        0.03243530914187431,
+        0.001964440569281578
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien v1 · ajuste personalizado",
+      "provisional": false,
+      "triangles": 2120,
+      "thumbnail": "exports/armor-editor/fitv1-boot-L.png"
+    },
+    {
+      "id": "fitv1-boot-R",
+      "name": "Bota ajustada derecha",
+      "category": "Botas",
+      "url": "exports/armor-editor/fitv1-boot-R.glb",
+      "position": [
+        -0.026000000536441803,
+        0.03243530914187431,
+        0.001964440569281578
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Lucien v1 · ajuste personalizado",
+      "provisional": false,
+      "triangles": 2120,
+      "thumbnail": "exports/armor-editor/fitv1-boot-R.png"
+    },
+    {
+      "id": "ref5-helmet",
+      "name": "Casco cerrado · cinco vistas",
+      "category": "Cascos",
+      "url": "exports/armor-editor/ref5-helmet.glb",
+      "thumbnail": "exports/armor-editor/ref5-helmet.png",
+      "position": [
+        0.0,
+        0.2750154435634613,
+        -0.003999998793005943
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armadura de cinco vistas",
+      "provisional": false,
+      "triangles": 11684
+    },
+    {
+      "id": "ref5-plume",
+      "name": "Penacho de plumas en capas",
+      "category": "Adornos",
+      "url": "exports/armor-editor/ref5-plume.glb",
+      "thumbnail": "exports/armor-editor/ref5-plume.png",
+      "position": [
+        0.0,
+        0.2847546339035034,
+        -0.06800000369548798
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armadura de cinco vistas",
+      "provisional": false,
+      "triangles": 17148
+    },
+    {
+      "id": "ref5-chest",
+      "name": "Pechera y gorjal festoneado",
+      "category": "Pecheras",
+      "url": "exports/armor-editor/ref5-chest.glb",
+      "thumbnail": "exports/armor-editor/ref5-chest.png",
+      "position": [
+        0.0,
+        0.16136538982391357,
+        0.0009211041033267975
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armadura de cinco vistas",
+      "provisional": false,
+      "triangles": 6040
+    },
+    {
+      "id": "ref5-shoulder-L",
+      "name": "Hombrera festoneada izquierda",
+      "category": "Hombreras",
+      "url": "exports/armor-editor/ref5-shoulder-L.glb",
+      "thumbnail": "exports/armor-editor/ref5-shoulder-L.png",
+      "position": [
+        0.049000002443790436,
+        0.18143324553966522,
+        -0.005001177079975605
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armadura de cinco vistas",
+      "provisional": false,
+      "triangles": 9304
+    },
+    {
+      "id": "ref5-shoulder-R",
+      "name": "Hombrera festoneada derecha",
+      "category": "Hombreras",
+      "url": "exports/armor-editor/ref5-shoulder-R.glb",
+      "thumbnail": "exports/armor-editor/ref5-shoulder-R.png",
+      "position": [
+        -0.049000002443790436,
+        0.18143324553966522,
+        -0.005001177079975605
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armadura de cinco vistas",
+      "provisional": false,
+      "triangles": 9304
+    },
+    {
+      "id": "ref5-vambrace-L",
+      "name": "Brazal inclinado izquierdo",
+      "category": "Guantes y brazales",
+      "url": "exports/armor-editor/ref5-vambrace-L.glb",
+      "thumbnail": "exports/armor-editor/ref5-vambrace-L.png",
+      "position": [
+        0.06561198085546494,
+        0.13571564853191376,
+        -0.006004631519317627
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armadura de cinco vistas",
+      "provisional": false,
+      "triangles": 3072
+    },
+    {
+      "id": "ref5-vambrace-R",
+      "name": "Brazal inclinado derecho",
+      "category": "Guantes y brazales",
+      "url": "exports/armor-editor/ref5-vambrace-R.glb",
+      "thumbnail": "exports/armor-editor/ref5-vambrace-R.png",
+      "position": [
+        -0.06561198085546494,
+        0.13571564853191376,
+        -0.006004631519317627
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armadura de cinco vistas",
+      "provisional": false,
+      "triangles": 3072
+    },
+    {
+      "id": "ref5-belt",
+      "name": "Cinturón de plata y hebilla",
+      "category": "Cintura",
+      "url": "exports/armor-editor/ref5-belt.glb",
+      "thumbnail": "exports/armor-editor/ref5-belt.png",
+      "position": [
+        0.0,
+        0.12695741653442383,
+        0.001999998465180397
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armadura de cinco vistas",
+      "provisional": false,
+      "triangles": 3248
+    },
+    {
+      "id": "ref5-skirt",
+      "name": "Faldón largo, acolchado y abertura de cola",
+      "category": "Pantalón y faldones",
+      "url": "exports/armor-editor/ref5-skirt.glb",
+      "thumbnail": "exports/armor-editor/ref5-skirt.png",
+      "position": [
+        0.0,
+        0.0812433511018753,
+        0.0007062759250402451
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armadura de cinco vistas",
+      "provisional": false,
+      "triangles": 31036
+    },
+    {
+      "id": "ref5-bow",
+      "name": "Lazo carmesí del cuello",
+      "category": "Adornos",
+      "url": "exports/armor-editor/ref5-bow.glb",
+      "thumbnail": "exports/armor-editor/ref5-bow.png",
+      "position": [
+        0.00011936575174331665,
+        0.19398494064807892,
+        0.03680592030286789
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armadura de cinco vistas",
+      "provisional": false,
+      "triangles": 1698
+    },
+    {
+      "id": "ref5-cat-helmet",
+      "name": "Casco felino con orejas cerradas",
+      "category": "Cascos",
+      "url": "exports/armor-editor/ref5-cat-helmet.glb",
+      "thumbnail": "exports/armor-editor/ref5-cat-helmet.png",
+      "position": [
+        0.0,
+        0.2821089029312134,
+        -0.0040000006556510925
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Cinco vistas · revisión de casco felino",
+      "provisional": false,
+      "triangles": 12852
+    },
+    {
+      "id": "ref5-native-ear-helmet",
+      "name": "Casco con forma de orejas original",
+      "category": "Cascos",
+      "url": "exports/armor-editor/ref5-native-ear-helmet.glb",
+      "thumbnail": "exports/armor-editor/ref5-native-ear-helmet.png",
+      "position": [
+        0.0,
+        0.2750154435634613,
+        -0.0040000006556510925
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Cinco vistas · revisión de casco felino",
+      "provisional": false,
+      "triangles": 13192
+    },
+    {
+      "id": "ref5-hollow-ear-helmet",
+      "name": "Casco con cavidades para orejas de gato",
+      "category": "Cascos",
+      "url": "exports/armor-editor/ref5-hollow-ear-helmet.glb",
+      "thumbnail": "exports/armor-editor/ref5-hollow-ear-helmet.png",
+      "position": [
+        0.0,
+        0.2840154469013214,
+        -0.0040000006556510925
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Cinco vistas · revisión de casco felino",
+      "provisional": false,
+      "triangles": 23447
+    },
+    {
+      "id": "ref5-plume-armorcat",
+      "name": "Penacho esculpido · Armor Cat",
+      "category": "Adornos",
+      "url": "exports/armor-editor/ref5-plume-armorcat.glb",
+      "thumbnail": "exports/armor-editor/ref5-plume-armorcat.png",
+      "position": [
+        0.0014300728216767311,
+        0.3573163151741028,
+        -0.038458164781332016
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ],
+      "source": "Armor Cat · penacho del STL adaptado",
+      "provisional": false,
+      "triangles": 12616
+    }
+  ],
+  "fitting_base": {
+    "id": "lucien-fitting",
+    "name": "Lucien para probar armaduras",
+    "category": "Base",
+    "url": "exports/armor-editor/lucien-fitting.glb",
+    "position": [
+      -0.00033112242817878723,
+      0.1560760885477066,
+      0.07636713981628418
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ],
+    "source": "Lucien, copia de ajuste",
+    "provisional": false,
+    "triangles": 2994
+  },
+  "fitted_base": {
+    "url": "exports/armor-editor/lucien-user-clean-base.glb",
+    "position": [
+      0,
+      0,
+      0
+    ]
+  },
+  "female_base": {
+    "url": "exports/custom/lucien-female/Lucien-femenina-base.glb",
+    "position": [
+      0,
+      0,
+      0
+    ]
+  },
+  "turnaround_base": {
+    "url": "exports/custom/lucien-turnaround-armor/Lucien-base-encaje.glb",
+    "position": [
+      0,
+      0,
+      0
+    ]
+  },
+  "turnaround_r2_base": {
+    "url": "exports/custom/lucien-turnaround-r2/Lucien-cabeza-reparada.glb",
+    "position": [
+      0,
+      0,
+      0
+    ]
+  },
+  "turnaround_r3_base": {
+    "url": "exports/custom/lucien-turnaround-r3/Lucien-cabeza-original.glb",
+    "position": [
+      0,
+      0,
+      0
+    ]
+  },
+  "turnaround_r4_base": {
+    "url": "exports/custom/lucien-turnaround-r4/Lucien-cabeza-original.glb",
+    "position": [
+      0,
+      0,
+      0
+    ]
+  }
+}

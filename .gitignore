@@ -51,3 +51,23 @@ Desktop.ini
 *.cab
 *.dll
 *.exe
+
+# Portable synchronization: local assets, browser profiles and compiled artifacts
+**/__pycache__/
+**/browser-profile*/
+**/qa-*-profile*/
+**/qa-profile*/
+**/qa-browser*/
+**/qa-cdp*/
+*.pyc
+*.dds
+*.tga
+*.l2j
+*.bin
+*.sqlite
+*.sqlite3
+*.blend
+*.fbx
+*.glb
+*.gltf
+*.sql.gz

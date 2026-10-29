@@ -1,0 +1,3 @@
+package org.l2jmobius.gameserver.entity.actor;
+import org.l2jmobius.gameserver.taskmanagers.PvpFlagTaskManager;
+public class Player extends Creature { public int flag; public long until; public void updatePvPFlag(int v){flag=v;} public int getPvpFlag(){return flag;} public void sendMessage(String s){} public void broadcastUserInfo(){} public long getPvpFlagLasts(){return until;} public void stopPvPFlag(){flag=0;PvpFlagTaskManager.getInstance().remove(this);} }

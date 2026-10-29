@@ -42,9 +42,18 @@ public class RealHumanPilots extends Script
     private static final int[][] MAGE_BUFFS = {{1085,3},{1059,3},{1078,6},{1303,2},{1355,1},
         {273,1},{276,1},{365,1},{264,1},{267,1},{268,1},{304,1},{349,1}};
 
+    private static RealHumanPilots instance;
+    private static volatile boolean prepared;
     private RealHumanPilots()
     {
-        ThreadPool.schedule(this::prepare, 15000);
+        instance=this;
+        LOGGER.info("REAL_HUMAN_PILOTS: deferred until .roster preparar");
+    }
+
+    public static synchronized void prepareOnDemand(){
+        if(instance==null)throw new IllegalStateException("RealHumanPilots not initialized");
+        if(!prepared)instance.prepare();
+        if(!prepared)throw new IllegalStateException("RealHumanPilots preparation failed");
     }
 
     private void prepare()
@@ -72,6 +81,7 @@ public class RealHumanPilots extends Script
                 new int[]{6383,6384,6385,6386,858,858,889,889,920,6608,6377}, new int[]{175,180}, MAGE_BUFFS);
             prepareOne("Sylira", "telemetryx", true, 110, Race.ELF, "STORM_ELF", 1239,
                 new int[]{6383,6384,6385,6386,858,858,889,889,920,6608,6377}, new int[]{175,180}, MAGE_BUFFS);
+            prepared=true;
         }
         catch (Exception e)
         {
@@ -265,7 +275,7 @@ public class RealHumanPilots extends Script
         player.setActiveClass(0);
     }
 
-    private static void verifyActiveSkills(Player player) throws Exception
+    public static void verifyActiveSkills(Player player) throws Exception
     {
         Map<Integer,Integer> expected=new HashMap<>();
         Map<Integer,Integer> others=new HashMap<>();

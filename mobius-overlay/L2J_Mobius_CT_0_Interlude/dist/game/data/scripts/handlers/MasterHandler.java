@@ -118,6 +118,7 @@ import handlers.chat.commands.admin.AdminAnnouncements;
 import handlers.chat.commands.admin.AdminAugment;
 import handlers.chat.commands.admin.AdminBuffs;
 import handlers.chat.commands.admin.AdminBuildLab;
+import handlers.chat.commands.admin.AdminLabActions;
 import handlers.chat.commands.admin.AdminCHSiege;
 import handlers.chat.commands.admin.AdminCamera;
 import handlers.chat.commands.admin.AdminChangeAccessLevel;
@@ -216,6 +217,7 @@ import handlers.chat.commands.voiced.OfflinePlay;
 import handlers.chat.commands.voiced.Online;
 import handlers.chat.commands.voiced.Premium;
 import handlers.chat.commands.voiced.SquadCommand;
+import handlers.chat.commands.voiced.ThreatCommand;
 import handlers.chat.commands.voiced.Wedding;
 import handlers.items.BeastSoulShot;
 import handlers.items.BeastSpice;
@@ -334,6 +336,7 @@ public class MasterHandler
 			AdminAugment.class,
 			AdminBuffs.class,
 			AdminBuildLab.class,
+			AdminLabActions.class,
 			AdminCamera.class,
 			AdminChangeAccessLevel.class,
 			AdminCHSiege.class,
@@ -534,6 +537,7 @@ public class MasterHandler
 			PremiumSystemConfig.PREMIUM_SYSTEM_ENABLED ? Premium.class : null,
 			AutoPotionsConfig.AUTO_POTIONS_ENABLED ? AutoPotion.class : null,
 			SquadCommand.class,
+			ThreatCommand.class,
 		},
 		{
 			// Target Handlers

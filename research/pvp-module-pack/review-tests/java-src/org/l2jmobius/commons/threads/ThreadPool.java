@@ -1,0 +1,1 @@
+package org.l2jmobius.commons.threads; public class ThreadPool {public static void schedulePriorityTaskAtFixedRate(Runnable r,long a,long b){} }

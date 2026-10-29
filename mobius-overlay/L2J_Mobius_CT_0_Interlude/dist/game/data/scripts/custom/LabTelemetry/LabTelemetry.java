@@ -79,7 +79,7 @@ public class LabTelemetry extends Script
 	private static final int LAB_NPC_ID_MAX = 900299;
 	private static final int ELVEN_PVP_TEMPLATE_ID = 3051;
 	private static final int ELVEN_PVP_FIGHTER_ID_MIN = 901100;
-	private static final int ELVEN_PVP_FIGHTER_ID_MAX = 901108;
+	private static final int ELVEN_PVP_FIGHTER_ID_MAX = 901138;
 	private static final int CLEAN_PROFILE_LEVEL = 80;
 	private static final Set<Integer> CONTROLLED_CAPTURE_IDS = ConcurrentHashMap.newKeySet();
 	private static final int EXPECTED_PAIR_COUNT = 465;
@@ -581,6 +581,22 @@ public class LabTelemetry extends Script
 		catch (SQLException ex)
 		{
 			LOGGER.log(Level.WARNING, "No se pudo guardar el perfil sincrono del laboratorio.", ex);
+			return false;
+		}
+	}
+
+	/** Capture a real laboratory pilot without fabricating a combat event. */
+	public static boolean captureNpcStatsNow(Npc npc)
+	{
+		if ((INSTANCE == null) || (npc == null)) return false;
+		try (Connection con = DatabaseFactory.getConnection())
+		{
+			INSTANCE.upsertStats(con, new CreatureSnapshot(npc));
+			return true;
+		}
+		catch (SQLException ex)
+		{
+			LOGGER.log(Level.WARNING, "No se pudieron guardar stats del rival normal.", ex);
 			return false;
 		}
 	}
@@ -3385,8 +3401,10 @@ public class LabTelemetry extends Script
 			st.executeUpdate("ALTER TABLE lab_combat_events ADD INDEX IF NOT EXISTS idx_lab_events_instance (instance_id, occurred_ms)");
 			st.executeUpdate(CREATE_STATS_TABLE);
 			st.executeUpdate(CREATE_PLAYER_STATS_TABLE);
+			st.executeUpdate("ALTER TABLE lab_player_stats ADD COLUMN IF NOT EXISTS appearance_race_id SMALLINT NULL, ADD COLUMN IF NOT EXISTS stat_race_id SMALLINT NULL, ADD COLUMN IF NOT EXISTS racial_profile VARCHAR(10) NULL");
 			st.executeUpdate("ALTER TABLE lab_player_stats ADD COLUMN IF NOT EXISTS rules_version VARCHAR(40) NOT NULL DEFAULT 'legacy-class-template'");
 			st.executeUpdate(CREATE_PLAYER_PROFILE_TABLE);
+			st.executeUpdate("ALTER TABLE lab_player_stat_profiles ADD COLUMN IF NOT EXISTS appearance_race_id SMALLINT NULL, ADD COLUMN IF NOT EXISTS stat_race_id SMALLINT NULL, ADD COLUMN IF NOT EXISTS racial_profile VARCHAR(10) NULL");
 			st.executeUpdate(CREATE_PAIR_PROFILE_TABLE);
 			st.executeUpdate(CREATE_FOUR_CLASS_PROFILE_TABLE);
 			st.executeUpdate(CREATE_BENCHMARK_RUN_TABLE);
@@ -3592,6 +3610,18 @@ public class LabTelemetry extends Script
 			ps.setInt(i++, c.statStr); ps.setInt(i++, c.statDex); ps.setInt(i++, c.statCon); ps.setInt(i++, c.statInt); ps.setInt(i++, c.statWit); ps.setInt(i, c.statMen);
 			ps.executeUpdate();
 		}
+		stampRacialOrigin(con,c,true);
+	}
+
+	private void stampRacialOrigin(Connection con, CreatureSnapshot c, boolean profile) throws SQLException
+	{
+		final String sql = "UPDATE " + (profile ? "lab_player_stat_profiles" : "lab_player_stats") + " SET appearance_race_id=?,stat_race_id=?,racial_profile=? WHERE char_id=? AND observed_ms=?" + (profile ? " AND profile_key=?" : "");
+		try (PreparedStatement ps=con.prepareStatement(sql))
+		{
+			ps.setInt(1,c.raceId); ps.setInt(2,c.statRaceId); ps.setString(3,c.racialProfile); ps.setInt(4,c.objectId); ps.setLong(5,c.observedMs);
+			if(profile) ps.setString(6,c.profileKey);
+			ps.executeUpdate();
+		}
 	}
 
 	private void upsertStats(Connection con, CreatureSnapshot c) throws SQLException
@@ -3632,6 +3662,7 @@ public class LabTelemetry extends Script
 			ps.setInt(i++, c.statStr); ps.setInt(i++, c.statDex); ps.setInt(i++, c.statCon); ps.setInt(i++, c.statInt); ps.setInt(i++, c.statWit); ps.setInt(i, c.statMen);
 			ps.executeUpdate();
 		}
+		stampRacialOrigin(con,c,false);
 	}
 
 	private int bindCreature(PreparedStatement ps, int index, CreatureSnapshot c) throws SQLException
@@ -3704,6 +3735,8 @@ public class LabTelemetry extends Script
 
 	private static final class CreatureSnapshot
 	{
+		private final int statRaceId;
+		private final String racialProfile;
 		private final int objectId;
 		private final String name;
 		private final String kind;
@@ -3756,6 +3789,7 @@ public class LabTelemetry extends Script
 		{
 			if (creature == null)
 			{
+				statRaceId=-1; racialProfile="";
 				objectId = 0;
 				name = "";
 				kind = "";
@@ -3782,6 +3816,8 @@ public class LabTelemetry extends Script
 			kind = creature instanceof Player ? "PLAYER" : (creature instanceof Npc ? "NPC" : "CREATURE");
 			templateId = creature instanceof Npc ? ((Npc) creature).getId() : 0;
 			final Player player = creature instanceof Player ? (Player) creature : null;
+			statRaceId=player!=null?player.getRacialStatRace().ordinal():-1;
+			racialProfile=player!=null?(player.isRacialMage()?"MYSTIC":"FIGHTER"):"";
 			classId = player != null ? player.getPlayerClass().getId() : -1;
 			baseClassId = player != null ? player.getBaseClass() : -1;
 			classIndex = player != null ? player.getClassIndex() : 0;
@@ -3795,7 +3831,7 @@ public class LabTelemetry extends Script
 			equippedCount = player != null ? countEquipped(player) : 0;
 			effectCount = player != null ? player.getEffectList().getEffects().size() : 0;
 			skillCount = player != null ? player.getAllSkills().size() : 0;
-			profileKey = player != null ? sha256(baseClassId + ":" + classIndex + ":" + classId + ":" + sub1ClassId + ":" + sub2ClassId + ":" + sub3ClassId + ":" + creature.getLevel() + ":" + equipmentKey + ":" + effectKey) : "";
+			profileKey = player != null ? sha256("racial-separated-v1:" + raceId + ":" + statRaceId + ":" + racialProfile + ":" + baseClassId + ":" + classIndex + ":" + classId + ":" + sub1ClassId + ":" + sub2ClassId + ":" + sub3ClassId + ":" + creature.getLevel() + ":" + equipmentKey + ":" + effectKey) : "";
 			level = creature.getLevel();
 			cp = creature.getCurrentCp();
 			maxCp = creature.getMaxCp();

@@ -8,3 +8,19 @@
 *.md text eol=lf
 *.png binary
 *.sql text eol=lf
+*.py text eol=lf
+*.cjs text eol=lf
+*.mjs text eol=lf
+*.groovy text eol=lf
+*.ini text eol=lf
+*.properties text eol=lf
+*.xsd text eol=lf
+*.htm text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+*.uc text eol=lf
+*.mf text eol=lf
+*.txt text eol=lf
+*.csv text eol=lf

@@ -1,0 +1,32 @@
+const {chromium}=require('../../tools/rea-runtime/node_modules/playwright-core');
+const fs=require('fs'),path=require('path'),assert=require('assert');
+const distance=(a,b)=>Math.hypot(...a.map((x,i)=>x-b[i]));
+(async()=>{const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});const page=await browser.newPage({viewport:{width:1360,height:768},baseURL:'http://127.0.0.1:32290'}),errors=[];page.on('pageerror',e=>errors.push(e.message));page.on('dialog',d=>d.accept());
+try{await page.goto('/');await page.waitForFunction(()=>window.editorState?.().ready&&document.body.dataset.state==='ready');
+ const state=()=>page.evaluate(()=>window.editorState());
+ assert.equal(Math.round((await page.locator('#studio').boundingBox()).width),272);
+ await page.locator('#show-studio-panel').uncheck();assert.equal(Math.round((await page.locator('#studio').boundingBox()).width),44);await page.locator('#tab-scene').click();assert(await page.locator('#show-studio-panel').isChecked());
+ await page.locator('.object').first().click();await page.locator('[data-mode=translate]').focus();await page.keyboard.press('c');let a=await state();assert(a.objects[0].locked);const lockedPosition=a.objects[0].position;
+ await page.locator('.tree-row').filter({has:page.locator('.object[data-id="'+(await page.evaluate(()=>window.editorState().selected))+'"]')}).locator('.tree-lock').click();await page.locator('[data-mode=translate]').focus();await page.keyboard.press('f');a=await state();assert(distance(a.camera.target,a.objects[0].position)<.001);
+ for(const [key,mode]of [['w','translate'],['e','rotate'],['r','scale']]){await page.keyboard.press(key);assert.equal((await state()).mode,mode);}await page.keyboard.press('q');await page.waitForFunction(()=>window.editorState().activeNodeCount===8);await page.keyboard.press('q');assert.equal((await state()).nodesVisible,false);
+ await page.locator('#tab-transform').click();await page.locator('#position-0').focus();await page.keyboard.press('q');assert.equal((await state()).nodesVisible,false);await page.locator('[data-mode=translate]').focus();
+ await page.getByRole('button',{name:'Guardar cámara 1',exact:true}).click();const original=(await state()).camera;
+ async function reset(){await page.getByRole('button',{name:'Cargar cámara 1',exact:true}).click();}
+ async function drag(button,dx,dy,modifier=null,chord=false){const v=await page.locator('#viewport canvas').boundingBox(),x=v.x+v.width*.8,y=v.y+v.height*.8;await page.mouse.move(x,y);if(modifier)await page.keyboard.down(modifier);await page.mouse.down({button});if(chord)await page.mouse.down({button:'right'});await page.mouse.move(x+dx,y+dy,{steps:5});await page.mouse.up({button});if(chord)await page.mouse.up({button:'right'});if(modifier)await page.keyboard.up(modifier);return (await state()).camera;}
+ let p=await drag('left',10,0);assert(distance(p.position,original.position)>.1);assert(distance(p.target,original.target)<1e-6);const normal=distance(p.position,original.position);
+ await reset();p=await drag('left',10,0,'Shift');const fast=distance(p.position,original.position);assert(fast/normal>3.8&&fast/normal<4.2);
+ await reset();p=await drag('left',10,0,'Control');assert(distance(p.position,original.position)/normal>.55&&distance(p.position,original.position)/normal<.65);
+ await reset();p=await drag('right',20,0);assert(distance(p.position,p.target)>distance(original.position,original.target));assert(distance(p.target,original.target)<1e-6);
+ await reset();p=await drag('right',0,20);assert(Math.abs(p.target[1]-original.target[1])>.1);
+ await reset();p=await drag('middle',20,10);assert(distance(p.target,original.target)>.1);assert(Math.abs(distance(p.position,p.target)-distance(original.position,original.target))<.001);
+ await reset();p=await drag('left',20,10,null,true);assert(distance(p.target,original.target)>.1);
+ await reset();await drag('middle',30,20);await page.locator('#tab-scene').click();await page.locator('.object').first().click();await page.locator('[data-mode=translate]').focus();await page.keyboard.press('c');a=await state();assert(distance(a.objects[0].position,a.camera.target)<1e-6);assert(distance(a.objects[0].position,lockedPosition)>.1);
+ await page.getByRole('button',{name:'Guardar cámara 3',exact:true}).click();const third=(await state()).cameras[2];await page.locator('#save').click();await page.waitForFunction(()=>document.querySelector('#status').textContent.startsWith('Versión guardada'));
+ const saved=await page.locator('#status').textContent(),file=saved.split('projects/')[1],disk=JSON.parse(fs.readFileSync(path.join(__dirname,'projects',file)));assert.equal(disk.cameras.length,10);assert.deepEqual(disk.cameras[2],third);
+ await page.reload();await page.waitForFunction(()=>window.editorState?.().cameras[2]&&document.body.dataset.state==='ready');a=await state();assert.deepEqual(a.cameras[2],third);assert(distance(a.camera.position,third.position)<1e-6);
+ await page.locator('#home').click();await page.getByRole('button',{name:'Cargar cámara 3',exact:true}).click();a=await state();assert(distance(a.camera.position,third.position)<1e-6);
+ const response=await page.request.post('/api/projects',{headers:{Origin:'http://127.0.0.1:32290'},data:{...disk,camera:{position:[0,0,0],target:[0,0,0],fov:999}}});assert.equal(response.status(),400);
+ await page.locator('#tab-scene').click();await page.locator('#scene-search').fill('HGGludioDock0');assert.equal(await page.locator('.object').count(),1);await page.locator('#scene-search').fill('');await page.locator('#show-studio-panel').uncheck();
+ await page.screenshot({path:path.join(__dirname,'preview-studio-controls.png')});assert.deepEqual(errors,[]);
+ fs.writeFileSync(path.join(__dirname,'studio-controls-verification.json'),JSON.stringify({passed:true,checks:['left detail panel','hide to 44px icon rail','icon reopens panel','locked object protected from C','F focuses selected pivot','W E R modes','Q nodes','typing guard','left orbit','Shift x4','Ctrl x0.6','right horizontal distance','right vertical height','middle pan','left+right depth pan','C brings object to focus','ten camera slots','camera disk persistence','camera draft reload','camera recall','camera input validation','scene search'],errors,project:file},null,2));console.log('PASS: Studio mouse, keys, nodes, cameras and compact panel.');
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

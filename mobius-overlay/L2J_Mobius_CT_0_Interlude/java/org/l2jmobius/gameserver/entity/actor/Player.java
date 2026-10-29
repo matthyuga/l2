@@ -344,6 +344,18 @@ import org.l2jmobius.gameserver.util.LocationUtil;
  */
 public class Player extends Playable
 {
+	private volatile org.l2jmobius.gameserver.mechanics.DirectThreat.Entry _lastDirectThreat;
+
+	public org.l2jmobius.gameserver.mechanics.DirectThreat.Entry getLastDirectThreat()
+	{
+		return _lastDirectThreat;
+	}
+
+	public void setLastDirectThreat(org.l2jmobius.gameserver.mechanics.DirectThreat.Entry entry)
+	{
+		_lastDirectThreat = entry;
+	}
+
 	// Character Skill SQL String Definitions:
 	private static final String RESTORE_SKILLS_FOR_CHAR = "SELECT skill_id,skill_level FROM character_skills WHERE charId=? AND class_index=?";
 	private static final String RESTORE_CUMULATIVE_SKILLS_FOR_CHAR = "SELECT skill_id,skill_level,class_index FROM character_skills WHERE charId=?";
@@ -411,6 +423,8 @@ public class Player extends Playable
 	
 	private volatile boolean _isOnline = false;
 	private boolean _offlinePlay = false;
+	// Ephemeral opt-in for visible, server-controlled laboratory Players without a socket.
+	private volatile boolean _labControlled;
 	private boolean _enteredWorld = false;
 	private long _onlineTime;
 	private long _onlineBeginTime;
@@ -428,9 +442,13 @@ public class Player extends Playable
 	private boolean _subclassLock = false;
 	/** Permanent playable race. Class and subclass changes must not rewrite it. */
 	private Race _race;
+	/** Attribute origin is independent of the race sent to the client. */
+	private Race _racialStatRace;
+	private final ThreadLocal<PlayerTemplate> _racialStatPreview = new ThreadLocal<>();
 	/** Creation archetype, independent of the current profession or subclass. */
 	private boolean _racialMage;
 	public static final String RACIAL_PROFILE_VARIABLE = "RACIAL_PROFILE";
+	public static final String RACIAL_STAT_RACE_VARIABLE = "RACIAL_STAT_RACE";
 	protected int _baseClass;
 	protected int _activeClass;
 	protected int _classIndex = 0;
@@ -978,6 +996,7 @@ public class Player extends Playable
 		// Add the player in the characters table of the database.
 		if (!player.createDb()) return null;
 		player.persistRacialProfile();
+		org.l2jmobius.gameserver.custom.ModularAppearance.initialize(player);
 		return player;
 	}
 	
@@ -1627,12 +1646,18 @@ public class Player extends Playable
 	@Override
 	public void updatePvPFlag(int value)
 	{
-		if (_pvpFlag == value)
+		synchronized (this)
 		{
-			return;
+			if (PvpFlagTaskManager.getInstance().isForced(this))
+			{
+				value = 1;
+			}
+			if (_pvpFlag == value)
+			{
+				return;
+			}
+			setPvpFlag(value);
 		}
-		
-		setPvpFlag(value);
 		
 		updateUserInfo();
 		
@@ -2794,6 +2819,29 @@ public class Player extends Playable
 			throw new IllegalArgumentException("Invalid playable race: " + race);
 		}
 		_race = race;
+		_racialStatRace = race; // Preserve legacy explicit full-race changes.
+	}
+
+	public Race getRacialStatRace()
+	{
+		return _racialStatRace != null ? _racialStatRace : getRace();
+	}
+
+	/** Visual-only change: never changes the attribute origin. */
+	public void setAppearanceRace(Race race)
+	{
+		final Race origin = getRacialStatRace();
+		setRace(race);
+		_racialStatRace = origin;
+	}
+
+	/** Explicit attribute-only change; does not change class or appearance. */
+	public void setRacialStatsOrigin(Race race, boolean mage)
+	{
+		racialTemplate(race, mage); // Validate before modifying any state.
+		_racialStatRace = race;
+		_racialMage = mage;
+		persistRacialProfile();
 	}
 
 	public boolean isRacialMage()
@@ -2812,27 +2860,55 @@ public class Player extends Playable
 	/** The six base attributes belong to race + creation archetype, not class. */
 	public PlayerTemplate getRacialBaseTemplate()
 	{
-		final int rootId = switch (getRace())
+		final PlayerTemplate preview = _racialStatPreview.get();
+		return preview != null ? preview : racialTemplate(getRacialStatRace(), _racialMage);
+	}
+
+	private static PlayerTemplate racialTemplate(Race race, boolean mage)
+	{
+		final int rootId = switch (race)
 		{
-			case HUMAN -> _racialMage ? 10 : 0;
-			case ELF -> _racialMage ? 25 : 18;
-			case DARK_ELF -> _racialMage ? 38 : 31;
-			case ORC -> _racialMage ? 49 : 44;
+			case HUMAN -> mage ? 10 : 0;
+			case ELF -> mage ? 25 : 18;
+			case DARK_ELF -> mage ? 38 : 31;
+			case ORC -> mage ? 49 : 44;
 			case DWARF -> 53; // Interlude has no dwarf mystic creation template.
-			default -> throw new IllegalStateException("Unsupported playable race: " + getRace());
+			default -> throw new IllegalStateException("Unsupported playable race: " + race);
 		};
 		return PlayerTemplateData.getInstance().getTemplate(rootId);
+	}
+
+	/** Read-only formula context, isolated to this player and this thread. */
+	public <T> T previewRacialStats(Race race, boolean mage, java.util.function.Supplier<T> readStats)
+	{
+		final PlayerTemplate previous = _racialStatPreview.get();
+		_racialStatPreview.set(racialTemplate(race, mage));
+		try { return readStats.get(); }
+		finally
+		{
+			if (previous == null) _racialStatPreview.remove();
+			else _racialStatPreview.set(previous);
+		}
+	}
+
+	public boolean isRacialStatsPreview()
+	{
+		return _racialStatPreview.get() != null;
 	}
 
 	private void persistRacialProfile()
 	{
 		final PlayerVariables variables = getVariables();
 		variables.set(RACIAL_PROFILE_VARIABLE, _racialMage ? "MYSTIC" : "FIGHTER");
+		variables.set(RACIAL_STAT_RACE_VARIABLE, getRacialStatRace().ordinal());
 		variables.saveNow();
 	}
 
 	private void restoreRacialProfile()
 	{
+		final int statRace = getVariables().getInt(RACIAL_STAT_RACE_VARIABLE, getRace().ordinal());
+		if ((statRace < 0) || (statRace > 4)) throw new IllegalStateException("Invalid attribute race for " + getObjectId());
+		_racialStatRace = Race.values()[statRace];
 		final String stored = getVariables().getString(RACIAL_PROFILE_VARIABLE, null);
 		if ((stored != null) && !stored.equals("MYSTIC") && !stored.equals("FIGHTER"))
 		{
@@ -5130,6 +5206,7 @@ public class Player extends Playable
 		{
 			return false;
 		}
+		_lastDirectThreat = null;
 		
 		if (isMounted())
 		{
@@ -7364,6 +7441,8 @@ public class Player extends Playable
 		final PlayerVariables vars = getScript(PlayerVariables.class);
 		if (vars != null)
 		{
+			vars.set(RACIAL_PROFILE_VARIABLE, _racialMage ? "MYSTIC" : "FIGHTER");
+			vars.set(RACIAL_STAT_RACE_VARIABLE, getRacialStatRace().ordinal());
 			vars.storeMe();
 		}
 		
@@ -7657,6 +7736,7 @@ public class Player extends Playable
 	
 	public int isOnlineInt()
 	{
+		if (_isOnline && _labControlled && (_client == null)) return 2;
 		if (_isOnline && (_client != null))
 		{
 			return _client.isDetached() ? 2 : 1;
@@ -8025,6 +8105,9 @@ public class Player extends Playable
 			LOGGER.log(Level.WARNING, "Could not restore character " + this + " skills: " + e.getMessage(), e);
 		}
 	}
+
+	public void setLabControlled(boolean value) { _labControlled = value; }
+	public boolean isLabControlled() { return _labControlled; }
 
 	private static boolean isNonStackingMastery(Skill skill)
 	{
@@ -8584,6 +8667,8 @@ public class Player extends Playable
 			return true;
 		}
 		
+		final int roomDecision = org.l2jmobius.gameserver.managers.RoomCombatRules.decision(attacker, this);
+		if (roomDecision >= 0) return roomDecision == 1;
 		// Check if the attacker is not in the same party. NOTE: Party checks goes before oly checks in order to prevent patry member autoattack at oly.
 		if (isInParty() && _party.getMembers().contains(attacker))
 		{
@@ -9231,6 +9316,11 @@ public class Player extends Playable
 		if (!target.isPlayable())
 		{
 			return true;
+		}
+		if (skill.isDamage() || skill.isDebuff() || skill.hasNegativeEffect())
+		{
+			final int roomDecision = org.l2jmobius.gameserver.managers.RoomCombatRules.decision(this, target.asPlayer());
+			if (roomDecision >= 0) return roomDecision == 1;
 		}
 		
 		if (skill.isDebuff() || skill.hasEffectType(EffectType.STEAL_ABNORMAL) || skill.hasNegativeEffect())
@@ -11560,6 +11650,7 @@ public class Player extends Playable
 	@Override
 	public boolean deleteMe()
 	{
+		_lastDirectThreat = null;
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_LOGOUT, this))
 		{
 			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerLogout(this), this);
@@ -12715,22 +12806,17 @@ public class Player extends Playable
 	@Override
 	public void sendDamageMessage(Creature target, int damage, boolean mcrit, boolean pcrit, boolean miss)
 	{
+		sendDamageMessage(target, damage, mcrit, pcrit, miss, mcrit && !pcrit);
+	}
+
+	@Override
+	public void sendDamageMessage(Creature target, int damage, boolean mcrit, boolean pcrit, boolean miss, boolean magic)
+	{
 		// Check if hit is missed.
 		if (miss)
 		{
 			sendPacket(SystemMessageId.YOU_HAVE_MISSED);
 			return;
-		}
-		
-		// Check if hit is critical.
-		if (pcrit)
-		{
-			sendPacket(SystemMessageId.CRITICAL_HIT);
-		}
-		
-		if (mcrit)
-		{
-			sendPacket(SystemMessageId.MAGIC_CRITICAL_HIT);
 		}
 		
 		if (isInOlympiadMode() && target.isPlayer() && target.asPlayer().isInOlympiadMode() && (target.asPlayer().getOlympiadGameId() == getOlympiadGameId()))
@@ -12740,7 +12826,16 @@ public class Player extends Playable
 		
 		if (this != target)
 		{
-			final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HIT_FOR_S1_DAMAGE);
+			final SystemMessageId messageId;
+			if (magic)
+			{
+				messageId = mcrit ? SystemMessageId.MAGICAL_CRITICAL_HIT_S1 : SystemMessageId.MAGICAL_HIT_S1;
+			}
+			else
+			{
+				messageId = pcrit ? SystemMessageId.PHYSICAL_CRITICAL_HIT_S1 : SystemMessageId.PHYSICAL_HIT_S1;
+			}
+			final SystemMessage sm = new SystemMessage(messageId);
 			sm.addInt(damage);
 			sendPacket(sm);
 		}
@@ -13367,7 +13462,7 @@ public class Player extends Playable
 			return NpcData.getInstance().getTemplate(getMountNpcId()).getFCollisionRadius();
 		}
 		
-		return _appearance.isFemale() ? getBaseTemplate().getFCollisionRadiusFemale() : getBaseTemplate().getFCollisionRadius();
+		return _appearance.isFemale() ? org.l2jmobius.gameserver.custom.ModularAppearance.displayTemplate(this).getFCollisionRadiusFemale() : org.l2jmobius.gameserver.custom.ModularAppearance.displayTemplate(this).getFCollisionRadius();
 	}
 	
 	public float getCollisionHeight()
@@ -13377,7 +13472,7 @@ public class Player extends Playable
 			return NpcData.getInstance().getTemplate(getMountNpcId()).getFCollisionHeight();
 		}
 		
-		return _appearance.isFemale() ? getBaseTemplate().getFCollisionHeightFemale() : getBaseTemplate().getFCollisionHeight();
+		return _appearance.isFemale() ? org.l2jmobius.gameserver.custom.ModularAppearance.displayTemplate(this).getFCollisionHeightFemale() : org.l2jmobius.gameserver.custom.ModularAppearance.displayTemplate(this).getFCollisionHeight();
 	}
 	
 	public int getClientX()

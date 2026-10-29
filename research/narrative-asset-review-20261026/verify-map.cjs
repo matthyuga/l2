@@ -1,0 +1,26 @@
+const { chromium }=require('E:/l2-local/tools/rea-runtime/node_modules/playwright-core');
+const assert=require('node:assert/strict');
+(async()=>{
+ const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});
+ const page=await browser.newPage({viewport:{width:780,height:1000}});
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto('file:///E:/l2-local/research/narrative-asset-review-20261026/mapa-preview.html');
+ await page.waitForTimeout(1200);
+ const f=page.frameLocator('iframe');
+ assert.equal(await f.locator('.pin').count(),31);
+ await f.locator('.pin[data-row="12"]').click();
+ assert.match(await f.locator('#l2-map-detail').innerText(),/Tower of Insolence/);
+ await f.locator('#l2-layer').selectOption('3');
+ assert.match(await f.locator('#l2-map-detail').innerText(),/Trama propia: Idea propuesta/);
+ assert.match(await f.locator('.pin[data-row="12"]').getAttribute('class'),/\bi\b/);
+ await f.locator('#l2-layer').selectOption('0');
+ assert.equal(await f.locator('.map-field img').evaluate(el=>el.complete&&el.naturalWidth>0),true);
+ await page.screenshot({path:'E:/l2-local/research/narrative-asset-review-20261026/mapa-verificado.png',fullPage:true});
+ await page.setViewportSize({width:360,height:900});
+ await page.waitForTimeout(300);
+ const dims=await f.locator('#l2-narrative-map').evaluate(el=>({width:el.clientWidth,scroll:el.scrollWidth}));
+ assert(dims.scroll<=dims.width+1,JSON.stringify(dims));
+ assert.deepEqual(errors,[]);
+ console.log(JSON.stringify({pins:31,selection:'ok',layer:'ok',image:'ok',mobile:'ok',errors}));
+ await browser.close();
+})().catch(e=>{console.error(e);process.exit(1)});

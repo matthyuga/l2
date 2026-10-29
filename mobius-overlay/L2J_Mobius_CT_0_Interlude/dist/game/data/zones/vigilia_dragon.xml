@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/zones.xsd">
+ <zone name="Vigilia Dragon Peace" type="PeaceZone" shape="Cuboid" minZ="9500" maxZ="16383">
+  <node X="144000" Y="50900" /><node X="149100" Y="53100" />
+ </zone>
+ <zone name="Vigilia Dragon Respawn" type="RespawnZone" shape="Cuboid" minZ="9500" maxZ="16383">
+  <node X="144000" Y="50900" /><node X="149100" Y="53100" />
+  <race name="HUMAN" point="gludio_sky" /><race name="ELF" point="gludio_sky" /><race name="DARK_ELF" point="gludio_sky" /><race name="ORC" point="gludio_sky" /><race name="DWARF" point="gludio_sky" />
+ </zone>
+</list>

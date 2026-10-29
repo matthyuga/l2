@@ -1,0 +1,27 @@
+const {chromium}=require('../../tools/rea-runtime/node_modules/playwright-core');
+const fs=require('fs'),path=require('path'),assert=require('assert');
+(async()=>{const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});try{
+ const page=await browser.newPage({viewport:{width:1600,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));
+ page.on('response',r=>{if(r.status()>=400)errors.push(r.status()+' '+r.url());});
+ await page.goto('http://127.0.0.1:32290');await page.waitForFunction(()=>window.editorState?.().ready,null,{timeout:60000});
+ await page.locator('#file').setInputFiles(path.join(__dirname,'projects/giranmodificado1.json'));
+ await page.waitForFunction(()=>window.editorState?.().scene==='giran_city'&&window.editorState().objects.some(o=>o.asset==='custom_giranmodificado1_garden')&&document.body.dataset.state==='ready',null,{timeout:180000});
+ await page.locator('#viewport-maximize').click();await page.waitForTimeout(1200);
+ assert.equal((await page.evaluate(()=>window.editorState())).objects.length,1945);
+ const snapshot=await page.evaluate(()=>JSON.parse(localStorage.getItem('l2-scene-editor-draft')));
+ assert.equal(snapshot.objects.filter(o=>!o.visible).length,2);assert.equal(snapshot.objects.filter(o=>o.name.startsWith('Árbol de Giran')).length,4);
+ assert.equal(snapshot.objects.filter(o=>o.name.startsWith('Cohete')).length,2);
+ assert(snapshot.objects.some(o=>o.node==='StaticMeshActor314_0'&&o.visible),'Original pedestal preserved');
+ assert.deepEqual(errors,[]);
+ await page.screenshot({path:path.join(__dirname,'giranmodificado1-vista-general.png')});
+ await page.locator('#viewport-maximize').click();
+ await page.locator('.camera-load').nth(1).click();await page.waitForTimeout(500);
+ await page.locator('#viewport-maximize').click();await page.waitForTimeout(500);
+ await page.screenshot({path:path.join(__dirname,'giranmodificado1-vista-cohete.png')});
+ const thumb=await browser.newPage({viewport:{width:384,height:420}});
+ await thumb.goto('http://127.0.0.1:32290/thumbnail-render.html?asset=exports/giranmodificado1/garden.gltf');
+ await thumb.waitForFunction(()=>document.body.dataset.ready||document.body.dataset.error,null,{timeout:30000});
+ assert.equal(await thumb.locator('body').getAttribute('data-error'),null);
+ await thumb.locator('canvas').screenshot({path:path.resolve(__dirname,'../model-catalog/thumbs/giranmodificado1-garden.png')});
+ const report={passed:true,objects:snapshot.objects.length,hiddenOriginalStatue:2,trees:4,spireModules:2,errors};fs.writeFileSync(path.join(__dirname,'giranmodificado1-verification.json'),JSON.stringify(report,null,2));console.log(report);
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1});

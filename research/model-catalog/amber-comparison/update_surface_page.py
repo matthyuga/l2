@@ -1,0 +1,16 @@
+from pathlib import Path
+p=Path(__file__).resolve().parents[1]
+html=(p/'comparar.html').read_text(encoding='utf-8')
+html=html.replace('su material actual, una prueba con iluminación y un modelo nativo','su material anterior, la revisión V1 instalada y un modelo nativo')
+html=html.replace('<option value="mixed">','<option value="surface">Integración V1 · máscaras por superficie</option><option value="mixed">')
+html=html.replace('Amber · material actual','Amber · antes')
+html=html.replace('Amber · prueba de material','Amber · revisión V1')
+html=html.replace('Mismas texturas y geometría. Se cambia la respuesta a la luz para evaluar el efecto.','V1 usa máscaras de piel, ojos, pelo, tela y metal. Esta vista aproxima su respuesta a la luz.')
+html=html.replace('el cuerpo y la ropa de Amber usan la textura completa como SelfIllumination, sin máscara. No tienen componente especular.','la versión anterior autoiluminaba los dos atlas completos. V1 reduce ese aporte por superficie e incorpora reflejos suaves del propio L2 con máscara para ojos, pelo y metal.')
+html=html.replace('La prueba permite valorar cuánto de la separación visual viene de la iluminación. Después podemos ajustar piel, tela, cuero, pelo y metal con respuestas distintas, conservando el diseño de Amber.','Podés comparar V1 con la versión anterior y con materiales de un NPC nativo. También quedan las dos pruebas iniciales en el selector. El dibujo original del atlas se conserva.')
+html=html.replace('La versión instalada en el juego sigue intacta; el siguiente ajuste debe comprobarse allí.','La revisión V1 ya está instalada para NPC y summon; queda valorar su aspecto dentro del juego. Los reflejos TexEnvMap de L2 no se reproducen en esta vista.')
+(p/'comparar.html').write_text(html,encoding='utf-8')
+js=(p/'comparar.js').read_text(encoding='utf-8')
+js=js.replace("if(params.get('variant')==='diffuse')$('variant').value='diffuse';", "if(params.get('variant')&&variants.variants[params.get('variant')])$('variant').value=params.get('variant');")
+(p/'comparar.js').write_text(js,encoding='utf-8')
+print('Comparison page updated to installed V1; previous full-bright view preserved.')

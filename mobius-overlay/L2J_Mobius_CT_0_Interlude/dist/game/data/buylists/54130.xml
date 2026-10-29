@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/buylist.xsd">
+	<item id="54130" price="0" /> <!-- Fafurion Avenger -->
+	<item id="54131" price="0" /> <!-- Fafurion Cutter -->
+	<item id="54132" price="0" /> <!-- Fafurion Fighter -->
+	<item id="54133" price="0" /> <!-- Fafurion Singer -->
+	<item id="54134" price="0" /> <!-- Fafurion Shaper -->
+	<item id="54135" price="0" /> <!-- Fafurion Stormer -->
+	<item id="54136" price="0" /> <!-- Fafurion Dual Sword -->
+</list>

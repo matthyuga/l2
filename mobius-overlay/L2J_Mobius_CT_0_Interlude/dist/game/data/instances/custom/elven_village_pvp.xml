@@ -5,7 +5,7 @@
 	<spawnPoints startPosType="FIXED">
 		<Location x="45150" y="52100" z="-2792" />
 	</spawnPoints>
-	<exitPoint x="46890" y="51531" z="-2976" />
+	<exitPoint x="83425" y="148585" z="-3406" />
 	<spawnlist>
 		<group name="general">
 			<!-- The nine actors are combat copies. The physical telemetry characters remain untouched. -->

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/MapRegion.xsd">
+ <region name="gludio_sky" town="Gludio Sky Dock" castle="0" locId="925" bbs="13">
+  <respawnPoint X="149000" Y="46700" Z="12040" />
+  <respawnPoint X="149000" Y="46700" Z="12040" isChaotic="true" />
+ </region>
+</list>

@@ -1,0 +1,1 @@
+package l2jorion.game.model.base; public enum ClassId {cardinal,evaSaint,shillienSaint,fighter}

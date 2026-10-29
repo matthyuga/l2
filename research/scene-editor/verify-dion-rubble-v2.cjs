@@ -1,0 +1,20 @@
+const {chromium}=require('../../tools/rea-runtime/node_modules/playwright-core');
+const fs=require('fs'),path=require('path'),assert=require('assert');
+(async()=>{const browser=await chromium.launch({executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe',headless:true});const page=await browser.newPage({viewport:{width:1600,height:1000}}),errors=[];page.on('pageerror',e=>errors.push(e.message));try{
+ await page.goto('http://127.0.0.1:32290');await page.waitForFunction(()=>window.editorState?.().ready,null,{timeout:60000});await page.selectOption('#scene','dion_rubble_v2');
+ await page.waitForFunction(()=>window.editorState?.().scene==='dion_rubble_v2'&&document.body.dataset.state==='ready',null,{timeout:60000});
+ const project=await page.evaluate(()=>JSON.parse(localStorage.getItem('l2-scene-editor-draft')));
+ project.name='dion-escombros-v2';project.reference={base:'Dion Classic IL · tres casas fragmentadas',variant:'Escombros irregulares V2',static:true};for(const o of project.objects)o.locked=o.asset.includes('floor');
+ project.cameras=[project.camera,{position:[25,20,29],target:[0,.6,0],fov:42},{position:[-7,5,9],target:[-12,.6,0],fov:46},...Array(7).fill(null)];
+ const output=path.join(__dirname,'projects/dion-escombros-v2.json');if(!fs.existsSync(output))fs.writeFileSync(output,JSON.stringify(project,null,2));
+ const dataPath=path.join(__dirname,'data.json'),data=JSON.parse(fs.readFileSync(dataPath));data.scenes.find(s=>s.id==='dion_rubble_v2').project=path.basename(output);fs.writeFileSync(dataPath,JSON.stringify(data,null,2));
+ await page.goto('http://127.0.0.1:32290/?project='+path.basename(output));await page.waitForFunction(()=>window.editorState?.().ready&&window.editorState().scene==='dion_rubble_v2',null,{timeout:60000});
+ await page.waitForTimeout(400);await page.screenshot({path:path.join(__dirname,'preview-dion-escombros-v2-detalle.png')});
+ const audit=await page.evaluate(async()=>{const {GLTFLoader}=await import('/assets/vendor/addons/loaders/GLTFLoader.js');const loader=new GLTFLoader(),out=[];for(let i=1;i<=3;i++){const g=await loader.loadAsync('/assets/exports/dion-rubble-v2/house'+i+'.glb');out.push({house:i,nodes:g.scene.children.length,animations:g.animations.length,doors:g.scene.children.filter(n=>n.name.includes('Puerta')).length,bricks:g.scene.children.filter(n=>n.name.includes('Ladrillo')).length,wood:g.scene.children.filter(n=>n.name.includes('Astilla')).length,tiles:g.scene.children.filter(n=>n.name.includes('Teja_desprendida')).length});}return out;});
+ assert(audit.every(h=>h.animations===0&&h.doors===8&&h.bricks===24&&h.wood===14&&h.tiles===18));
+ const s=await page.evaluate(()=>window.editorState());const first=s.objects[1].id;await page.locator('.tree-row').filter({has:page.locator('.object[data-id="'+first+'"]')}).locator('.tree-expand').click();await page.locator('.object[data-id^="'+first+'::"]').first().click();
+ await page.locator('#tab-transform').click();const x=Number(await page.locator('#position-0').inputValue());await page.locator('#position-0').fill(String(x+.5));await page.locator('#position-0').press('Tab');
+ const draft=await page.evaluate(()=>JSON.parse(localStorage.getItem('l2-scene-editor-draft:dion-escombros-v2.json')));assert(draft.objects[1].parts.length>0);
+ const res=await page.request.post('http://127.0.0.1:32290/api/projects',{headers:{Origin:'http://127.0.0.1:32290'},data:draft});assert(res.ok(),await res.text());const saved=await res.json();await page.goto('http://127.0.0.1:32290/?project='+saved.saved);await page.waitForFunction(()=>window.editorState?.().ready&&window.editorState().scene==='dion_rubble_v2');assert.deepEqual((await page.evaluate(()=>window.editorState())).objects[1].parts,draft.objects[1].parts);
+ assert.deepEqual(errors,[]);const result={passed:true,houses:audit,triangles:s.triangles,drawCalls:s.drawCalls,errors};fs.writeFileSync(path.join(__dirname,'dion-rubble-v2-verification.json'),JSON.stringify(result,null,2));console.log(JSON.stringify(result));
+}finally{await browser.close();}})().catch(e=>{console.error(e);process.exitCode=1;});

@@ -100,56 +100,15 @@ public class ElvenPvpRoom implements IVoicedCommandHandler
 
 	private static void enterRoom(Player player)
 	{
-		if (player.isDead())
-		{
-			player.sendMessage("No puedes entrar a la sala PvP mientras estas muerto.");
-			return;
-		}
-		if (player.isInCombat())
-		{
-			player.sendMessage("Sal del combate antes de entrar a la sala PvP.");
-			return;
-		}
-
-		final InstanceWorld room = getOrCreateRoom();
-		if (room == null)
-		{
-			player.sendMessage("La sala Elven Village PvP aun no esta disponible. Revisa la plantilla 3051.");
-			return;
-		}
-		if ((player.getInstanceId() > 0) && (player.getInstanceId() != room.getInstanceId()))
-		{
-			player.sendMessage("Primero debes salir de la instancia en la que te encuentras.");
-			return;
-		}
-		if (player.getInstanceId() == room.getInstanceId())
-		{
-			player.sendMessage("Ya estas dentro de Elven Village PvP.");
-			return;
-		}
-
-		room.addAllowed(player);
-		player.teleToLocation(ENTRY_X, ENTRY_Y, ENTRY_Z, 49152, room.getInstanceId(), false);
-		prepareArenaPlayer(player);
-		player.sendMessage("Entraste a Elven Village PvP. Usa .elvenpvp salir para volver al pueblo normal.");
+		final IVoicedCommandHandler lobby = VoicedCommandHandler.getInstance().getHandler("salas");
+		if (lobby != null) lobby.onCommand("salas", player, "elven");
+		else player.sendMessage("El menu de salas PvP aun no esta disponible.");
 	}
 
 	private static void leaveRoom(Player player)
 	{
-		final Instance room = findRoom();
-		if ((room == null) || (player.getInstanceId() != room.getId()))
-		{
-			player.sendMessage("No estas dentro de Elven Village PvP.");
-			return;
-		}
-
-		final InstanceWorld world = InstanceManager.getInstance().getWorld(room.getId());
-		if (world != null)
-		{
-			world.removeAllowed(player);
-		}
-		player.teleToLocation(EXIT_X, EXIT_Y, EXIT_Z, 0, 0, false);
-		player.sendMessage("Saliste de Elven Village PvP.");
+		final IVoicedCommandHandler lobby = VoicedCommandHandler.getInstance().getHandler("salas");
+		if (lobby != null) lobby.onCommand("salas", player, "salir");
 	}
 
 	private static void showStatus(Player player)
@@ -187,8 +146,7 @@ public class ElvenPvpRoom implements IVoicedCommandHandler
 	/**
 	 * Keeps the room alive even when no player is close enough to wake the normal
 	 * aggressive AI. Fighters receive a valid arena target and run to engage it.
-	 * It also detects player revival so every arena respawn starts fully restored
-	 * and protected by a fresh Noblesse Blessing.
+	 * Revival is observed without modifying player resources or effects.
 	 */
 	private void tickArena()
 	{
@@ -227,8 +185,7 @@ public class ElvenPvpRoom implements IVoicedCommandHandler
 				combatants.add(player);
 				if (_deadPlayers.remove(objectId))
 				{
-					prepareArenaPlayer(player);
-					player.sendMessage("Reapareciste con HP, MP y CP completos; tus buffs fueron conservados.");
+					player.sendMessage("Reapareciste en Elven PvP. La sala no restaura recursos ni efectos.");
 				}
 			}
 		}
@@ -287,12 +244,7 @@ public class ElvenPvpRoom implements IVoicedCommandHandler
 
 	private static void prepareArenaPlayer(Player player)
 	{
-		player.fullRestore();
-		final Skill noblesse = SkillData.getInstance().getSkill(NOBLESSE_BLESSING_ID, 1);
-		if (noblesse != null)
-		{
-			noblesse.applyEffects(player, player, true, ARENA_BUFF_DURATION);
-		}
+		// No resource or effect restoration. Method retained for running-class compatibility.
 	}
 
 	private static InstanceWorld getOrCreateRoom()

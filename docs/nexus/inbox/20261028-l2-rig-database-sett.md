@@ -1,0 +1,9 @@
+# L2: base t?cnica de rigs, Sett ? 28/10/2026
+
+Ruta real E:\l2-local. Usuario pidi? an?lisis REA para datos fiables de huesos/animaciones y futuras comparaciones. REA abri? sett.zip, inspect_artifact e inventario central 22 miembros, bundle guardado y sesi?n cerrada. No atribuir sem?ntica del rig a REA: se usaron Blender FBX y lector glTF propio.
+
+Base SQLite research\rig-database-20261028\rig-catalog.sqlite: 29 modelos externos con huesos, todos sus joints y clips, 18010 canales con buffers ?ntegros zlib y hashes. Sett: 144 bones FBX y 144 joints GLB, mismos nombres/padres,132 joints con pesos,1clip90.899997s (tiempo absoluto .0166667..90.916664),432 pistas vectoriales/300 variables. FBX importado60FPS,1440curvas escalares/8104930puntos importados. No confundir estos recuentos ni inventar cortes de ataques. Snapshots SHA ZIP/FBX/GLB de Sett, FBX coincide con miembro ZIP. 1584posiciones en11instantes FBXvsGLB error m?ximo7.78754e-6, sin afirmar equivalencia de todos los frames/orientaciones/deformaci?n.
+
+Ficha http://127.0.0.1:32280/rig-inspector.html?model=ext3_02b86c82826120. Esqueleto 3D, b?squeda/huesos/matrices/pistas, comparaci?n por nombres, reproducci?n. SHA del GLB verificado antes de mostrar; discrepancia bloquea. Enlace desde fichas de29assets. BloodQueen143candidatos/142padrescoincidentes; riggedElf57/50. No transferencia realizada, segmentos/experimentosvac?os. Anatom?a inferida unverified.
+
+Pruebas: SQLite integridad/FK/blobs/snapshots PASS; browser b?squeda/selecci?n/pistas/animaci?n/comparaci?n/cambio/hashmismatch PASS; regresi?n favoritos/export/m?vil PASS. Galer?a solo recibi? rig_analysis en29 fichas; originales/notas intactos. publish.py deassets conserva enlace siSHAigual. No correr generadores hist?ricos de galer?a. Documento research\rig-database-20261028\REVISION.md. Backups\rig-database-20261028.

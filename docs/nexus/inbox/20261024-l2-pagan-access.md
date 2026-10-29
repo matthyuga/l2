@@ -1,0 +1,1 @@
+2026-10-24: investigado acceso Pagan Temple Interlude en E:\l2-local. Perfil CustomWorldOnly excluye spawns clasicos y AI PaganTeleporters; faltan espejo y logica. Diagnostico sin cambios al juego. Informe: E:\l2-local\research\pagan-access-analysis-20261024.md. No recomendar solo spawn32039: AI excluida. Comando GM al destino original: //move_to -12766 -35840 -10856.

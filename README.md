@@ -1,5 +1,7 @@
 # Laboratorio Lineage II Interlude
 
+> **Continuidad documental actualizada al 29/10/2026:** [memoria Nexus y pendientes de sincronización](docs/nexus/README.md). El código posterior al 8/10 sigue pendiente de publicar desde el disco portátil.
+
 Repositorio de continuidad del servidor local basado en L2J Mobius Interlude.
 Conserva el trabajo propio del proyecto sin publicar el cliente de Lineage II,
 binarios de terceros, bases activas, credenciales, herramientas portátiles ni

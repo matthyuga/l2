@@ -1,0 +1,15 @@
+# Lineage2 — medición del heap tras vaciado, 12/10/2026
+
+Usuario pidió medir qué ocupa el heap para decidir siguientes optimizaciones, sin autorizar todavía cambiar nuevas cargas. Se completó diagnóstico, no optimización.
+
+Resultado principal: World.init crea177x257x16=727.824 WorldRegion. Cada región crea4ConcurrentHashMaps,3KeySetViews,AtomicInteger yarrayvecinos. Sonda Instrumentation directa:564,92MiB estructurales; buckets/nodos añaden1,18MiB. Rejilla total~566,10MiB,81% de~699,03MiB de objetos alcanzables estimados.3892regiones con objetos/puertas/cercas;99,465% vacías según esosconjuntos. La matriz global sigue llena aunque ClassicSpawns=0. Esto cambia la prioridad: limitar/crear bajo demanda regiones y sus colecciones tiene más potencial que quitargeodata/cliente.
+
+Catálogos combinados retenidos~72,80MiB. Individuales exclusivos: NPC20,60;skills24,81;árboles10,49;ítems2,81;shops2,70;multisell5,40;player templates0,38. No sumar individuales+combinado: hay compartidos. Geodata3Region objetosJava20,74MiB (archivos14,3MiB no son costoRAM exacto). Zonas1,66. Scriptspropios exclusivos0,39 (no implica costo total de39bots: usancatálogoscompartidos ySQL). HTMLcache prácticamente vacío, pathfindingpool noinstanciado en snapshotreposo, IDallocator~13KiB. Resto~37,33MiB sin atribución completa.
+
+Método: jcmdhistograma+HPROF sin clientes,GCsolicitado; capturatardó67,245s y produjo pausa/advertenciaHikarihousekeeperStarvation. Servidor26408siguevivo/7777; sinreinicio ni cambioscargadores.Nuevasclases de diagnóstico únicamente. Volcado y reportes completos PRIVADOS locales en reports\heap-breakdown-2026-10-12\private, contienenmemoriaapp/no subir. MAT1.17descargado desdeEclipseoficial en tools\eclipse-mat-1.17.0, análisisotraJVM4GiBya finalizada.
+
+MATmodelo original sobrestimó: Usaheaderklass8 vsJVMklasscomprimido4. Native UseCompressedOops=False,UseCompressedClassPointers=True,alignment8. ConcurrentMap96bytes nativos vs104MAT;AtomicInt16vs24;arrayscabecera16vs24. Retainedsets fueron corregidos por clase conhistogramanativo/arrays-8bytes ycontrastadosconsondaestructuraldirecta. Losrawycorregidos permanecenenCSV.ModeloMATbruto781.530.984bytes; snapshotreachable9.611.739objetos despuésquitar76.211unreachable/5.167.224bytes. VMheapused~782MiB difieresumaobjetos~699porocupación/alineamiento/slack/objetosespeciales. No llamar699 totalRAMproceso.
+
+Evidencia: E:\l2-local\reports\heap-breakdown-2026-10-12\DIAGNOSTICO.md,diagnosis.json,histogram.txt,world-grid-native.csv,native-layout.csv,subsystems-summary.json,*-classes.csv,subsystems.xml. Helpers tools-src\HeapLayoutProbe.java/WorldGridMemoryProbe.java; tmp\make-heap-subsystem-report.py/analyze-heap-subsystems.py/write-heap-diagnosis.py.
+
+Mejora potencial siguiente: colecciones porregión bajo demanda (cabecerasMap+vistas333,17MiB para todasregiones,mayoría vacías); luego regiones/vecinoslazy sinrecortarvisualescliente. Necesitavalidarvisibilidad,movimiento,zonas,puertas,teleports,concurrencia,siege/PvP. No prometer recuperar566enteros ni75/100botsfluidoshastaimplementar/medir. QuitarTalkingIslandcliente negro no ataca elbloque principal; excluirregioneslógicas sí puede.

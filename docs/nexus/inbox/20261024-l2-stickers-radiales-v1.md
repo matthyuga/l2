@@ -1,0 +1,30 @@
+# L2 Lab — stickers y rueda radial V1
+
+24/10/2026. Instalado en `E:\l2-local`, cliente `E:\l2\system-hud`. Alt+E o botón abre la rueda de ocho reacciones; selección con clic; Esc/centro cancela. `.sticker 1..8` alternativa. Duración 3 s, espera validada por servidor 5 s.
+
+Nuevo script StickerEmotes activado por ScriptEngine sin reinicio ni parche del core. Interfaz y paquetes propios; anteriores exports, 140 ventanas y registros existentes de skillgrp/skillname preservados. Recursos y handler verificados; apariencia, input real, seguimiento al correr y segundo cliente requieren revisión en L2.
+
+Documento: `E:\l2-local\STICKERS-RADIALES-V1.md`. Fuentes/pruebas: `research/stickers-radial-v1/`. Respaldo: `backups/stickers-radial-v1-20261024-162504`. `rollback.py` restaura con guardas de hashes y retira handler vivo. Academy/Hellgames no modificados.
+
+Seguimiento: el usuario reportó GPF al entrar, historial `StickerRadialUI.OnTimer`. Se corrigieron tres argumentos de teclado: EX_IntConstByte devuelve int32, pero IsKeyDown espera EInputKey/ByteProperty; reemplazado por EX_ByteConst. Exactamente tres bytes de opcode cambiados, manifiesto actualizado y cliente reabierto. Nuevo ingreso pendiente de confirmación: NO afirmar estabilidad ni funcionalidad gráfica basándose en proceso abierto o parseo estático.
+
+Segundo intento también falló en OnTimer. Se retiraron el registro del timer y las llamadas de teclado; OnTimer sólo retorna. Modo vigente por botón, sin Alt+E/Esc por sondeo. Se instaló V2 con19 recortes transparentes de la lámina aportada `descarga de assets/maggie-fess-2xj1f66khj0.jpg`; ocho en rueda y19 por `.sticker 1..19`. Handler nuevo MaggieStickerEmotes (la JVM retenía la clase V1), verificación real de19 selecciones correcta. Arte/tabla/callbacks verificados; ingreso, clics y dibujo pendientes de usuario. Fuente/guía `E:\l2-local\research\stickers-maggie-v2\README.md`. RespaldoV2 `backups/stickers-maggie-v2-20261024-164145`; rollback maestro V1 actualizado para retirar también V2.
+
+
+Confirmaci?n del usuario (24/10/2026): ?Entr? y aparece el sticker?. Ingreso al mundo y dibujo del sticker confirmados con el temporizador retirado. Bot?n/rueda, seguimiento, duraci?n y segundo cliente siguen sin confirmaci?n expl?cita.
+
+
+ACLARACION DEL USUARIO: el sticker se ve en el menu, pero NO aparece sobre el personaje al elegirlo. La confirmacion previa fue mal interpretada: ingreso/rueda visibles, render en mundo NO confirmado y actualmente reportado ausente. La rueda tambien recorta las texturas. Investigar callback/paquete/attachment y corregir UV/tamano de controles.
+
+V3 instalada: `research/stickers-overhead-v3/README.md`. Nuevos paquetesV3 con unión a Bip01 Neck1 (EAM_BoneSpecified), sin trailer ni timer. Texturas de UI con dibujo a tamaño84/98/48/384 y UV explícitas; chat «Sticker enviado» y logs STICKER_REQUEST/STICKER_SENT para aislar envío frente a render. GM invisible recibe sólo su efecto local. Clase de script existente redefinida; core intacto. Cliente reabierto; todavía NO hay confirmación de dibujo sobre la cabeza. Respaldo `backups/stickers-overhead-v3-20261024-170339`; rollback maestro V1 actualizado.
+
+V4: usuario dijo que no hay mensaje ni dibujo. Root cause comprobado: SkillCatalogView.nativeWindowAction devolvía false para `voice .sticker 1`; RequestBypassToServer descartaba los botones por carecer de caché HTML. Se habilitaron exactamente1..19 preservando10acciones anteriores y rechazos. Método graft en vivo, resto de métodos byteidénticos. Persistencia: agente `server/agents/sticker-native-actions-v4.jar` + argumento de GameServer en Start-L2Local; cold JVM comprobada. GameServer.jar intacto. Rollback maestro restaura también método y arranque. Fuente/guía `research/stickers-native-bypass-v4/README.md`, respaldo `backups/stickers-native-bypass-v4-20261024-171214`. Nuevo clic y dibujo SOBRE LA CABEZA aún pendientes.
+
+REA V5: traza real en cliente PID24204 confirma catálogo y recursos válidos. SpawnActor crea emisor, pero AttachToBone(Bip01 Neck1) devuelve0 y lo destruye. Cabeza real del jugador: Bip01_head; prueba en memoria sobre acciones0/1 devuelve AttachToBone=1 y actor válido. Paquete con19 acciones corregidas preparado en research/stickers-rea-v5, pendiente instalar con cliente cerrado y confirmación VISUAL. No confundir unión exitosa del motor con dibujo observado. Evidence en runtime-evidence.json; Engine.dll sin modificación persistente.
+
+V5 instalada 17:56: usuario corrigió que el sticker aparece AL COSTADO. No hay confirmación de posición arriba de cabeza.19 acciones usan Bip01_head y bAbsolute=true, este último para comprobar corrección de orientación/desplazamiento. Backup stickers-rea-v5-20261024-175600; rollback maestro actualizado. Pendiente prueba visual después de reinicio.
+
+Estado vigente ? 24/10/2026: el usuario confirm? ?quedo perfecto? despu?s de instalar V5 y reiniciar L2. Sticker visible y colocado sobre la cabeza. Las 19 acciones usan Bip01_head y bAbsolute=true. REA identific? que Bip01 Neck1 fallaba en AttachToBone y el motor eliminaba el emisor; el hueso correcto permite crearlo, y la orientaci?n absoluta corrige el desplazamiento lateral. Sin sondeo de teclado; apertura por bot?n. Duraci?n configurada: 3 segundos; espera entre env?os: 5 segundos. Seguimiento en movimiento, tiempo exacto y vista desde otro cliente no se comprobaron por separado. Respaldo V5: E:\l2-local\backups\stickers-rea-v5-20261024-175600. Rollback maestro actualizado.
+
+
+20:30 — V6 compensación de gamma para19stickers sobrecabeza INSTALADA concliente cerrado por pedido de revisar mismo método deAmber. Etapa research/stickers-gamma-v6/README.md. LUTinversa realREA idénticaAmber; sólo RGB deReaction0..18, alfa/cabeceras/offsets/todasdemásbytesidénticos. Nativeparser+wholefileallowedranges+CRC+roundtripPASS. Wheel/menu yemisores/duración/posición/cmdsin cambios; Interface/AmberGamma/Option/l2.ini/effects hashespreservados. Backup stickers-gamma-v6-20261024-203027; restore.py sólooriginalcolors, retirarV6 antesrollbackstickers. Pruebavisualpendiente; noafirmaréxitocolorhasta usuario.

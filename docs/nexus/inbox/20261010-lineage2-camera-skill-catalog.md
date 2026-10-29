@@ -1,0 +1,8 @@
+# Cámara y catálogo por clase — instalado y verificado (2026-10-10)
+Proyecto E:/l2-local; cliente E:/l2/system-hud. Usuario confirmó L2 cerrado; instalación realizada con cero conexiones y hashguards. GameServer iniciado; verificación opt-in de una sola ejecución finalizada: 471 checks PASS a las14:58. No hace falta otro reinicio. El inicio habitual deja catalog.verify=false. Fin de la ventana exclusiva de esta sesión.
+
+Cámara MaxZoomingDist250->1800. Alt+K tiene Clases / Amber; acceso alternativo .habilidades / .skills. Orden acordado principal -> sub1 -> sub2 -> sub3 -> Comunes, conservando pestañas activas/pasivas. Grupo adicional Amber y Especiales. Límite original 80 por sección ampliado a2048; 19014 Asistencia de Amber está incluido. Filtros por árboles reales y skills conocidos; no conceden skills ni alteran niveles, clase activa o shortcuts. Recuperar lista completa: .habilidades filter -1. Pendiente prueba visual del usuario.
+
+JAR: sólo cambia SkillList.class y agrega SkillCatalogView/$Model; demás entries idénticos. Preservados Player, arena, razas y Amber. DAT actuales V9 idénticos a respaldo: no se sobrescribieron. Interface.u sólo añade callback mínimo; las demás funciones idénticas. Interface.xdat sólo cambia MagicSkillWnd; otras ventanas idénticas. l2.ini prioriza system-hud/*.u.
+
+Backups/client-comfort-2026-10-10. Documentación CAMARA-Y-CATALOGO-POR-CLASE.md y CONTINUIDAD-W10/W11/20_CAMARA_CATALOGO_POR_CLASE_2026-10-10.md. Proof research/client-comfort/installed.json, verification.json y verification-server.log. Fuentes y documentación espejadas en cloud-repo, sin commit/push. Base del probe reservado conserva skills/subclases/shortcuts; snapshot comparado antes/después.

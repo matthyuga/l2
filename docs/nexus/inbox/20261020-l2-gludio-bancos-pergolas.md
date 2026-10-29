@@ -1,0 +1,5 @@
+# Gludio ? dos bancos tallados ? 20/10/2026
+
+E:/l2-local. Kevin eligi? el estilo fant?stico de madera tallada con gemas de la referencia 3; autoriz? reemplazar solo dos bancos bajo techo. Modelo original generado en build-gludio-carved-bench.cjs: nogal texturado, curvas biseladas, volutas, hojas, patas torneadas, bronce y turquesas. Recurso custom_gludio_brisas_carved_bench, exports/gludio-carved-bench/bench.gltf. Cambiados solo IDs dfe8dd19-a1f3-4074-868e-304f82c21dcc y 134fd162-e6e5-49e6-aa0b-8150524a94d0 en Gludio Brisas est?tico/animado, tanto projects como mapas editados. Cuatro bancos exteriores intactos. app.js migra esos mismos dos IDs en borradores al recargar, preserva ediciones y respalda :before-carved-benches-v1.
+
+verify-gludio-carved-bench.cjs: comparaci?n completa (solo dos assets), borrador viejo editado/backup/reload/save, cuatro bancos intactos, ocho efectos en movimiento, sin errores. Reporte gludio-carved-bench-verification.json. Respaldo backups/gludio-bancos-pergolas-20261020. Capturas banco-pergola-detalle.jpg y banco-tallado-diseno.jpg (animado). No instalaci?n cliente, no Academy/Hellgames.

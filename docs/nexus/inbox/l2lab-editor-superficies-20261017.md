@@ -1,0 +1,3 @@
+L2 Lab, 2026-10-17. Editor local en E:/l2-local/research/scene-editor, http://127.0.0.1:32290, lanzador 19-EDITOR-ESCENAS-L2.cmd.
+
+Se agrego Superficies a las propiedades en Escena: desbloquear pieza, elegir material del piso y reemplazar por pasto/musgo, tierra/hierba seca o arena; alternativa capa con opacidad. Proyeccion horizontal, repeticion por cuatro metros; todas las caras del mismo material de esa pieza. JSON/borrador/undo conservan cambios. No hay pincel por zonas ni escultura ni puente de instalacion al cliente. Original .unr intacto. Modulos surfaces.js/css y validacion servidor. verify-surfaces.cjs y verify.cjs pasan, render WebGL inspeccionado. Solo L2 Lab; Academy/Hellgames no tocados.

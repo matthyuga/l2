@@ -1,0 +1,9 @@
+# L2 assets externos ? Tanda 4 ? 28/10/2026
+
+E:\l2-local. Usuario avis? nuevas descargas. 55ZIP nuevos inventariados incrementalmente; los55 convertidos GLB+miniaturas, autor/licencia/origen recuperados55, originales ZIP SHA antes/despu?s iguales. Tanda4 en cat?logo32280;37nuevos con rig,19con animaciones,285clips. Arachnida24,DeepMonstrosity43,Maw83. Cat?logo externo acumulado140ready+1DAEpendienteviejo. Todas3057fichas previas intactas por igualdad profunda.
+
+Base t?cnica ampliada a66modelos;71227canales completos conblobs+hashes verificados,SQLiteintegridad/FKPASS,snapshotsSett3pass. No reindexar escenas alteradas con mismoID: guardia SHA del builder mantiene revisiones. Publish.py ahora --batch=<nombre> conserva otras tandas exactamente y enlaces t?cnicos porhash; duplicados aliases no se multiplican. Nuevos rigs se enlazan autom?ticamente desde build_database.py. No ejecutar inventory.py main porque sustituye decisiones hist?ricas; usar import_round4.py o un importador incremental.
+
+Viewer prepara copias declips con tiempos desplazadosa0 para reproducir acciones originales quetienen inicio tard?o (p.ej.DeepMonstrosity67seg). GLB y tiempos originalesSQLite no cambiados. Prueba55GLB/copia original tiemposPASS; fichatecnica SHA/lab/favoritos export/m?vilPASS. Serephina pose deformada poco visible;ReaperAAcomponentes/transparencias,BeyondGrimmjow yUlquiorra orientaci?nbase porrevisar; se?aladosen ficha/JSON, no corregidosni declarados aptosparaL2. 8materialespendientes. No tocar originales,juego,DBserverni perfilesusuario.
+
+Reporte E:\l2-local\research\external-assets-round4-20261028\REVISION.md;inventarioCSV,contactos3hojas,sourceintegrity ybrowserverification. Respaldo backups\external-assets-round4-20261028. Enlace http://127.0.0.1:32280/?batch=Assets%20externos%20%C2%B7%20Tanda%204 .

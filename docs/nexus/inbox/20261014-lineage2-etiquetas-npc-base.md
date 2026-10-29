@@ -1,0 +1,3 @@
+# Etiquetas NPC: intento de descarga y base alternativa
+
+El mod exacto AllDefaultNPCsWithEffectLogo de NevesOma no tiene enlace publico localizado en comentario11/03/2022 ni descripcion del video aJ8jLBBIPEs. No descargado, no compra/contacto. Se verifico y preparo la alternativa ya descargada CustomNPCWithLogoInterlude, recursosathenas.u/LineageNPCs12.ukx/NPCgrpd.txt y texturaAthena en E:\l2-local\research\visual-effects\npc-labels; copiaREADME/procedencia/PNG enK03-efectos-visuales\etiquetas-npc. No confundir con sistema global/dinamico. Cliente/servidor intactos. PropuestaetiquetasHELLGAMES pendiente de diseno y prueba.

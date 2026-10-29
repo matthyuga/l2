@@ -1,0 +1,11 @@
+# Dust2 V7: cámara y apoyo corto, pendiente cliente
+
+Kevin reportó V6: cámara se sale y muestra mapa abierto/terreno de L2, escalera se frena a mitad. Aclaró que quiere un techo invisible para cámara. Dejó pj en OTRA zona para cámara: posición viva141496,55320,8040 heading56194. Posición offline previa141401,54851,8136 no certifica ubicación de escalera de captura.
+
+Instalado E:/l2-local/research/dust2-camera-v7. Techo invisible local por capa, al primer sólido/cielo BSP y como máximo128u de suelo:1.921techos,2.744cierres entre alturas,1.286laterales=5.951actores ocultos deco01.Box02. TraceZero=true/TraceNonZero=false para cámara, no obstáculos de barrido. Su eficacia en cámara NATIVA todavía no se confirma. Zona del usuario suelo8000/techo8128. Perfil real E:/l2/system-hud/user.ini tenía hitchecktrue, mínimo300; ahora HitCheckCameraMinDist0, MaxZoom1800 igual y demás texto íntegro. Ese mínimo afecta perfil HUD también en otras zonas, no se bajó zoom global. Codec413 roundtripPASS.
+
+32rampasV6 reemplazadas por189piezas<=32x32u, mismos planos, límites CollisionRadius/Height explícitos;1.701rayos nativosPASS. Es ensayo para fallo a mitad; no afirmar causa de límites/tamaño demostrada. GeodataV6 idéntica. Nuevo `.dust2 escalera2` referencia6peldaños, llegada141320,55440,8045 norte. No afirmar que sea misma captura. Original `.dust2 escalera` y salir conservados. Handler3copias compilado/hotredefine en GS9536; Playertransitorio probó comando nuevo/regreso +364movimientos originalesPASS.
+
+Kevin cerró L2 expresamente. Backup E:/l2-local/backups/dust2-camera-v7-20261014-165612 mapa+HUDuser.ini+3handlers (5archivos).7manifiestos sincronizados/hashes reales.16.003payloads anteriores no relacionados intactos. Sin commit/push. No reejecutar instaladores históricos ni V7build/install sobre instalado.
+
+PENDIENTE dos preguntas async: cámara ¿se queda dentro o queda muy cerca?, y `.dust2 escalera2` subir/bajar/repetir ¿completa o se frena? No declarar resuelto hasta respuesta cliente. Si ignora cerramiento, revisar tipo de traza de cámara antes de más actores. Si sigue escalera, capturar posición viva en el bloqueo, no la zona de cámara. Coste de5.951actores de cámara ocultos+189soportes no medido en cliente (sinAI/render). Critical al cerrar sigue separado sin causa/solución confirmada. Galería/bots sin cambios.

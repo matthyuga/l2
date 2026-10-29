@@ -1,0 +1,5 @@
+# Salas: ataque sostenido y clases ?15/10/2026
+Instalado enGameServer3064; E:/l2-local/research/pvp-combat-rhythm/RESULTADOS.md.
+Cerebro100ms(cachetarget400),sin bloqueo artificial900ms; fisicos mantienenIntention.ATTACK y entretejen skills(3sarquero/1.9sotros),casters encadenan con tiempos nativos. PotasCP90%condeficit200/MP65/HP75con handlers/reuse nativos. Repertorio contextual Snipe/Dash/Trick/Switch/Mirage,vortexIce+Light/SolarSpark,sealsOLguardadoscontraaliados,soloaprendidos.
+Fixture12s:arquero1->5iniciosataquenativo,mago9->12casts.No afirmar multiplicadorDPS.SealBinding1208ejecutado conaliadoexcluido;guardrechazounsoloenemigo.PotasCP8en4s,min503ms(reuse500).Actoresretirados,lobby/humano intactos. Ajuste finalmicrochaseyretiradaSnipe compilado/activo,sin dueloSnipespecifico.
+15fuentesmirrors,82hashes,backup E:/l2-local/backups/pvp-combat-rhythm-20261015-220019. No tocaranimaciones/Amber ni repetiragentesdefinicionhelpersenesteproceso. Pruebas/runtime producencontadores acumulados; no atribuir todos al parche. Faltanrotacionescompletaspets,todaslasclasesy4salascargadas.

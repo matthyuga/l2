@@ -1,0 +1,3 @@
+# Más escenarios exóticos en la web
+
+Kevin pidió nuevas curiosidades después de ver Superion/Gracia. Investigación guardada en E:/l2-local/research/resource-library/2026-10-12/ESCENARIOS-EXOTICOS-WEB.md. Candidatos: jardines de Eva, World Tree Village, Crow Island IL, Genesis/Orbis/Octavis, Fantasy Island/Kratei, Naia, Rosevain, Veilmar y ruinas. Fuentes son publicaciones del autor deMEV e índice Exilium; nuevas descargas/compatibilidad no probadas. También se anotaron eventos oficiales de pasteles, topos y apariencias de tiburón como inspiración para el parque temático. No se añadieron assets nuevos en esta búsqueda.

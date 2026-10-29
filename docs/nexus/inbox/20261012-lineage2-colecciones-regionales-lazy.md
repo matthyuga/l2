@@ -1,0 +1,17 @@
+# L2: colecciones regionales bajo demanda
+
+- Proyecto real: E:\l2-local. Usuario autorizo empezar por las colecciones vacias; implementado y aplicado con reinicio controlado el 12/10/2026.
+- GameServer actual PID 10460, localhost:7777. Login/MariaDB se conservaron. Maximo ZGC 8 GiB sin cambios; Xms 512 MiB.
+- WorldRegion: tres sets volatile (objetos, puertas, cercas) inicialmente null, publicaciones CAS con VarHandle estaticos, lecturas frias emptySet compartido. Una vez publicados se conservan aun vacios; no se cambian referencias bajo lectores. No nuevos bloqueos entre regiones.
+- Cache de vecindad ConcurrentHashMap eliminada: misma comparacion directa de coordenadas inmutables. Se conservan todas las 727824 celdas, arrays de vecinos y contadores de activacion. No se eliminaron mapas/geodata ni cambiaron limites.
+- Instrumentation estructural comparable: 592361904 -> 237726768 bytes = 564.92 -> 226.71 MiB; ahorro 338.206 MiB / 59.87% de esa estructura. Incluye shallow de celdas/matrices/arrays/set-views/mapheaders/contadores; excluye buckets/nodos y memoria nativa. No confundir con retained set MAT anterior.
+- Heap post-GC: 760 -> 430 MiB, sin clientes, perfiles listos. JVM de distinta antiguedad; atribucion mas exacta es el conteo estructural.
+- RSS inmediato anterior 1.09 GiB, posterior 2.24 GiB: ultima JVM recien preparada todavia tenia 2054 MiB comprometidos y 1624 MiB en cache de paginas ZGC. No se certifico RSS estabilizado, retraso ZUncommit 300 sec. No interpretar RSS inicial alto como actores reaparecidos.
+- Tests: compilacion/JAR final, 125 casos vecinos, 60 rondas CAS / 96000 inserciones, vistas publicadas y migracion. Live: 585 objetos aparecidos pertenecen a su region, 547 puertas propagadas, alta/baja de cerca temporal, visibilidad cerca/lejos, movimiento Giran-siege, respawn Talking Island y regreso. Objetos temporales retirados.
+- Perfil mundo vacio PASS: 8 NPC propios, clasicos/quests/raids/random0, comandos7, roster39 listo, inicioGiran. SQL preservado: personajes39, subclasses117, skills9704, hennas259, vars78, items1075, clanes6, castilloGiran. Reputacion de castillo repuesta via API nativa tras reinicio.
+- Primera verificacion prematura fallo por READY falso; repetida al terminar preparacion. Diagnostico inicial asumio todo objeto del registro aparecido; corregido para omitir perfiles offline. Ningun fallo requirio cambiar implementacion.
+- Sin partida visual ni nuevo combate39bots; no afirmar mejora de IA/capacidad de siege.
+- Reserva: backups/lazy-region-collections-2026-10-12 (JAR, fuente, SQL consistente, hashes, RESTAURAR.md). SQL/baseline-private.json contienen datos privados: no subir.
+- Informe: reports/lazy-region-collections-2026-10-12/DIAGNOSTICO.md y diagnosis.json, before/after, unit-tests.txt, preservation-verification.json, region-runtime-check.txt, WorldRegion.diff, artifacts.json.
+- Runtime/dist JAR SHA256 F97054825BE06443B37379D22AA7C9BF8BE0090F628285A8E9B3D919DBA33AB0. Comparacion ZIP confirma unica entrada modificada WorldRegion.class. Fuente/mirror mobius-overlay sincronizados. No redefinicion en caliente.
+- Helpers: tools-src/LazyRegionCollectionsTest.java, LazyRegionGridProbe.java, LazyRegionIntegrationCheck.java; lab-panel/scripts/check-lazy-region-preservation.js. Probe original WorldGridMemoryProbe supone sets no nulos y cache existente: para futuras mediciones usar LazyRegionGridProbe compatible con ambos layouts.

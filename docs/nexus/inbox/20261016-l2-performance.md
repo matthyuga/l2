@@ -1,0 +1,9 @@
+# Revision rendimiento L2 — 16/10/2026
+
+Kevin confirma que HD funciona bien y pide revisar juego/servidor/cliente/memoria. Auditoria SOLO lectura sin cerrar/reiniciar/cambiar configuracion. Informe E:\l2-local\reports\performance-20261016\INFORME.md y summary.json; ventanas80.6+54.2s. Receptor HD confirmado NexusTV.log RECEIVED HD FRAME1280x960/canalProgram_v2 (ya aplico pendiente previo).
+
+i9-11900K16logicos32GB: CPU27.4%media39%pico, minimo18.1GiBRAMlibre. GPU RTX3060~38%media45%pico,623MiB/12GiB usados, sinthermal throttling. Cliente espectador373MiBRSS8.9%CPUtotal,camara321MiB~0.05%(inactiva). Un hilo espectador~90%deuncore yotro48%: vigilarcliente, no confundirbajoCPUtotal con holgurasinglethread. TVPython82MiBRSS3.5%CPU +Chrome851MiBRSS7.65%, privado543+526MiB. Privatebytesclientes estables(0/0.1MiBcambio); servidorestable; no fuga evidente ventana corta, no certificacionlarga.
+
+GameServerPID20180(no18152),Login3832,DB17456,viewer15824,cam17844,TV18956: procesospuedencambiar. GameServer970MiBRSS,heap784->796MiB,max8192,CPU<.1%con cargaactual; Login134MiBRSS,heap18MiB,max256. DB156MiBRSS,5conexiones maxhistorico6/20,0slowqueries/rowlockwaits/abortedconnects. JVMthread dump sin deadlock(DeadlockWatcher es normal), noOOME/excepcionesrecientes. Windows0crash/hangeventosrelacionadosultimas3h. LogTVtieneerrorhistorico16:42decutover, nofalloactual. TVHDYouTube activo28.5–29FPSemision22.6–26.6contenido,14.26msproceso,sinerrores. FPSmotorL2 NOmedido; noasegurar game30/60.
+
+E3782GBlibres,K769,Csolo17.7/222GB(~8%libre): mantenimientoC a futuro, no limpiarautomaticamente. ColaDisco0, sinpresionRAMsostenida. Conclusionequipoestable,margenRAM/GPU/server/DB; mayorcosto cliente+TV. No ajustes necesariosahora. SQLcredencialesusadasdesdeconfigsinimprimirnisalvarpassword. No copiar dump/hilos/procesos alNexus, solonota.

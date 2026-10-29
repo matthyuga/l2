@@ -1,0 +1,2 @@
+# L2Damage instalado, acceso pendiente
+15/10/2026. Cliente separado en E:\l2-damage\client\Lineage II; launcher E:\l2-damage\JUGAR-L2DAMAGE.cmd. Base extraida, 406 archivos de parche verificados SHA256. Usuario confirma pantalla login, cierra voluntariamente por texto de entrada invisible. No se confirmo cuenta creada ni entrada al mundo. Computer Use falla native pipe os error2 tras reset/reintento. Prueba reversible modo ventana 1024x768 preparada y lanzada; resultado pendiente. Detalles E:\l2-damage\CLIENTE-INSTALADO.md. No guardar credenciales. HELLGAMES separado.

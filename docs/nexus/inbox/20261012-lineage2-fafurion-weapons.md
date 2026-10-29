@@ -1,0 +1,9 @@
+# Fafurion Weapons integradas — 12/10/2026
+
+E:\l2-local. Pack recibido en descarga de assets/Fafurion_Weapons_H5_IL.rar; SHA256 176bae09025d96eeda562e6d32f96d342647500ad7f24c22952b9ad53f511f04. Cliente activo E:\l2\system-hud: dos DAT preservan 1313/9208 registros originales byte por byte y añaden siete; tres paquetes .u nuevos. IDs 54130–54136, XML 54100-54199.xml en runtime/source/cloud local. Base S sin SA/procs: Avenger281/132, Cutter281/132, Fighter342/132, Singer274/193 mágico (pack175 corregido), Shaper246/132, Stormer281/132 con skill3599/1 normal, Dual342/132 sin bonusPvP/+4 heredado. Material cliente8 y marca hero retirada.
+
+CRC/codec413 roundtrip/hashes/refs y seis mallas+materiales exportados PASS. Parser nativo y funciones de stats S/tipos/skills PASS; siete templates agregados al GS17204 sin restart y sin reemplazar los existentes. XML se carga normalmente al próximo arranque. No se cambiaron core/métodos, personajes, inventarios ni DB; no se entregaron armas automáticamente. //create_item ID 1 con GM. Revisión visual ingame pendiente. No ejecutar build/install/agente como actualizadores; verificador read-only disponible.
+
+Sockets son propuesta, NO implementación: tres slots por instancia, atributos y resonancias por bajas/daño/HP/CP efectivos. ItemVariables/eventos y callbacks de Heal/CP existen; hace falta lógica de sockets, persistencia consistente y observador de curación desacoplado de Amber, con origen/HP/CP. No hay gemas/poderes nuevos activos.
+
+Documentos FAFURION-ARMAS-INTEGRACION.md y FAFURION-SOCKETS-PROPUESTA.md. Código/manifiestos/pruebas research/fafurion-weapons; backup backups/fafurion-weapons-20261012-202625. Preservar cliente activo completo al mover PC. Antes de deshacer revisar objetos persistidos y hashes: no quitar templates con instancias ni sobrescribir DAT con adiciones posteriores. Cloud local conserva código/docs/XML; no binarios del pack, sin commit/push.

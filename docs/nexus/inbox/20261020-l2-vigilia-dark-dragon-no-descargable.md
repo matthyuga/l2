@@ -1,0 +1,3 @@
+# Vigilia ? recreaci?n rechazada, nueva referencia no descargable ? 20/10/2026
+
+E:/l2-local. Kevin dijo que vigiliadragon1 no convence. Eligi? Dark Dragon Head https://sketchfab.com/3d-models/dark-dragon-head-884a52e8efb942798d72cbc56b522649 y pidi? ver si se puede descargar/editar/probar en nave. API oficial confirma isDownloadable=false, license vac?a, 32018tri; autor jinxb0t @jinxTV, basado en Duality de Haiwei Hou. No se resuelve iniciando sesi?n; no malla extra?da. Guardados metadatos/preview/README en research/vigilia-dark-dragon. Sin cambios de nave. Necesita archivo del autor o nueva elecci?n; no lanzar otra recreaci?n aut?noma tras rechazo previo.

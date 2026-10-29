@@ -1,0 +1,11 @@
+# Selector HSL dentro de L2 instalado
+
+Usuario autorizó integrar. Instalado en E:\l2\system-hud (2-JUGAR) y system-camera-online. Panel derecho nativo «Color del cabello», Clásico A–D / Libre HSL, plano tono/saturación + luminosidad, tinte por instancia con máscara A–D y alpha conservado. No es la demo externa.
+
+Trabajo: E:\l2-local\research\character-creation\2026-10-26-hsl-ingame-v1. README, installation.json, final-verification.json y rollback.py. Backup E:\l2-local\backups\hair-hsl-ingame-v1-20261026-230921. Base v14 conservada, sin reintroducir caras del orco. NWindow a4de43d5d31241daae7dac072134c011abdd036b0d1ee291eead0bb5e9c6ca7d, engine 6b2598b0103dc16fc2e1a9202751bdd442f637bc4751b2a192b52bc52d049c91. DLL NexusHairHslGame.dll obligatoria en ambos perfiles. Importaciones nuevas y hooks encadenados; GetPcTexName normaliza el color marcado antes de sus tablas.
+
+Servidor activo PID25292: cuatro clases grafted/recargadas atómicamente, sin reinicio. RGB en character_variables NEXUS_HAIR_RGB_V1; characters.haircolor sigue A–D. Wire usa marcador 0x40000000 + reserva A–D en bits24/25 + RGB24. Requiere clientes modificados. Fuente y ambos JAR mirrors actualizados conservando otros métodos. Helper nuevo sin cambio de esquema. Fog d3d9 system-hud: solo huella aceptada de NWindow actualizada; manifest fog actualizado y backup reversible.
+
+Verificaciones: 20506 nativas, 16394 protocolo, 30 PE/Unicorn; preflight automático en motor real PASS (textura1024×512, máscara100493/protegidos423795, alpha exacto, wrapper y UTexture panel, GDI estable). Siete checks servidor con BodySexProbe reservado offline, RGB persistido/recargado y limpieza exacta; personajes usuario no modificados.
+
+PENDIENTE: confirmación visual del usuario del panel, arrastre cambiando cabello y A–D; además creación/relog/segundo cliente visual. Pregunta async enviada. No afirmar revisión visual completa. Computer Use @oai/sky native pipe indisponible. Registro cliente en perfiles NexusHairHsl.log; material que no tenga máscara demostrable se conserva original y se registra SKIP una vez por recurso. Perfiles aislados system-hsl-check-20261026 y system-hsl-autoqa-20261026 con hardlinks a binarios: NO escribir sobre archivos compartidos. AutoQA se cierra sola con config Test; no copiar esa config al perfil normal.

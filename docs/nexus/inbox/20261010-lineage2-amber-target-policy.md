@@ -1,0 +1,8 @@
+# Amber: objetivos y bandera PvP — instalado y verificado
+E:/l2-local, 2026-10-10. Fin de la ventana exclusiva de prueba: GameServer iniciado, targets-only opt-in concluido con25 checks PASS; bateria general anterior146 PASS archivada. Confirmados eventos reales de daño de Amber en seleccion autonoma y foco manual al Noctis Player; modo auditoría AMBER_TARGET. Noctis mantiene Hellsing, online0; probes restaurados sin clan/online0. Cliente y JAR no se modificaron; corec2f649... intacto y visualesV10/cámara/catálogo preservados.
+
+Causa: ArenaNoctis y Hellkevin son del mismo clan; Amber prohibía clan/ally incluso en Coliseo, exigía PVP ambos y la IA no consideraba NPC. Ahora orden manual sigue reglas nativas de arena/Ctrl en campo; IA reconoce relación temporal .ia (getter read-only, volatile, sin cambiar builds/conductas del piloto). Monstruos fuera de arena admitidos; NPC contrato/marker, party, paz, NO_PVP, instancia, invulnerabilidad y estados siguen protegidos. IA no inicia PK de blancos ajenos y protege clan salvo rival activo o foco manual válido. Mensajes por motivo.
+
+Arco aplica bandera nativa al dueño; lluvia propia ahora también atribuye agresión al dueño con reglas existentes, incluidas excepciones arena/PK/config. Actor autoriza sólo objetivo explícito Ctrl; Stop/Follow/cambio modo limpian permiso.
+
+Backup backups/amber-target-policy-2026-10-10. Cinco fuentes runtime/source/cloud espejadas; sin commit/push. Detalle AMBER-OBJETIVOS-Y-PVP.md y continuidad22; proof research/client-comfort/amber-target-installed.json y amber-target-verification.log. Prueba de usuario: .ia mago, esperar inicio, activar Asistencia; puede elegir Nightshade primero. Seleccionar Noctis+Atacar fija foco.

@@ -1,0 +1,7 @@
+# Vigilia — nueva dirección: mascarón naval — 20/10/2026
+
+E:/l2-local. Kevin rechazó Red Dragon original por parecer una criatura de otro universo que el barco y autorizó usarlo como guía para uno propio. Nuevo proyecto vigiliamascaron1.json y variante -escala; abrir http://127.0.0.1:32290/?project=vigiliamascaron1.json, toma9detalle.
+
+Diseño original con el MISMO roble texturado, nogal y bronce de la nave; ámbar asociado a faroles. Boca estrecha sin lengua/encías, dientes de bronce, cuernos barridos, bajorrelieves de madera y herrajes/collar de montaje. No usa malla ni texturas del Red Dragon. 113 piezas en máster research/vigilia-mascaron/Vigilia-mascaron.blend. Generador build_figurehead.py usa ayudantes del prefijo de recreate_dragon.py sin ejecutar diseño anterior. Recurso custom_vigilia_mascaron, exports/vigilia-mascaron/mascaron.gltf, zona VIG_16_Mascaron independiente.
+
+Conservados source vigiliarenovada2/hash, 1.467 mallas ajenas y 15 zonas JSON exactas; versiones anteriores/FBX/borradores/Gludio/cliente/Academy/Hellgames intactos. verify-figurehead.cjs PASS17objetos/export/API save/reload/escala/sin errores; revisión visual en conjunto e integrado. Aproximadamente145ktri/79drawcalls, export con casco49036tri. Capturas mapas editados/vigiliamascaron1/general.jpg, dragon-integrado.jpg, dragon-diseno.jpg. Docs README.md/design-audit.json/verification.json. Respaldo catálogos backups/vigilia-mascaron-20261020. No reejecutar sobre ediciones manuales sin respaldo. Sin instalación nativa ni colisión/geodata.
